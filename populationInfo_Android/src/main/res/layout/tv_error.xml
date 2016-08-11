@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_error"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content"
+	     android:layout_below="@+id/ri_s"
+	     android:textSize="@dimen/small_size"
+	     android:textColor="@color/title3"
+	     android:text="没有符合搜索条件的房屋！"
+	     android:layout_centerHorizontal="true"
+	     android:layout_marginTop="25dp"
+	     android:gravity="center_horizontal"
+	      >
+    
+
+</TextView>

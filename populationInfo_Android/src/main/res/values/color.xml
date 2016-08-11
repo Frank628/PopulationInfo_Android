@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="title1">#333333</color>
+    <color name="title2">#666666</color>
+    <color name="title3">#999999</color>
+    <color name="title4">#c8c8c8</color>
+    <color name="title5">#dfdfdf</color>
+    <color name="white">#ffffff</color>
+    <color name="theme_color">#2360B9</color>
+    <color name="theme_color2">#2360f9</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="white_pressed">#ecf2fa</color>
+    <color name="half_trans_white_pressed">#aaffffff</color>
+    <color name="transaction_pressed">#33ffffff</color>
+    <color name="unpressed">#00ffffff</color>
+    <color name="transaction">#00ffffff</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+    <color name="green">#ff008000</color>
+	<color name="red">#9c070f</color>
+    <color name="bgColor">#f6f6f6</color>
+    <color name="Gray">#e6e6e6</color>
+    <color name="black_light">#33000000</color>
+    <color name="black_drak">#AA000000</color>
+    <color name="Gray_stroke">#d4d4d4</color>
+    <color name="white_ligght">#f8f8f8</color>
+    <color name="white_grey">#9e0000</color>
+    <color name="typeBlack">#1e1e1e</color>
+    <color name="listItem">#886dbfd4</color>
+    <color name="listGray">#828282</color>
+ 	<color name="c_ffbd3e">#e6e6e6</color>   
+ 	<color name="c_progressbarBg">#f6f6f6</color>   
+ 	<color name="dialogColor">#f0ffffff</color>   
+ 	<color name="dialogTxtColor">#0048fc</color>
+ 	<color name="holo_blue">#FF33E5B5</color>
+    <color name="colorPrimary">#2360B9</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+ 	
+ 	
+</resources>
