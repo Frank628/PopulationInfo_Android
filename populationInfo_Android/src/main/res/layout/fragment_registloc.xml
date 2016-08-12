@@ -21,25 +21,27 @@
                     android:id="@+id/tv_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:clickable="true"
                     android:text="查询"
                     android:textSize="@dimen/small_size"
                     android:textColor="@color/white"
-                    android:background="@drawable/btn_login_click"
+                    android:background="@drawable/btn_orange_click"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:paddingTop="7dp"
                     android:paddingBottom="7dp"
                     />
                 <EditText
+                    android:id="@+id/edt_houseid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/tv_search"
+                    android:layout_toRightOf="@+id/tv_search"
                     android:textColor="@color/title2"
                     android:textSize="@dimen/small_size"
                     android:hint="输入查询的房屋编号"
                     android:singleLine="true"
-                    android:textColorHint="@color/title4"/>
+                    android:textColorHint="@color/title4"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
             <EditText
                 android:id="@+id/edt_content"
@@ -72,10 +74,11 @@
                 android:text="拍照"
                 android:textSize="@dimen/small_size"
                 android:textColor="@color/white"
-                android:background="@drawable/btn_login_click"
+                android:background="@drawable/btn_orange_click"
                 android:gravity="center"
                 android:paddingTop="7dp"
                 android:paddingBottom="7dp"
+                android:clickable="true"
                 />
             <ImageView
                 android:layout_width="match_parent"
@@ -175,5 +178,40 @@
             android:src="@drawable/smarttravel_map_start"
             android:layout_centerInParent="true"
             />
+        <RelativeLayout
+            android:id="@+id/rl_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/map_bottom_bg"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:id="@+id/tv_latlng"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:textColor="@color/title2"
+                android:textSize="14sp"/>
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#e0e0e0"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@+id/tv_latlng"/>
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:textColor="@color/title2"
+                android:textSize="14sp"
+                android:layout_below="@+id/line1"/>
+        </RelativeLayout>
     </RelativeLayout>
+
 </LinearLayout>

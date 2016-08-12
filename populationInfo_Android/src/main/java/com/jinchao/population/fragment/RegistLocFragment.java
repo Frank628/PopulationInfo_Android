@@ -47,7 +47,9 @@ public class RegistLocFragment extends BaseFragment {
     @ViewInject(R.id.tv_loc) TextView tv_loc;
     @ViewInject(R.id.ll_loc) LinearLayout ll_loc;
     @ViewInject(R.id.tv_zhan) TextView tv_zhan;
+    @ViewInject(R.id.tv_latlng) TextView tv_latlng;
     @ViewInject(R.id.rl_top) RelativeLayout rl_top;
+    @ViewInject(R.id.rl_bottom) RelativeLayout rl_bottom;
     private BaiduMap baiduMap;
     private GeoCoder mSearch;
     private boolean isZhan=false;
@@ -89,7 +91,7 @@ public class RegistLocFragment extends BaseFragment {
             public void onMapStatusChangeFinish(MapStatus mapStatus) {
                 ll_loc.setVisibility(View.VISIBLE);
                 LatLng latLng=baiduMap.getMapStatus().target;
-                Log.i("LATLNG",latLng.latitude+":"+latLng.longitude);
+                tv_latlng.setText(latLng.latitude+":"+latLng.longitude);
                 mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(latLng));
             }
         });
@@ -98,13 +100,11 @@ public class RegistLocFragment extends BaseFragment {
     private void zhanClick(View view){
         if (!isZhan){
             isZhan=true;
-//            rl_top.setVisibility(View.GONE);
             animationClose(rl_top);
             tv_zhan.setText("收起地图");
             tv_zhan.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ico_shrinkup2),null,null,null);
         }else{
             isZhan=false;
-//            rl_top.setVisibility(View.VISIBLE);
             animationOpen(rl_top);
             tv_zhan.setText("展开地图");
             tv_zhan.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ico_shrink2_tint),null,null,null);
@@ -116,7 +116,6 @@ public class RegistLocFragment extends BaseFragment {
 
     }
     public void onEventMainThread(BDLocation location) {
-        Log.i("LOCATION","已经定位到");
         if (location == null || mapView == null) {
             return;
         }

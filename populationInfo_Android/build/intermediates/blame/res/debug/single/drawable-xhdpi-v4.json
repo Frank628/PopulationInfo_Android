@@ -16,6 +16,10 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index02.9.png"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\pay_btn_default.9.png",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\pay_btn_default.9.png"
+    },
+    {
         "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\index_11_01.png",
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_11_01.png"
     },
@@ -60,12 +64,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-xhdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
-        "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\index_02.png",
-        "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_02.png"
-    },
-    {
         "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\smarttravel_map_start.png",
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\smarttravel_map_start.png"
+    },
+    {
+        "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\index_02.png",
+        "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_02.png"
     },
     {
         "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\img03.9.png",
@@ -128,6 +132,10 @@
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\ico_search_next.png"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\bts_bottom_orange_pre.9.png",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\bts_bottom_orange_pre.9.png"
+    },
+    {
         "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\index_16_01.png",
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_16_01.png"
     },
@@ -176,12 +184,12 @@
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
     {
-        "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\index_08_01.png",
-        "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_08_01.png"
-    },
-    {
         "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\dgp_map_btn_location_hl.png",
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\dgp_map_btn_location_hl.png"
+    },
+    {
+        "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\index_08_01.png",
+        "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_08_01.png"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\img02.9.png",
@@ -592,6 +600,10 @@
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_15.png"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\bts_bottom_orange_nor.9.png",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\bts_bottom_orange_nor.9.png"
+    },
+    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\index_20_01.png",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\index_20_01.png"
     },
@@ -842,6 +854,10 @@
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-xhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\pay_btn_pressed.9.png",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-xhdpi\\pay_btn_pressed.9.png"
     },
     {
         "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\img02.9.png",
