@@ -245,12 +245,14 @@ public class HandleIDActivity extends BaseActiviy{
 					try {
 						dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
 						dbUtils.save(people2);
+						Toast.makeText(HandleIDActivity.this, "登记成功！", Toast.LENGTH_SHORT).show();
+						HandleIDActivity.this.finish();
 					} catch (DbException e) {
-						Toast.makeText(HandleIDActivity.this, "数据库操作失败！", Toast.LENGTH_SHORT).show();
+						Toast.makeText(HandleIDActivity.this, "数据库操作失败！请上传所有数据口,并下载全库地址！", Toast.LENGTH_LONG).show();
 						e.printStackTrace();
 					}
-					Toast.makeText(HandleIDActivity.this, "登记成功！", Toast.LENGTH_SHORT).show();
-					HandleIDActivity.this.finish();
+
+
 				}
 			});
 			popBianzheng.showAtLocation(findViewById(R.id.root), Gravity.CENTER, 0, 0);
@@ -330,14 +332,9 @@ public class HandleIDActivity extends BaseActiviy{
 			if (list==null) {
 				Dialog.showSelectDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
 					@Override
-					public void confirm() {
-						
-					}
-					
+					public void confirm() {}
 					@Override
-					public void cancel() {
-						
-					}
+					public void cancel() {}
 				});
 				return;
 			}
@@ -355,7 +352,6 @@ public class HandleIDActivity extends BaseActiviy{
 				}
 			});
 		}
-		
 		popHouse.showAtLocation(findViewById(R.id.root), Gravity.CENTER_VERTICAL, 0, 0);
 	}
 	@Event(value={R.id.rl_degree})

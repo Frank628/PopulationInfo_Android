@@ -88,7 +88,8 @@
     	<activity android:name="com.jinchao.population.realpopulation.RealPopulationActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
     	<activity android:name="com.jinchao.population.realpopulation.SingleRealPopulationActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
     	<activity android:name="com.jinchao.population.realpopulation.AddChildActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-    	<service
+        <activity android:name="com.jinchao.population.activity.AboutActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <service
             android:name="com.jinchao.population.service.DownLoadService"
             android:enabled="true"
             android:exported="false" >
@@ -99,7 +100,11 @@
                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
         </receiver>
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"></service>
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"></service><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

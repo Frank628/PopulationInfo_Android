@@ -1,6 +1,7 @@
 package com.jinchao.population.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jinchao.population.R;
+import com.jinchao.population.activity.AboutActivity;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.utils.SharePrefUtil;
@@ -62,6 +64,11 @@ public class SettingFragment extends BaseFragment{
             }
         });
         ad.show();
+    }
+    @Event(value = R.id.rl_aboutus)
+    private void aboutusClick(View view){
+        Intent intent =new Intent(getActivity(), AboutActivity.class);
+        startActivity(intent);
     }
     class IndexRadioOnClick implements DialogInterface.OnClickListener {
         private int index;

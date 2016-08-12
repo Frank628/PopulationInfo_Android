@@ -81,7 +81,7 @@ public class SplashActivity extends BaseActiviy{
 	}
 
 	private void checkDevice(){
-		RequestParams params=new RequestParams(Constants.URL+"Lisence.aspx?type=get_lisence&ch="+ CommonUtils.getIMEI(SplashActivity.this)+"&mobile="+CommonUtils.getPhoneNumber(getApplicationContext()));
+		RequestParams params=new RequestParams(Constants.URL+"Lisence.aspx?type=get_lisence&ch="+ CommonUtils.getIMEI(SplashActivity.this)+"&mobile=0");
 //		RequestParams params=new RequestParams("http://222.92.144.66:91/population/Lisence.aspx?type=get_lisence&ch=20000&mobile=13865433212");
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override

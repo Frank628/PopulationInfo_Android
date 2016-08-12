@@ -28,6 +28,7 @@ import com.lidroid.xutils.exception.DbException;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -92,21 +93,14 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		this.update();
 		this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		dbUtils=DeviceUtils.getDbUtils(context);
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				initData();
-			}
-		}).start();
+		new InitData().execute();
 		edt_content.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {}
-			
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 			}
-			
 			@Override
 			public void afterTextChanged(Editable s) {
 				lv.setAdapter(null);
@@ -122,14 +116,12 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 						if (list.size()==0) {
 							list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode", "like", "%"+content+"%"));
 							if (list.size()==0) {
-								
 							}
 						}
 							adapter = new CommonAdapter<HouseAddressOldBean>(context1,list,R.layout.item_text) {
 								@Override
 								public void convert(ViewHolder helper,HouseAddressOldBean item, int position) {
 									helper.setText(R.id.tv_content, item.address);
-									
 								}
 							};
 							lv.setAdapter(adapter);	
@@ -154,17 +146,57 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 				Dialog.showSelectDialog(context1, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
 					@Override
 					public void confirm() {
-						
 					}
-					
 					@Override
 					public void cancel() {
-						
 					}
 				});
 			}
 		} catch (DbException e) {
 			e.printStackTrace();
+		}
+	}
+	class InitData extends AsyncTask<String ,Integer ,String>{
+		@Override
+		protected String doInBackground(String... strings) {
+			try {
+				List<JLX> jlxList=dbUtils.findAll(Selector.from(JLX.class));
+				PSCName=new String[jlxList.size()];
+				for (int i = 0; i < jlxList.size(); i++) {
+					PSCName[i]=jlxList.get(i).jlx_name;
+					List<HouseJLX> housejlxList=dbUtils.findAll(Selector.from(HouseJLX.class).where("fk_p","=",jlxList.get(i).id));
+					if (housejlxList.size()!=0) {
+						USERName=new String[housejlxList.size()];
+						UserId=new String[housejlxList.size()];
+						for (int j = 0; j <housejlxList.size(); j++) {
+							USERName[j]=housejlxList.get(j).hosejlx_name;
+							UserId[j]=housejlxList.get(j).id;
+						}
+						UserNameMap.put(jlxList.get(i).jlx_name, USERName);
+						UserIdMap.put(jlxList.get(i).jlx_name, UserId);
+					}else{
+						USERName=new String[]{""};
+						UserId=new String[]{""};
+						UserNameMap.put(jlxList.get(i).jlx_name, USERName);
+						UserIdMap.put(jlxList.get(i).jlx_name, UserId);
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String s) {
+			super.onPostExecute(s);
+			PCSView.setViewAdapter(new ArrayWheelAdapter<String>(context1, PSCName));
+			PCSView.addChangingListener(PopHouse.this);
+			USERView.addChangingListener(PopHouse.this);
+			PCSView.setVisibleItems(7);
+			USERView.setVisibleItems(7);
+			updateUser();
 		}
 	}
 	private void initData(){

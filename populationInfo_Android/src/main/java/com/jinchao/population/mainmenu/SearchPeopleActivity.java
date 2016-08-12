@@ -141,9 +141,9 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				RenYuanXinXiBean renYuanXinXiBean=(RenYuanXinXiBean) ((ListView)parent).getItemAtPosition(position);
+				RenyuanInHouseBean.RenyuanInhouseOne renyuanInHouseone=(RenyuanInHouseBean.RenyuanInhouseOne) ((ListView)parent).getItemAtPosition(position);
 				Intent intent =new Intent(SearchPeopleActivity.this, SearchPeopleDetailActivity.class);
-				intent.putExtra("renyuan", renYuanXinXiBean);
+				intent.putExtra("renyuan", renyuanInHouseone);
 				startActivity(intent);
 			}
 		});
@@ -309,6 +309,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 				tv_content.setText("此房屋没有采集过人！");
 				return;
 			}
+			tv_content.setVisibility(View.GONE);
 			List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();
 			list.clear();
 			if (isZaizhu) {

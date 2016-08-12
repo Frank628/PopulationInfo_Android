@@ -1,5 +1,6 @@
 package com.jinchao.population.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class RenyuanInHouseBean {
@@ -10,7 +11,7 @@ public class RenyuanInHouseBean {
 		public List<RenyuanInhouseOne> peoplelist;
 	}
 
-	public static class RenyuanInhouseOne{
+	public static class RenyuanInhouseOne implements Serializable{
 		public String house_addr="";
 		public String house_code="";
 		public String idcard="";

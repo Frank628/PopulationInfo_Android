@@ -19,6 +19,7 @@ import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.RenYuanXinXiBean;
+import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.view.NavigationLayout;
@@ -35,7 +36,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_bianhao) TextView tv_bianhao;
 	@ViewInject(R.id.tv_address) TextView tv_address;
 	@ViewInject(R.id.tv_time) TextView tv_time;
-	private RenYuanXinXiBean renYuanXinXiBean;
+	private RenyuanInHouseBean.RenyuanInhouseOne renYuanXinXiBean;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,30 +48,30 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 				onBackPressed();
 			}
 		});
-		renYuanXinXiBean = (RenYuanXinXiBean) getIntent().getSerializableExtra("renyuan");
-		tv_shihao.setText(renYuanXinXiBean.室号);
-		tv_card.setText(renYuanXinXiBean.身份证号);
-		tv_name.setText(renYuanXinXiBean.姓名);
-		tv_status.setText(renYuanXinXiBean.居住状态);
-		tv_bianhao.setText(renYuanXinXiBean.房屋编号);
-		tv_address.setText(renYuanXinXiBean.房屋地址);
-		tv_time.setText(renYuanXinXiBean.末次采集时间);
+		renYuanXinXiBean = (RenyuanInHouseBean.RenyuanInhouseOne ) getIntent().getSerializableExtra("renyuan");
+		tv_shihao.setText(renYuanXinXiBean.shihao);
+		tv_card.setText(renYuanXinXiBean.idcard);
+		tv_name.setText(renYuanXinXiBean.sname);
+		tv_status.setText(renYuanXinXiBean.resdients_status);
+		tv_bianhao.setText(renYuanXinXiBean.house_code);
+		tv_address.setText(renYuanXinXiBean.house_addr);
+		tv_time.setText(renYuanXinXiBean.write_time);
 	}
 	
 	@Event(value={R.id.btn_yanqi})
 	private void yanqi(View view){
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 		String date =sDateFormat.format(new java.util.Date());
-		People people=new People(renYuanXinXiBean.姓名, renYuanXinXiBean.身份证号, renYuanXinXiBean.身份证号.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
-				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), "1", renYuanXinXiBean.房屋编号, renYuanXinXiBean.房屋地址, renYuanXinXiBean.室号, 
+		People people=new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
+				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), "1", renYuanXinXiBean.house_code, renYuanXinXiBean.house_addr, renYuanXinXiBean.shihao,
 				MyInfomationManager.getSQNAME(SearchPeopleDetailActivity.this),date);
 		DbUtils dbUtils =DeviceUtils.getDbUtils(this);
 		List<People> list=new ArrayList<People>();
 		try {
-			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", renYuanXinXiBean.身份证号));
+			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", renYuanXinXiBean.idcard));
 			if (list!=null) {
 			if (list.size()>0) {
-				dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.身份证号));
+				dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.idcard));
 			}
 			}
 			dbUtils.save(people);
@@ -85,15 +86,15 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	private void zhuxiao(View view){
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 		String date =sDateFormat.format(new java.util.Date()); 
-		People people=new People(renYuanXinXiBean.姓名, date, renYuanXinXiBean.身份证号, "注销", CommonUtils.GenerateGUID(), "2", 
-				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), renYuanXinXiBean.房屋编号);
+		People people=new People(renYuanXinXiBean.sname, date, renYuanXinXiBean.idcard, "注销", CommonUtils.GenerateGUID(), "2",
+				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), renYuanXinXiBean.house_code);
 		DbUtils dbUtils =DeviceUtils.getDbUtils(this);
 		List<People> list=new ArrayList<People>();
 		try {
-			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", renYuanXinXiBean.身份证号));
+			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", renYuanXinXiBean.idcard));
 			if (list!=null) {
 			if (list.size()>0) {
-				dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.身份证号));
+				dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.idcard));
 			}
 			}
 			dbUtils.save(people);

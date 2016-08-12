@@ -48,6 +48,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_aboutus"
         android:layout_width="match_parent"
         android:layout_height="@dimen/relative_row_height"
         android:background="@drawable/white_click_bg2"
