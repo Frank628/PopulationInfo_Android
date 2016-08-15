@@ -43,6 +43,7 @@ import com.jinchao.population.service.DownLoadService;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
+import com.jinchao.population.utils.network.NetWorkManager;
 import com.jinchao.population.view.Dialog;
 
 import org.xutils.common.Callback;
@@ -199,6 +200,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 try {
                     final VersionBean versionBean= GsonTools.changeGsonToBean(result,VersionBean.class);
                     if (!versionBean.versionNum.trim().equals(CommonUtils.getVersionName(MainActivity.this))) {
+                        if(NetWorkManager.checkNetwork(MainActivity.this)!= NetWorkManager.NetState.NET_WIFI){
+                            String nettype="4G";
+                            switch (NetWorkManager.checkNetwork(MainActivity.this)){
+                                case NET_2G:
+                                    nettype="2G";
+                                    break;
+                                case NET_3G:
+                                    nettype="3G";
+                                    break;
+                                case NET_4G:
+                                    nettype="4G";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            String netprivate="中国电信";
+                            switch (NetWorkManager.getProvider(MainActivity.this)){
+                                case CMCC:
+                                    netprivate="中国移动";
+                                    break;
+                                case CUCC:
+                                    netprivate="中国联通";
+                                    break;
+                                case CTCC:
+                                    netprivate="中国电信";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            Dialog.showSelectDialog(MainActivity.this, "发现新版本,当前处于"+netprivate+nettype+"网络，请在wifi下更新！", new Dialog.DialogClickListener() {
+                                @Override
+                                public void confirm() {
+
+                                }
+                                @Override
+                                public void cancel() {
+                                }
+                            });
+                            return;
+                        }
                         Dialog.showSelectDialog(MainActivity.this, "发现新版本,下载并更新？", new Dialog.DialogClickListener() {
                             @Override
                             public void confirm() {

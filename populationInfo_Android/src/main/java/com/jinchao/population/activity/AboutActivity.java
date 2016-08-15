@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -24,19 +25,21 @@ import org.xutils.view.annotation.ViewInject;
  */
 @ContentView(R.layout.activity_aboutus)
 public class AboutActivity extends BaseActiviy {
-
+    @ViewInject(R.id.tv_version)
+    TextView tv_version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
-        navigationLayout.setCenterText("出租屋登记");
+        navigationLayout.setCenterText("关于我们");
         navigationLayout.setLeftTextOnClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        tv_version.setText(getVersion());
     }
 
     public String getVersion() {

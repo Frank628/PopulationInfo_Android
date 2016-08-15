@@ -6,7 +6,7 @@ ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Andro
 		INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml
 		INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:5:5-30
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:5:5-32
 		INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml
 		INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml
 	android:versionCode

@@ -4,12 +4,12 @@
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color\\abc_primary_text_material_light.xml"
     },
     {
-        "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_dark.xml",
-        "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color\\abc_primary_text_material_dark.xml"
-    },
-    {
         "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_dark.xml",
         "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\release\\color\\abc_primary_text_material_dark.xml",
+        "source": "E:\\Android_Open_Source\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_edittext.xml",

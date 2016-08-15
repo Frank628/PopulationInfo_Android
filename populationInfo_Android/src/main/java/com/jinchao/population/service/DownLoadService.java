@@ -14,6 +14,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.IBinder;
+import android.util.Log;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 public class DownLoadService extends Service{
 	private String url="";
@@ -36,19 +41,48 @@ public class DownLoadService extends Service{
 		return super.onStartCommand(intent, flags, startId);
 	}
 	private void download(String url){
-		HttpUtils http =new HttpUtils();
-		http.download(url.trim(), Constants.DB_PATH+"PopulationInfo_Android.apk", false, true, new RequestCallBack<File>() {
+		Log.i("aaaa",url);
+		RequestParams params =new RequestParams(url.trim());
+		params.setSaveFilePath(Constants.DB_PATH+"PopulationInfo_Android.apk");
+		x.http().get(params, new Callback.ProgressCallback<File>() {
 			@Override
-			public void onSuccess(ResponseInfo<File> arg0) {
-				Intent intent = new Intent(Intent.ACTION_VIEW);  
-		        intent.setDataAndType(Uri.fromFile(new File(Environment  
-		                .getExternalStorageDirectory(), "PopulationInfo_Android.apk")),  
-		                "application/vnd.android.package-archive");  
-		        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		        DownLoadService.this.startActivity(intent);
+			public void onSuccess(File result) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(Uri.fromFile(new File(Environment
+								.getExternalStorageDirectory(), "PopulationInfo_Android.apk")),
+						"application/vnd.android.package-archive");
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				DownLoadService.this.startActivity(intent);
 			}
+
 			@Override
-			public void onFailure(HttpException arg0, String arg1) {
+			public void onError(Throwable ex, boolean isOnCallback) {
+
+			}
+
+			@Override
+			public void onCancelled(CancelledException cex) {
+
+			}
+
+			@Override
+			public void onFinished() {
+
+			}
+
+			@Override
+			public void onWaiting() {
+
+			}
+
+			@Override
+			public void onStarted() {
+
+			}
+
+			@Override
+			public void onLoading(long total, long current, boolean isDownloading) {
+
 			}
 		});
 	}
