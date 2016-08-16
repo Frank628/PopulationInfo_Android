@@ -121,6 +121,7 @@ public class LoginActivity extends BaseActiviy{
 										return;
 									}
 								}
+								MyInfomationManager.setPCSId(LoginActivity.this, userBean.data.get(i).pcsId);
 								MyInfomationManager.setUserName(LoginActivity.this, username);
 								MyInfomationManager.setPassWord(LoginActivity.this, password);
 								MyInfomationManager.setUserID(LoginActivity.this, userBean.data.get(i).account.get(j).userId);

@@ -31,6 +31,7 @@ import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.SysApplication;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.entity.HouseDataBaseType;
 import com.jinchao.population.entity.MsgBean;
 import com.jinchao.population.entity.VersionBean;
 import com.jinchao.population.fragment.AlienFragment;
@@ -40,6 +41,7 @@ import com.jinchao.population.fragment.SendDataFragment;
 import com.jinchao.population.fragment.SettingFragment;
 import com.jinchao.population.fragment.XunLuoFragment;
 import com.jinchao.population.service.DownLoadService;
+import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         TextView tv_name=(TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_name);
         getNewVersion();
+        CommonHttp.getDataBaseType(this);
         if (!Common.init(this)){
             Toast.makeText(this, "身份证云终端开发包初始化失败！", Toast.LENGTH_SHORT).show();
             finish();
@@ -190,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return super.onKeyDown(keyCode, event);
     }
+
     private void getNewVersion(){
         RequestParams params=new RequestParams(Constants.URL+"VersionInfor.aspx");
         params.addBodyParameter("type","2");

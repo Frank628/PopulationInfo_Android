@@ -6,6 +6,12 @@ import com.jinchao.population.utils.SharePrefUtil;
 import android.content.Context;
 
 public class MyInfomationManager {
+	public static void setPCSId(Context context,String value){
+		SharePrefUtil.saveString(context, Constants.PCSID, value);
+	}
+	public static String getPCSId(Context context){
+		return SharePrefUtil.getString(context, Constants.PCSID, "");
+	}
 	public static void setUserName(Context context,String value){
 		SharePrefUtil.saveString(context, Constants.USERNAME, value);
 	}

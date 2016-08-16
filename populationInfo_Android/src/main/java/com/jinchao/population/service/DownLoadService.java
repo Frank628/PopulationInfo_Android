@@ -54,12 +54,10 @@ public class DownLoadService extends Service{
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				DownLoadService.this.startActivity(intent);
 			}
-
 			@Override
 			public void onError(Throwable ex, boolean isOnCallback) {
 
 			}
-
 			@Override
 			public void onCancelled(CancelledException cex) {
 

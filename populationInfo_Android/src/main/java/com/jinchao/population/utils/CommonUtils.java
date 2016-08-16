@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -221,5 +222,9 @@ public class CommonUtils {
 		}else{
 			return "";
 		}
+	}
+	@SuppressLint("SimpleDateFormat")
+	public static File getTempImage() {
+		return new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),"temp.jpg");
 	}
 }

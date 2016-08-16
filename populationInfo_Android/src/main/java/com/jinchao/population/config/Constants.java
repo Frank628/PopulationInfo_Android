@@ -9,6 +9,7 @@ public class Constants {
 	public static final String DB_NAME="config_population.db";
 	public static final String DB_PATH=Environment.getExternalStorageDirectory().getAbsolutePath()+"/";
 //	public static final String DB_PATH= "/data"+ Environment.getDataDirectory().getAbsolutePath() + "/com.jinchao.population/databases/";//内存中
+	public static final String PCSID="PCSID";
 	public static final String USERNAME="USERNAME";
 	public static final String PASSWORD="PASSWORD";
 	public static final String USERID="USERID";
@@ -48,5 +49,6 @@ public class Constants {
 	public static final String[] DEVICE_AREA={ "自动", "蓝牙", "OTG", "NFC" };
 	public static final String[] NET_AREA={ "自动", "移动", "电信", "联通", "手动" };
 	public static final String[] DEFAULT_INDEX_AREA={ "外来人口信息采集", "实有人口调查","巡逻盘查","电动车检查","房屋位置信息录入" };
+	public static final String DATABASE_TYPE="DATABASE_TYPE";//0获取失败，1外来人口库，2实有人口库
 }
                           

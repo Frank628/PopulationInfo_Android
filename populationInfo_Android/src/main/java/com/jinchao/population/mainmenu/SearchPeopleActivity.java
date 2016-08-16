@@ -67,7 +67,7 @@ import com.lidroid.xutils.exception.DbException;
 public class SearchPeopleActivity extends BaseReaderActiviy{
 	@ViewInject(R.id.rg_search) private RadioGroup rg_search;
 	@ViewInject(R.id.edt_content) private EditText edt_content;
-	@ViewInject(R.id.btn_readcard) private Button btn_readcard;
+//	@ViewInject(R.id.btn_readcard) private Button btn_readcard;
 	@ViewInject(R.id.tv_content) private TextView tv_content;
 	@ViewInject(R.id.rg_zai) private RadioGroup rg_zai;
 	@ViewInject(R.id.rb_banli) private RadioButton rb_banli;
@@ -98,7 +98,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 				switch (checkedId) {
 				case R.id.rb_fangwu:
 					edt_content.setHint("请输入房屋编号");
-					btn_readcard.setEnabled(false);
+//					btn_readcard.setEnabled(false);
 					IsHouseID=true;
 					edt_content.setText("");
 					tv_content.setVisibility(View.GONE);
@@ -107,7 +107,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 					break;
 				case R.id.rb_renyuan:
 					edt_content.setHint("请输入身份证号或读卡");
-					btn_readcard.setEnabled(true);
+//					btn_readcard.setEnabled(true);
 					IsHouseID=false;
 					tv_content.setVisibility(View.VISIBLE);
 					rg_zai.setVisibility(View.GONE);
@@ -134,8 +134,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 				}
 			}
 		});
-
-		btn_readcard.setEnabled(false);
+//		btn_readcard.setEnabled(false);
 		dialogLoading=new DialogLoading(this, "数据加载中...",true);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -235,7 +234,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 		if (IsHouseID) {
 			isZaizhu=true;
 			rb_zaizhu.setChecked(true);
-			params=new RequestParams(Constants.URL+"quePeople.aspx?type=get_houseinfor&user_id="+MyInfomationManager.getUserName(this)+"&house_code="+str);
+			params=new RequestParams(Constants.URL+"HousePosition.aspx?type=get_houseinfor&user_id="+MyInfomationManager.getUserName(this)+"&house_code="+str);
 //			params.addBodyParameter("type", "get_houseinfo");
 //			params.addBodyParameter("user_id",MyInfomationManager.getUserName(this));
 //			params.addBodyParameter("house_code", str);
@@ -453,64 +452,64 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 //		};
 //		lv.setAdapter(adapter);
 //	}
-	@Event(value={R.id.btn_readcard})
-	private void readcardClick(View view){
-		String net = SharePrefUtil.getString(this,Constants.DEVICE_WAY,"自动");
-		switch (net) {
-
-			case "自动":
-				int a = HasOTGDeviceConnected();
-				if (a == 0) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTG);
-				} else if (a == 1) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTGAccessory);
-				} else {
-					String mac=SharePrefUtil.getString(SearchPeopleActivity.this,"mac",null);
-					if (mac == null) {
-						deviceListDialogFragment.show(getSupportFragmentManager(), "");
-					} else {
-						showProcessDialog("正在读卡中，请稍后");
-						int delayMillis = SharePrefUtil.getInt(SearchPeopleActivity.this, Constants.BluetoothSetting_long_time,15);
-						idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-					}
-				}
-				break;
-			case "蓝牙":
-				String mac=SharePrefUtil.getString(SearchPeopleActivity.this,"mac",null);
-				if (mac == null) {
-					deviceListDialogFragment.show(getSupportFragmentManager(), "");
-				} else {
-					showProcessDialog("正在读卡中，请稍后");
-					int delayMillis = SharePrefUtil.getInt(SearchPeopleActivity.this, Constants.BluetoothSetting_long_time,15);
-					idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-				}
-				break;
-			case "OTG":
-				int a2 = HasOTGDeviceConnected();
-				if (a2 == 0) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTG);
-				} else if (a2 == 1) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTGAccessory);
-				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(SearchPeopleActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-					builder.setMessage("找不到OTG设备");
-					builder.setPositiveButton("确定", null);
-					builder.show();
-				}
-				break;
-
-			case "NFC":
-				AlertDialog.Builder builder = new AlertDialog.Builder(SearchPeopleActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-				builder.setMessage("当前是NFC模式，请将身份证贴在手机背面");
-				builder.setPositiveButton("确定", null);
-				builder.show();
-				break;
-		}
-	}
+//	@Event(value={R.id.btn_readcard})//暂时去除读卡按钮
+//	private void readcardClick(View view){
+//		String net = SharePrefUtil.getString(this,Constants.DEVICE_WAY,"自动");
+//		switch (net) {
+//
+//			case "自动":
+//				int a = HasOTGDeviceConnected();
+//				if (a == 0) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTG);
+//				} else if (a == 1) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTGAccessory);
+//				} else {
+//					String mac=SharePrefUtil.getString(SearchPeopleActivity.this,"mac",null);
+//					if (mac == null) {
+//						deviceListDialogFragment.show(getSupportFragmentManager(), "");
+//					} else {
+//						showProcessDialog("正在读卡中，请稍后");
+//						int delayMillis = SharePrefUtil.getInt(SearchPeopleActivity.this, Constants.BluetoothSetting_long_time,15);
+//						idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
+//					}
+//				}
+//				break;
+//			case "蓝牙":
+//				String mac=SharePrefUtil.getString(SearchPeopleActivity.this,"mac",null);
+//				if (mac == null) {
+//					deviceListDialogFragment.show(getSupportFragmentManager(), "");
+//				} else {
+//					showProcessDialog("正在读卡中，请稍后");
+//					int delayMillis = SharePrefUtil.getInt(SearchPeopleActivity.this, Constants.BluetoothSetting_long_time,15);
+//					idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
+//				}
+//				break;
+//			case "OTG":
+//				int a2 = HasOTGDeviceConnected();
+//				if (a2 == 0) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTG);
+//				} else if (a2 == 1) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTGAccessory);
+//				} else {
+//					AlertDialog.Builder builder = new AlertDialog.Builder(SearchPeopleActivity.this, AlertDialog.THEME_HOLO_LIGHT);
+//					builder.setMessage("找不到OTG设备");
+//					builder.setPositiveButton("确定", null);
+//					builder.show();
+//				}
+//				break;
+//
+//			case "NFC":
+//				AlertDialog.Builder builder = new AlertDialog.Builder(SearchPeopleActivity.this, AlertDialog.THEME_HOLO_LIGHT);
+//				builder.setMessage("当前是NFC模式，请将身份证贴在手机背面");
+//				builder.setPositiveButton("确定", null);
+//				builder.show();
+//				break;
+//		}
+//	}
 	@Event(value={R.id.btn_seach})
 	private void seachClick(View view){
 		String cardno=edt_content.getText().toString().trim();

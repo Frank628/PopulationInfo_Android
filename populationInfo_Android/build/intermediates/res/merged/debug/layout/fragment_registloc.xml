@@ -63,12 +63,11 @@
             android:id="@+id/ll_right"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:layout_alignParentRight="true">
             <TextView
                 android:id="@+id/tv_takepic"
-                android:layout_width="match_parent"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="拍照"
@@ -81,11 +80,12 @@
                 android:clickable="true"
                 />
             <ImageView
-                android:layout_width="match_parent"
+                android:id="@+id/iv_house"
+                android:layout_width="80dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/camera_large"
                 android:scaleType="center"
+                android:src="@drawable/camera_small"
                 android:background="@drawable/take_pic_bg"
                 />
         </LinearLayout>
@@ -189,12 +189,15 @@
             android:layout_marginBottom="5dp"
             >
             <TextView
-                android:id="@+id/tv_latlng"
+                android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:textColor="@color/title2"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_toLeftOf="@+id/tv_searchbyaddress"/>
             <View
                 android:id="@+id/line1"
                 android:layout_width="match_parent"
@@ -202,15 +205,37 @@
                 android:background="#e0e0e0"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_below="@+id/tv_latlng"/>
+                android:layout_below="@+id/tv_address"
+                android:layout_toLeftOf="@+id/tv_searchbyaddress"/>
             <TextView
-                android:id="@+id/tv_address"
+                android:id="@+id/tv_latlng"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:gravity="center"
                 android:textColor="@color/title2"
                 android:textSize="14sp"
-                android:layout_below="@+id/line1"/>
+                android:layout_below="@+id/line1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:gravity="left|center_vertical"
+                android:layout_toLeftOf="@+id/tv_searchbyaddress"/>
+            <TextView
+                android:id="@+id/tv_searchbyaddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="位置\n搜索"
+                android:textSize="@dimen/small_size"
+                android:lineSpacingExtra="5dp"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_orange_click"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
         </RelativeLayout>
     </RelativeLayout>
 
