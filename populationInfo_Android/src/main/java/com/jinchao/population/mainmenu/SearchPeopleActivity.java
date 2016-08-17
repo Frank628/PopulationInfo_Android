@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -37,9 +39,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
+import com.baidu.location.BDLocation;
 import com.caihua.cloud.common.User;
 import com.caihua.cloud.common.enumerate.ConnectType;
 import com.caihua.cloud.common.reader.IDReader;
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
@@ -48,10 +52,12 @@ import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
+import com.jinchao.population.entity.NearbyHouseBean;
 import com.jinchao.population.entity.RenYuanXinXiBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.entity.YanZhengBean;
 import com.jinchao.population.utils.Base64Coder;
+import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
@@ -60,20 +66,31 @@ import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.NavigationLayout;
+import com.jinchao.population.widget.LoadMoreListView;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
+
+import de.greenrobot.event.EventBus;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+
 @ContentView(R.layout.activity_searchpeople)
 public class SearchPeopleActivity extends BaseReaderActiviy{
 	@ViewInject(R.id.rg_search) private RadioGroup rg_search;
 	@ViewInject(R.id.edt_content) private EditText edt_content;
 //	@ViewInject(R.id.btn_readcard) private Button btn_readcard;
 	@ViewInject(R.id.tv_content) private TextView tv_content;
+	@ViewInject(R.id.ll_search) private LinearLayout ll_search;
 	@ViewInject(R.id.rg_zai) private RadioGroup rg_zai;
 	@ViewInject(R.id.rb_banli) private RadioButton rb_banli;
 	@ViewInject(R.id.rb_zaizhu) private RadioButton rb_zaizhu;
 	@ViewInject(R.id.rb_fangwu) private RadioButton rb_fangwu;
 	@ViewInject(R.id.lv) private ListView lv;
+	@ViewInject(R.id.loadmorelv) private LoadMoreListView loadmorelv;
+	@ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
 	public static final String TAG="IDCARD_DEVICE";
 	private RenyuanInHouseBean renyuanInHouseBean;
 	private boolean IsHouseID=true;
@@ -91,27 +108,71 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 				onBackPressed();
 			}
 		});
+		EventBus.getDefault().register(this);
 		idReader = new IDReader(this, mHandler);
+		mPtrFrame.setLastUpdateTimeRelateObject(this);
+		mPtrFrame.setPtrHandler(new PtrHandler() {
+			@Override
+			public void onRefreshBegin(PtrFrameLayout frame) {
+				getNearbyList();
+			}
+
+			@Override
+			public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+				return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+			}
+		});
+		//the following are default settings
+		mPtrFrame.setResistance(1.7f);
+		mPtrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
+		mPtrFrame.setDurationToClose(200);
+		mPtrFrame.setDurationToCloseHeader(1000);
+		// default is false
+		mPtrFrame.setPullToRefresh(false);
+		// default is true
+		mPtrFrame.setKeepHeaderWhenRefresh(true);
+
+		loadmorelv.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
+			@Override
+			public void onLoadMore() {
+
+			}
+		});
 		rg_search.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				switch (checkedId) {
 				case R.id.rb_fangwu:
+					ll_search.setVisibility(View.VISIBLE);
 					edt_content.setHint("请输入房屋编号");
 //					btn_readcard.setEnabled(false);
 					IsHouseID=true;
 					edt_content.setText("");
 					tv_content.setVisibility(View.GONE);
 					tv_content.setText("");
-					rg_zai.setVisibility(View.VISIBLE);
+					mPtrFrame.setVisibility(View.GONE);
 					break;
 				case R.id.rb_renyuan:
+					ll_search.setVisibility(View.VISIBLE);
 					edt_content.setHint("请输入身份证号或读卡");
 //					btn_readcard.setEnabled(true);
 					IsHouseID=false;
 					tv_content.setVisibility(View.VISIBLE);
 					rg_zai.setVisibility(View.GONE);
+					mPtrFrame.setVisibility(View.GONE);
 					break;
+					case R.id.rb_nearby:
+						MyApplication.myApplication.locationService.start();
+						ll_search.setVisibility(View.GONE);
+						mPtrFrame.setVisibility(View.VISIBLE);
+						mPtrFrame.postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								mPtrFrame.autoRefresh();
+							}
+						}, 100);
+
+						break;
 				default:
 					break;
 				}
@@ -134,6 +195,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 				}
 			}
 		});
+		MyApplication.myApplication.locationService.start();
 //		btn_readcard.setEnabled(false);
 		dialogLoading=new DialogLoading(this, "数据加载中...",true);
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -175,6 +237,12 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 
 	 }
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
+	}
+
 	@SuppressLint("HandlerLeak")
 	Handler mHandler = new Handler() {
 		@Override
@@ -212,11 +280,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 					break;
 				case IDReader.READ_CARD_SUCCESS:
 //                    BeepManager.playsuccess(getActivity());
-
 					showIDCardInfo(false, (User) msg.obj);
-
 					break;
-
 				case IDReader.READ_CARD_FAILED:
 //                    BeepManager.playfail(getActivity());
 					showIDCardInfo(false, null);
@@ -243,15 +308,11 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 			params.addBodyParameter("idcard", str);
 		}
 		x.http().get(params, new Callback.CommonCallback<String>() {
-			
 			@Override
 			public void onSuccess(String result) {
 				dialogLoading.dismiss();
 				try {
 					if (IsHouseID) {
-//						Log.d("aaaaaaaaa", result);
-//						renYuanXinXilist = XmlUtils.getBeanByParseXml(result, "Table", RenYuanXinXiBean.class, "", RenYuanXinXiBean.class);
-//						processData(renYuanXinXilist);
 						try {
 							 renyuanInHouseBean= GsonTools.changeGsonToBean(result,RenyuanInHouseBean.class);
 							processData(renyuanInHouseBean);
@@ -309,6 +370,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 				return;
 			}
 			tv_content.setVisibility(View.GONE);
+			rg_zai.setVisibility(View.VISIBLE);
 			List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();
 			list.clear();
 			if (isZaizhu) {
@@ -381,77 +443,75 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 			e.printStackTrace();
 		}
 	}
-//	private void processData(ResultBeanAndList<RenYuanXinXiBean> result){
-//		List<RenYuanXinXiBean> list=new ArrayList<RenYuanXinXiBean>();
-//		list.clear();
-//		if(result==null)return;
-//		if (isZaizhu) {
-//			for (int i = 0; i <result.list.size(); i++) {
-//				if (result.list.get(i).居住状态.equals("在住")) {
-//					list.add(result.list.get(i));
-//				}
-//			}
-//			rb_zaizhu.setText("在住("+list.size()+"人)");
-//			rb_banli.setText("搬离("+(result.list.size()-list.size())+"人)");
-//		}else{
-//			for (int i = 0; i <result.list.size(); i++) {
-//				if (result.list.get(i).居住状态.equals("搬离")) {
-//					list.add(result.list.get(i));
-//				}
-//			}
-//			rb_banli.setText("搬离("+list.size()+"人)");
-//			rb_zaizhu.setText("在住("+(result.list.size()-list.size())+"人)");
-//		}
-//		if(rb_fangwu.isChecked()){
-//			rg_zai.setVisibility(View.VISIBLE);
-//		}
-//		CommonAdapter<RenYuanXinXiBean> adapter =new CommonAdapter<RenYuanXinXiBean>(this,list,R.layout.item_renyuan) {
-//			@Override
-//			public void convert(ViewHolder helper, RenYuanXinXiBean item, int position) {
-//				helper.setText(R.id.tv_name,"姓名: "+ item.姓名);
-//				DbUtils dbUtils =DeviceUtils.getDbUtils(SearchPeopleActivity.this);
-//				People people = null;
-//				try {
-//					people=dbUtils.findFirst(Selector.from(People.class).where("cardno", "=", item.身份证号.trim()));
-//				} catch (DbException e) {
-//					e.printStackTrace();
-//				}
-//				if (people!=null){
-//					if (people.module.equals("变更")) {
-//						helper.setText(R.id.tv_status, "【延期】");
-//					}else if (people.module.equals("注销")) {
-//						helper.setText(R.id.tv_status, "【注销】");
-//					}else{
-//
-//						String[] split = item.末次采集时间.split("\\s+");
-//						if (split.length>1) {
-//							if (isBigerthanElevenandSmallthanTwelve(split[0])) {
-//								helper.setText(R.id.tv_status, "【"+item.居住状态+"?】");
-//							}else{
-//								helper.setText(R.id.tv_status, "【"+item.居住状态+"】");
-//							}
-//						}else{
-//							helper.setText(R.id.tv_status, "【"+item.居住状态+"】");
-//						}
-//					}
-//				}else{
-//					String[] split = item.末次采集时间.split("\\s+");
-//					if (split.length>1) {
-//						if (isBigerthanElevenandSmallthanTwelve(split[0])) {
-//							helper.setText(R.id.tv_status, "【"+item.居住状态+"?】");
-//						}else{
-//							helper.setText(R.id.tv_status, "【"+item.居住状态+"】");
-//						}
-//					}else{
-//						helper.setText(R.id.tv_status, "【"+item.居住状态+"】");
-//					}
-//				}
-//				helper.setText(R.id.tv_shihao, "室号: "+item.室号);
-//				helper.setText(R.id.tv_time, item.末次采集时间);
-//			}
-//		};
-//		lv.setAdapter(adapter);
-//	}
+	public void onEventMainThread(BDLocation location) {
+
+	}
+
+	private void getNearbyList(){
+		if (MyApplication.myApplication.myLocation.getLat()==0){
+			Toast.makeText(this,"位置信息获取失败，正在为您重新获取！",Toast.LENGTH_SHORT).show();
+			MyApplication.myApplication.locationService.start();
+			return;
+		}
+		int databaseType = SharePrefUtil.getInt(this,Constants.DATABASE_TYPE,0);
+		if (databaseType==0){
+			Toast.makeText(this,"数据库类型未获取，请稍后！",Toast.LENGTH_SHORT).show();
+			CommonHttp.getDataBaseType(this);
+			return;
+		}
+		RequestParams params =new RequestParams(Constants.URL+"HousePosition.aspx");
+		if (databaseType==1) {//1外来人口，2实有人口
+			params.addBodyParameter("type", "get_wlrklist");
+		}else {
+			params.addBodyParameter("type", "get_syrklist");
+		}
+		params.addBodyParameter("jd",MyApplication.myApplication.myLocation.getLog()+"");
+		params.addBodyParameter("wd",MyApplication.myApplication.myLocation.getLat()+"");
+		params.addBodyParameter("userid",MyInfomationManager.getUserID(SearchPeopleActivity.this));
+		x.http().post(params, new Callback.CommonCallback<String>() {
+			@Override
+			public void onSuccess(String result) {
+				Log.i("houselistnearby",result);
+				processNearbyHouse(result);
+			}
+
+			@Override
+			public void onError(Throwable ex, boolean isOnCallback) {
+				Log.i("houselistnearby",ex.getMessage());
+			}
+
+			@Override
+			public void onCancelled(CancelledException cex) {
+
+			}
+
+			@Override
+			public void onFinished() {
+				mPtrFrame.refreshComplete();
+			}
+		});
+	}
+	private void processNearbyHouse(String result){
+		try {
+			NearbyHouseBean nearbyHouseBean =GsonTools.changeGsonToBean(result,NearbyHouseBean.class);
+			loadmorelv.setTotalNum(nearbyHouseBean.data.size());
+			if (nearbyHouseBean.data.size()==0){
+				loadmorelv.setNodata("附近暂无房屋",false,null);
+			}else{
+				CommonAdapter<NearbyHouseBean.NearbyHouseOne> adapter =new CommonAdapter<NearbyHouseBean.NearbyHouseOne>(SearchPeopleActivity.this,nearbyHouseBean.data,R.layout.item_nearby) {
+					@Override
+					public void convert(ViewHolder helper, NearbyHouseBean.NearbyHouseOne item, int position) {
+						helper.setText(R.id.tv_housecode,"房屋编号："+item.scode);
+						helper.setText(R.id.tv_houseaddress,item.address);
+						helper.setText(R.id.tv_distance,item.distance);
+					}
+				};
+				loadmorelv.setAdapter(adapter);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 //	@Event(value={R.id.btn_readcard})//暂时去除读卡按钮
 //	private void readcardClick(View view){
 //		String net = SharePrefUtil.getString(this,Constants.DEVICE_WAY,"自动");

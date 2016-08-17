@@ -2,6 +2,7 @@ package com.jinchao.population.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.config.Constants;
@@ -24,7 +25,8 @@ public class CommonHttp {
             public void onSuccess(String result) {
                 try {
                     HouseDataBaseType houseDataBaseType=GsonTools.changeGsonToBean(result,HouseDataBaseType.class);
-                    if (houseDataBaseType.data.get(0).equals("当前为外来人口房屋")){
+                    Log.i("databsetyoe",houseDataBaseType.data.get(0).syrkFlag);
+                    if (houseDataBaseType.data.get(0).syrkFlag.trim().equals("当前为外来人口房屋")){
                         SharePrefUtil.saveInt(context,Constants.DATABASE_TYPE,1);
                         databasetype= 1;
                     }else{

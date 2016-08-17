@@ -426,66 +426,66 @@ public class RegisterActivity extends BaseReaderActiviy{
 		startActivityForResult(intent, REQUEST_CODE_CAMERA);
 	}
 
-	@Event(value={R.id.ib_readcard})//点击“读卡”，读取身份证；
-	private void onReadCardClick(View view) {
-		isFirstGenerationIDCard=false;
-		showIDCardInfo(true,null);
-		String net = SharePrefUtil.getString(this,Constants.DEVICE_WAY,"自动");
-		switch (net) {
-
-			case "自动":
-				int a = HasOTGDeviceConnected();
-				if (a == 0) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTG);
-				} else if (a == 1) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTGAccessory);
-				} else {
-					String mac=SharePrefUtil.getString(RegisterActivity.this,"mac",null);
-					if (mac == null) {
-						deviceListDialogFragment.show(getSupportFragmentManager(), "");
-					} else {
-						showProcessDialog("正在读卡中，请稍后");
-						int delayMillis = SharePrefUtil.getInt(RegisterActivity.this, Constants.BluetoothSetting_long_time,15);
-						idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-					}
-				}
-				break;
-			case "蓝牙":
-				String mac=SharePrefUtil.getString(RegisterActivity.this,"mac",null);
-				if (mac == null) {
-					deviceListDialogFragment.show(getSupportFragmentManager(), "");
-				} else {
-					showProcessDialog("正在读卡中，请稍后");
-					int delayMillis = SharePrefUtil.getInt(RegisterActivity.this, Constants.BluetoothSetting_long_time,15);
-					idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-				}
-				break;
-			case "OTG":
-				int a2 = HasOTGDeviceConnected();
-				if (a2 == 0) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTG);
-				} else if (a2 == 1) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTGAccessory);
-				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-					builder.setMessage("找不到OTG设备");
-					builder.setPositiveButton("确定", null);
-					builder.show();
-				}
-				break;
-
-			case "NFC":
-				AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-				builder.setMessage("当前是NFC模式，请将身份证贴在手机背面");
-				builder.setPositiveButton("确定", null);
-				builder.show();
-				break;
-		}
-	}
+//	@Event(value={R.id.ib_readcard})//点击“读卡”，读取身份证；
+//	private void onReadCardClick(View view) {
+//		isFirstGenerationIDCard=false;
+//		showIDCardInfo(true,null);
+//		String net = SharePrefUtil.getString(this,Constants.DEVICE_WAY,"自动");
+//		switch (net) {
+//
+//			case "自动":
+//				int a = HasOTGDeviceConnected();
+//				if (a == 0) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTG);
+//				} else if (a == 1) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTGAccessory);
+//				} else {
+//					String mac=SharePrefUtil.getString(RegisterActivity.this,"mac",null);
+//					if (mac == null) {
+//						deviceListDialogFragment.show(getSupportFragmentManager(), "");
+//					} else {
+//						showProcessDialog("正在读卡中，请稍后");
+//						int delayMillis = SharePrefUtil.getInt(RegisterActivity.this, Constants.BluetoothSetting_long_time,15);
+//						idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
+//					}
+//				}
+//				break;
+//			case "蓝牙":
+//				String mac=SharePrefUtil.getString(RegisterActivity.this,"mac",null);
+//				if (mac == null) {
+//					deviceListDialogFragment.show(getSupportFragmentManager(), "");
+//				} else {
+//					showProcessDialog("正在读卡中，请稍后");
+//					int delayMillis = SharePrefUtil.getInt(RegisterActivity.this, Constants.BluetoothSetting_long_time,15);
+//					idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
+//				}
+//				break;
+//			case "OTG":
+//				int a2 = HasOTGDeviceConnected();
+//				if (a2 == 0) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTG);
+//				} else if (a2 == 1) {
+//					showProcessDialog("正在读卡中，请稍后");
+//					idReader.connect(ConnectType.OTGAccessory);
+//				} else {
+//					AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this, AlertDialog.THEME_HOLO_LIGHT);
+//					builder.setMessage("找不到OTG设备");
+//					builder.setPositiveButton("确定", null);
+//					builder.show();
+//				}
+//				break;
+//
+//			case "NFC":
+//				AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this, AlertDialog.THEME_HOLO_LIGHT);
+//				builder.setMessage("当前是NFC模式，请将身份证贴在手机背面");
+//				builder.setPositiveButton("确定", null);
+//				builder.show();
+//				break;
+//		}
+//	}
 	@Event(value={R.id.ib_firstgencard})//点击  一代证；
 	private void onReadFirstGenerationCardClick(View view) {
 		isFirstGenerationIDCard=true;

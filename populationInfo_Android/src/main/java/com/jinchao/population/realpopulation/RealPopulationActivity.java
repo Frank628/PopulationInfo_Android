@@ -7,6 +7,8 @@ import in.srain.cube.views.ptr.PtrHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.xutils.HttpManager;
 import org.xutils.x;
@@ -159,19 +161,18 @@ public class RealPopulationActivity extends BaseActiviy{
 		isGetAll=false;
 		mPtrFrame.autoRefresh();
 	}
-	private boolean isNumber(String content){
-		try {
-			Integer.parseInt(content);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
+
+	public boolean isCode(String str){
+		String regEx="^[A-Za-z0-9_]+$";
+		Pattern p=Pattern.compile(regEx);
+		Matcher m=p.matcher(str);
+		return m.matches();
 	}
 	private void getSearchHouse(String content){
 		lv.setAdapter(null);
 		lv.removeFooterView(footView);
 		RequestParams params=new RequestParams(Constants.URL+"syrkServer.aspx");
-		if(isNumber(content)){
+		if(isCode(content)){
 			params.addBodyParameter("type", "houseByScode");
 			params.addBodyParameter("scode", content);
 			params.addBodyParameter("c_id",  MyInfomationManager.getUserID(RealPopulationActivity.this));

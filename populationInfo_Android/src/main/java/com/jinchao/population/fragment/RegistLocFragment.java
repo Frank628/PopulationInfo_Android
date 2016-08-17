@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
@@ -46,6 +48,7 @@ import com.jinchao.population.config.Constants;
 import com.jinchao.population.entity.HouseAddressOldBean;
 import com.jinchao.population.location.MyLocation;
 import com.jinchao.population.main.MainActivity;
+import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
@@ -85,11 +88,12 @@ public class RegistLocFragment extends BaseFragment{
     @ViewInject(R.id.rl_bottom) RelativeLayout rl_bottom;
     private BaiduMap baiduMap;
     private GeoCoder mSearch;
-    private boolean isZhan=false;
+    private boolean isZhan=false,hasTakePic=false;
     private int mHiddenViewMeasuredHeight;
     private LatLng mLatLng=null;
     public static final int HOUSE_PIC=2001;
     private File tempfile;
+    private String houseid="";
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -180,6 +184,7 @@ public class RegistLocFragment extends BaseFragment{
             if (houseAddressOldBean!=null) {
                 edt_content.setText(houseAddressOldBean.getAddress());
                 tv_address.setText(houseAddressOldBean.getAddress().trim());
+                houseid=houseAddressOldBean.getId();
             }else{
                 edt_content.setText("查无此房屋");
             }
@@ -226,6 +231,13 @@ public class RegistLocFragment extends BaseFragment{
         mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(mLatLng));
     }
     private void caiJiRequest(){
+        String pic="";
+        if (tempfile != null && tempfile.exists() &&hasTakePic) {
+            byte[] img = CommonUtils.getByte(tempfile);// 获得源图片
+            Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);// 将原图片转换成bitmap，方便后面转换
+            img = CommonUtils.Bitmap2Bytes(bitmap);
+            pic= new String(Base64Coder.encodeLines(img));
+        }
         int databaseType = SharePrefUtil.getInt(getActivity(),Constants.DATABASE_TYPE,0);
         if (databaseType==0){
             Toast.makeText(getActivity(),"数据库类型未获取，请稍后！",Toast.LENGTH_SHORT).show();
@@ -244,21 +256,41 @@ public class RegistLocFragment extends BaseFragment{
             Toast.makeText(getActivity(),"请先确定房屋的经纬度坐标！",Toast.LENGTH_SHORT).show();
             return;
         }
+        showProcessDialog("数据发送中，请稍等...");
         RequestParams params =new RequestParams(Constants.URL+"HousePosition.aspx");
         if (databaseType==1) {//1外来人口，2实有人口
             params.addBodyParameter("type", "put_wlrk");
+            Log.i("type", "put_wlrk");
         }else {
             params.addBodyParameter("type", "put_syrk");
+            Log.i("type", "put_syrk");
         }
-        params.addBodyParameter("zp","");
+        params.addBodyParameter("zp",pic);
         params.addBodyParameter("jd",mLatLng.longitude+"");
         params.addBodyParameter("wd",mLatLng.latitude+"");
-        params.addBodyParameter("house_id",edt_houseid.getText().toString().trim());
+        params.addBodyParameter("house_id",houseid);
         params.addBodyParameter("cjr", MyInfomationManager.getUserName(getActivity()));
+        Log.i("house_id",houseid);
+        Log.i("zp",pic);
+        Log.i("jd",mLatLng.longitude+"");
+        Log.i("wd",mLatLng.latitude+"");
+        Log.i("cjr",MyInfomationManager.getUserName(getActivity()));
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Log.i("LOCOPERATION",result);
+                if (result.trim().equals("1")){
+                    tv_address.setText("");
+                    edt_houseid.setText("");
+                    edt_content.setText("");
+                    hasTakePic=false;
+                    houseid="";
+                    iv_house.setScaleType(ImageView.ScaleType.CENTER);
+                    iv_house.setImageResource(R.drawable.camera_small);
+                    Toast.makeText(getActivity(),"采集成功！",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(),"采集失败，请联系我们！",Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -273,7 +305,7 @@ public class RegistLocFragment extends BaseFragment{
 
             @Override
             public void onFinished() {
-
+                hideProcessDialog();
             }
         });
     }
@@ -284,6 +316,7 @@ public class RegistLocFragment extends BaseFragment{
             switch (requestCode) {
                 case HOUSE_PIC :
                     x.image().bind(iv_house,tempfile.getAbsolutePath(),new ImageOptions.Builder().setImageScaleType(ImageView.ScaleType.CENTER_CROP).setUseMemCache(false).build());
+                    hasTakePic=true;
                     break;
                 default:
                     break;

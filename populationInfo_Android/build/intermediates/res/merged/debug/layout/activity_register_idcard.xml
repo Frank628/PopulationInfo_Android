@@ -226,15 +226,17 @@
 	    android:orientation="horizontal"
 	    android:layout_alignParentBottom="true"
 	    >
-	    <ImageButton 
+	    <ImageButton
 	        android:id="@+id/ib_readcard"
 	        android:layout_width="0dp"
 	        android:layout_height="100dp"
-	        android:layout_weight="1"
 	        android:src="@drawable/index_12"
+            android:layout_weight="1"
             android:scaleType="fitCenter"
+            android:clickable="false"
+            android:background="#eeeeee"
 	        />
-	    <ImageButton 
+	    <ImageButton
 	        android:id="@+id/ib_firstgencard"
 	        android:layout_width="0dp"
 	        android:layout_height="100dp"

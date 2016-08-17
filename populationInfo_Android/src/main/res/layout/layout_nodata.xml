@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <ImageView 
+	 	        android:layout_width="wrap_content"
+	 	        android:layout_height="wrap_content"
+	 	        android:layout_marginTop="60dp"
+	 	        android:layout_gravity="center_horizontal"
+	 	        />
+	 	    <TextView 
+	 	        android:id="@+id/tv_content"
+	 	        android:layout_width="match_parent"
+	 	        android:layout_height="wrap_content"
+	 	        android:text="暂无数据~"
+	 	        android:textSize="16sp"
+	 	        android:textColor="@color/title4"
+	 	        android:layout_marginTop="25dp"
+	 	        android:layout_marginLeft="40dp"
+	 	        android:layout_marginRight="40dp"
+	 	        android:gravity="center"
+	 	        android:lineSpacingExtra="3dp"
+	 	        />
+	 	    <TextView 
+	 	        android:id="@+id/tv_gosearch"
+	 	        android:layout_width="wrap_content"
+	 	        android:layout_height="wrap_content"
+	 	        android:text="现在就去录入房屋位置"
+	 	        android:textSize="16sp"
+	 	        android:textColor="@color/white"
+	 	        android:layout_marginTop="25dp"
+	 	        android:paddingLeft="12dp"
+	 	        android:paddingRight="12dp"
+	 	        android:paddingTop="10dp"
+	 	        android:paddingBottom="10dp"
+	 	        android:drawablePadding="10dp"
+	 	        android:background="@drawable/btn_orange_click"
+	 	        android:layout_gravity="center_horizontal"
+	 	        />
+
+</LinearLayout>

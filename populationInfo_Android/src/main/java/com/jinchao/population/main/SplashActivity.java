@@ -18,8 +18,10 @@ import android.widget.Toast;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.entity.DeviceBean;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.TelephonyInfo;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.Dialog.DialogClickListener;
@@ -43,7 +45,6 @@ public class SplashActivity extends BaseActiviy{
 			}).start();
 		}else{
 			initalData();
-			checkDevice();
 		}
 	}
 	private boolean isNeedDB(){
@@ -59,15 +60,12 @@ public class SplashActivity extends BaseActiviy{
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
-				IsServiceOver=true;
 				if (result.equals("0")) {
-					isServiceOk=true;
+					checkDevice();
 				}else{
-					isServiceOk=false;
+					checkit("无法连接到服务器~");
 				}
-				if (IsDeviceOver){
-					checkit();
-				}
+
 			}
 			@Override
 			public void onError(Throwable ex, boolean isOnCallback) {
@@ -86,15 +84,22 @@ public class SplashActivity extends BaseActiviy{
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
-				IsDeviceOver=true;
+//				try {
+//					DeviceBean deviceBean = GsonTools.changeGsonToBean(result,DeviceBean.class);
+//					if (deviceBean.data.Result.equals("1")){
+//
+//					}
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
 				if (result.equals("1")) {
-					isDeviceOk=true;
+					Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+					startActivity(intent);
+					SplashActivity.this.finish();
 				}else{
-					isDeviceOk=false;
+					checkit("非法设备，无法使用此应用~");
 				}
-				if (IsServiceOver){
-					checkit();
-				}
+
 			}
 			@Override
 			public void onError(Throwable ex, boolean isOnCallback) {
@@ -107,16 +112,7 @@ public class SplashActivity extends BaseActiviy{
 		});
 	}
 
-	private void checkit() {
-		if (isServiceOk && isDeviceOk) {
-			Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-			startActivity(intent);
-			SplashActivity.this.finish();
-		} else {
-			String str="无法连接到服务器~";
-			if (!isDeviceOk){
-				str="非法设备，无法使用此应用~";
-			}
+	private void checkit(String str) {
 			Dialog.showSelectDialog(SplashActivity.this, str, new DialogClickListener() {
 				@Override
 				public void confirm() {
@@ -128,7 +124,6 @@ public class SplashActivity extends BaseActiviy{
 					SplashActivity.this.finish();
 				}
 			});
-		}
 	}
 	/**
 	 * 导入数据库
@@ -147,7 +142,6 @@ public class SplashActivity extends BaseActiviy{
 	                fos.close();//关闭输出流
 	                is.close();//关闭输入流
 	                initalData();
-					checkit();
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }

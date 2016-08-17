@@ -313,49 +313,50 @@ public class SingleRealPopulationActivity extends BaseActiviy{
 						return;
 					}
 					if (canOperate) {
-					
-					if (realPeopleinHouseOne.idcard.trim().substring(0, 4).equals("3205")||realPeopleinHouseOne.house_addr.trim().contains("苏州")||realPeopleinHouseOne.house_addr.trim().contains("昆山")||realPeopleinHouseOne.house_addr.trim().contains("吴江")||realPeopleinHouseOne.house_addr.trim().contains("张家港")||realPeopleinHouseOne.house_addr.trim().contains("太仓")||realPeopleinHouseOne.house_addr.trim().contains("常熟")) {
-						new ActionSheetDialog(SingleRealPopulationActivity.this)
-						.builder()
-						.setCancelable(true)
-						.setCanceledOnTouchOutside(true)
-						.addSheetItem("注销", SheetItemColor.Blue,
-								new OnSheetItemClickListener() {
-									@Override
-									public void onClick(int which) {
-										showDelectReason(realPeopleinHouseOne,pos);
-									}
+						if (realPeopleinHouseOne.idcard.trim().substring(0, 4).equals("3205")||realPeopleinHouseOne.house_addr.trim().contains("苏州")||realPeopleinHouseOne.house_addr.trim().contains("昆山")||realPeopleinHouseOne.house_addr.trim().contains("吴江")||realPeopleinHouseOne.house_addr.trim().contains("张家港")||realPeopleinHouseOne.house_addr.trim().contains("太仓")||realPeopleinHouseOne.house_addr.trim().contains("常熟")) {
+							new ActionSheetDialog(SingleRealPopulationActivity.this)
+							.builder()
+							.setCancelable(true)
+							.setCanceledOnTouchOutside(true)
+							.addSheetItem("注销", SheetItemColor.Blue,
+									new OnSheetItemClickListener() {
+										@Override
+										public void onClick(int which) {
+											showDelectReason(realPeopleinHouseOne,pos);
+										}
+									}).show();
+						}else{
+							new ActionSheetDialog(SingleRealPopulationActivity.this)
+							.builder()
+							.setCancelable(true)
+							.setCanceledOnTouchOutside(true)
+							.addSheetItem("注销", SheetItemColor.Blue,
+									new OnSheetItemClickListener() {
+										@Override
+										public void onClick(int which) {
+											showDelectReason(realPeopleinHouseOne,pos);
+										}
+									})
+							.addSheetItem("延期", SheetItemColor.Blue,
+									new OnSheetItemClickListener() {
+										@Override
+										public void onClick(int which) {
+												SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+												String date =sDateFormat.format(new java.util.Date());
+												Intent intent = new Intent(SingleRealPopulationActivity.this,HandleIDActivity.class);
+												intent.putExtra("people", new People(realPeopleinHouseOne.sname, realPeopleinHouseOne.idcard, realPeopleinHouseOne.idcard.trim().substring(0,6), "变更", CommonUtils.GenerateGUID(), "1", "1",
+														MyInfomationManager.getUserName(SingleRealPopulationActivity.this), "1",realPeopleinHouseOne.house_id,realPeopleinHouseOne.house_addr, realPeopleinHouseOne.roomCode,
+														MyInfomationManager.getSQNAME(SingleRealPopulationActivity.this),date,realPeopleinHouseOne.id));
+												intent.putExtra("isHandle", false);
+												if (realHouseOne!=null) {
+													intent.putExtra("house", realHouseOne);
+												}
+												startActivity(intent);
+										}
 								}).show();
+						}
 					}else{
-						new ActionSheetDialog(SingleRealPopulationActivity.this)
-						.builder()
-						.setCancelable(true)
-						.setCanceledOnTouchOutside(true)
-						.addSheetItem("注销", SheetItemColor.Blue,
-								new OnSheetItemClickListener() {
-									@Override
-									public void onClick(int which) {
-										showDelectReason(realPeopleinHouseOne,pos);
-									}
-								})
-						.addSheetItem("延期", SheetItemColor.Blue,
-								new OnSheetItemClickListener() {
-									@Override
-									public void onClick(int which) {
-											SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
-											String date =sDateFormat.format(new java.util.Date());
-											Intent intent = new Intent(SingleRealPopulationActivity.this,HandleIDActivity.class);
-											intent.putExtra("people", new People(realPeopleinHouseOne.sname, realPeopleinHouseOne.idcard, realPeopleinHouseOne.idcard.trim().substring(0,6), "变更", CommonUtils.GenerateGUID(), "1", "1",
-													MyInfomationManager.getUserName(SingleRealPopulationActivity.this), "1",realPeopleinHouseOne.house_id,realPeopleinHouseOne.house_addr, realPeopleinHouseOne.roomCode,
-													MyInfomationManager.getSQNAME(SingleRealPopulationActivity.this),date,realPeopleinHouseOne.id));
-											intent.putExtra("isHandle", false);
-											if (realHouseOne!=null) {
-												intent.putExtra("house", realHouseOne);
-											}
-											startActivity(intent);
-									}
-							}).show();
-					}
+						Toast.makeText(SingleRealPopulationActivity.this, "非本房屋住户身份证无法操作！", Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
