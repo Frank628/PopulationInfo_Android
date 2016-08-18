@@ -248,7 +248,7 @@ public class HandleIDActivity extends BaseActiviy{
 						Toast.makeText(HandleIDActivity.this, "登记成功！", Toast.LENGTH_SHORT).show();
 						HandleIDActivity.this.finish();
 					} catch (DbException e) {
-						Toast.makeText(HandleIDActivity.this, "数据库操作失败！请上传所有数据口,并下载全库地址！", Toast.LENGTH_LONG).show();
+						Toast.makeText(HandleIDActivity.this, "数据库操作失败！请发送掉全部数据,并下载全库地址！", Toast.LENGTH_LONG).show();
 						e.printStackTrace();
 					}
 

@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             currentFragment=new AlienFragment();
             changeFragment(currentFragment);
         } else if (id == R.id.nav_shi) {
-            title.setText("实有人口调查");
+            title.setText("实有人口采集");
             currentFragment=new RealFragment();
             changeFragment(currentFragment);
         } else if (id == R.id.nav_xunluo) {

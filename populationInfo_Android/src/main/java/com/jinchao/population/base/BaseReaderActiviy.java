@@ -81,7 +81,7 @@ public class BaseReaderActiviy extends FragmentActivity implements DeviceListDia
 				mAdapter.enableForegroundNdefPush(this, mNdefPushMessage);
 			}
 		}
-		String net="自动";
+		String net="电信";
 		switch (net) {
 			case "自动":
 				idReader.SetNetType(NetType.publicNetwork);

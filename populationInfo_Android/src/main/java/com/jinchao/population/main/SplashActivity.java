@@ -84,6 +84,7 @@ public class SplashActivity extends BaseActiviy{
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
+				Log.i("isHEFASHEBEI",result);
 //				try {
 //					DeviceBean deviceBean = GsonTools.changeGsonToBean(result,DeviceBean.class);
 //					if (deviceBean.data.Result.equals("1")){
@@ -96,8 +97,10 @@ public class SplashActivity extends BaseActiviy{
 					Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
 					startActivity(intent);
 					SplashActivity.this.finish();
-				}else{
+				}else if (result.trim().equals("0")){
 					checkit("非法设备，无法使用此应用~");
+				}else{
+					checkDevice();
 				}
 
 			}

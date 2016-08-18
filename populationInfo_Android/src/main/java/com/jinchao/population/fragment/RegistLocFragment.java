@@ -93,7 +93,7 @@ public class RegistLocFragment extends BaseFragment{
     private LatLng mLatLng=null;
     public static final int HOUSE_PIC=2001;
     private File tempfile;
-    private String houseid="";
+    private String houseid="",pic="";
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -231,11 +231,9 @@ public class RegistLocFragment extends BaseFragment{
         mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(mLatLng));
     }
     private void caiJiRequest(){
-        String pic="";
         if (tempfile != null && tempfile.exists() &&hasTakePic) {
-            byte[] img = CommonUtils.getByte(tempfile);// 获得源图片
-            Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);// 将原图片转换成bitmap，方便后面转换
-            img = CommonUtils.Bitmap2Bytes(bitmap);
+            Bitmap bitmap=CommonUtils.compressImage(tempfile.getAbsolutePath());
+            byte[] img = CommonUtils.Bitmap2Bytes(bitmap);
             pic= new String(Base64Coder.encodeLines(img));
         }
         int databaseType = SharePrefUtil.getInt(getActivity(),Constants.DATABASE_TYPE,0);
@@ -285,6 +283,7 @@ public class RegistLocFragment extends BaseFragment{
                     edt_content.setText("");
                     hasTakePic=false;
                     houseid="";
+                    pic="";
                     iv_house.setScaleType(ImageView.ScaleType.CENTER);
                     iv_house.setImageResource(R.drawable.camera_small);
                     Toast.makeText(getActivity(),"采集成功！",Toast.LENGTH_SHORT).show();
@@ -317,6 +316,12 @@ public class RegistLocFragment extends BaseFragment{
                 case HOUSE_PIC :
                     x.image().bind(iv_house,tempfile.getAbsolutePath(),new ImageOptions.Builder().setImageScaleType(ImageView.ScaleType.CENTER_CROP).setUseMemCache(false).build());
                     hasTakePic=true;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    }).start();
                     break;
                 default:
                     break;

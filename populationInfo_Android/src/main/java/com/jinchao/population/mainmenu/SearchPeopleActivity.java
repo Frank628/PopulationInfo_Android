@@ -1,5 +1,4 @@
 package com.jinchao.population.mainmenu;
-import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,20 +15,16 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -46,7 +41,7 @@ import com.caihua.cloud.common.reader.IDReader;
 import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
-import com.jinchao.population.base.BaseActiviy;
+import com.jinchao.population.activity.PersonInHouseActivity;
 import com.jinchao.population.base.BaseReaderActiviy;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
@@ -56,7 +51,6 @@ import com.jinchao.population.entity.NearbyHouseBean;
 import com.jinchao.population.entity.RenYuanXinXiBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.entity.YanZhengBean;
-import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.DeviceUtils;
@@ -65,6 +59,7 @@ import com.jinchao.population.utils.ResultBeanAndList;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.DialogLoading;
+import com.jinchao.population.view.DialogShowPic;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.LoadMoreListView;
 import com.lidroid.xutils.DbUtils;
@@ -350,10 +345,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (renYuanXinXilist!=null) {
-			processData(renyuanInHouseBean);
-		}
-		if (renYuanXinXilist!=null) {
+		if (renyuanInHouseBean!=null) {
 			processData(renyuanInHouseBean);
 		}
 	}
@@ -500,13 +492,34 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 			}else{
 				CommonAdapter<NearbyHouseBean.NearbyHouseOne> adapter =new CommonAdapter<NearbyHouseBean.NearbyHouseOne>(SearchPeopleActivity.this,nearbyHouseBean.data,R.layout.item_nearby) {
 					@Override
-					public void convert(ViewHolder helper, NearbyHouseBean.NearbyHouseOne item, int position) {
+					public void convert(ViewHolder helper, final NearbyHouseBean.NearbyHouseOne item, int position) {
 						helper.setText(R.id.tv_housecode,"房屋编号："+item.scode);
 						helper.setText(R.id.tv_houseaddress,item.address);
 						helper.setText(R.id.tv_distance,item.distance);
+						helper.getView(R.id.tv_showpic).setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View view) {
+								DialogShowPic dialogShowPic =new DialogShowPic(SearchPeopleActivity.this,item.house_pic);
+								dialogShowPic.show();
+							}
+						});
+						if (item.house_pic.trim().equals("")){
+							helper.getView(R.id.tv_showpic).setVisibility(View.GONE);
+						}else{
+							helper.getView(R.id.tv_showpic).setVisibility(View.VISIBLE);
+						}
 					}
 				};
 				loadmorelv.setAdapter(adapter);
+				loadmorelv.setOnItemClickListener(new OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+						NearbyHouseBean.NearbyHouseOne  nearbyHouseOne=(NearbyHouseBean.NearbyHouseOne)((ListView)adapterView).getItemAtPosition(i);
+						Intent intent=new Intent(SearchPeopleActivity.this, PersonInHouseActivity.class);
+						intent.putExtra("id",nearbyHouseOne.scode);
+						startActivity(intent);
+					}
+				});
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
