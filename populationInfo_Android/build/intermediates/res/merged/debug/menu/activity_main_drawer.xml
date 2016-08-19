@@ -7,7 +7,7 @@
             android:title="外来人口信息采集" />
         <item
             android:id="@+id/nav_shi"
-            android:title="实有人口调查" />
+            android:title="实有人口采集" />
         <item
             android:id="@+id/nav_xunluo"
             android:title="巡逻盘查" />

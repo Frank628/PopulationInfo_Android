@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/micro_size"
                 android:textColor="@color/title2"
-                android:text="附近房屋"
+                android:text="附近出租屋"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 />

@@ -76,6 +76,7 @@
 		            android:layout_toRightOf="@+id/tv_leftbianhao"
 		            android:singleLine="true"
 		            android:hint="请输入房屋编号"
+					android:maxLength="6"
 		            android:textColorHint="@color/title4"
 		            android:background="@color/transaction"
 		            android:inputType="text"

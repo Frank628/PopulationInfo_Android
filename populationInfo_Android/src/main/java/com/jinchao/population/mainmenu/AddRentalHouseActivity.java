@@ -136,6 +136,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 	private void save(String shequ,String bianhao,String fangwuaddress,String name,String dianhua,String cardno){
 		RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
 		params.addBodyParameter("type", "save");
+
 		params.addBodyParameter("user_name", MyInfomationManager.getUserName(AddRentalHouseActivity.this));
 		params.addBodyParameter("house_code", bianhao);
 		params.addBodyParameter("house_addr", fangwuaddress);
@@ -155,6 +156,11 @@ public class AddRentalHouseActivity extends BaseActiviy{
 		params.addBodyParameter("sh", shihao);
 		params.addBodyParameter("sh_flag", shihaodanwei);
 		params.addBodyParameter("gps", "定位");
+
+		Log.i("house_addr",fangwuaddress);
+		Log.i("house_code",bianhao);
+		Log.i("house_pname",name);
+		Log.i("house_pidcard",cardno);
 		x.http().get(params, new CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
