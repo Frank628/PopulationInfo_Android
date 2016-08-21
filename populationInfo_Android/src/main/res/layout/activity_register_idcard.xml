@@ -138,21 +138,7 @@
             android:scaleType="fitCenter"
             android:layout_marginTop="30dp"
             />
-            <TextView
-                android:id="@+id/compare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/micro_size"
-                android:textColor="@color/white"
-                android:text="人脸比对"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:background="@drawable/btn_login_click"
-                android:layout_centerHorizontal="true"
-                android:visibility="gone"
-                />
+
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -220,6 +206,36 @@
             android:layout_margin="12dp"
             android:visibility="gone"
             />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/edt_xaddress"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        >
+        <ImageButton
+            android:id="@+id/compare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@null"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/compare"
+            android:visibility="gone"
+            />
+        <ImageButton
+            android:id="@+id/replace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:background="@null"
+            android:src="@drawable/replaze"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"

@@ -38,7 +38,6 @@
                 android:textSize="@dimen/micro_size"
                 android:textColor="@color/title2"
                 android:text="人员查询"
-                android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 />
             <RadioButton
@@ -48,7 +47,6 @@
                 android:textSize="@dimen/micro_size"
                 android:textColor="@color/title2"
                 android:text="附近出租屋"
-                android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 />
         </RadioGroup>

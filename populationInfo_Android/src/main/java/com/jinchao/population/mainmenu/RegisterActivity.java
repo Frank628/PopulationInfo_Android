@@ -82,7 +82,8 @@ public class RegisterActivity extends BaseReaderActiviy{
 	@ViewInject(R.id.edt_birth)private EditText edt_birth;
 	@ViewInject(R.id.edt_address)private EditText edt_address;
 	@ViewInject(R.id.edt_xaddress)private EditText edt_xaddress;
-	@ViewInject(R.id.compare)private TextView compare;
+	@ViewInject(R.id.compare)private ImageButton compare;
+	@ViewInject(R.id.replace)private ImageButton replace;
 	@ViewInject(R.id.iv_pic)private ImageView iv_pic;
 	private Bitmap bmp;
 	private DbUtils dbUtils;
@@ -196,6 +197,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 		 imgA=null;
 		 muser=null;
 		 compare.setVisibility(View.GONE);
+		 replace.setVisibility(View.GONE);
 		 hideProcessDialog();
 		 if (isClear){
 			 resetSecondGenerationIDCardText();
@@ -205,6 +207,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 			showError();
 		 }else{
 			 compare.setVisibility(View.VISIBLE);
+			 replace.setVisibility(View.VISIBLE);
 			 imgA=user.headImg;
 			 muser=user;
 			 edt_name.setText(user.name.trim());
@@ -253,6 +256,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 	};
 	private void resetFirstGenerationIDCardText(){
 		compare.setVisibility(View.GONE);
+		replace.setVisibility(View.GONE);
 		pic=null;
         edt_idcard.setHint("请输入身份证号");
         edt_name.setHint("请输入姓名");
@@ -424,6 +428,41 @@ public class RegisterActivity extends BaseReaderActiviy{
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photofile));
 		intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
 		startActivityForResult(intent, REQUEST_CODE_CAMERA);
+	}
+	@Event(value=R.id.replace)
+	private void replaceClick(View view){
+        new ActionSheetDialog(RegisterActivity.this)
+                .builder()
+                .setCancelable(true)
+                .setCanceledOnTouchOutside(true)
+                .addSheetItem("用相机拍照", SheetItemColor.Blue,
+                        new OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                Intent intentFromCapture = new Intent(
+                                        MediaStore.ACTION_IMAGE_CAPTURE);
+                                // 判断存储卡是否可以用，可用进行存储
+                                if (DeviceUtils.hasSDCard()) {
+                                    intentFromCapture.putExtra(
+                                            MediaStore.EXTRA_OUTPUT,
+                                            Uri.fromFile(new File(Environment
+                                                    .getExternalStorageDirectory(),
+                                                    IMAGE_FILE_NAME)));
+                                }
+                                Log.i("camera", "IMAGE_FILE_NAME");
+                                startActivityForResult(intentFromCapture,CAMERA_REQUEST_CODE);
+                            }
+                        })
+                .addSheetItem("去相册选择", SheetItemColor.Blue,
+                        new OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                Intent intentFromGallery = new Intent();
+                                intentFromGallery.setType("image/*"); // 设置文件类型
+                                intentFromGallery.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(intentFromGallery,IMAGE_REQUEST_CODE);
+                            }
+                        }).show();
 	}
 
 //	@Event(value={R.id.ib_readcard})//点击“读卡”，读取身份证；
