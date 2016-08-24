@@ -12,10 +12,12 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -56,6 +58,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	@ViewInject(R.id.lv)private ListView lv;
 	private int count=0,bcount=0;
 	private DialogLoading dialogLoading;
+	private boolean isQuanKuOk=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -148,6 +151,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	}
 	
 	private void getALL2AddressRequest(){
+		isQuanKuOk=false;
 		dialogLoading.show();
 		runOnUiThread(new Runnable() {
 			@Override
@@ -241,6 +245,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 						SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");       
 						String date =sDateFormat.format(new Date(System.currentTimeMillis())); 
 						SharePrefUtil.saveString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, date);
+						isQuanKuOk=true;
 						Message msg=new Message();
 						msg.what=1;
 						handler.sendMessage(msg);
@@ -406,4 +411,30 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 			}
 		}).start();
 	}
+
+//	@Override
+//	public void onBackPressed() {
+//		if (!isQuanKuOk){
+//			AlertDialog.Builder builder = new AlertDialog.Builder(RegistRentalHouseActivity.this);
+//			builder.setMessage("确认退出吗?");
+//			builder.setTitle("提示");
+//			builder.setPositiveButton("确认", new AlertDialog.OnClickListener() {
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//					dialog.dismiss();
+//					RegistRentalHouseActivity.this.finish();
+//				}
+//				});
+//			builder.setNegativeButton("取消", new AlertDialog.OnClickListener() {
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//					dialog.dismiss();
+//				}
+//			});
+//			builder.create().show();
+//		}else{
+//			super.onBackPressed();
+//        }
+//	}
+
 }

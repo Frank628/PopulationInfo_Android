@@ -97,7 +97,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 	private String hjdz="";
 	private String pic;
 	private DialogLoading dialogLoading;
-	private boolean isreal=false;
+	private boolean isreal=false,isReplace=false;
 	private RealHouseOne realHouseOne ;//实有人口传参
 	private FacePop facePop;
 
@@ -190,6 +190,8 @@ public class RegisterActivity extends BaseReaderActiviy{
 		showIDCardInfo(true, null);
 		isReading = true;
 		showProcessDialog("正在读卡中，请稍后");
+		isFirstGenerationIDCard=false;
+		isReplace=false;
 		idReader.connect(ConnectType.NFC, parcelable);
 	}
 
@@ -389,6 +391,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 			photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
 			byte[] b = stream.toByteArray();
 			pic = new String(Base64Coder.encodeLines(b));
+			isReplace=true;
 			iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			iv_pic.setImageDrawable(drawable);
 		}
@@ -619,6 +622,24 @@ public class RegisterActivity extends BaseReaderActiviy{
 			Toast.makeText(this, "请输入身份证号", Toast.LENGTH_SHORT).show();
 			return;
 		}
+		if (CommonIdcard.validateCard(idcard)) {
+			if (idcard.length() == 15) {
+				idcard = CommonIdcard.conver15CardTo18(idcard);
+				edt_idcard.setText(idcard);
+				Toast.makeText(RegisterActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
+				getIDInfo(idcard);
+			} else if (idcard.length() == 17) {
+				idcard = CommonIdcard.conver17CardTo18(idcard);
+				edt_idcard.setText(idcard);
+				Toast.makeText(RegisterActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
+				getIDInfo(idcard);
+			} else {
+				getIDInfo(idcard);
+			}
+		} else {
+			Toast.makeText(RegisterActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		if (CommonUtils.isEmpty(address)) {
 			Toast.makeText(this, "请输入住址",  Toast.LENGTH_SHORT).show();
 			return;
@@ -631,7 +652,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 		}
 		address=address+xaddress;
 		if (pic==null) {
-			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),isFirstGenerationIDCard?"1":"2",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) ;
+			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),isReplace?"1":(isFirstGenerationIDCard?"1":"2"),MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) ;
 			Dialog.showSelectDialog(RegisterActivity.this, "未拍照，是否放弃拍照?", new DialogClickListener() {
 				@Override
 				public void confirm() {
@@ -657,13 +678,13 @@ public class RegisterActivity extends BaseReaderActiviy{
 		}
 		if (isreal) {
 			Intent intent =new Intent(this, SingleRealPopulationActivity.class);
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),isFirstGenerationIDCard?"1":"2",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
+			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),isReplace?"1":(isFirstGenerationIDCard?"1":"2"),MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
 			intent.putExtra("realhouseone", realHouseOne);
 			startActivity(intent);
 			RegisterActivity.this.finish();
 		}else{
 			Intent intent =new Intent(this, ZanZhuActivity.class);
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),isFirstGenerationIDCard?"1":"2",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
+			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),isReplace?"1":(isFirstGenerationIDCard?"1":"2"),MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
 			startActivity(intent);
 		}
 	}

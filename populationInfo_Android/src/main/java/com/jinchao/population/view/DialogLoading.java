@@ -31,6 +31,7 @@ public class DialogLoading extends Dialog{
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		this.setCancelable(false);
         if (isSmall) {
         	setContentView(R.layout.loading_submit);
 		}else{

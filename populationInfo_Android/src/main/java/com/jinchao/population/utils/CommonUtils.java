@@ -200,10 +200,15 @@ public class CommonUtils {
      }
 	 public static boolean isCarNo(String str){
 		 String reg="^[\\u4e00-\\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\\u4e00-\\u9fa5]$|^[a-zA-Z]{2}\\d{7}$";
-		 if (str.matches(reg)) 
+		 if (str.matches(reg)) {
 			 return true;
-		 else
-			 return false;
+		 } else{
+			 String regdian="[0-9a-zA-Z]{4,9}";
+			 if (str.matches(regdian))
+				 return true;
+			 else
+				 return false;
+		 }
 	 }
 	public static String getIMEI(Context context) {
 			if(context != null){

@@ -456,8 +456,8 @@ public class HandleIDActivity extends BaseActiviy{
 	private OnDateSetListener onDateSetListenercanbao =new OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
-			tv_canbaoshijian.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1))));
-			canbaoshijian=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)));
+			tv_canbaoshijian.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			canbaoshijian=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
 		}
 	};
 	private OnDateSetListener onDateSetListeneryun =new OnDateSetListener() {
