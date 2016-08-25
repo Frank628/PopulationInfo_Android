@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
@@ -20,6 +21,7 @@ import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.entity.UserBean;
 import com.jinchao.population.entity.UserBean.AccountOne;
+import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
@@ -51,6 +53,8 @@ public class LoginActivity extends BaseActiviy{
 	private LinearLayout root;
 	@ViewInject(R.id.btn_toggle)
 	private Button btn_toggle;
+	@ViewInject(R.id.tv_version)
+	private TextView tv_version;
 	private boolean isToggle=false;//是否（在切换用页）手动输入用户
 	private String password="";
 	private String username="";
@@ -70,6 +74,7 @@ public class LoginActivity extends BaseActiviy{
 			edt_user.setFocusable(false);
 			edt_user.setOnClickListener(null);
 		}
+		tv_version.setText("版本号：V"+CommonUtils.getVersionName(LoginActivity.this));
 	}
 	@Event(value=R.id.edt_user)
 	private void showPopClick(View view){

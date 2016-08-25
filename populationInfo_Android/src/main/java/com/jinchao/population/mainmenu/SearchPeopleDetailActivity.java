@@ -135,9 +135,9 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 				}
 			}
 			dbUtils.save(people);
-			Toast.makeText(this, "延期成功~", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "变更成功~", Toast.LENGTH_SHORT).show();
 		} catch (Exception e) {
-			Toast.makeText(this, "延期失败~", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "变更失败~", Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 	}
