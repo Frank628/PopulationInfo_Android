@@ -321,7 +321,7 @@
 					android:textColor="@color/white"
 					android:textSize="@dimen/large_size"
 					android:layout_alignParentRight="true"
-					android:text="同屋变更"
+					android:text="同户变更"
 					android:paddingTop="9dp"
 					android:paddingBottom="9dp"
 					android:background="@drawable/btn_orange_click"

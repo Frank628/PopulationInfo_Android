@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.jinchao.population.MyInfomationManager;
@@ -50,7 +51,7 @@ public class LoginActivity extends BaseActiviy{
 	@ViewInject(R.id.ll_toggle)
 	private LinearLayout ll_toggle;
 	@ViewInject(R.id.root)
-	private LinearLayout root;
+	private RelativeLayout root;
 	@ViewInject(R.id.btn_toggle)
 	private Button btn_toggle;
 	@ViewInject(R.id.tv_version)

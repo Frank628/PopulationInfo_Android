@@ -15,8 +15,16 @@ android {
             debug {
                 storeFile file("C:\\Users\\OfferJiShu01\\.android\\debug.keystore")
             }
+            releaseConfig {
+                keyAlias 'jinchao'
+                keyPassword 'jinchaodianzi'
+                storeFile file('D:\\WorkSpace_AndroidStudio\\PopulationInfo_Android')
+                storePassword 'fdw15995090112'
+            }
         }
+
     }
+
 
     buildTypes {
         release {

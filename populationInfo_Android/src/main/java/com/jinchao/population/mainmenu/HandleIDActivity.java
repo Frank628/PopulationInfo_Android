@@ -8,6 +8,8 @@ import com.jinchao.population.R;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+
+import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.view.PopBianzheng.OnbEnsureClickListener;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -43,6 +46,7 @@ import com.jinchao.population.view.PopHouse;
 import com.jinchao.population.view.PopHouse.OnHouseEnsureClickListener;
 import com.jinchao.population.view.StringWheel;
 import com.jinchao.population.widget.MonPickerDialog;
+import com.jinchao.population.widget.RightButtonCheckBox;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
@@ -85,6 +89,12 @@ public class HandleIDActivity extends BaseActiviy{
 	@ViewInject(R.id.ll_hunhou)private LinearLayout ll_hunhou;
 	@ViewInject(R.id.edt_bianhao)private EditText edt_bianhao;
 	@ViewInject(R.id.edt_dizhi)private EditText edt_dizhi;
+	@ViewInject(R.id.rc_bianhao)private RightButtonCheckBox rc_bianhao;
+	@ViewInject(R.id.rc_dizhi)private RightButtonCheckBox rc_dizhi;
+	@ViewInject(R.id.rc_shihao)private RightButtonCheckBox rc_shihao;
+	@ViewInject(R.id.rc_chusuoleixing)private RightButtonCheckBox rc_chusuoleixing;
+	@ViewInject(R.id.rc_fuwuchusuo)private RightButtonCheckBox rc_fuwuchusuo;
+	@ViewInject(R.id.rc_danweidizhi)private RightButtonCheckBox rc_danweidizhi;
 	private People people,people2;
 	private Calendar c;
 	private boolean isHandleID;
@@ -96,6 +106,7 @@ public class HandleIDActivity extends BaseActiviy{
 			chepaihao="",zujin="",qq="",macaddress="",shoujixinghao="",shoujichuanhao="",beiyong1="";
 	private DbUtils dbUtils;
 	private RealHouseOne realHouseOne;
+	private RenyuanInHouseBean.RenyuanInhouseOne renyuanInhouseOne;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -104,6 +115,7 @@ public class HandleIDActivity extends BaseActiviy{
 		navigationLayout.setCenterText("暂住信息"+(isHandleID?"登记":"变更"));
 		people=(People) getIntent().getSerializableExtra("people");
 		realHouseOne=(RealHouseOne) getIntent().getSerializableExtra("house");
+		renyuanInhouseOne =(RenyuanInHouseBean.RenyuanInhouseOne) getIntent().getSerializableExtra("renYuanXinXiBean");
 		navigationLayout.setLeftTextOnClick(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -131,11 +143,86 @@ public class HandleIDActivity extends BaseActiviy{
 		}else{
 //			tv_degree.setText("");tv_chusuoleixing.setText("");tv_zanzhushiyou.setText("");
 		}
+		if (realHouseOne==null&&renyuanInhouseOne==null){
+			rc_bianhao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,false));
+			rc_dizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,false));
+			rc_shihao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,false));
+			rc_chusuoleixing.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,false));
+			rc_fuwuchusuo.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,false));
+			rc_danweidizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,false));
+			if (rc_bianhao.isChecked()){
+				edt_bianhao.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao));
+				fangwubiaohao=SharePrefUtil.getString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao);
+			}
+			if (rc_dizhi.isChecked()){
+				zanzhudizhi=SharePrefUtil.getString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi);
+				edt_dizhi.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi));
+			}
+			if (rc_shihao.isChecked()){
+				shihao=SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao);
+				edt_shihao.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao));
+			}
+			if (rc_chusuoleixing.isChecked()){
+				chusuoleixing=SharePrefUtil.getString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing);
+				tv_chusuoleixing.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing));
+			}
+			if (rc_fuwuchusuo.isChecked()){
+				fuwuchusuo=SharePrefUtil.getString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo);
+				edt_fuwuchusuo.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo));
+			}
+			if (rc_danweidizhi.isChecked()){
+				danweidizhi=SharePrefUtil.getString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi);
+				edt_danweidizhi.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi));
+			}
+			rc_bianhao.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,b);
+				}
+			});
+			rc_dizhi.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,b);
+				}
+			});
+			rc_shihao.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,b);
+				}
+			});
+			rc_chusuoleixing.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,b);
+				}
+			});
+			rc_fuwuchusuo.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,b);
+				}
+			});
+			rc_danweidizhi.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,b);
+				}
+			});
+
+		}
 		if (realHouseOne!=null) {
 			edt_bianhao.setText(realHouseOne.scode.trim());
 			edt_dizhi.setText(realHouseOne.houseAdress.trim());
 			fangwubiaohao=realHouseOne.scode.trim();
 			zanzhudizhi=realHouseOne.houseAdress.trim();
+		}
+		if(renyuanInhouseOne!=null){
+			edt_bianhao.setText(renyuanInhouseOne.house_code.trim());
+			edt_dizhi.setText(renyuanInhouseOne.house_addr.trim());
+			fangwubiaohao=renyuanInhouseOne.house_code.trim();
+			zanzhudizhi=renyuanInhouseOne.house_addr.trim();
 		}
 	}
 	private void save(){
@@ -242,6 +329,12 @@ public class HandleIDActivity extends BaseActiviy{
 					people2.setJuZhuShiJian(juzhu);
 					people2.setLingQuFangShi(lingqu);
 					people2.setShenQingLeiBie(shenq);
+					if (rc_bianhao.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao);
+					if (rc_dizhi.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi);
+					if (rc_shihao.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao);
+					if (rc_chusuoleixing.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing);
+					if (rc_fuwuchusuo.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo);
+					if (rc_danweidizhi.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi);
 					try {
 						dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
 						dbUtils.save(people2);
@@ -290,7 +383,7 @@ public class HandleIDActivity extends BaseActiviy{
 					return;
 				}	
 			}
-			if (realHouseOne!=null) {
+			if (realHouseOne!=null||renyuanInhouseOne!=null) {
 				if (shihao.length()!=4) {
 					Toast.makeText(this, "请输入4位的室号~", Toast.LENGTH_SHORT).show();
 					return;
@@ -306,7 +399,12 @@ public class HandleIDActivity extends BaseActiviy{
 			} catch (DbException e) {
 				e.printStackTrace();
 			}
-
+			if (rc_bianhao.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao);
+			if (rc_dizhi.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi);
+			if (rc_shihao.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao);
+			if (rc_chusuoleixing.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing);
+			if (rc_fuwuchusuo.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo);
+			if (rc_danweidizhi.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi);
 			people2=new People(people.name, people.cardno, people.people, people.sex, people.birthday, people.address, people.picture, people.hjdxz,
 					isHandleID?"登记":"变更", CommonUtils.GenerateGUID(), isHandleID?"0":"1", people.card_type, people.user_id, "1", height, wenhua, hunyin, zhengzhi,
 					fangwubiaohao, zanzhudizhi,shihao , chusuoleixing, zanzhushiyou, fuwuchusuo, danweidizhi, chanyeleixing, shifoucanbao, canbaoshijian, dianhua, fubingyi,

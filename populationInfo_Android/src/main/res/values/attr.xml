@@ -12,7 +12,12 @@
             <enum name="STROKE" value="0"></enum>
             <enum name="FILL" value="1"></enum>
         </attr>
-    </declare-styleable> 
-    
-  
+    </declare-styleable>
+    <declare-styleable name="RightButtonCheckBox">
+        <attr name="rc_text" format="string"/>
+        <attr name="rc_textSize" format="dimension"/>
+        <attr name="rc_textColor" format="color" />
+        <attr name="rc_checked" format="boolean"/>
+    </declare-styleable>
+
 </resources>

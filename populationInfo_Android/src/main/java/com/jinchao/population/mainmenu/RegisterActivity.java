@@ -627,14 +627,10 @@ public class RegisterActivity extends BaseReaderActiviy{
 				idcard = CommonIdcard.conver15CardTo18(idcard);
 				edt_idcard.setText(idcard);
 				Toast.makeText(RegisterActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
-				getIDInfo(idcard);
 			} else if (idcard.length() == 17) {
 				idcard = CommonIdcard.conver17CardTo18(idcard);
 				edt_idcard.setText(idcard);
 				Toast.makeText(RegisterActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
-				getIDInfo(idcard);
-			} else {
-				getIDInfo(idcard);
 			}
 		} else {
 			Toast.makeText(RegisterActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();

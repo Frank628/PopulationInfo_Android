@@ -50,5 +50,19 @@ public class Constants {
 	public static final String[] NET_AREA={ "自动", "移动", "电信", "联通", "手动" };
 	public static final String[] DEFAULT_INDEX_AREA={ "外来人口信息采集", "实有人口调查","巡逻盘查","电动车检查","房屋位置信息录入" };
 	public static final String DATABASE_TYPE="DATABASE_TYPE";//0获取失败，1外来人口库，2实有人口库
+
+	public static final String BIANHAO_STR="BIANHAO_STR";
+	public static final String ZANZHUDIZHI_STR="ZANZHUDIZHI_STR";
+	public static final String SHIHAO_STR="SHIHAO_STR";
+	public static final String CHUSUOLEIXING_STR="CHUSUOLEIXING_STR";
+	public static final String FUWUCHUSUO_STR="FUWUCHUSUO_STR";
+	public static final String DANWEIDIZHI_STR="DANWEIDIZHI_STR";
+
+	public static final String IS_BIANHAO_STR="IS_BIANHAO_STR";
+	public static final String IS_ZANZHUDIZHI_STR="IS_ZANZHUDIZHI_STR";
+	public static final String IS_SHIHAO_STR="IS_SHIHAO_STR";
+	public static final String IS_CHUSUOLEIXING_STR="IS_CHUSUOLEIXING_STR";
+	public static final String IS_FUWUCHUSUO_STR="IS_FUWUCHUSUO_STR";
+	public static final String IS_DANWEIDIZHI_STR="IS_DANWEIDIZHI_STR";
 }
                           

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/index_bg"
     android:orientation="vertical" >
-    <TextView 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/title2"
@@ -123,4 +127,14 @@
 		    android:layout_marginRight="15dp"
 		    android:background="@drawable/btn_login_click"
 	        />
-</LinearLayout>
+	</LinearLayout>
+	<TextView
+		android:id="@+id/tv_version"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="10dp"
+		android:gravity="center"
+		android:textColor="@color/white"
+		android:textSize="18sp"/>
+</RelativeLayout>

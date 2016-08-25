@@ -130,9 +130,8 @@ public class CommonUtils {
 	}
 	public static boolean isTEL(String mobiles) {
 		if (mobiles.length()==11) {
-			Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$");
-			Matcher m = p.matcher(mobiles);
-			return m.matches();
+
+			return true;
 		}else{
 			Pattern p = Pattern.compile("((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)");
 			Matcher m = p.matcher(mobiles);
