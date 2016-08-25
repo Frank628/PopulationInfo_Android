@@ -83,7 +83,7 @@ public class MyApplication extends Application{
 				} else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
 				} else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
 				} else if (location.getLocType() == BDLocation.TypeServerError) {
-//						服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因
+              //	 	服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因
 				} else if (location.getLocType() == BDLocation.TypeNetWorkException) {
 //						网络不同导致定位失败，请检查网络是否通畅
 				} else if (location.getLocType() == BDLocation.TypeCriteriaException) {

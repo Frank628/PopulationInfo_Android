@@ -455,12 +455,12 @@ public class UpLoadActivity extends BaseActiviy{
             serializer.startTag(null, "ShiFouLingZheng");  
             serializer.text(people.ShiFouLingZheng);  
             serializer.endTag(null, "ShiFouLingZheng");
-            
-            serializer.startTag(null, "carType");  
+
+            serializer.startTag(null, "carType");
             serializer.text(people.carType);  
             serializer.endTag(null, "carType");
-            
-            serializer.startTag(null, "carNo");  
+
+            serializer.startTag(null, "carNo");
             serializer.text(people.carNo );  
             serializer.endTag(null, "carNo");
             

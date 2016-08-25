@@ -111,6 +111,7 @@ public class ReshootActivity extends BaseReaderActiviy{
 						People people = dbUtils.findFirst(Selector.from(People.class).where("cardno", "=", cardno));
 						if (people!=null) {
 							people.setPicture(pic);
+							people.setCard_type("1");
 							people.setCollect_datetime(date);
 							dbUtils.update(people);
 						}else{

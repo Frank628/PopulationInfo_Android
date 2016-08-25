@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="请输入室号"
+        android:textColor="@color/title1"
+        android:padding="15dp"
+        android:textSize="19sp"/>
+    <EditText
+        android:id="@+id/edt_roomcode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:maxLength="4"
+        android:textColor="@color/title2"
+        android:textSize="18sp"
+        />
+</LinearLayout>

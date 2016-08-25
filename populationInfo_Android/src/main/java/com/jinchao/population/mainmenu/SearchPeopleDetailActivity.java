@@ -8,9 +8,15 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +28,7 @@ import com.jinchao.population.entity.RenYuanXinXiBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.NavigationLayout;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -75,12 +82,64 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 			}
 			}
 			dbUtils.save(people);
-			Toast.makeText(this, "延期成功~", 0).show();
+			Toast.makeText(this, "延期成功~", Toast.LENGTH_SHORT).show();
 		} catch (Exception e) {
-			Toast.makeText(this, "延期失败~", 0).show();
+			Toast.makeText(this, "延期失败~", Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
-		
+	}
+	@Event(value={R.id.btn_tongwu})
+	private void tongwubiangeng(View view){
+		LayoutInflater factory = LayoutInflater.from(SearchPeopleDetailActivity.this);
+		final View view_dialog= factory.inflate(R.layout.dialog_tongwu, null);
+		final EditText room_code_dialog=(EditText)view_dialog.findViewById(R.id.edt_roomcode);
+		room_code_dialog.setText(renYuanXinXiBean.shihao);
+		new AlertDialog.Builder(this)
+				.setView(view_dialog)
+
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+						if (room_code_dialog.getText().toString().trim().length()!=4){
+							Toast.makeText(SearchPeopleDetailActivity.this,"请输入四位数的室号！",Toast.LENGTH_SHORT).show();
+							return;
+						}
+						InputMethodManager inputMgr = (InputMethodManager) SearchPeopleDetailActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+						inputMgr.hideSoftInputFromWindow( room_code_dialog.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+						bianGeng(room_code_dialog.getText().toString().trim());
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+						InputMethodManager inputMgr = (InputMethodManager) SearchPeopleDetailActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+						inputMgr.hideSoftInputFromWindow( room_code_dialog.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+					}
+				}).show();
+
+	}
+	private void bianGeng(String roominnercode){
+
+		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String date =sDateFormat.format(new java.util.Date());
+		People people=new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
+				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), "1", renYuanXinXiBean.house_code, renYuanXinXiBean.house_addr, roominnercode,
+				MyInfomationManager.getSQNAME(SearchPeopleDetailActivity.this),date);
+		DbUtils dbUtils =DeviceUtils.getDbUtils(this);
+		List<People> list=new ArrayList<People>();
+		try {
+			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", renYuanXinXiBean.idcard));
+			if (list!=null) {
+				if (list.size()>0) {
+					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.idcard));
+				}
+			}
+			dbUtils.save(people);
+			Toast.makeText(this, "延期成功~", Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			Toast.makeText(this, "延期失败~", Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+		}
 	}
 	@Event(value={R.id.btn_zhuxiao})
 	private void zhuxiao(View view){
@@ -98,9 +157,9 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 			}
 			}
 			dbUtils.save(people);
-			Toast.makeText(this, "注销成功~", 0).show();
+			Toast.makeText(this, "注销成功~", Toast.LENGTH_SHORT).show();
 		} catch (Exception e) {
-			Toast.makeText(this, "注销失败~", 0).show();
+			Toast.makeText(this, "注销失败~", Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 	}
