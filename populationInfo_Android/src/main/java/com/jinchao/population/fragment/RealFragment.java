@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +29,9 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -147,22 +151,22 @@ public class RealFragment extends BaseFragment{
         isGetAll=false;
         mPtrFrame.autoRefresh();
     }
-    private boolean isNumber(String content){
-        try {
-            Integer.parseInt(content);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    public boolean isCode(String str){
+        String regEx="^[A-Za-z0-9_]+$";
+        Pattern p=Pattern.compile(regEx);
+        Matcher m=p.matcher(str);
+        return m.matches();
     }
     private void getSearchHouse(String content){
         lv.setAdapter(null);
         lv.removeFooterView(footView);
         RequestParams params=new RequestParams(Constants.URL+"syrkServer.aspx");
-        if(isNumber(content)){
+        Log.i("scode",isCode(content)+"");
+        if(isCode(content)){
             params.addBodyParameter("type", "houseByScode");
             params.addBodyParameter("scode", content);
             params.addBodyParameter("c_id",  MyInfomationManager.getUserID(getActivity()));
+            Log.i("scode",content);
         }else{
             params.addBodyParameter("type", "houseByAdr");
             params.addBodyParameter("sub_length", content.length()+"");

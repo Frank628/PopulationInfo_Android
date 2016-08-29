@@ -1,7 +1,9 @@
 package com.jinchao.population.mainmenu;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.xutils.x;
 import org.xutils.common.Callback;
@@ -23,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
@@ -56,9 +59,11 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	
 	@ViewInject(R.id.ll_top)private LinearLayout ll_top;
 	@ViewInject(R.id.lv)private ListView lv;
+	@ViewInject(R.id.tv_data)private TextView tv_data;
 	private int count=0,bcount=0;
 	private DialogLoading dialogLoading;
 	private boolean isQuanKuOk=false;
+	private List<HouseAddress> listzen=new ArrayList<>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,7 +83,10 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 			switch (msg.what) {
 			case 1:
 				try {
-					CommonAdapter<HouseAddress> adapter =new CommonAdapter<HouseAddress>(RegistRentalHouseActivity.this,dbUtils.findAll(HouseAddress.class),R.layout.item_houseaddress) {
+					if (listzen.size()==0){
+						tv_data.setVisibility(View.VISIBLE);
+					}
+					CommonAdapter<HouseAddress> adapter =new CommonAdapter<HouseAddress>(RegistRentalHouseActivity.this,listzen,R.layout.item_houseaddress) {
 						@Override
 						public void convert(ViewHolder helper, HouseAddress item, int position) {
 							helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
@@ -106,10 +114,12 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	@Event(value={R.id.ib_quan})
 	private void quanKuClick(View view){
 		lv.setAdapter(null);
+		tv_data.setVisibility(View.GONE);
 		getALL2AddressRequest();
 	}
 	@Event(value={R.id.ib_zen})
 	private void zenKuClick(View view){
+		tv_data.setVisibility(View.GONE);
 		lv.setAdapter(null);//如果当前房屋数据库班版本时间是空的，需重新下载全库
 		getZen2AddressRequest();
 	}
@@ -213,6 +223,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		}).start();
 	}
 	private void processAllAddress(final String result){
+		listzen.clear();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -235,6 +246,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 									}
 								});
 								try {
+									listzen.add(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 									dbUtils.save(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 									dbUtils.save(new HouseJLX(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
 								} catch (Exception e) {
@@ -249,17 +261,13 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 						Message msg=new Message();
 						msg.what=1;
 						handler.sendMessage(msg);
-						
 					} catch (Exception e) {
 						Dialog.showSelectDialog(RegistRentalHouseActivity.this, "下载失败，请重试！", new DialogClickListener() {
 							@Override
-							public void confirm() {
-							}
+							public void confirm() {}
 							
 							@Override
-							public void cancel() {
-								
-							}
+							public void cancel() {}
 						});
 						dialogLoading.dismiss();
 						e.printStackTrace();
@@ -272,7 +280,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				dialogLoading.setName("正在合成地址...");
+				dialogLoading.setName("正在加载合成地址...");
 			}
 		});
 		RequestParams params=new RequestParams(Constants.URL+"webHouseServer.aspx");
@@ -362,6 +370,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		});
 	}
 	private void processZenAddress(final String result){
+		listzen.clear();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -391,6 +400,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 									}
 								});
 								try {
+									listzen.add(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 									dbUtils.save(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 									dbUtils.save(new HouseJLX(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
 								} catch (Exception e) {

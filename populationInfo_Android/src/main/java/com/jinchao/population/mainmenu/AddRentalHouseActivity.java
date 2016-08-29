@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Common;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
@@ -74,11 +75,11 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				String dianhua =edt_dianhua.getText().toString().trim();
 				String cardno=edt_shenfenzheng.getText().toString().trim();
 				if (fangwubianhao.equals("")) {
-					Toast.makeText(AddRentalHouseActivity.this, "请输入房屋编号~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "请输入房屋编号~", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				if (fangwubianhao.length()!=6) {
-					Toast.makeText(AddRentalHouseActivity.this, "请输入6位的房屋编号~", 0).show();
+				if (!CommonUtils.isFangwuBianHao(fangwubianhao)) {
+					Toast.makeText(AddRentalHouseActivity.this, "请输入6位数字或字母组成的房屋编号~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				DbUtils dbUtils=DeviceUtils.getDbUtils(AddRentalHouseActivity.this);
@@ -89,41 +90,41 @@ public class AddRentalHouseActivity extends BaseActiviy{
 					e.printStackTrace();
 				}
 				if (list==null) {
-					Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				if (list.size()>0) {
-					Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				if (address.equals("")) {
-					Toast.makeText(AddRentalHouseActivity.this, "请点击编辑房屋地址~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "请点击编辑房屋地址~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				if (fangdongxingming.equals("")) {
-					Toast.makeText(AddRentalHouseActivity.this, "请输入房东姓名~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "请输入房东姓名~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				if (CommonIdcard.validateCard(cardno)) {
 					if (cardno.length() == 15) {
 						cardno = CommonIdcard.conver15CardTo18(cardno);
                         edt_shenfenzheng.setText(cardno);
-                        Toast.makeText(AddRentalHouseActivity.this, "15位转18位证件号成功", 0).show();
+                        Toast.makeText(AddRentalHouseActivity.this, "15位转18位证件号成功", Toast.LENGTH_SHORT).show();
                     } else if (cardno.length() == 17) {
                     	cardno = CommonIdcard.conver17CardTo18(cardno);
                     	edt_shenfenzheng.setText(cardno);
-                        Toast.makeText(AddRentalHouseActivity.this, "17位转18位证件号成功", 0).show();
+                        Toast.makeText(AddRentalHouseActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
                     } 
 				}else{
-					Toast.makeText(AddRentalHouseActivity.this, "请输入合法的身份证号~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "请输入合法的身份证号~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				if (dianhua.equals("")) {
-					Toast.makeText(AddRentalHouseActivity.this, "请输入房东电话~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "请输入房东电话~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				if (!CommonUtils.isTEL(dianhua)) {
-					Toast.makeText(AddRentalHouseActivity.this, "联系电话格式错误~", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "联系电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				save(shequ, fangwubianhao, address, fangdongxingming, dianhua,cardno);
@@ -167,26 +168,26 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				Log.d("bbb", result);
 				try {
 					if (result.trim().contains("该出租屋编号已存在")) {
-						Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", 0).show();
+						Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
 					}else if (result.trim().contains("用户名不存在")) {
-						Toast.makeText(AddRentalHouseActivity.this, "用户名不存在", 0).show();
+						Toast.makeText(AddRentalHouseActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
 					}else if (result.trim().contains("社区不存在")) {
-						Toast.makeText(AddRentalHouseActivity.this, "社区不存在", 0).show();
+						Toast.makeText(AddRentalHouseActivity.this, "社区不存在", Toast.LENGTH_SHORT).show();
 					}else if (result.trim().contains("出租屋已保存")) {
-						Toast.makeText(AddRentalHouseActivity.this, "出租屋已保存", 0).show();
+						Toast.makeText(AddRentalHouseActivity.this, "出租屋已保存", Toast.LENGTH_SHORT).show();
 						AddRentalHouseActivity.this.finish();
 					}else{
-						Toast.makeText(AddRentalHouseActivity.this, "出租屋保存失败", 0).show();
+						Toast.makeText(AddRentalHouseActivity.this, "出租屋保存失败", Toast.LENGTH_SHORT).show();
 					}
 				} catch (Exception e) {
-					Toast.makeText(AddRentalHouseActivity.this, "服务器返回数据有误", 0).show();
+					Toast.makeText(AddRentalHouseActivity.this, "服务器返回数据有误", Toast.LENGTH_SHORT).show();
 					e.printStackTrace();
 				}
 			}
 
 			@Override
 			public void onError(Throwable ex, boolean isOnCallback) {
-				Toast.makeText(AddRentalHouseActivity.this, "服务器请求异常", 0).show();
+				Toast.makeText(AddRentalHouseActivity.this, "服务器请求异常", Toast.LENGTH_SHORT).show();
 			}
 
 			@Override

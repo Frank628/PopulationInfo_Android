@@ -118,7 +118,11 @@ public class CommonUtils {
 		UUID uuid = UUID.randomUUID();
 		return uuid.toString(); 
 	}
-	
+	public static boolean isFangwuBianHao(String str){
+			Pattern p = Pattern.compile("[A-Za-z0-9]{6}");
+			Matcher m = p.matcher(str);
+			return m.matches();
+	}
 	public static boolean isMobile(String mobiles) {
 		if (mobiles.length()==11) {
 			Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$");

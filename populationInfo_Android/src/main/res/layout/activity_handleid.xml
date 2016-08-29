@@ -353,9 +353,9 @@
 		            android:hint="请输入室号"
 		            android:textColorHint="@color/title4"
 		            android:background="@color/white"
-		            android:inputType="text"
 		            android:singleLine="true"
 		            android:paddingRight="10dp"
+					android:inputType="number"
 		            />
 		    </RelativeLayout>
 		    <View 

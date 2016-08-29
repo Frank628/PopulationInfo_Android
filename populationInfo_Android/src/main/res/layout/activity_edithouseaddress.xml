@@ -330,6 +330,7 @@
 		            android:textColorHint="@color/title4"
 		            android:layout_marginLeft="15dp"
 		            android:hint="输入室号"
+					android:inputType="number"
 		            />
 		         <TextView 
 			        android:id="@+id/tv_shihaodanwei"
