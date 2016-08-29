@@ -256,6 +256,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                             @Override
                             public void cancel() {
+                                if (versionBean.isForce.trim().equals("1")){
+                                    SysApplication.getInstance().exit();
+                                }
+
                             }
                         });
                     }
@@ -264,7 +268,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
             @Override
-            public void onError(Throwable ex, boolean isOnCallback) {}
+            public void onError(Throwable ex, boolean isOnCallback) {
+                getNewVersion();
+            }
             @Override
             public void onCancelled(CancelledException cex) {}
             @Override

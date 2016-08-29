@@ -9,12 +9,14 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.WindowManager;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -22,6 +24,7 @@ import org.xutils.x;
 
 public class DownLoadService extends Service{
 	private String url="";
+	private ProgressDialog progressDialog;
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -42,6 +45,12 @@ public class DownLoadService extends Service{
 	}
 	private void download(String url){
 		Log.i("aaaa",url);
+		progressDialog = new ProgressDialog(getApplicationContext());
+		progressDialog.setTitle("正在下载...");
+		progressDialog.setCanceledOnTouchOutside(false);
+		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+		progressDialog.show();
 		RequestParams params =new RequestParams(url.trim());
 		params.setSaveFilePath(Constants.DB_PATH+"PopulationInfo_Android.apk");
 		x.http().get(params, new Callback.ProgressCallback<File>() {
@@ -56,7 +65,7 @@ public class DownLoadService extends Service{
 			}
 			@Override
 			public void onError(Throwable ex, boolean isOnCallback) {
-
+				progressDialog.dismiss();
 			}
 			@Override
 			public void onCancelled(CancelledException cex) {
@@ -65,7 +74,7 @@ public class DownLoadService extends Service{
 
 			@Override
 			public void onFinished() {
-
+				progressDialog.dismiss();
 			}
 
 			@Override
@@ -80,7 +89,8 @@ public class DownLoadService extends Service{
 
 			@Override
 			public void onLoading(long total, long current, boolean isDownloading) {
-
+				Log.i("pro",((float)(current/total*100))+"");
+				progressDialog.setProgress((int) (((float)(current/total))*100));
 			}
 		});
 	}

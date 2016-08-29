@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jinchao.population"
-    android:versionCode="108"
-    android:versionName="1.0.8" >
+    android:versionCode="109"
+    android:versionName="1.0.9" >
 	<!-- 9.0最后一次修改初始化请求 用户账户密码集合
 		 9.1 办证，变更号码身高校验，门牌号默认修改，是否领证默认是
 		 9.2 增量下载超时问题，实有人口增加延期，身高限制，户籍地址填写。
@@ -15,6 +15,7 @@
  	<supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="false" android:resizeable="true" android:smallScreens="true" />
     <uses-feature android:name="android.hardware.usb.host" />
     <uses-permission android:name="android.permission.USB_PERMISSION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.hardware.usb.host" />
     <uses-permission android:name="android.hardware.usb.accessory" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />

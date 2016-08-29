@@ -347,7 +347,7 @@
 					 android:paddingBottom="7dp"
 			        android:drawableRight="@drawable/ico_open"
 			        android:background="@drawable/select_bg"
-		        />
+		       		 />
 		         </LinearLayout>
 		     </LinearLayout>
 </LinearLayout>
