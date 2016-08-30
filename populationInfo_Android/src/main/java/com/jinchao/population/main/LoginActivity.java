@@ -107,7 +107,7 @@ public class LoginActivity extends BaseActiviy{
 			public void run() {
 				try {
 					String users="";
-					if (SharePrefUtil.getString(LoginActivity.this, Constants.USER_DB, "").equals("")) {
+					if (SharePrefUtil.getString(LoginActivity.this, Constants.USER_DB, "").trim().equals("")) {
 						users=FileUtils.getAssetsTxt(LoginActivity.this, "user.txt");
 					}else{
 						users=SharePrefUtil.getString(LoginActivity.this, Constants.USER_DB, "");
@@ -115,7 +115,7 @@ public class LoginActivity extends BaseActiviy{
 					UserBean userBean =GsonTools.changeGsonToBean(users, UserBean.class);
 					for (int i = 0; i < userBean.data.size(); i++) {
 						for (int j = 0; j <userBean.data.get(i).account.size(); j++) {
-							if (username.equals(userBean.data.get(i).account.get(j).userName)) {
+							if (username.equals(userBean.data.get(i).account.get(j).userName.trim())) {
 								dialogLoading.dismiss();
 								if (isToggle) {
 									if (!password.equals("123456")) {

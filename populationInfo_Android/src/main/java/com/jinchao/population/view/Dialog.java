@@ -27,6 +27,7 @@ import android.widget.TextView;
 public class Dialog {
 	public final static int SELECT_DIALOG=1;
 	public final static int RADIO_DIALOG=2;
+	public final static int FORCE_DIALOG=3;
 	/**
 	 * @param context
 	 * @param title
@@ -65,6 +66,10 @@ public class Dialog {
 	public static android.app.Dialog showSelectDialog(Context context,String title,String toast,final DialogClickListener dialogClickListener){
 		return ShowDialog(context,title,toast,dialogClickListener,SELECT_DIALOG);
 	}
+
+	public static android.app.Dialog showForceDialog(Context context,String title,String toast,final DialogClickListener dialogClickListener){
+		return ShowDialog(context,title,toast,dialogClickListener,FORCE_DIALOG);
+	}
 	private static android.app.Dialog ShowDialog(Context context,String title,String toast,final DialogClickListener dialogClickListener,int DialogType){ 
 		final android.app.Dialog dialog=new android.app.Dialog(context, R.style.DialogStyle);
 		dialog.setCancelable(false);
@@ -73,10 +78,15 @@ public class Dialog {
 		((TextView)view.findViewById(R.id.point)).setText(title);
 		((TextView)view.findViewById(R.id.toast)).setText(toast);
 		if(DialogType==RADIO_DIALOG){
-		}else{
+		}else if (DialogType==SELECT_DIALOG){
 			view.findViewById(R.id.ok).setVisibility(View.GONE);
 			view.findViewById(R.id.divider).setVisibility(View.VISIBLE);
+		}else if (DialogType==RADIO_DIALOG){
+			view.findViewById(R.id.cancel).setVisibility(View.GONE);
+			view.findViewById(R.id.confirm).setVisibility(View.GONE);
+			view.findViewById(R.id.divider).setVisibility(View.VISIBLE);
 		}
+
 		view.findViewById(R.id.cancel).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -199,6 +209,7 @@ public class Dialog {
 		public abstract void confirm();
 		public abstract void cancel();
 	}
+
 	public interface DialogItemClickListener{
 		public abstract void confirm(String result);
 	}

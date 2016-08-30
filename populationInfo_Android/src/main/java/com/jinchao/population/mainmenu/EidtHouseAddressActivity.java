@@ -77,9 +77,11 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		if (!(menpaihao.equals(""))&&(!menpaihaodanwei.equals(""))) {
 			menpaiTT=menpaihao+menpaihaodanwei;
 		}
+
 		if (!(fuhao.equals(""))&&(!fuhaodanwei.equals(""))) {
 			fuhaoTT=fuhao+fuhaodanwei;
 		}
+
 		if (!(louhao.equals(""))&&(!louhaodanwei.equals(""))) {
 			louhaoTT=loudanwei+louhao+louhaodanwei;
 		}
@@ -90,9 +92,15 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 //			Toast.makeText(EidtHouseAddressActivity.this, "请输入门牌号并选择单位", 0).show();
 //			return;
 //		}
+		if (menpaihaodanwei.trim().equals("-")){
+			if(fuhaoTT.trim().equals("")){
+				Toast.makeText(EidtHouseAddressActivity.this, "请输入副号并选择单位", Toast.LENGTH_SHORT).show();
+				return;
+			}
+		}
 		if(!louhao.equals("")){
 			if (shihaoTT.equals("")) {
-				Toast.makeText(EidtHouseAddressActivity.this, "请输入室号并选择单位", 0).show();
+				Toast.makeText(EidtHouseAddressActivity.this, "请输入室号并选择单位", Toast.LENGTH_SHORT).show();
 				return;
 			}
 		}

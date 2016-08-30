@@ -203,6 +203,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.d("version", result);
                 try {
                     final VersionBean versionBean= GsonTools.changeGsonToBean(result,VersionBean.class);
+                    if (versionBean.versionNum.trim().equals("")){
+                        return;
+                    }
                     if (!versionBean.versionNum.trim().equals(CommonUtils.getVersionName(MainActivity.this))) {
 //                        if(NetWorkManager.checkNetwork(MainActivity.this)!= NetWorkManager.NetState.NET_WIFI){
 //                            String nettype="4G";
@@ -244,24 +247,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                            });
 //                            return;
 //                        }
-                        Dialog.showSelectDialog(MainActivity.this, "发现新版本,下载并更新？", new Dialog.DialogClickListener() {
-                            @Override
-                            public void confirm() {
-                                Intent serviceDownload=new Intent(MainActivity.this,DownLoadService.class);
-                                if (CommonUtils.isServiceRunning(MainActivity.this, "com.jinchao.population.service.DownLoadService")) {
-                                    MainActivity.this.stopService(serviceDownload);
-                                }
-                                serviceDownload.putExtra("url", versionBean.desFile);
-                                MainActivity.this.startService(serviceDownload);
-                            }
-                            @Override
-                            public void cancel() {
-                                if (versionBean.isForce.trim().equals("1")){
-                                    SysApplication.getInstance().exit();
+                        String str_v= "发现新版本,下载并更新？";
+                        if (versionBean.isForce){
+                            str_v="发现新版本v"+versionBean.versionNum.trim()+",该版本需立即更新，否则无法操作！";
+                        }
+                        if (versionBean.isForce){
+                            Dialog.showRadioDialog(MainActivity.this, str_v, new Dialog.DialogClickListener() {
+                                @Override
+                                public void confirm() {
+                                    Intent serviceDownload=new Intent(MainActivity.this,DownLoadService.class);
+                                    if (CommonUtils.isServiceRunning(MainActivity.this, "com.jinchao.population.service.DownLoadService")) {
+                                        MainActivity.this.stopService(serviceDownload);
+                                    }
+                                    serviceDownload.putExtra("url", versionBean.desFile);
+                                    MainActivity.this.startService(serviceDownload);
                                 }
 
-                            }
-                        });
+                                @Override
+                                public void cancel() {
+
+                                }
+                            });
+                        }else{
+                            Dialog.showSelectDialog(MainActivity.this, str_v, new Dialog.DialogClickListener() {
+                                @Override
+                                public void confirm() {
+                                    Intent serviceDownload=new Intent(MainActivity.this,DownLoadService.class);
+                                    if (CommonUtils.isServiceRunning(MainActivity.this, "com.jinchao.population.service.DownLoadService")) {
+                                        MainActivity.this.stopService(serviceDownload);
+                                    }
+                                    serviceDownload.putExtra("url", versionBean.desFile);
+                                    MainActivity.this.startService(serviceDownload);
+                                }
+                                @Override
+                                public void cancel() {
+                                    if (versionBean.isForce){
+                                        SysApplication.getInstance().exit();
+                                    }
+
+                                }
+                            });
+                        }
+
+
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -46,8 +46,9 @@ public class DownLoadService extends Service{
 	private void download(String url){
 		Log.i("aaaa",url);
 		progressDialog = new ProgressDialog(getApplicationContext());
-		progressDialog.setTitle("正在下载...");
+		progressDialog.setTitle("正在下载更新...");
 		progressDialog.setCanceledOnTouchOutside(false);
+		progressDialog.setCancelable(false);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 		progressDialog.show();
@@ -69,7 +70,7 @@ public class DownLoadService extends Service{
 			}
 			@Override
 			public void onCancelled(CancelledException cex) {
-
+				progressDialog.dismiss();
 			}
 
 			@Override
@@ -89,8 +90,9 @@ public class DownLoadService extends Service{
 
 			@Override
 			public void onLoading(long total, long current, boolean isDownloading) {
-				Log.i("pro",((float)(current/total*100))+"");
-				progressDialog.setProgress((int) (((float)(current/total))*100));
+				Log.i("pro",(int) (current*100/total)+"");
+				Log.i("pro",current+"/"+total);
+				progressDialog.setProgress((int) (current*100/total));
 			}
 		});
 	}

@@ -3,5 +3,5 @@ package com.jinchao.population.entity;
 public class VersionBean {
 	public String versionNum="";
 	public String desFile="";
-	public String isForce="";
+	public boolean isForce=false;
 }
