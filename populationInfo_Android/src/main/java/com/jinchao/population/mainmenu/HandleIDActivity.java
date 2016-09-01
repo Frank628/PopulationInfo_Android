@@ -23,6 +23,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -67,14 +68,17 @@ public class HandleIDActivity extends BaseActiviy{
 	@ViewInject(R.id.edt_mac)private EditText edt_mac;
 	@ViewInject(R.id.edt_shoujixinghao)private EditText edt_shoujixinghao;
 	@ViewInject(R.id.edt_shoujichuanhao)private EditText edt_shoujichuanhao;
-	@ViewInject(R.id.edt_beiyong1)private EditText edt_beiyong1;
 	@ViewInject(R.id.rg_hunyin)private RadioGroup rg_hunyin;
 	@ViewInject(R.id.rg_zhengzhi)private RadioGroup rg_zhengzhi;
 	@ViewInject(R.id.rg_iscanbao)private RadioGroup rg_iscanbao;
 	@ViewInject(R.id.rg_isfubingyi)private RadioGroup rg_isfubingyi;
 	@ViewInject(R.id.rg_isfuqitongxing)private RadioGroup rg_isfuqitongxing;
 	@ViewInject(R.id.rg_isjunzhu)private RadioGroup rg_isjunzhu;
+	@ViewInject(R.id.rg_isbanzheng)private RadioGroup rg_isbanzheng;
+	@ViewInject(R.id.rb_banzhengshi)private RadioButton rb_banzhengshi;
+	@ViewInject(R.id.rb_banzhengfou)private RadioButton rb_banzhengfou;
 	@ViewInject(R.id.rl_canbaoshijian)private RelativeLayout rl_canbaoshijian;
+	@ViewInject(R.id.rl_shifoubanzheng)private RelativeLayout rl_shifoubanzheng;
 	@ViewInject(R.id.tv_canbaoshijian)private TextView tv_canbaoshijian;
 	@ViewInject(R.id.tv_xianyunnianyue)private TextView tv_xianyunnianyue;
 	@ViewInject(R.id.tv_degree)private TextView tv_degree;
@@ -107,10 +111,11 @@ public class HandleIDActivity extends BaseActiviy{
 	private DbUtils dbUtils;
 	private RealHouseOne realHouseOne;
 	private RenyuanInHouseBean.RenyuanInhouseOne renyuanInhouseOne;
+	String right_name;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
+		final NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
 		isHandleID = getIntent().getBooleanExtra("isHandle", false);
 		navigationLayout.setCenterText("暂住信息"+(isHandleID?"登记":"变更"));
 		people=(People) getIntent().getSerializableExtra("people");
@@ -122,7 +127,7 @@ public class HandleIDActivity extends BaseActiviy{
 				onBackPressed();
 			}
 		});
-		String right_name=isHandleID?"办证":"变更";
+		right_name=isHandleID?"办证":"变更";
 		navigationLayout.setRightText(right_name, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -138,6 +143,39 @@ public class HandleIDActivity extends BaseActiviy{
 		rg_isfubingyi.setOnCheckedChangeListener(onCheckedChangeListener);
 		rg_isfuqitongxing.setOnCheckedChangeListener(onCheckedChangeListener);
 		rg_isjunzhu.setOnCheckedChangeListener(onCheckedChangeListener);
+		if (isHandleID){
+			rl_shifoubanzheng.setVisibility(View.VISIBLE);
+		}else{
+			rb_banzhengfou.setChecked(true);
+			rb_banzhengshi.setChecked(false);
+			rl_shifoubanzheng.setVisibility(View.GONE);
+
+		}
+		rg_isbanzheng.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup radioGroup, int i) {
+				switch (i){
+					case R.id.rb_banzhengshi:
+						navigationLayout.setRightText(right_name, new OnClickListener() {
+							@Override
+							public void onClick(View view) {
+								hideSoftKeyBord();
+								save();
+							}
+						});
+						break;
+					case R.id.rb_banzhengfou:
+						navigationLayout.setRightText(isHandleID?"登记":"变更", new OnClickListener() {
+							@Override
+							public void onClick(View view) {
+								hideSoftKeyBord();
+								save();
+							}
+						});
+						break;
+				}
+			}
+		});
 		if (isHandleID) {
 			hunyin="未婚";zhengzhi="群众";shifoucanbao="否";fubingyi="否";juzhuleibie="否";shifoulingzheng="是";fuqitongxing="否";shengyuzhuangkuang="未育";
 		}else{
@@ -246,7 +284,7 @@ public class HandleIDActivity extends BaseActiviy{
 		macaddress=edt_mac.getText().toString().trim();
 		shoujichuanhao=edt_shoujichuanhao.getText().toString().trim();
 		shoujixinghao=edt_shoujixinghao.getText().toString().trim();
-		beiyong1=edt_beiyong1.getText().toString().trim();
+		beiyong1=rb_banzhengshi.isChecked()?"是":"否";
 		zinvgeshu=edt_zinvgeshu.getText().toString().trim();
 		if (isHandleID) {
 			if (height.equals("")) {
@@ -318,37 +356,53 @@ public class HandleIDActivity extends BaseActiviy{
 			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 			String date =sDateFormat.format(new java.util.Date());
 			SharePrefUtil.saveString(HandleIDActivity.this, "realroomcode", shihao);
+			if (rc_bianhao.isChecked())
+				SharePrefUtil.saveString(HandleIDActivity.this, Constants.BIANHAO_STR, fangwubiaohao);
+			if (rc_dizhi.isChecked())
+				SharePrefUtil.saveString(HandleIDActivity.this, Constants.ZANZHUDIZHI_STR, zanzhudizhi);
+			if (rc_shihao.isChecked())
+				SharePrefUtil.saveString(HandleIDActivity.this, Constants.SHIHAO_STR, shihao);
+			if (rc_chusuoleixing.isChecked())
+				SharePrefUtil.saveString(HandleIDActivity.this, Constants.CHUSUOLEIXING_STR, chusuoleixing);
+			if (rc_fuwuchusuo.isChecked())
+				SharePrefUtil.saveString(HandleIDActivity.this, Constants.FUWUCHUSUO_STR, fuwuchusuo);
+			if (rc_danweidizhi.isChecked())
+				SharePrefUtil.saveString(HandleIDActivity.this, Constants.DANWEIDIZHI_STR, danweidizhi);
 			people2=new People(people.name, people.cardno, people.people, people.sex, people.birthday, people.address, people.picture, people.hjdxz, 
 					isHandleID?"登记":"变更", CommonUtils.GenerateGUID(), isHandleID?"0":"1", people.card_type, people.user_id, "1", height, wenhua, hunyin, zhengzhi,
 					fangwubiaohao, zanzhudizhi,shihao , chusuoleixing, zanzhushiyou, fuwuchusuo, danweidizhi, chanyeleixing, shifoucanbao, canbaoshijian, dianhua, fubingyi,
 					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
 					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date);
-			PopBianzheng popBianzheng =new PopBianzheng(HandleIDActivity.this, new OnbEnsureClickListener() {
-				@Override
-				public void onEnsureClick(String juzhu, String lingqu, String shenq) {
-					people2.setJuZhuShiJian(juzhu);
-					people2.setLingQuFangShi(lingqu);
-					people2.setShenQingLeiBie(shenq);
-					if (rc_bianhao.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao);
-					if (rc_dizhi.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi);
-					if (rc_shihao.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao);
-					if (rc_chusuoleixing.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing);
-					if (rc_fuwuchusuo.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo);
-					if (rc_danweidizhi.isChecked())SharePrefUtil.saveString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi);
-					try {
-						dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
-						dbUtils.save(people2);
-						Toast.makeText(HandleIDActivity.this, "登记成功！", Toast.LENGTH_SHORT).show();
-						HandleIDActivity.this.finish();
-					} catch (DbException e) {
-						Toast.makeText(HandleIDActivity.this, "数据库操作失败！请发送掉全部数据,并下载全库地址！", Toast.LENGTH_LONG).show();
-						e.printStackTrace();
+			if (rb_banzhengshi.isChecked()) {
+				PopBianzheng popBianzheng = new PopBianzheng(HandleIDActivity.this, new OnbEnsureClickListener() {
+					@Override
+					public void onEnsureClick(String juzhu, String lingqu, String shenq) {
+						people2.setJuZhuShiJian(juzhu);
+						people2.setLingQuFangShi(lingqu);
+						people2.setShenQingLeiBie(shenq);
+						try {
+							dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
+							dbUtils.save(people2);
+							Toast.makeText(HandleIDActivity.this, "登记成功！", Toast.LENGTH_SHORT).show();
+							HandleIDActivity.this.finish();
+						} catch (DbException e) {
+							Toast.makeText(HandleIDActivity.this, "数据库操作失败！请发送掉全部数据,并下载全库地址！", Toast.LENGTH_LONG).show();
+							e.printStackTrace();
+						}
 					}
-
-
+				});
+				popBianzheng.showAtLocation(findViewById(R.id.root), Gravity.CENTER, 0, 0);
+			}else{
+				try {
+					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
+					dbUtils.save(people2);
+					Toast.makeText(HandleIDActivity.this, "登记成功！", Toast.LENGTH_SHORT).show();
+					HandleIDActivity.this.finish();
+				} catch (DbException e) {
+					Toast.makeText(HandleIDActivity.this, "数据库操作失败！请发送掉全部数据,并下载全库地址！", Toast.LENGTH_LONG).show();
+					e.printStackTrace();
 				}
-			});
-			popBianzheng.showAtLocation(findViewById(R.id.root), Gravity.CENTER, 0, 0);
+			}
 		}else{
 			if (fangwubiaohao.equals("")) {
 				Toast.makeText(this, "请选择房屋地址~", Toast.LENGTH_SHORT).show();

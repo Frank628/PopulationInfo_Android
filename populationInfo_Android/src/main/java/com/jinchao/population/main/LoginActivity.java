@@ -3,11 +3,16 @@ package com.jinchao.population.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +64,7 @@ public class LoginActivity extends BaseActiviy{
 	private boolean isToggle=false;//是否（在切换用页）手动输入用户
 	private String password="";
 	private String username="";
+	String users="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,6 +89,12 @@ public class LoginActivity extends BaseActiviy{
 	}
 	@Event(value=R.id.btn_login)
 	private void loginClick(View view){
+
+		if (SharePrefUtil.getString(LoginActivity.this, Constants.USER_DB, "").trim().equals("")) {
+			users=FileUtils.getAssetsTxt(LoginActivity.this, "user.txt");
+		}else{
+			users=SharePrefUtil.getString(LoginActivity.this, Constants.USER_DB, "");
+		}
 		username = "";
 		password="";
 		if (isToggle) {
@@ -106,12 +118,7 @@ public class LoginActivity extends BaseActiviy{
 			@Override
 			public void run() {
 				try {
-					String users="";
-					if (SharePrefUtil.getString(LoginActivity.this, Constants.USER_DB, "").trim().equals("")) {
-						users=FileUtils.getAssetsTxt(LoginActivity.this, "user.txt");
-					}else{
-						users=SharePrefUtil.getString(LoginActivity.this, Constants.USER_DB, "");
-					}
+
 					UserBean userBean =GsonTools.changeGsonToBean(users, UserBean.class);
 					for (int i = 0; i < userBean.data.size(); i++) {
 						for (int j = 0; j <userBean.data.get(i).account.size(); j++) {
@@ -186,4 +193,5 @@ public class LoginActivity extends BaseActiviy{
 		
 		
 	}
+
 }

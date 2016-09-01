@@ -648,7 +648,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 		}
 		address=address+xaddress;
 		if (pic==null) {
-			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),isReplace?"1":(isFirstGenerationIDCard?"1":"2"),MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) ;
+			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) ;
 			Dialog.showSelectDialog(RegisterActivity.this, "未拍照，是否放弃拍照?", new DialogClickListener() {
 				@Override
 				public void confirm() {
@@ -674,13 +674,13 @@ public class RegisterActivity extends BaseReaderActiviy{
 		}
 		if (isreal) {
 			Intent intent =new Intent(this, SingleRealPopulationActivity.class);
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),isReplace?"1":(isFirstGenerationIDCard?"1":"2"),MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
+			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
 			intent.putExtra("realhouseone", realHouseOne);
 			startActivity(intent);
 			RegisterActivity.this.finish();
 		}else{
-			Intent intent =new Intent(this, ZanZhuActivity.class);
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),isReplace?"1":(isFirstGenerationIDCard?"1":"2"),MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
+			Intent intent =new Intent(this, ZanZhuActivity.class);//isReplace?"1":(isFirstGenerationIDCard?"1":"2")
+			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
 			startActivity(intent);
 		}
 	}

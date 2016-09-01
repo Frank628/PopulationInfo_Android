@@ -1478,7 +1478,8 @@
 		        android:layout_marginLeft="@dimen/layout_leftright_padding"
 		        android:layout_marginRight="@dimen/layout_leftright_padding"
 		        />
-		    <RelativeLayout 
+		    <RelativeLayout
+				android:id="@+id/rl_shifoubanzheng"
 		        android:layout_width="match_parent"
 		        android:layout_height="@dimen/relative_row_height"
 		        android:background="@drawable/white_click_bg2"
@@ -1493,22 +1494,44 @@
 		            android:textColor="@color/title1"
 		            android:gravity="center_vertical"
 		            android:layout_centerVertical="true"
-		            android:text="备用1"
+		            android:text="是否办证"
 		            />
-		        <EditText 
-		            android:id="@+id/edt_beiyong1"
-		            android:layout_width="match_parent"
-		            android:layout_height="match_parent"
-		            android:gravity="center_vertical|right"
-		            android:textSize="@dimen/small_middle_size"
-		            android:textColor="@color/title2"
-		            android:layout_toRightOf="@+id/tv_leftbeiyong1"
-		            android:textColorHint="@color/title4"
-		            android:background="@color/white"
-		            android:inputType="text"
-		            android:singleLine="true"
-		            android:paddingRight="10dp"
-		            />
+
+				<RadioGroup
+					android:id="@+id/rg_isbanzheng"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_alignParentRight="true"
+					android:orientation="horizontal"
+					android:padding="10dp"
+					>
+					<RadioButton
+						android:id="@+id/rb_banzhengshi"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:button="@null"
+						android:text="是"
+						android:paddingLeft="12dp"
+						android:paddingRight="12dp"
+						android:textSize="@dimen/small_middle_size"
+						android:background="@drawable/radio_check_bg_leftclick"
+						android:textColor="@color/radio_check_textcolor"
+						android:checked="true"
+						/>
+					<RadioButton
+						android:id="@+id/rb_banzhengfou"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:paddingLeft="12dp"
+						android:paddingRight="12dp"
+						android:button="@null"
+						android:text="否"
+						android:textSize="@dimen/small_middle_size"
+						android:background="@drawable/radio_check_bg_leftclick"
+						android:textColor="@color/radio_check_textcolor"
+						/>
+
+				</RadioGroup>
 		    </RelativeLayout>
 		    <View 
 		        android:layout_width="match_parent"

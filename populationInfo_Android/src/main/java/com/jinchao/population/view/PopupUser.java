@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.jinchao.population.R;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.entity.UserBean;
 import com.jinchao.population.entity.UserBean.AccountOne;
 import com.jinchao.population.main.LoginActivity;
 import com.jinchao.population.utils.ArraySortUtil;
 import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.widget.wheel.OnWheelChangedListener;
 import com.jinchao.population.widget.wheel.WheelView;
 import com.jinchao.population.widget.wheel.adapter.ArrayWheelAdapter;
@@ -18,6 +20,7 @@ import com.jinchao.population.widget.wheel.adapter.ArrayWheelAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -73,7 +76,14 @@ public class PopupUser extends PopupWindow implements OnWheelChangedListener,OnC
 			@Override
 			public void run() {
 				try {
-					String users=FileUtils.getAssetsTxt(context, "user.txt");
+					String users="";
+					if (SharePrefUtil.getString(context, Constants.USER_DB,"").trim().equals("")){
+						users=FileUtils.getAssetsTxt(context, "user.txt");
+					}else{
+						users=SharePrefUtil.getString(context, Constants.USER_DB,"").trim();
+						Log.i("user_pop",users);
+					}
+
 					UserBean userBean =GsonTools.changeGsonToBean(users, UserBean.class);
 					PSCName=new String[userBean.data.size()];
 					for (int i = 0; i < userBean.data.size(); i++) {

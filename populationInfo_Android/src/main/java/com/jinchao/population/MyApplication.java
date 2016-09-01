@@ -37,7 +37,7 @@ public class MyApplication extends Application{
 		super.onCreate();
 		x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);
-//        CrashHandler.getInstance().init(getApplicationContext());
+        CrashHandler.getInstance().init(getApplicationContext());
 		SDKInitializer.initialize(this);
         getUSER();
 		myApplication=this;
@@ -52,7 +52,7 @@ public class MyApplication extends Application{
 			@Override
 			public void onSuccess(String result) {
 				try {
-					UserBean userBean =GsonTools.changeGsonToBean(result.trim(), UserBean.class);
+					Log.i("user-re",result);
 					SharePrefUtil.saveString(getApplicationContext(), Constants.USER_DB, result.trim());
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -113,9 +113,19 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	}
 	@Event(value={R.id.ib_quan})
 	private void quanKuClick(View view){
-		lv.setAdapter(null);
-		tv_data.setVisibility(View.GONE);
-		getALL2AddressRequest();
+		Dialog.showSelectDialog(RegistRentalHouseActivity.this, "确定下载全库地址？", new DialogClickListener() {
+			@Override
+			public void confirm() {
+				lv.setAdapter(null);
+				tv_data.setVisibility(View.GONE);
+				getALL2AddressRequest();
+			}
+			@Override
+			public void cancel() {
+
+			}
+		});
+
 	}
 	@Event(value={R.id.ib_zen})
 	private void zenKuClick(View view){
