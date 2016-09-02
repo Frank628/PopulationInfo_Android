@@ -1,30 +1,5 @@
 package com.jinchao.population.view;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.jinchao.population.R;
-import com.jinchao.population.base.CommonAdapter;
-import com.jinchao.population.base.ViewHolder;
-import com.jinchao.population.dbentity.HouseAddress;
-import com.jinchao.population.dbentity.HouseJLX;
-import com.jinchao.population.dbentity.JLX;
-import com.jinchao.population.entity.HouseAddressOldBean;
-import com.jinchao.population.entity.UserBean;
-import com.jinchao.population.entity.UserBean.AccountOne;
-import com.jinchao.population.utils.DeviceUtils;
-import com.jinchao.population.utils.FileUtils;
-import com.jinchao.population.utils.GsonTools;
-import com.jinchao.population.view.Dialog.DialogClickListener;
-import com.jinchao.population.widget.wheel.OnWheelChangedListener;
-import com.jinchao.population.widget.wheel.WheelView;
-import com.jinchao.population.widget.wheel.adapter.ArrayWheelAdapter;
-import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.exception.DbException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -36,16 +11,36 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.jinchao.population.R;
+import com.jinchao.population.base.CommonAdapter;
+import com.jinchao.population.base.ViewHolder;
+import com.jinchao.population.dbentity.HouseAddress;
+import com.jinchao.population.dbentity.HouseJLX;
+import com.jinchao.population.dbentity.JLX;
+import com.jinchao.population.entity.HouseAddressOldBean;
+import com.jinchao.population.entity.UserBean.AccountOne;
+import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.view.Dialog.DialogClickListener;
+import com.jinchao.population.widget.wheel.OnWheelChangedListener;
+import com.jinchao.population.widget.wheel.WheelView;
+import com.jinchao.population.widget.wheel.adapter.ArrayWheelAdapter;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.exception.DbException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnClickListener{
 	public OnHouseEnsureClickListener onEnsureClickListener;
@@ -63,6 +58,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 	private EditText edt_content;
 	private DbUtils dbUtils;
 	private CommonAdapter<HouseAddressOldBean> adapter;
+	private List<HouseAddress> list_er;
 	public interface OnHouseEnsureClickListener{
 		void OnHouseEnSureClick(String bianhao,String dizhi);
 	}
@@ -93,7 +89,14 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		this.update();
 		this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		dbUtils=DeviceUtils.getDbUtils(context);
-		new InitData().execute();
+		try {
+			list_er=dbUtils.findAll(HouseAddress.class);
+			if (list_er!=null) {
+                new InitData().execute();
+            }
+		} catch (DbException e) {
+			e.printStackTrace();
+		}
 		edt_content.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -140,21 +143,21 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 				PopHouse.this.dismiss();
 			}
 		});
-		try {
-			List<HouseAddress> list=dbUtils.findAll(HouseAddress.class);
-			if (list==null) {
-				Dialog.showSelectDialog(context1, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
-					@Override
-					public void confirm() {
-					}
-					@Override
-					public void cancel() {
-					}
-				});
-			}
-		} catch (DbException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			List<HouseAddress> list=dbUtils.findAll(HouseAddress.class);
+//			if (list==null) {
+//				Dialog.showSelectDialog(context1, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
+//					@Override
+//					public void confirm() {
+//					}
+//					@Override
+//					public void cancel() {
+//					}
+//				});
+//			}
+//		} catch (DbException e) {
+//			e.printStackTrace();
+//		}
 	}
 	class InitData extends AsyncTask<String ,Integer ,String>{
 		@Override
@@ -267,6 +270,10 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_ensure:
+			if (list_er==null){
+				Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
+				return;
+			}
 			onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName);
 			this.dismiss();
 			break;

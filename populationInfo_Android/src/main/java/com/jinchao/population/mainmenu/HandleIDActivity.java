@@ -9,6 +9,7 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import com.jinchao.population.entity.HouseAddressOldBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.view.PopBianzheng.OnbEnsureClickListener;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -480,7 +481,7 @@ public class HandleIDActivity extends BaseActiviy{
 	private void fangwubianhaoClick(View view){
 		hideSoftKeyBord();
 		try {
-			List<HouseAddress> list=dbUtils.findAll(HouseAddress.class);
+			List<HouseAddressOldBean> list=dbUtils.findAll(HouseAddressOldBean.class);
 			if (list==null) {
 				Dialog.showSelectDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
 					@Override
