@@ -346,7 +346,7 @@ public class SingleRealPopulationActivity extends BaseActiviy{
 												Intent intent = new Intent(SingleRealPopulationActivity.this,HandleIDActivity.class);
 												intent.putExtra("people", new People(realPeopleinHouseOne.sname, realPeopleinHouseOne.idcard, realPeopleinHouseOne.idcard.trim().substring(0,6), "变更", CommonUtils.GenerateGUID(), "1", "1",
 														MyInfomationManager.getUserName(SingleRealPopulationActivity.this), "1",realPeopleinHouseOne.house_id,realPeopleinHouseOne.house_addr, realPeopleinHouseOne.roomCode,
-														MyInfomationManager.getSQNAME(SingleRealPopulationActivity.this),date,realPeopleinHouseOne.id));
+														MyInfomationManager.getSQNAME(SingleRealPopulationActivity.this),date,realHouseOne.houseId));
 												intent.putExtra("isHandle", false);
 												if (realHouseOne!=null) {
 													intent.putExtra("house", realHouseOne);

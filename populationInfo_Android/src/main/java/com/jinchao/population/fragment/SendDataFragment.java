@@ -19,9 +19,11 @@ import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
+import com.jinchao.population.entity.RealPeopleinHouseBean;
 import com.jinchao.population.main.MainActivity;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.FileUtils;
+import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.widget.RoundProgressBar;
 import com.lidroid.xutils.DbUtils;
@@ -35,11 +37,15 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 import org.xmlpull.v1.XmlSerializer;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +81,8 @@ public class SendDataFragment  extends BaseFragment{
                     String str=FileUtils.getStringFromFile(new File(Constants.DB_PATH+list.get(i).uuid+".xml"));
                     upload2(str, list.get(i),i);
                     if (list.get(i).isReal.equals("1")){
-                        uploadReal(list.get(i).realId);
+//                        uploadReal(list.get(i).realId);
+                        save(list.get(i));
                     }
                 }
             }
@@ -233,6 +240,47 @@ public class SendDataFragment  extends BaseFragment{
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 Log.i("REAL_PEOPLE_UPDARE",arg0.result);
+            }
+        });
+    }
+    private void save(final People people){
+        RequestParams params=new RequestParams(Constants.URL+"superOper.aspx");
+        params.addBodyParameter("type", "save_ck_population_parent");
+        params.addBodyParameter("proc", "sp_save_ck_population_parent");
+        params.addBodyParameter("name", people.name);
+        params.addBodyParameter("idcard", people.cardno);
+//		params.addBodyParameter("name", "李荣辉");
+//		params.addBodyParameter("idcard", "362422197909178413");
+        params.addBodyParameter("sex", people.sex);
+        params.addBodyParameter("house_id", people.realId);//realhouse变更为houseid
+        params.addBodyParameter("hk_num", "");
+        params.addBodyParameter("relation", "不详");
+        params.addBodyParameter("status", "1");
+        params.addBodyParameter("coll_id", "11");
+        params.addBodyParameter("hjdz", people.address);
+        params.addBodyParameter("pcs", MyInfomationManager.getSQNAME(getActivity()));
+        params.addBodyParameter("roomCode", people.Roomcode);
+        params.addBodyParameter("parent_idcard","");
+        x.http().post(params, new Callback.CommonCallback<String>(){
+            @Override
+            public void onSuccess(String result) {
+                System.out.println(result);
+                if (result.trim().equals("<result>0</result>")) {
+//                    Toast.makeText(getActivity(), "添加成功",Toast.LENGTH_SHORT).show();
+                }else{
+//                    Toast.makeText(getActivity(), "添加失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                save(people);
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+            @Override
+            public void onFinished() {
             }
         });
     }

@@ -82,12 +82,10 @@ public class DownLoadService extends Service{
 			public void onWaiting() {
 
 			}
-
 			@Override
 			public void onStarted() {
 
 			}
-
 			@Override
 			public void onLoading(long total, long current, boolean isDownloading) {
 				Log.i("pro",(int) (current*100/total)+"");
