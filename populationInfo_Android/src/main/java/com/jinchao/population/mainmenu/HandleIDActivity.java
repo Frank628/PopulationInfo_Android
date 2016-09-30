@@ -464,7 +464,7 @@ public class HandleIDActivity extends BaseActiviy{
 					isHandleID?"登记":"变更", CommonUtils.GenerateGUID(), isHandleID?"0":"1", people.card_type, people.user_id, "1", height, wenhua, hunyin, zhengzhi,
 					fangwubiaohao, zanzhudizhi,shihao , chusuoleixing, zanzhushiyou, fuwuchusuo, danweidizhi, chanyeleixing, shifoucanbao, canbaoshijian, dianhua, fubingyi,
 					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
-					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,realHouseOne==null?"":"1",people.realId);
+					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,getIntent().getBooleanExtra("isAdd",false)?"":"1",people.realId);
 			try {
 				dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
 				dbUtils.save(people2);

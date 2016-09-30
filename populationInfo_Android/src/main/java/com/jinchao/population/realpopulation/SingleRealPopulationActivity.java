@@ -418,6 +418,7 @@ public class SingleRealPopulationActivity extends BaseActiviy{
 	private void banzhengClick(View view){
 		Intent intent=new Intent(this, ZanZhuActivity .class);
 		intent.putExtra("people", people);
+		intent.putExtra("isAdd", true);//判断是加入还是延期，加入发送数据时，不需要再次调用加入接口
 		intent.putExtra("house", realHouseOne);
 		startActivity(intent);
 	}

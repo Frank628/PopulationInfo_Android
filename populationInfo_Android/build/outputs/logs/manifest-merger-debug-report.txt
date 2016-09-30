@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:2:1-109:12
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:2:1-108:12
 	package
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:3:5-37
 		INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml
@@ -168,7 +168,7 @@ ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Andro
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:51:19-54
 application
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:52:5-107:19
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:52:5-106:19
 MERGED from [PopulationInfo_Android:lib_xutils:unspecified] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\lib_xutils\unspecified\AndroidManifest.xml:6:5-20
 MERGED from [PopulationInfo_Android:eventBus:unspecified] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\eventBus\unspecified\AndroidManifest.xml:11:5-12:19
 MERGED from [com.android.support:support-v4:24.1.1] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\AndroidManifest.xml:25:5-20
@@ -424,12 +424,12 @@ ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Andro
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:102:18-53
 meta-data#com.google.android.gms.version
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:104:9-106:69
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:103:9-105:69
 MERGED from [com.google.android.gms:play-services-basement:8.1.0] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:106:13-66
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:105:13-66
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:105:13-58
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:104:13-58
 uses-sdk
 INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [PopulationInfo_Android:eventBus:unspecified] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\eventBus\unspecified\AndroidManifest.xml:7:5-9:41

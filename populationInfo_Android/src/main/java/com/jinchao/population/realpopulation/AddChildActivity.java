@@ -179,13 +179,13 @@ public class AddChildActivity extends BaseActiviy{
 	}
 	@Event(value={R.id.tv_birth})
 	private void birthClick(View view){
-		DatePickerDialog datePickerDialog =new DatePickerDialog(AddChildActivity.this, onDateSetListener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		DatePickerDialog datePickerDialog =new DatePickerDialog(AddChildActivity.this, onDateSetListener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 		datePickerDialog.show();
 	}
 	OnDateSetListener onDateSetListener =new OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
-			tv_birth.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+((dayOfMonth+1)>9?((dayOfMonth+1)+""):("0"+(dayOfMonth+1))));
+			tv_birth.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+((dayOfMonth+1)>9?((dayOfMonth+1)+""):("0"+(dayOfMonth))));
 			
 		}
 	};

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jinchao.population"
     android:versionCode="109"
-    android:versionName="1.0.9" >
+    android:versionName="1.1.0" >
 
     <uses-sdk
         android:minSdkVersion="18"
@@ -192,10 +192,7 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
-        <!--
- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

@@ -86,6 +86,7 @@ public class ZanZhuActivity extends BaseActiviy{
 		intent.putExtra("people", people);
 		intent.putExtra("isHandle", isHandle);
 		if (realHouseOne!=null) {
+			intent.putExtra("isAdd", getIntent().getBooleanExtra("isAdd",false));
 			intent.putExtra("house", realHouseOne);
 		}
 		startActivity(intent);
