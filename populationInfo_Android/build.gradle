@@ -8,8 +8,8 @@ android {
         applicationId "com.jinchao.population"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 109
-        versionName "1.1.0"
+        versionCode 111
+        versionName "1.1.1"
         signingConfigs {
             // your debug keystore
             debug {

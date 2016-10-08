@@ -185,7 +185,7 @@ public class AddChildActivity extends BaseActiviy{
 	OnDateSetListener onDateSetListener =new OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
-			tv_birth.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+((dayOfMonth+1)>9?((dayOfMonth+1)+""):("0"+(dayOfMonth))));
+			tv_birth.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+((dayOfMonth)>9?((dayOfMonth)+""):("0"+(dayOfMonth))));
 			
 		}
 	};
