@@ -53,6 +53,6 @@
         android:textSize="@dimen/small_size"
         android:lineSpacingExtra="12dp"
 		android:padding="10dp"
-        android:gravity="top|center_horizontal"
+        android:gravity="top|left"
         />
 </LinearLayout>

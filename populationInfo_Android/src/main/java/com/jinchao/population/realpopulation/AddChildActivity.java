@@ -92,14 +92,14 @@ public class AddChildActivity extends BaseActiviy{
 				String name=edt_name.getText().toString().trim();
 				childname=name;
 				if (TextUtils.isEmpty(name)) {
-					Toast.makeText(AddChildActivity.this, "请输入姓名！", 0).show();
+					Toast.makeText(AddChildActivity.this, "请输入姓名！", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				String sex=((RadioButton)findViewById(rg.getCheckedRadioButtonId())).getText().toString().trim();
 				if (!TextUtils.isEmpty(parents)) {
 					String str[]=parents.split(",");
 					if (TextUtils.isEmpty(tv_birth.getText().toString().trim())) {
-						Toast.makeText(AddChildActivity.this, "请选择出生日期！", 0).show();
+						Toast.makeText(AddChildActivity.this, "请选择出生日期！", Toast.LENGTH_SHORT).show();
 						return;
 					}
 					save(str,name+"-"+tv_birth.getText().toString().trim(),sex);
@@ -166,7 +166,7 @@ public class AddChildActivity extends BaseActiviy{
 					EventBus.getDefault().post(new RealPeopleinHouseOne(date, "", "", "", "", name, MyInfomationManager.getSQNAME(AddChildActivity.this), roomcode, "不详", sex, childname, 1));
 					AddChildActivity.this.finish();
 				}else{
-					Toast.makeText(AddChildActivity.this, "添加失败", 0).show();
+					Toast.makeText(AddChildActivity.this, "添加失败", Toast.LENGTH_SHORT).show();
 				}
 			}
 			@Override

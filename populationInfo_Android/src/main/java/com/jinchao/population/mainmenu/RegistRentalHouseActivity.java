@@ -366,7 +366,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 				 if (ex instanceof HttpException) { // 网络错误
 	                    HttpException httpEx = (HttpException) ex;
 	                    int responseCode = httpEx.getCode();
-						Toast.makeText(RegistRentalHouseActivity.this, "responseCode="+responseCode, 0).show();
+						Toast.makeText(RegistRentalHouseActivity.this, "responseCode="+responseCode, Toast.LENGTH_SHORT).show();
 	                }else{
 	                	getZenAddressRequest();
 	                	Toast.makeText(RegistRentalHouseActivity.this, "请求超时，正在为您重新下载...", 0).show();

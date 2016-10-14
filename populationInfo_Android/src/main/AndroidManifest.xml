@@ -88,6 +88,7 @@
     	<activity android:name="com.jinchao.population.realpopulation.AddChildActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.activity.AboutActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.activity.PersonInHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.realpopulation.RealPeopleSearchActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <service
             android:name="com.jinchao.population.service.DownLoadService"
             android:enabled="true"

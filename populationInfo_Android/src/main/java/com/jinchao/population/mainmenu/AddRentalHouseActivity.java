@@ -127,21 +127,28 @@ public class AddRentalHouseActivity extends BaseActiviy{
 					Toast.makeText(AddRentalHouseActivity.this, "联系电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				save(shequ, fangwubianhao, address, fangdongxingming, dianhua,cardno);
+				save(shequ, fangwubianhao, address, fangdongxingming, dianhua,cardno,getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false));
 			}
 		});
 		sqname=MyInfomationManager.getSQNAME(this);
 		sqid=MyInfomationManager.getSQID(this);
 		tv_shequ.setText(sqname);
 	}
-	private void save(String shequ,String bianhao,String fangwuaddress,String name,String dianhua,String cardno){
+	private void save(String shequ, String bianhao, String fangwuaddress, String name, String dianhua, String cardno, final boolean isfrom_real){
 		RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
-		params.addBodyParameter("type", "save");
-
+		if (isfrom_real){
+			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
+			params.addBodyParameter("type", "saveHouse");
+		}else{
+			params=new RequestParams(Constants.URL+"HouseSave.aspx");
+			params.addBodyParameter("type", "save");
+			params.addBodyParameter("house_mph", mph);
+			params.addBodyParameter("gps", "定位");
+		}
 		params.addBodyParameter("user_name", MyInfomationManager.getUserName(AddRentalHouseActivity.this));
 		params.addBodyParameter("house_code", bianhao);
 		params.addBodyParameter("house_addr", fangwuaddress);
-		params.addBodyParameter("house_mph", mph);
+
 		params.addBodyParameter("house_pname", name);
 		params.addBodyParameter("house_ptel", dianhua);
 		params.addBodyParameter("house_pidcard", cardno);
@@ -156,7 +163,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 		params.addBodyParameter("dy", danyuandanwei);
 		params.addBodyParameter("sh", shihao);
 		params.addBodyParameter("sh_flag", shihaodanwei);
-		params.addBodyParameter("gps", "定位");
+
 
 		Log.i("house_addr",fangwuaddress);
 		Log.i("house_code",bianhao);
@@ -166,23 +173,37 @@ public class AddRentalHouseActivity extends BaseActiviy{
 			@Override
 			public void onSuccess(String result) {
 				Log.d("bbb", result);
-				try {
-					if (result.trim().contains("该出租屋编号已存在")) {
-						Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
-					}else if (result.trim().contains("用户名不存在")) {
-						Toast.makeText(AddRentalHouseActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
-					}else if (result.trim().contains("社区不存在")) {
-						Toast.makeText(AddRentalHouseActivity.this, "社区不存在", Toast.LENGTH_SHORT).show();
-					}else if (result.trim().contains("出租屋已保存")) {
+				if (isfrom_real){
+					if (result.trim().equals("0")){
 						Toast.makeText(AddRentalHouseActivity.this, "出租屋已保存", Toast.LENGTH_SHORT).show();
-						AddRentalHouseActivity.this.finish();
-					}else{
-						Toast.makeText(AddRentalHouseActivity.this, "出租屋保存失败", Toast.LENGTH_SHORT).show();
+					}else if(result.trim().equals("-1")){
+						Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
+					}else if(result.trim().equals("-2")){
+						Toast.makeText(AddRentalHouseActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+					}else if(result.trim().equals("-3")){
+						Toast.makeText(AddRentalHouseActivity.this, "社区不存在", Toast.LENGTH_SHORT).show();
 					}
-				} catch (Exception e) {
-					Toast.makeText(AddRentalHouseActivity.this, "服务器返回数据有误", Toast.LENGTH_SHORT).show();
-					e.printStackTrace();
+
+				}else{
+					try {
+						if (result.trim().contains("该出租屋编号已存在")) {
+							Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
+						}else if (result.trim().contains("用户名不存在")) {
+							Toast.makeText(AddRentalHouseActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+						}else if (result.trim().contains("社区不存在")) {
+							Toast.makeText(AddRentalHouseActivity.this, "社区不存在", Toast.LENGTH_SHORT).show();
+						}else if (result.trim().contains("出租屋已保存")) {
+							Toast.makeText(AddRentalHouseActivity.this, "出租屋已保存", Toast.LENGTH_SHORT).show();
+							AddRentalHouseActivity.this.finish();
+						}else{
+							Toast.makeText(AddRentalHouseActivity.this, "出租屋保存失败", Toast.LENGTH_SHORT).show();
+						}
+					} catch (Exception e) {
+						Toast.makeText(AddRentalHouseActivity.this, "服务器返回数据有误", Toast.LENGTH_SHORT).show();
+						e.printStackTrace();
+					}
 				}
+
 			}
 
 			@Override

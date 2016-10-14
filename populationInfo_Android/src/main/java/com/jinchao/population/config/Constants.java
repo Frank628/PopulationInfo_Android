@@ -64,5 +64,7 @@ public class Constants {
 	public static final String IS_CHUSUOLEIXING_STR="IS_CHUSUOLEIXING_STR";
 	public static final String IS_FUWUCHUSUO_STR="IS_FUWUCHUSUO_STR";
 	public static final String IS_DANWEIDIZHI_STR="IS_DANWEIDIZHI_STR";
+
+	public static final String IS_FROM_REALPOPULATION="IS_FROM_REALPOPULATION";//是否来自实有人口
 }
                           

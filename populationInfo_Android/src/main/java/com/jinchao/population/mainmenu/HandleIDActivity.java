@@ -183,12 +183,6 @@ public class HandleIDActivity extends BaseActiviy{
 //			tv_degree.setText("");tv_chusuoleixing.setText("");tv_zanzhushiyou.setText("");
 		}
 		if (realHouseOne==null&&renyuanInhouseOne==null){
-			rc_bianhao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,false));
-			rc_dizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,false));
-			rc_shihao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,false));
-			rc_chusuoleixing.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,false));
-			rc_fuwuchusuo.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,false));
-			rc_danweidizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,false));
 			if (rc_bianhao.isChecked()){
 				edt_bianhao.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao));
 				fangwubiaohao=SharePrefUtil.getString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao);
@@ -197,60 +191,67 @@ public class HandleIDActivity extends BaseActiviy{
 				zanzhudizhi=SharePrefUtil.getString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi);
 				edt_dizhi.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi));
 			}
-			if (rc_shihao.isChecked()){
-				shihao=SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao);
-				edt_shihao.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao));
-			}
-			if (rc_chusuoleixing.isChecked()){
-				chusuoleixing=SharePrefUtil.getString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing);
-				tv_chusuoleixing.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing));
-			}
-			if (rc_fuwuchusuo.isChecked()){
-				fuwuchusuo=SharePrefUtil.getString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo);
-				edt_fuwuchusuo.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo));
-			}
-			if (rc_danweidizhi.isChecked()){
-				danweidizhi=SharePrefUtil.getString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi);
-				edt_danweidizhi.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi));
-			}
-			rc_bianhao.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,b);
-				}
-			});
-			rc_dizhi.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,b);
-				}
-			});
-			rc_shihao.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,b);
-				}
-			});
-			rc_chusuoleixing.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,b);
-				}
-			});
-			rc_fuwuchusuo.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,b);
-				}
-			});
-			rc_danweidizhi.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-					SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,b);
-				}
-			});
 
 		}
+		rc_bianhao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,false));
+		rc_dizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,false));
+		rc_shihao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,false));
+		rc_chusuoleixing.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,false));
+		rc_fuwuchusuo.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,false));
+		rc_danweidizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,false));
+
+		if (rc_shihao.isChecked()){
+			shihao=SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao);
+			edt_shihao.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao));
+		}
+		if (rc_chusuoleixing.isChecked()){
+			chusuoleixing=SharePrefUtil.getString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing);
+			tv_chusuoleixing.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.CHUSUOLEIXING_STR,chusuoleixing));
+		}
+		if (rc_fuwuchusuo.isChecked()){
+			fuwuchusuo=SharePrefUtil.getString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo);
+			edt_fuwuchusuo.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.FUWUCHUSUO_STR,fuwuchusuo));
+		}
+		if (rc_danweidizhi.isChecked()){
+			danweidizhi=SharePrefUtil.getString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi);
+			edt_danweidizhi.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.DANWEIDIZHI_STR,danweidizhi));
+		}
+		rc_bianhao.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,b);
+			}
+		});
+		rc_dizhi.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,b);
+			}
+		});
+		rc_shihao.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,b);
+			}
+		});
+		rc_chusuoleixing.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,b);
+			}
+		});
+		rc_fuwuchusuo.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,b);
+			}
+		});
+		rc_danweidizhi.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,b);
+			}
+		});
 		if (realHouseOne!=null) {
 			edt_bianhao.setText(realHouseOne.scode.trim());
 			edt_dizhi.setText(realHouseOne.houseAdress.trim());
