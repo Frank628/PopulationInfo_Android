@@ -176,6 +176,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				if (isfrom_real){
 					if (result.trim().equals("0")){
 						Toast.makeText(AddRentalHouseActivity.this, "出租屋已保存", Toast.LENGTH_SHORT).show();
+						AddRentalHouseActivity.this.finish();
 					}else if(result.trim().equals("-1")){
 						Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
 					}else if(result.trim().equals("-2")){

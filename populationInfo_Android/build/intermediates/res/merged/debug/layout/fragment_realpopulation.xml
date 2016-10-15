@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/index02"
+            android:background="@drawable/index02_"
             android:layout_marginLeft="5dp"
             />
     </LinearLayout>
@@ -43,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/index03"
+            android:background="@drawable/index03_"
             />
         
         <ImageView 
@@ -52,6 +52,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
+            android:background="@drawable/index06_"
             />
     </LinearLayout>
     <LinearLayout 
@@ -66,6 +67,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/index01_"
+
             />
         
         <ImageView 
@@ -74,6 +77,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginLeft="5dp"
+            android:background="@drawable/index05_"
             />
     </LinearLayout>
 </LinearLayout>

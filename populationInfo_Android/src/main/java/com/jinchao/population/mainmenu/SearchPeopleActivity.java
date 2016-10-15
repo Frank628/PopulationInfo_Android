@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -84,6 +85,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 	@ViewInject(R.id.rb_zaizhu) private RadioButton rb_zaizhu;
 	@ViewInject(R.id.rb_fangwu) private RadioButton rb_fangwu;
 	@ViewInject(R.id.lv) private ListView lv;
+	@ViewInject(R.id.btn_seach) private TextView btn_seach;
 	@ViewInject(R.id.loadmorelv) private LoadMoreListView loadmorelv;
 	@ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
 	public static final String TAG="IDCARD_DEVICE";
@@ -203,6 +205,10 @@ public class SearchPeopleActivity extends BaseReaderActiviy{
 				startActivity(intent);
 			}
 		});
+		if (getIntent().getStringExtra("housecode")!=null){
+			edt_content.setText(getIntent().getStringExtra("housecode"));
+			btn_seach.performClick();
+		}
 	}
 
 	public void onNewIntent(Intent intent){

@@ -6,10 +6,11 @@ import com.jinchao.population.utils.network.NetWorkManager;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 public class BaseActiviy extends Activity implements NetWorkManager.NetConnectChangeListener{
-
+	public ProgressDialog progressDialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +47,13 @@ public class BaseActiviy extends Activity implements NetWorkManager.NetConnectCh
 		super.onDestroy();
 		NetWorkManager.getInstance().unregist(this);
 	}
-
+	public void showProgressDialog(String title,String toast){
+		progressDialog = ProgressDialog.show(this,title,toast,true,false);
+		progressDialog.show();
+	}
+	public void dismissProgressDialog(){
+		if (progressDialog!=null){
+			progressDialog.dismiss();
+		}
+	}
 }

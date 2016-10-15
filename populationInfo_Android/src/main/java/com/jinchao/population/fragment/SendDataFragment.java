@@ -18,11 +18,14 @@ import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.dbentity.HouseOperation;
 import com.jinchao.population.dbentity.People;
+import com.jinchao.population.entity.DeleteRealPeopleBean;
 import com.jinchao.population.entity.RealPeopleinHouseBean;
 import com.jinchao.population.main.MainActivity;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.FileUtils;
+import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.widget.RoundProgressBar;
@@ -77,12 +80,16 @@ public class SendDataFragment  extends BaseFragment{
                     text.setText(succCount+"/"+list.size()+",共"+list.size()+"条");
                 }
                 for (int i = 0; i < list.size(); i++) {
-                    createXml(list.get(i));
-                    String str=FileUtils.getStringFromFile(new File(Constants.DB_PATH+list.get(i).uuid+".xml"));
-                    upload2(str, list.get(i),i);
-                    if (list.get(i).isReal.equals("1")){
+                    if (list.get(i).cardno.length()<10){
+                        unregistHouse(list.get(i));
+                    }else {
+                        createXml(list.get(i));
+                        String str = FileUtils.getStringFromFile(new File(Constants.DB_PATH + list.get(i).uuid + ".xml"));
+                        upload2(str, list.get(i), i);
+                        if (list.get(i).isReal.equals("1")) {
 //                        uploadReal(list.get(i).realId);
-                        save(list.get(i));
+                            save(list.get(i));
+                        }
                     }
                 }
             }
@@ -94,17 +101,28 @@ public class SendDataFragment  extends BaseFragment{
     private void initData() {
         try {
             list = dbUtils.findAll(Selector.from(People.class));
+            List<HouseOperation> houselist=dbUtils.findAll(Selector.from(HouseOperation.class));
+            if (houselist==null){
+                houselist=new ArrayList<HouseOperation>();
+            }
             if (list==null) {
                 list=new ArrayList<People>();
             }
             if (list.size()==0){
                 dbUtils.dropTable(People.class);
             }
+            for(int i=0;i<houselist.size();i++){
+                list.add(new People(houselist.get(i).getHouse_code(),houselist.get(i).getAddress(),houselist.get(i).getOperation_type(),houselist.get(i).getOperator(),houselist.get(i).getLast_upt()));
+            }
             tv_content.setText("共找到"+list.size()+"条待发送数据！");
             adapter = new CommonAdapter<People>(getActivity(),list,R.layout.item_daifasong) {
                 @Override
                 public void convert(ViewHolder helper, final People item, int position) {
-                    helper.setText(R.id.tv_cardno,"身份证： " +item.cardno);
+                    if (item.cardno.length()<10){
+                        helper.setText(R.id.tv_cardno,"房屋编号： " +item.cardno);
+                    }else{
+                        helper.setText(R.id.tv_cardno,"身份证： " +item.cardno);
+                    }
                     helper.setText(R.id.tv_status,"【"+item.module+"】");
                     helper.setText(R.id.tv_name,"采集者： "+item.user_id);
                     helper.setText(R.id.tv_time,item.collect_datetime);
@@ -116,9 +134,14 @@ public class SendDataFragment  extends BaseFragment{
                                 @Override
                                 public void confirm() {
                                     try {
-                                        dbUtils.delete(People.class, WhereBuilder.b("id", "=", item.id));
-                                        FileUtils.deleteFile(Constants.DB_PATH+item.uuid+".xml");
-                                        initData();
+                                        if (item.cardno.length()<10) {
+                                            dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", item.cardno));
+                                            initData();
+                                        }else{
+                                            dbUtils.delete(People.class, WhereBuilder.b("id", "=", item.id));
+                                            FileUtils.deleteFile(Constants.DB_PATH + item.uuid + ".xml");
+                                            initData();
+                                        }
                                     } catch (DbException e) {
                                         e.printStackTrace();
                                     }
@@ -240,6 +263,88 @@ public class SendDataFragment  extends BaseFragment{
             @Override
             public void onSuccess(ResponseInfo<String> arg0) {
                 Log.i("REAL_PEOPLE_UPDARE",arg0.result);
+            }
+        });
+    }
+    private void unregistHouse(final People people){
+        RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
+        params.addBodyParameter("type", "housedel");
+        params.addBodyParameter("user_id", people.user_id);
+        params.addBodyParameter("name", people.name);
+        params.addBodyParameter("scode", people.cardno);
+
+        x.http().post(params, new Callback.CommonCallback<String>(){
+            @Override
+            public void onSuccess(String result) {
+				Log.d("housedel", result);
+                try {
+                    DeleteRealPeopleBean deleteRealPeopleBean = GsonTools.changeGsonToBean(result,DeleteRealPeopleBean.class);
+                    if (deleteRealPeopleBean.data.get(0).equals("False")) {
+                        Log.d("upload", result);
+                        failCount++;
+                    }else{
+                        Log.d("upload", result);
+                        tv_content.setText("共找到"+list.size()+"条待发送数据！");
+                        rb.setProgress((int)((succCount/total)*100));
+                        succCount++;
+                        text.setText(succCount+"/"+total+",共"+total+"条");
+                        try {
+                            dbUtils.delete(HouseOperation.class,WhereBuilder.b("house_code", "=", people.cardno));
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if ((succCount+failCount)==total) {
+                        initData();
+                        dialog.dismiss();
+                        if (failCount>0) {
+                            Dialog.showSelectDialog(getActivity(), "有"+failCount+"条发送失败,现在重新发送吗？", new Dialog.DialogClickListener() {
+                                @Override
+                                public void confirm() {
+                                    // TODO Auto-generated method stub
+
+                                }
+                                @Override
+                                public void cancel() {}
+                            });
+                        }else{
+                            Dialog.showSelectDialog(getActivity(), "全部上传成功！", new Dialog.DialogClickListener() {
+                                @Override
+                                public void confirm() {}
+                                @Override
+                                public void cancel() {}
+                            });
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                failCount++;
+                if ((succCount+failCount)==total) {
+                    dialog.dismiss();
+                    if (failCount>0) {
+                        Dialog.showSelectDialog(getActivity(), "发送失败"+failCount+"条,现在重新发送吗？", new Dialog.DialogClickListener() {
+                            @Override
+                            public void confirm() {
+
+                            }
+                            @Override
+                            public void cancel() {}
+                        });
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+            @Override
+            public void onFinished() {
             }
         });
     }

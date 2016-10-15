@@ -202,9 +202,17 @@ public class People implements Serializable{
 		this.address = address;
 	}
 
+	public People(String cardno, String address, String module, String user_id, String collect_datetime) {
+		this.cardno = cardno;
+		this.address = address;
+		this.module = module;
+		this.user_id = user_id;
+		this.collect_datetime = collect_datetime;
+	}
+
 	public People(String name, String cardno, String people, String sex,
-			String birthday, String address, String picture, String hjdxz,
-			String card_type, String user_id, String sq_name) {
+				  String birthday, String address, String picture, String hjdxz,
+				  String card_type, String user_id, String sq_name) {
 		super();
 		this.name = name;
 		this.cardno = cardno;

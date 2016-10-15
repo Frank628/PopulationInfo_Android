@@ -109,6 +109,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	@Event(value={R.id.ib_tian})
 	private void tianClick(View view){
 		Intent intent=new Intent(this, AddRentalHouseActivity.class);
+		intent.putExtra(Constants.IS_FROM_REALPOPULATION,getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false));
 		startActivity(intent);
 	}
 	@Event(value={R.id.ib_quan})
@@ -156,10 +157,10 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 				 if (ex instanceof HttpException) { // 网络错误
 	                    HttpException httpEx = (HttpException) ex;
 	                    int responseCode = httpEx.getCode();
-						Toast.makeText(RegistRentalHouseActivity.this, "responseCode="+responseCode, 0).show();
+						Toast.makeText(RegistRentalHouseActivity.this, "responseCode="+responseCode, Toast.LENGTH_SHORT).show();
 	                }else{
 	                	getAllAddressRequest();
-	                	Toast.makeText(RegistRentalHouseActivity.this, "请求超时，正在为您重新下载...", 0).show();
+	                	Toast.makeText(RegistRentalHouseActivity.this, "请求超时，正在为您重新下载...",  Toast.LENGTH_SHORT).show();
 	                	dialogLoading.show();
 	                }
 			}
