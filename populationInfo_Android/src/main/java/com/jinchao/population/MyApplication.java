@@ -5,6 +5,7 @@ import org.xutils.common.Callback;
 import org.xutils.common.Callback.CancelledException;
 import org.xutils.http.RequestParams;
 
+import com.Common;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.mapapi.SDKInitializer;
@@ -15,6 +16,7 @@ import com.jinchao.population.location.MyLocation;
 import com.jinchao.population.main.LoginActivity;
 import com.jinchao.population.main.SplashActivity;
 import com.jinchao.population.utils.CrashHandler;
+import com.jinchao.population.utils.GlobalPref;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.view.Dialog;
@@ -37,8 +39,10 @@ public class MyApplication extends Application{
 		super.onCreate();
 		x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);
-//        CrashHandler.getInstance().init(getApplicationContext());
+        CrashHandler.getInstance().init(getApplicationContext());
 		SDKInitializer.initialize(this);
+		Common.init(this);//南京读卡初始化
+		GlobalPref.init(this);//南京读卡sharedpre初始化
         getUSER();
 		myApplication=this;
 		locationService = new LocationService(getApplicationContext());

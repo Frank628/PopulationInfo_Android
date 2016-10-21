@@ -62,7 +62,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_data)private TextView tv_data;
 	private int count=0,bcount=0;
 	private DialogLoading dialogLoading;
-	private boolean isQuanKuOk=false;
+	private boolean isQuanKuOk=false,Is_RealPopulation=false;
 	private List<HouseAddress> listzen=new ArrayList<>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +77,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		});
 		dbUtils = DeviceUtils.getDbUtils(RegistRentalHouseActivity.this);
 		dialogLoading = new DialogLoading(this, "地址下载中...",true);
+		Is_RealPopulation=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
 	}
 	private Handler handler =new Handler(){
 		public void handleMessage(android.os.Message msg) {
@@ -141,8 +142,16 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 				dialogLoading.setName("正在加载分段地址数据...");
 			}
 		});
-		RequestParams params=new RequestParams(Constants.URL+"HouseAddress.aspx");
-		params.addBodyParameter("type", "getjlx");
+
+		RequestParams params;
+		if (Is_RealPopulation){
+			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
+			params.addBodyParameter("type", "getsyrkjlx");
+		}else{
+			params=new RequestParams(Constants.URL+"HouseAddress.aspx");
+			params.addBodyParameter("type", "getjlx");
+		}
+
 		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
@@ -180,7 +189,12 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 				dialogLoading.setName("正在加载合成地址库...");
 			}
 		});
-		RequestParams params=new RequestParams(Constants.URL+"webHouseServer.aspx");
+		RequestParams params;
+		if (Is_RealPopulation){
+			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
+		}else{
+			params=new RequestParams(Constants.URL+"webHouseServer.aspx");
+		}
 		params.addBodyParameter("type", "get");
 		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
 		params.addBodyParameter("last_udt","2011-01-01 12:00:00");
@@ -294,7 +308,12 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 				dialogLoading.setName("正在加载合成地址...");
 			}
 		});
-		RequestParams params=new RequestParams(Constants.URL+"webHouseServer.aspx");
+		RequestParams params;
+		if (Is_RealPopulation){
+			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
+		}else{
+			params=new RequestParams(Constants.URL+"webHouseServer.aspx");
+		}
 		params.addBodyParameter("type", "get");
 		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
 		Toast.makeText(RegistRentalHouseActivity.this, SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"), 0).show();
@@ -351,8 +370,15 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 			}
 		});
 		Log.d("last_udt", SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"));
-		RequestParams params=new RequestParams(Constants.URL+"HouseAddress.aspx");
-		params.addBodyParameter("type", "newjlx");
+		RequestParams params;
+		if (Is_RealPopulation){
+			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
+			params.addBodyParameter("type", "newsyrkjlx");
+		}else{
+			params=new RequestParams(Constants.URL+"HouseAddress.aspx");
+			params.addBodyParameter("type", "newjlx");
+		}
+
 		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
 		params.addBodyParameter("last_udt",SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"));
 		x.http().post(params, new Callback.CommonCallback<String>() {

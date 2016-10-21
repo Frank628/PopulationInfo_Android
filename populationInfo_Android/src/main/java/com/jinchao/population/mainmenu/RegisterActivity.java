@@ -3,15 +3,10 @@ package com.jinchao.population.mainmenu;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
-
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,11 +14,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,16 +29,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.caihua.cloud.common.User;
-import com.caihua.cloud.common.enumerate.ConnectType;
+import com.caihua.cloud.common.entity.PersonInfo;
+import com.caihua.cloud.common.link.LinkFactory;
 import com.caihua.cloud.common.reader.IDReader;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseReaderActiviy;
-import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.Nation;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.RealHouseBean.RealHouseOne;
@@ -54,10 +45,8 @@ import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
-import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.Dialog.DialogClickListener;
-import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.FacePop;
 import com.jinchao.population.view.MingZuPop;
 import com.jinchao.population.view.NationPop;
@@ -72,7 +61,7 @@ import com.jinchao.population.widget.ActionSheetDialog;
 import com.jinchao.population.widget.ActionSheetDialog.OnSheetItemClickListener;
 import com.jinchao.population.widget.ActionSheetDialog.SheetItemColor;
 @ContentView(R.layout.activity_register_idcard)
-public class RegisterActivity extends BaseReaderActiviy{
+public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDReaderListener{
 	public static final String TAG="IDCARD_DEVICE";
 	@ViewInject(R.id.ib_readcard)private ImageButton ib_readcard;
 	@ViewInject(R.id.edt_idcard)private EditText edt_idcard;
@@ -96,7 +85,6 @@ public class RegisterActivity extends BaseReaderActiviy{
 	private boolean isFirstGenerationIDCard=false;
 	private String hjdz="";
 	private String pic;
-	private DialogLoading dialogLoading;
 	private boolean isreal=false,isReplace=false;
 	private RealHouseOne realHouseOne ;//实有人口传参
 	private FacePop facePop;
@@ -112,7 +100,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 				onBackPressed();
 			}
 		});
-		idReader = new IDReader(this, mHandler);
+		idReader.setListener(this);
 		isreal =getIntent().getBooleanExtra("isreal", false);
 		realHouseOne=(RealHouseOne) getIntent().getSerializableExtra("realhouseone");
 		setListener();
@@ -128,7 +116,6 @@ public class RegisterActivity extends BaseReaderActiviy{
 			            }
 				}
 		});
-		dialogLoading = new DialogLoading(RegisterActivity.this, "读卡中...", true);
 	}
 	private void setListener(){
 		 edt_idcard.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -178,24 +165,78 @@ public class RegisterActivity extends BaseReaderActiviy{
              e.printStackTrace();
          }
      }
-	public void onNewIntent(Intent intent){
-		Parcelable parcelable = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-		if (parcelable == null) {
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		if (link != null)
 			return;
+		Tag nfcTag = null;
+		try {
+			nfcTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+		} catch (Exception e) {
+
 		}
-		// 正在处理上一次读取的数据，不再读取数据
-		if (isReading) {
-			return;
+		if (nfcTag != null) {
+			link = LinkFactory.createExNFCLink(nfcTag);
+			try {
+				link.connect();
+			} catch (Exception e) {
+				showError(e.getMessage());
+				try {
+					link.disconnect();
+				} catch (Exception ex) {
+				} finally {
+					link = null;
+				}
+				return;
+			}
+			idReader.setLink(link);
+			showIDCardInfo(true, null,null);
+			showProcessDialog("正在读卡中，请稍后");
+			isFirstGenerationIDCard=false;
+			isReplace=false;
+			idReader.startReadCard();
 		}
-		showIDCardInfo(true, null);
-		isReading = true;
-		showProcessDialog("正在读卡中，请稍后");
-		isFirstGenerationIDCard=false;
-		isReplace=false;
-		idReader.connect(ConnectType.NFC, parcelable);
+	}
+	@Override
+	public void onReadCardSuccess(final PersonInfo personInfo) {
+		try {
+			link.disconnect();
+		} catch (Exception e) {
+			Log.e("readcard", e.getMessage());
+		} finally {
+			link = null;
+		}
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				hideProcessDialog();
+				showIDCardInfo(false, personInfo,null);
+			}
+		});
+
 	}
 
-	 private void showIDCardInfo(boolean isClear,User user) {//显示身份证数据到界面
+	@Override
+	public void onReadCardFailed(final String s) {
+		try {
+			link.disconnect();
+		} catch (Exception e) {
+			Log.e("readcard", e.getMessage());
+		} finally {
+			link = null;
+		}
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				hideProcessDialog();
+				showError(s);
+			}
+		});
+
+	}
+
+	 private void showIDCardInfo(boolean isClear,PersonInfo user,String msg) {//显示身份证数据到界面
 		 imgA=null;
 		 muser=null;
 		 compare.setVisibility(View.GONE);
@@ -205,20 +246,20 @@ public class RegisterActivity extends BaseReaderActiviy{
 			 resetSecondGenerationIDCardText();
 			 return;
 		 }
-		 if (user==null){
-			showError();
+		 if (user==null&&msg!=null){
+			showError(msg);
 		 }else{
 			 compare.setVisibility(View.VISIBLE);
 			 replace.setVisibility(View.VISIBLE);
-			 imgA=user.headImg;
+			 imgA=user.getPhoto();
 			 muser=user;
-			 edt_name.setText(user.name.trim());
-			 edt_sex.setText(user.sexL.trim());
-			 edt_region.setText(user.nationL.trim());
-			 edt_birth.setText(user.brithday.trim());
-			 edt_address.setText(user.address.trim());
-			 edt_idcard.setText(user.id.trim());
-			 bmp =  BitmapFactory.decodeByteArray(user.headImg, 0, user.headImg.length);
+			 edt_name.setText(user.getName().trim());
+			 edt_sex.setText(user.getSex().trim());
+			 edt_region.setText(user.getNation().trim());
+			 edt_birth.setText(user.getBrithday().trim());
+			 edt_address.setText(user.getAddress().trim());
+			 edt_idcard.setText(user.getIdNumber().trim());
+			 bmp =  BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
 			 iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			 iv_pic.setImageBitmap(bmp);
 			 ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -228,34 +269,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 		 }
 		 isReading = false;
 	 }
-	@SuppressLint("HandlerLeak")
-	Handler mHandler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-				case IDReader.CONNECT_SUCCESS:
-					break;
-				case IDReader.CONNECT_FAILED:
-					hideProcessDialog();
-					showError();
-					isReading = false;
-					if (idReader.getConnectType() == ConnectType.BLUETOOTH) {
-						SharePrefUtil.saveString(RegisterActivity.this,"mac",null);
-					}
-					break;
-				case IDReader.READ_CARD_SUCCESS:
-//                    BeepManager.playsuccess(getActivity());
-					showIDCardInfo(false, (User) msg.obj);
-					break;
-				case IDReader.READ_CARD_FAILED:
-//                    BeepManager.playfail(getActivity());
-					showIDCardInfo(false, null);
-					break;
-				default:
-					break;
-			}
-		}
-	};
+
 	private void resetFirstGenerationIDCardText(){
 		compare.setVisibility(View.GONE);
 		replace.setVisibility(View.GONE);
@@ -397,7 +411,7 @@ public class RegisterActivity extends BaseReaderActiviy{
 		}
 	}
 	private void showfacepop() {
-		facePop =new FacePop(this, BitmapFactory.decodeByteArray(muser.headImg, 0, muser.headImg.length),photofile.getAbsolutePath(), new FacePop.OnCompareClickListener() {
+		facePop =new FacePop(this, BitmapFactory.decodeByteArray(muser.getPhoto(), 0, muser.getPhoto().length),photofile.getAbsolutePath(), new FacePop.OnCompareClickListener() {
 			@Override
 			public void onClick() {
 				if (imgB != null && imgA != null) {

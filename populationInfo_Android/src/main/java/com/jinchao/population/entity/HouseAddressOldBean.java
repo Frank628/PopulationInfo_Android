@@ -17,7 +17,7 @@ public class HouseAddressOldBean {
 	
 	@Column(column="scode")
 	public String scode="";
-	
+
 	@Column(column="address")
 	public String address="";
 	

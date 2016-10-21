@@ -18,6 +18,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -31,8 +32,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.caihua.cloud.common.User;
-import com.caihua.cloud.common.enumerate.ConnectType;
+
+import com.caihua.cloud.common.entity.PersonInfo;
+import com.caihua.cloud.common.link.LinkFactory;
 import com.caihua.cloud.common.reader.IDReader;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
@@ -54,7 +56,7 @@ import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 
 @ContentView(R.layout.activity_reshoot)
-public class ReshootActivity extends BaseReaderActiviy{
+public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDReaderListener{
 	@ViewInject(R.id.edt_content)EditText edt_content;
 	@ViewInject(R.id.iv_photo)ImageView iv_photo;
 	public static final String TAG="IDCARD_DEVICE";
@@ -76,7 +78,7 @@ public class ReshootActivity extends BaseReaderActiviy{
 				onBackPressed();
 			}
 		});
-		idReader = new IDReader(this, mHandler);
+		idReader.setListener(this);
 		dialogLoading = new DialogLoading(ReshootActivity.this, "读卡中...", true);
 		navigationLayout.setRightText("保存", new OnClickListener() {
 			@Override
@@ -128,137 +130,53 @@ public class ReshootActivity extends BaseReaderActiviy{
 		});
 
 	}
-	public void onNewIntent(Intent intent){
-		Parcelable parcelable = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-		if (parcelable == null) {
-			return;
-		}
-		// 正在处理上一次读取的数据，不再读取数据
-		if (isReading) {
-			return;
-		}
-		isReading = true;
-		showProcessDialog("正在读卡中，请稍后");
-		idReader.connect(ConnectType.NFC, parcelable);
-	}
 
-	 private void showIDCardInfo(boolean isClear,User user) {//显示身份证数据到界面
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		if (link != null)
+			return;
+		Tag nfcTag = null;
+		try {
+			nfcTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+		} catch (Exception e) {
+
+		}
+		if (nfcTag != null) {
+			link = LinkFactory.createExNFCLink(nfcTag);
+			try {
+				link.connect();
+			} catch (Exception e) {
+				showError(e.getMessage());
+				try {
+					link.disconnect();
+				} catch (Exception ex) {
+				} finally {
+					link = null;
+				}
+				return;
+			}
+			idReader.setLink(link);
+			showIDCardInfo(true, null,null);
+			showProcessDialog("正在读卡中，请稍后");
+			idReader.startReadCard();
+		}
+	}
+	 private void showIDCardInfo(boolean isClear,PersonInfo user,String msg) {//显示身份证数据到界面
 		 hideProcessDialog();
 		 if (isClear){
 			 return;
 		 }
-		 if (user==null){
-			 showError();
+		 if (user==null&&msg!=null){
+			 showError(msg);
 		 }else{
-			 edt_content.setText(user.id.trim());
+			 edt_content.setText(user.getIdNumber().trim());
 		 }
-		 isReading = false;
 	 }
-	@SuppressLint("HandlerLeak")
-	Handler mHandler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-				case IDReader.CONNECT_SUCCESS:
-					break;
-				case IDReader.CONNECT_FAILED:
-					hideProcessDialog();
-					if (idReader.strErrorMsg != null) {
-//                        Toast.makeText(getActivity(),"连接失败：" + idReader.strErrorMsg,Toast.LENGTH_SHORT).show();
-						String str="未响应，请将身份证紧贴手机背部重试!";
-						if (idReader.getConnectType() == ConnectType.BLUETOOTH) {
-							str="未响应，请将身份证紧贴读卡器重试!";
-						}else if(idReader.getConnectType() == ConnectType.NFC){
-							str="未响应，请将身份证紧贴手机背部重试!";
-						}else{
-							str="读卡失败，"+idReader.strErrorMsg;
-						}
-						AlertDialog.Builder builder = new AlertDialog.Builder(ReshootActivity.this);
-						builder.setMessage(str);
-						builder.setTitle("提示");
-						builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								dialog.dismiss();
-							}
-						});
-						builder.create().show();
-					}
-					isReading = false;
-					if (idReader.getConnectType() == ConnectType.BLUETOOTH) {
-						SharePrefUtil.saveString(ReshootActivity.this,"mac",null);
-					}
-					break;
-				case IDReader.READ_CARD_SUCCESS:
-//                    BeepManager.playsuccess(getActivity());
-					showIDCardInfo(false, (User) msg.obj);
-					break;
 
-				case IDReader.READ_CARD_FAILED:
-//                    BeepManager.playfail(getActivity());
-					showIDCardInfo(false, null);
-					break;
-				default:
-					break;
-			}
-		}
-	};
 	@Event(value={R.id.btn_readcard})
 	private void readcardClick(View view){
-		String net = SharePrefUtil.getString(this, Constants.DEVICE_WAY,"自动");
-		switch (net) {
-			case "自动":
-				int a = HasOTGDeviceConnected();
-				if (a == 0) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTG);
-				} else if (a == 1) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTGAccessory);
-				} else {
-					String mac=SharePrefUtil.getString(ReshootActivity.this,"mac",null);
-					if (mac == null) {
-						deviceListDialogFragment.show(getSupportFragmentManager(), "");
-					} else {
-						showProcessDialog("正在读卡中，请稍后");
-						int delayMillis = SharePrefUtil.getInt(ReshootActivity.this, Constants.BluetoothSetting_long_time,15);
-						idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-					}
-				}
-				break;
-			case "蓝牙":
-				String mac=SharePrefUtil.getString(ReshootActivity.this,"mac",null);
-				if (mac == null) {
-					deviceListDialogFragment.show(getSupportFragmentManager(), "");
-				} else {
-					showProcessDialog("正在读卡中，请稍后");
-					int delayMillis = SharePrefUtil.getInt(ReshootActivity.this, Constants.BluetoothSetting_long_time,15);
-					idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-				}
-				break;
-			case "OTG":
-				int a2 = HasOTGDeviceConnected();
-				if (a2 == 0) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTG);
-				} else if (a2 == 1) {
-					showProcessDialog("正在读卡中，请稍后");
-					idReader.connect(ConnectType.OTGAccessory);
-				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(ReshootActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-					builder.setMessage("找不到OTG设备");
-					builder.setPositiveButton("确定", null);
-					builder.show();
-				}
-				break;
 
-			case "NFC":
-				AlertDialog.Builder builder = new AlertDialog.Builder(ReshootActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-				builder.setMessage("当前是NFC模式，请将身份证贴在手机背面");
-				builder.setPositiveButton("确定", null);
-				builder.show();
-				break;
-		}
 	}
 
 	@Override
@@ -361,5 +279,43 @@ public class ReshootActivity extends BaseReaderActiviy{
 						startActivityForResult(intentFromGallery,IMAGE_REQUEST_CODE);
 					}
 			}).show();
+	}
+
+	@Override
+	public void onReadCardSuccess(final PersonInfo personInfo) {
+		try {
+			link.disconnect();
+		} catch (Exception e) {
+			Log.e("readcard", e.getMessage());
+		} finally {
+			link = null;
+		}
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				hideProcessDialog();
+				showIDCardInfo(false,personInfo,null);
+			}
+		});
+
+	}
+
+	@Override
+	public void onReadCardFailed(final String s) {
+		try {
+			link.disconnect();
+		} catch (Exception e) {
+			Log.e("readcard", e.getMessage());
+		} finally {
+			link = null;
+		}
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				hideProcessDialog();
+				showError(s);
+			}
+		});
+
 	}
 }

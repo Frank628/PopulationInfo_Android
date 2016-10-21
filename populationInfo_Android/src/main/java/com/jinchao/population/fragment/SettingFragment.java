@@ -12,6 +12,7 @@ import com.jinchao.population.R;
 import com.jinchao.population.activity.AboutActivity;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.nfcregister.NFCActiveActivity;
 import com.jinchao.population.utils.SharePrefUtil;
 
 import org.xutils.view.annotation.ContentView;
@@ -70,6 +71,11 @@ public class SettingFragment extends BaseFragment{
         Intent intent =new Intent(getActivity(), AboutActivity.class);
         startActivity(intent);
     }
+    @Event(value = R.id.rl_jihuo)
+    private void jihuoNFCClick(View view){
+        startActivity(new Intent(getActivity(), NFCActiveActivity.class));
+    }
+
     class IndexRadioOnClick implements DialogInterface.OnClickListener {
         private int index;
         public IndexRadioOnClick(int index) {

@@ -46,7 +46,40 @@
             android:text="外来人口信息采集"
             android:drawableRight="@drawable/ico_search_next"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_jihuo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/relative_row_height"
+        android:background="@drawable/white_click_bg2"
+        >
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e1e1e1"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_size"
+            android:textColor="@color/title2"
+            android:layout_marginLeft="12dp"
+            android:layout_centerVertical="true"
+            android:text="激活NFC读卡功能"/>
+        <TextView
+            android:id="@+id/tv_jihuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_size"
+            android:textColor="@color/title3"
+            android:layout_marginLeft="12dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_marginRight="12dp"
+            android:drawableRight="@drawable/ico_search_next"/>
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_aboutus"
         android:layout_width="match_parent"

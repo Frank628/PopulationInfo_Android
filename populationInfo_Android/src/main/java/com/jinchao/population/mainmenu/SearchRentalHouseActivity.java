@@ -56,10 +56,10 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 		});
 		dbUtils=DeviceUtils.getDbUtils(this);
 	}
-	@Event(value={R.id.btn_unregist})
-	private void unregisthouseClick(View view){
-		unregistHouse(houseAddressOldBean.getScode(),houseAddressOldBean.getAddress());
-	}
+//	@Event(value={R.id.btn_unregist})
+//	private void unregisthouseClick(View view){
+//		unregistHouse(houseAddressOldBean.getScode(),houseAddressOldBean.getAddress());
+//	}
 	@Event(value={R.id.btn_seach})
 	private void searchClick(View view){
 		String code=edt_content.getText().toString().trim();
@@ -116,88 +116,88 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 		});
 	}
 
-	private void  unregistHouse(String houseid,String address){
-		getzaizhuPeopleInhouse(houseid,address);
-
-	}
-	private void getzaizhuPeopleInhouse(final String house_code,final String address){
-		showProgressDialog("","正在为您注销请稍等...");
-		final RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx?");
-		params.addBodyParameter("type", "get_houseinfor");
-		params.addBodyParameter("house_code", house_code);
-		params.addBodyParameter("user_id",  MyInfomationManager.getUserID(SearchRentalHouseActivity.this));
-		x.http().post(params, new Callback.CommonCallback<String>() {
-			@Override
-			public void onSuccess(String result) {
-				System.out.println(result);
-				try {
-					ZaiZhuPeopleBean realHouseInfo= GsonTools.changeGsonToBean(result,ZaiZhuPeopleBean.class);
-					if (realHouseInfo.data.peoplelist==null){
-						try {
-							dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
-							SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-							String date =sDateFormat.format(new java.util.Date());
-							dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
-							Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();
-						} catch (DbException e) {
-							e.printStackTrace();
-						}
-						return;
-					}
-					for (int i=0;i<realHouseInfo.data.peoplelist.size();i++){
-						if (realHouseInfo.data.peoplelist.get(i).resdients_status.trim().equals("在住")){
-							People people=dbUtils.findFirst(Selector.from(People.class).where("cardno", "=", realHouseInfo.data.peoplelist.get(i).idcard.trim()));
-							if (people!=null){
-								if (!people.module.equals("注销")){
-									Toast.makeText(SearchRentalHouseActivity.this,"请先注销房屋内的所有人员",Toast.LENGTH_SHORT).show();
-									Intent intent =new Intent(SearchRentalHouseActivity.this,SearchPeopleActivity.class);
-									intent.putExtra("housecode",house_code);
-									startActivity(intent);
-								}else {
-									if (i==(realHouseInfo.data.peoplelist.size()-1)){
-										try {
-											dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
-											SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-											String date =sDateFormat.format(new java.util.Date());
-											dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
-											Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-									}
-								}
-							}else{
-								Toast.makeText(SearchRentalHouseActivity.this,"请先注销房屋内的所有人员",Toast.LENGTH_SHORT).show();
-								Intent intent =new Intent(SearchRentalHouseActivity.this,SearchPeopleActivity.class);
-								intent.putExtra("housecode",house_code);
-								startActivity(intent);
-							}
-						}else{
-							if (i==(realHouseInfo.data.peoplelist.size()-1)){
-								try {
-									dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
-									SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-									String date =sDateFormat.format(new java.util.Date());
-									dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
-									Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();
-								} catch (DbException e) {
-									e.printStackTrace();
-								}
-							}
-						}
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-			@Override
-			public void onError(Throwable ex, boolean isOnCallback) {}
-			@Override
-			public void onCancelled(CancelledException cex) {}
-			@Override
-			public void onFinished() {dismissProgressDialog();}
-		});
-	}
+//	private void  unregistHouse(String houseid,String address){
+//		getzaizhuPeopleInhouse(houseid,address);
+//
+//	}
+//	private void getzaizhuPeopleInhouse(final String house_code,final String address){
+//		showProgressDialog("","正在为您注销请稍等...");
+//		final RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx?");
+//		params.addBodyParameter("type", "get_houseinfor");
+//		params.addBodyParameter("house_code", house_code);
+//		params.addBodyParameter("user_id",  MyInfomationManager.getUserID(SearchRentalHouseActivity.this));
+//		x.http().post(params, new Callback.CommonCallback<String>() {
+//			@Override
+//			public void onSuccess(String result) {
+//				System.out.println(result);
+//				try {
+//					ZaiZhuPeopleBean realHouseInfo= GsonTools.changeGsonToBean(result,ZaiZhuPeopleBean.class);
+//					if (realHouseInfo.data.peoplelist==null){
+//						try {
+//							dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
+//							SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//							String date =sDateFormat.format(new java.util.Date());
+//							dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
+//							Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();
+//						} catch (DbException e) {
+//							e.printStackTrace();
+//						}
+//						return;
+//					}
+//					for (int i=0;i<realHouseInfo.data.peoplelist.size();i++){
+//						if (realHouseInfo.data.peoplelist.get(i).resdients_status.trim().equals("在住")){
+//							People people=dbUtils.findFirst(Selector.from(People.class).where("cardno", "=", realHouseInfo.data.peoplelist.get(i).idcard.trim()));
+//							if (people!=null){
+//								if (!people.module.equals("注销")){
+//									Toast.makeText(SearchRentalHouseActivity.this,"请先注销房屋内的所有人员",Toast.LENGTH_SHORT).show();
+//									Intent intent =new Intent(SearchRentalHouseActivity.this,SearchPeopleActivity.class);
+//									intent.putExtra("housecode",house_code);
+//									startActivity(intent);
+//								}else {
+//									if (i==(realHouseInfo.data.peoplelist.size()-1)){
+//										try {
+//											dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
+//											SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//											String date =sDateFormat.format(new java.util.Date());
+//											dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
+//											Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();
+//										} catch (DbException e) {
+//											e.printStackTrace();
+//										}
+//									}
+//								}
+//							}else{
+//								Toast.makeText(SearchRentalHouseActivity.this,"请先注销房屋内的所有人员",Toast.LENGTH_SHORT).show();
+//								Intent intent =new Intent(SearchRentalHouseActivity.this,SearchPeopleActivity.class);
+//								intent.putExtra("housecode",house_code);
+//								startActivity(intent);
+//							}
+//						}else{
+//							if (i==(realHouseInfo.data.peoplelist.size()-1)){
+//								try {
+//									dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
+//									SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//									String date =sDateFormat.format(new java.util.Date());
+//									dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
+//									Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();
+//								} catch (DbException e) {
+//									e.printStackTrace();
+//								}
+//							}
+//						}
+//					}
+//
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//
+//			}
+//			@Override
+//			public void onError(Throwable ex, boolean isOnCallback) {}
+//			@Override
+//			public void onCancelled(CancelledException cex) {}
+//			@Override
+//			public void onFinished() {dismissProgressDialog();}
+//		});
+//	}
 }
