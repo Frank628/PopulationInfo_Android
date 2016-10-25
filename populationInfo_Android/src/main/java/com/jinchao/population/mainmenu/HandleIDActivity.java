@@ -182,7 +182,14 @@ public class HandleIDActivity extends BaseActiviy{
 		}else{
 //			tv_degree.setText("");tv_chusuoleixing.setText("");tv_zanzhushiyou.setText("");
 		}
-		if (realHouseOne==null&&renyuanInhouseOne==null){
+
+		rc_bianhao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,false));
+		rc_dizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,false));
+		rc_shihao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,false));
+		rc_chusuoleixing.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,false));
+		rc_fuwuchusuo.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,false));
+		rc_danweidizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,false));
+		if (realHouseOne==null){
 			if (rc_bianhao.isChecked()){
 				edt_bianhao.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao));
 				fangwubiaohao=SharePrefUtil.getString(HandleIDActivity.this,Constants.BIANHAO_STR,fangwubiaohao);
@@ -191,15 +198,7 @@ public class HandleIDActivity extends BaseActiviy{
 				zanzhudizhi=SharePrefUtil.getString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi);
 				edt_dizhi.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.ZANZHUDIZHI_STR,zanzhudizhi));
 			}
-
 		}
-		rc_bianhao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,false));
-		rc_dizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,false));
-		rc_shihao.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_SHIHAO_STR,false));
-		rc_chusuoleixing.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_CHUSUOLEIXING_STR,false));
-		rc_fuwuchusuo.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_FUWUCHUSUO_STR,false));
-		rc_danweidizhi.setChecked(SharePrefUtil.getBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,false));
-
 		if (rc_shihao.isChecked()){
 			shihao=SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao);
 			edt_shihao.setText(SharePrefUtil.getString(HandleIDActivity.this,Constants.SHIHAO_STR,shihao));
@@ -252,6 +251,7 @@ public class HandleIDActivity extends BaseActiviy{
 				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_DANWEIDIZHI_STR,b);
 			}
 		});
+
 		if (realHouseOne!=null) {
 			edt_bianhao.setText(realHouseOne.scode.trim());
 			edt_dizhi.setText(realHouseOne.houseAdress.trim());

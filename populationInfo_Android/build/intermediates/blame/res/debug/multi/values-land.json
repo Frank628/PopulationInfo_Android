@@ -83,9 +83,28 @@
                     "startLine": 6,
                     "startColumn": 4,
                     "startOffset": 328,
-                    "endLine": 9,
+                    "endColumn": 47,
+                    "endOffset": 371
+                },
+                "from": {
+                    "file": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.soundcloud.android\\android-crop\\1.0.1\\res\\values-land\\values-land.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 171,
+                        "endColumn": 47,
+                        "endOffset": 214
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 376,
+                    "endLine": 10,
                     "endColumn": 12,
-                    "endOffset": 505
+                    "endOffset": 553
                 },
                 "from": {
                     "file": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.1.1\\res\\values-land\\values-land.xml",

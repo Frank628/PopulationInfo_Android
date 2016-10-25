@@ -90,6 +90,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
         <activity
             android:name="com.jinchao.population.main.LoginActivity"
             android:screenOrientation="sensorPortrait"

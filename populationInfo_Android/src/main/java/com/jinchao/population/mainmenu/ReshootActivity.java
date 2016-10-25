@@ -242,6 +242,7 @@ public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDRea
 			photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
 			byte[] b = stream.toByteArray();
 			pic = new String(Base64Coder.encodeLines(b));
+			iv_photo.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			iv_photo.setImageDrawable(drawable);
 		}
 	}

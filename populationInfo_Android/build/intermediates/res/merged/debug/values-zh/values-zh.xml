@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:ns1="http://schemas.android.com/tools">
     <string name="action_settings">Settings</string>
     <string name="app_name">人口信息采集仪</string>
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>
+    <string name="crop__cancel" ns1:ignore="ButtonCase">取消</string>
+    <string name="crop__done">完成</string>
+    <string name="crop__pick_error">无效的图片</string>
+    <string name="crop__saving">正在保存照片…</string>
+    <string name="crop__wait">请等待…</string>
     <string name="cube_ptr_hours_ago"> 小时之前</string>
     <string name="cube_ptr_last_update">上次更新: </string>
     <string name="cube_ptr_minutes_ago"> 分钟之前</string>

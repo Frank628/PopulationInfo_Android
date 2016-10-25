@@ -2,6 +2,8 @@ package com.jinchao.population.mainmenu;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -60,6 +62,8 @@ import com.jinchao.population.view.NationPop.OnEnsureClickListener;
 import com.jinchao.population.widget.ActionSheetDialog;
 import com.jinchao.population.widget.ActionSheetDialog.OnSheetItemClickListener;
 import com.jinchao.population.widget.ActionSheetDialog.SheetItemColor;
+import com.soundcloud.android.crop.Crop;
+
 @ContentView(R.layout.activity_register_idcard)
 public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDReaderListener{
 	public static final String TAG="IDCARD_DEVICE";
@@ -333,17 +337,31 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		if (resultCode ==RESULT_OK) {
 			switch (requestCode) {
 			case IMAGE_REQUEST_CODE:
-				startPhotoZoom(data.getData());
+//				startPhotoZoom(data.getData());
+
+				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+					Crop.of(Uri.fromFile(new File(DeviceUtils.getPath(RegisterActivity.this,data.getData()))), Uri.fromFile(new File(getCacheDir(), "cropped"))).withAspect(4, 5).withMaxSize(160, 200).start(RegisterActivity.this);
+				}else{
+					Crop.of(data.getData(), Uri.fromFile(new File(getCacheDir(), "cropped"))).withAspect(4, 5).withMaxSize(160, 200).start(RegisterActivity.this);
+				}
+
 				break;
 			case CAMERA_REQUEST_CODE:
 				if (DeviceUtils.hasSDCard()) {
 					File tempFile = new File(Environment.getExternalStorageDirectory()+"/"+ IMAGE_FILE_NAME);
-					startPhotoZoom(Uri.fromFile(tempFile));		
+//					startPhotoZoom(Uri.fromFile(tempFile));
+					Crop.of(Uri.fromFile(tempFile), Uri.fromFile(new File(getCacheDir(), "cropped"))).withAspect(4, 5).withMaxSize(160, 200).start(RegisterActivity.this);
 				}else{
 					Toast.makeText(RegisterActivity.this, "未找到存储卡，无法存储照片！",
 							Toast.LENGTH_LONG).show();
 				}
 				break;
+			case Crop.REQUEST_CROP:
+
+				if (data != null) {
+					getImageToViewFromCrop(data);
+				}
+					break;
 			case RESULT_REQUEST_CODE:
 				if (data != null) {
 					getImageToView(data);
@@ -387,10 +405,12 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		// aspectX aspectY 是宽高的比例
 		intent.putExtra("aspectX", 4);
 		intent.putExtra("aspectY", 5);
+		intent.putExtra("scale", true);
 		// outputX outputY 是裁剪图片宽高
-		intent.putExtra("outputX", 320);
-		intent.putExtra("outputY", 400);
+		intent.putExtra("outputX", 160);
+		intent.putExtra("outputY", 200);
 		intent.putExtra("return-data", true);
+
 		startActivityForResult(intent, RESULT_REQUEST_CODE);
 	}
 	/**
@@ -401,14 +421,36 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		if (extras != null) {
 			Bitmap photo = extras.getParcelable("data");
 			Drawable drawable = new BitmapDrawable(photo);
+
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
 			byte[] b = stream.toByteArray();
 			pic = new String(Base64Coder.encodeLines(b));
 			isReplace=true;
-			iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);
+			iv_pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			iv_pic.setImageDrawable(drawable);
 		}
+	}
+	private void getImageToViewFromCrop(Intent data) {
+		Uri mImageCaptureUri = Crop.getOutput(data);
+		Bitmap photo = null;
+		if (mImageCaptureUri != null) {
+			try {
+				photo = MediaStore.Images.Media.getBitmap(RegisterActivity.this.getContentResolver(), mImageCaptureUri);
+				Drawable drawable = new BitmapDrawable(photo);
+
+				ByteArrayOutputStream stream = new ByteArrayOutputStream();
+				photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
+				byte[] b = stream.toByteArray();
+				pic = new String(Base64Coder.encodeLines(b));
+				isReplace=true;
+				iv_pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
+				iv_pic.setImageDrawable(drawable);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 	private void showfacepop() {
 		facePop =new FacePop(this, BitmapFactory.decodeByteArray(muser.getPhoto(), 0, muser.getPhoto().length),photofile.getAbsolutePath(), new FacePop.OnCompareClickListener() {
