@@ -58,6 +58,7 @@ import com.lidroid.xutils.exception.DbException;
 @ContentView(R.layout.activity_handleid)
 public class HandleIDActivity extends BaseActiviy{
 	public static final String TAG="HANDLEID";
+	@ViewInject(R.id.rg_tab)private RadioGroup rg_tab;
 	@ViewInject(R.id.edt_stature)private EditText edt_stature;
 	@ViewInject(R.id.edt_shihao)private EditText edt_shihao;
 	@ViewInject(R.id.edt_fuwuchusuo)private EditText edt_fuwuchusuo;
@@ -138,6 +139,21 @@ public class HandleIDActivity extends BaseActiviy{
 		});
 		dbUtils=DeviceUtils.getDbUtils(this);
 		c = Calendar.getInstance();
+		rg_tab.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				switch (checkedId){
+					case R.id.rb_a:
+						findViewById(R.id.layout_a).setVisibility(View.VISIBLE);
+						findViewById(R.id.layout_b).setVisibility(View.GONE);
+						break;
+					case R.id.rb_b:
+						findViewById(R.id.layout_b).setVisibility(View.VISIBLE);
+						findViewById(R.id.layout_a).setVisibility(View.GONE);
+						break;
+				}
+			}
+		});
 		rg_hunyin.setOnCheckedChangeListener(onCheckedChangeListener);
 		rg_zhengzhi.setOnCheckedChangeListener(onCheckedChangeListener);
 		rg_iscanbao.setOnCheckedChangeListener(onCheckedChangeListener);
