@@ -159,7 +159,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 		String date =sDateFormat.format(new java.util.Date()); 
 		People people=new People(renYuanXinXiBean.sname, date, renYuanXinXiBean.idcard, "注销", CommonUtils.GenerateGUID(), "2",
-				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), renYuanXinXiBean.house_code);
+				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), renYuanXinXiBean.house_code,renYuanXinXiBean.house_addr);
 		DbUtils dbUtils =DeviceUtils.getDbUtils(this);
 		List<People> list=new ArrayList<People>();
 		try {

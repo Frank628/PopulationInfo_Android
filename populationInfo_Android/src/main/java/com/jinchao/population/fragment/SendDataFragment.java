@@ -23,6 +23,8 @@ import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.DeleteRealPeopleBean;
 import com.jinchao.population.entity.RealPeopleinHouseBean;
 import com.jinchao.population.main.MainActivity;
+import com.jinchao.population.main.SplashActivity;
+import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
@@ -208,7 +210,7 @@ public class SendDataFragment  extends BaseFragment{
                     text.setText(succCount+"/"+total+",共"+total+"条");
                     try {
                         dbUtils.delete(People.class,WhereBuilder.b("id", "=", people.id));
-                        FileUtils.deleteFile(Constants.DB_PATH+people.uuid+".xml");
+//                        FileUtils.deleteFile(Constants.DB_PATH+people.uuid+".xml");
                     } catch (DbException e) {
                         e.printStackTrace();
                     }
@@ -330,6 +332,10 @@ public class SendDataFragment  extends BaseFragment{
                 serializer.startTag(null, "Residentcode");
                 serializer.text(people.homecode);
                 serializer.endTag(null, "Residentcode");
+
+                serializer.startTag(null, "ResidentAddress");
+                serializer.text(people.ResidentAddress);
+                serializer.endTag(null, "ResidentAddress");
 
                 serializer.startTag(null, "collect_datetime");
                 serializer.text(people.collect_datetime);
@@ -527,9 +533,6 @@ public class SendDataFragment  extends BaseFragment{
                 serializer.text(people.MAC_id);
                 serializer.endTag(null, "MAC_id");
 
-                serializer.startTag(null, "MAC_id");
-                serializer.text(people.MAC_id);
-                serializer.endTag(null, "MAC_id");
 
                 serializer.startTag(null, "JieYuCuoShi");
                 serializer.text(people.JieYuCuoShi);
@@ -566,6 +569,306 @@ public class SendDataFragment  extends BaseFragment{
                 serializer.startTag(null, "phototype");
                 serializer.text("1");
                 serializer.endTag(null, "phototype");
+                //新增xml部分
+                serializer.startTag(null, "MSN");
+                serializer.text(people.MSN);
+                serializer.endTag(null, "MSN");
+
+                serializer.startTag(null, "Email");
+                serializer.text(people.Email);
+                serializer.endTag(null, "Email");
+
+                serializer.startTag(null, "czwxz");
+                serializer.text(people.czwxz);
+                serializer.endTag(null, "czwxz");
+
+                serializer.startTag(null, "lsrq");
+                serializer.text(people.lsrq);
+                serializer.endTag(null, "lsrq");
+
+                serializer.startTag(null, "djrq");
+                serializer.text(people.djrq);
+                serializer.endTag(null, "djrq");
+
+                serializer.startTag(null, "fzxm");
+                serializer.text(people.fzxm);
+                serializer.endTag(null, "fzxm");
+
+                serializer.startTag(null, "fzdh");
+                serializer.text(people.fzdh);
+                serializer.endTag(null, "fzdh");
+
+                serializer.startTag(null, "fzsfz");
+                serializer.text(people.fzsfz);
+                serializer.endTag(null, "fzsfz");
+
+                serializer.startTag(null, "dwlxdh");
+                serializer.text(people.dwlxdh);
+                serializer.endTag(null, "dwlxdh");
+
+                serializer.startTag(null, "zymc");
+                serializer.text(people.zymc);
+                serializer.endTag(null, "zymc");
+
+                serializer.startTag(null, "ldhtqj");
+                serializer.text(people.ldhtqj);
+                serializer.endTag(null, "ldhtqj");
+
+                serializer.startTag(null, "sbbh");
+                serializer.text(people.sbbh);
+                serializer.endTag(null, "sbbh");
+
+                serializer.startTag(null, "jyrq");
+                serializer.text(people.jyrq);
+                serializer.endTag(null, "jyrq");
+
+                serializer.startTag(null, "jkzbh");
+                serializer.text(people.jkzbh);
+                serializer.endTag(null, "jkzbh");
+
+                serializer.startTag(null, "jkzbh");
+                serializer.text(people.jkzbh);
+                serializer.endTag(null, "jkzbh");
+
+                serializer.startTag(null, "dwfzr");
+                serializer.text(people.dwfzr);
+                serializer.endTag(null, "dwfzr");
+
+                serializer.startTag(null, "sfjy");
+                serializer.text("1");
+                serializer.endTag(null, "sfjy");
+
+                serializer.startTag(null, "hyzmzl");
+                serializer.text(people.hyzmzl);
+                serializer.endTag(null, "hyzmzl");
+
+                serializer.startTag(null, "hyzmbh");
+                serializer.text(people.hyzmbh);
+                serializer.endTag(null, "hyzmbh");
+
+                serializer.startTag(null, "hyqfrq");
+                serializer.text(people.hyqfrq);
+                serializer.endTag(null, "hyqfrq");
+
+                serializer.startTag(null, "jqjzym");
+                serializer.text("0");
+                serializer.endTag(null, "jqjzym");
+
+                serializer.startTag(null, "jhrq");
+                serializer.text(people.jhrq);
+                serializer.endTag(null, "jhrq");
+
+                serializer.startTag(null, "yfjzzh");
+                serializer.text(people.yfjzzh);
+                serializer.endTag(null, "yfjzzh");
+
+                serializer.startTag(null, "dsznz");
+                serializer.text(people.dsznz);
+                serializer.endTag(null, "dsznz");
+
+                serializer.startTag(null, "fwkh");
+                serializer.text(people.fwkh);
+                serializer.endTag(null, "fwkh");
+
+                serializer.startTag(null, "bycsrq");
+                serializer.text(people.bycsrq);
+                serializer.endTag(null, "bycsrq");
+
+                serializer.startTag(null, "czqx1");
+                serializer.text(people.czqx1);
+                serializer.endTag(null, "czqx1");
+
+                serializer.startTag(null, "czqx2");
+                serializer.text(people.czqx2);
+                serializer.endTag(null, "czqx2");
+
+                serializer.startTag(null, "zjdq");
+                serializer.text("20161101");
+                serializer.endTag(null, "zjdq");
+
+                serializer.startTag(null, "beizhu2");
+                serializer.text(people.beizhu2 );
+                serializer.endTag(null, "beizhu2");
+
+                serializer.startTag(null, "sbsbh");
+                serializer.text( CommonUtils.getIMEI(getActivity()));
+                serializer.endTag(null, "sbsbh");
+
+                serializer.startTag(null, "xdr1");
+                serializer.text(people.xdr1);
+                serializer.endTag(null, "xdr1");
+
+                serializer.startTag(null, "xdxm1");
+                serializer.text(people.xdxm1);
+                serializer.endTag(null, "xdxm1");
+
+                serializer.startTag(null, "xdxb1");
+                serializer.text(people.xdxb1);
+                serializer.endTag(null, "xdxb1");
+
+                serializer.startTag(null, "xdrq1");
+                serializer.text(people.xdrq1);
+                serializer.endTag(null, "xdrq1");
+
+                serializer.startTag(null, "xdsfz1");
+                serializer.text(people.xdsfz1);
+                serializer.endTag(null, "xdsfz1");
+
+                serializer.startTag(null, "xdr2");
+                serializer.text(people.xdr2);
+                serializer.endTag(null, "xdr2");
+
+                serializer.startTag(null, "xdxm2");
+                serializer.text(people.xdxm2);
+                serializer.endTag(null, "xdxm2");
+
+                serializer.startTag(null, "xdxb2");
+                serializer.text(people.xdxb2);
+                serializer.endTag(null, "xdxb2");
+
+                serializer.startTag(null, "xdrq2");
+                serializer.text(people.xdrq2);
+                serializer.endTag(null, "xdrq2");
+
+                serializer.startTag(null, "xdsfz2");
+                serializer.text(people.xdsfz2);
+                serializer.endTag(null, "xdsfz2");
+
+                serializer.startTag(null, "xdr3");
+                serializer.text(people.xdr3);
+                serializer.endTag(null, "xdr3");
+
+                serializer.startTag(null, "xdxm3");
+                serializer.text(people.xdxm3);
+                serializer.endTag(null, "xdxm3");
+
+                serializer.startTag(null, "xdxb3");
+                serializer.text(people.xdxb3);
+                serializer.endTag(null, "xdxb3");
+
+                serializer.startTag(null, "xdrq3");
+                serializer.text(people.xdrq3);
+                serializer.endTag(null, "xdrq3");
+
+                serializer.startTag(null, "xdsfz3");
+                serializer.text(people.xdsfz3);
+                serializer.endTag(null, "xdsfz3");
+
+                serializer.startTag(null, "xdr4");
+                serializer.text(people.xdr4);
+                serializer.endTag(null, "xdr4");
+
+                serializer.startTag(null, "xdxm4");
+                serializer.text(people.xdxm4);
+                serializer.endTag(null, "xdxm4");
+
+                serializer.startTag(null, "xdxb4");
+                serializer.text(people.xdxb4);
+                serializer.endTag(null, "xdxb4");
+
+                serializer.startTag(null, "xdrq4");
+                serializer.text(people.xdrq4);
+                serializer.endTag(null, "xdrq4");
+
+                serializer.startTag(null, "xdsfz4");
+                serializer.text(people.xdsfz4);
+                serializer.endTag(null, "xdsfz4");
+
+                serializer.startTag(null, "gxr1");
+                serializer.text(people.gxr1);
+                serializer.endTag(null, "gxr1");
+
+                serializer.startTag(null, "gxxm1");
+                serializer.text(people.gxxm1);
+                serializer.endTag(null, "gxxm1");
+
+                serializer.startTag(null, "gxxb1");
+                serializer.text(people.gxxb1);
+                serializer.endTag(null, "gxxb1");
+
+                serializer.startTag(null, "gxrq1");
+                serializer.text(people.gxrq1);
+                serializer.endTag(null, "gxrq1");
+
+                serializer.startTag(null, "gxsfz1");
+                serializer.text(people.gxsfz1);
+                serializer.endTag(null, "gxsfz1");
+
+                serializer.startTag(null, "gxrjzk1");
+                serializer.text(people.gxrjzk1);
+                serializer.endTag(null, "gxrjzk1");
+
+                serializer.startTag(null, "gxr2");
+                serializer.text(people.gxr2);
+                serializer.endTag(null, "gxr2");
+
+                serializer.startTag(null, "gxxm2");
+                serializer.text(people.gxxm2);
+                serializer.endTag(null, "gxxm2");
+
+                serializer.startTag(null, "gxxb2");
+                serializer.text(people.gxxb2);
+                serializer.endTag(null, "gxxb2");
+
+                serializer.startTag(null, "gxrq2");
+                serializer.text(people.gxrq2);
+                serializer.endTag(null, "gxrq2");
+
+                serializer.startTag(null, "gxsfz2");
+                serializer.text(people.gxsfz2);
+                serializer.endTag(null, "gxsfz2");
+
+                serializer.startTag(null, "gxrjzk2");
+                serializer.text(people.gxrjzk2);
+                serializer.endTag(null, "gxrjzk2");
+
+                serializer.startTag(null, "gxr3");
+                serializer.text(people.gxr3);
+                serializer.endTag(null, "gxr3");
+
+                serializer.startTag(null, "gxxm3");
+                serializer.text(people.gxxm3);
+                serializer.endTag(null, "gxxm3");
+
+                serializer.startTag(null, "gxxb3");
+                serializer.text(people.gxxb3);
+                serializer.endTag(null, "gxxb3");
+
+                serializer.startTag(null, "gxrq3");
+                serializer.text(people.gxrq3);
+                serializer.endTag(null, "gxrq3");
+
+                serializer.startTag(null, "gxsfz3");
+                serializer.text(people.gxsfz3);
+                serializer.endTag(null, "gxsfz3");
+
+                serializer.startTag(null, "gxrjzk3");
+                serializer.text(people.gxrjzk3);
+                serializer.endTag(null, "gxrjzk3");
+
+                serializer.startTag(null, "gxr4");
+                serializer.text(people.gxr4);
+                serializer.endTag(null, "gxr4");
+
+                serializer.startTag(null, "gxxm4");
+                serializer.text(people.gxxm4);
+                serializer.endTag(null, "gxxm4");
+
+                serializer.startTag(null, "gxxb4");
+                serializer.text(people.gxxb4);
+                serializer.endTag(null, "gxxb4");
+
+                serializer.startTag(null, "gxrq4");
+                serializer.text(people.gxrq4);
+                serializer.endTag(null, "gxrq4");
+
+                serializer.startTag(null, "gxsfz4");
+                serializer.text(people.gxsfz4);
+                serializer.endTag(null, "gxsfz4");
+
+                serializer.startTag(null, "gxrjzk4");
+                serializer.text(people.gxrjzk4);
+                serializer.endTag(null, "gxrjzk4");
             }
 
             serializer.endTag(null, "xml_reco");// 结束标签
