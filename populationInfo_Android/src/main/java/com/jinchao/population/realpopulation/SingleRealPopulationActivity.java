@@ -496,7 +496,7 @@ public class SingleRealPopulationActivity extends BaseActiviy{
 							SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 							String date =sDateFormat.format(new java.util.Date()); 
 							People people=new People(realPeopleinHouseOne.sname, date, realPeopleinHouseOne.idcard, "注销", CommonUtils.GenerateGUID(), "2", 
-									MyInfomationManager.getUserName(SingleRealPopulationActivity.this), realHouseOne.scode);
+									MyInfomationManager.getUserName(SingleRealPopulationActivity.this), realHouseOne.scode,realHouseOne.houseAdress);
 							DbUtils dbUtils =DeviceUtils.getDbUtils(SingleRealPopulationActivity.this);
 							List<People> list=new ArrayList<People>();
 							try {
