@@ -39,7 +39,7 @@ public class MyApplication extends Application{
 		super.onCreate();
 		x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);
-//        CrashHandler.getInstance().init(getApplicationContext());
+        CrashHandler.getInstance().init(getApplicationContext());
 		SDKInitializer.initialize(this);
 		Common.init(this);//南京读卡初始化
 		GlobalPref.init(this);//南京读卡sharedpre初始化

@@ -2,65 +2,137 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/add_custom_bg"
-        android:text="1"
-        android:background="@color/Gray"
-        />
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/close_btn"
-        android:layout_alignParentRight="true"/>
+
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:orientation="vertical"
-        android:background="@color/Gray"
-        android:layout_below="@+id/tv_title">
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/member_bg"
+        android:layout_below="@+id/ib_close">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
-            android:paddingLeft="@dimen/layout_leftright_padding"
-            android:paddingRight="@dimen/layout_leftright_padding"
+            android:background="@color/white"
             >
             <TextView
-                android:id="@+id/tv_yfjzzhleft"
+                android:id="@+id/tv_nameleft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/small_size"
                 android:textColor="@color/title1"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:text="预防接种证号"
+                android:text="成员姓名"
                 />
             <EditText
-                android:id="@+id/edt_yfjzzh"
+                android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
-                android:layout_toRightOf="@+id/tv_yfjzzhleft"
-                android:hint="请输入接种证号"
+                android:layout_toRightOf="@+id/tv_nameleft"
+                android:hint="请输入成员姓名"
                 android:textColorHint="@color/title4"
-                android:background="@color/white"
                 android:inputType="text"
                 android:singleLine="true"
                 android:paddingRight="10dp"
+                android:background="@color/white"
                 />
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#CACACA"
-            android:layout_marginLeft="@dimen/layout_leftright_padding"
-            android:layout_marginRight="@dimen/layout_leftright_padding"
             />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@color/white"
+            >
+            <TextView
+                android:id="@+id/tv_sexleft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="成员性别"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@color/white"
+            >
+            <TextView
+                android:id="@+id/tv_birthleft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="成员生日"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@color/white"
+            >
+            <TextView
+                android:id="@+id/tv_idcardleft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="成员身份证"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/add_custom_bg"
+        android:text="1"
+        android:gravity="center"
+        android:layout_above="@+id/content"
+        android:layout_marginBottom="-15dp"
+        android:background="@drawable/number_bg"
+        />
+    <TextView
+        android:id="@+id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:drawableLeft="@drawable/close_btn"
+        android:text="删除"
+        android:textSize="@dimen/small_size"
+        android:textColor="@color/orange"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

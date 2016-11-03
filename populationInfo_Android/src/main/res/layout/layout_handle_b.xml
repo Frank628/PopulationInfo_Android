@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:id="@+id/sv_b"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -691,6 +692,7 @@
                 android:inputType="text"
                 android:singleLine="true"
                 android:paddingRight="10dp"
+
                 />
         </RelativeLayout>
         <View
@@ -704,19 +706,27 @@
         <!--成员-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="15dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="成员"
+                android:textColor="@color/orange"
+                android:text="子女"
+                android:textStyle="bold"
+                android:textSize="@dimen/large_size"
                 />
             <ImageButton
+                android:id="@+id/ib_addmember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/add_custom_bg"
+                android:layout_alignParentRight="true"
+                android:background="@null"
                 />
         </RelativeLayout>
         <LinearLayout
-            android:id="@+id/ll_chengyuan"
+            android:id="@+id/ll_member"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

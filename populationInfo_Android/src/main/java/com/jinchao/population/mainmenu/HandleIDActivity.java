@@ -9,6 +9,7 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import com.jinchao.population.base.BaseHandleIDActivity;
 import com.jinchao.population.entity.HouseAddressOldBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.view.PopBianzheng.OnbEnsureClickListener;
@@ -26,6 +27,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
@@ -56,7 +58,7 @@ import com.lidroid.xutils.exception.DbException;
 
 
 @ContentView(R.layout.activity_handleid)
-public class HandleIDActivity extends BaseActiviy{
+public class HandleIDActivity extends BaseHandleIDActivity{
 	public static final String TAG="HANDLEID";
 	@ViewInject(R.id.rg_tab)private RadioGroup rg_tab;
 	@ViewInject(R.id.edt_stature)private EditText edt_stature;
@@ -101,6 +103,9 @@ public class HandleIDActivity extends BaseActiviy{
 	@ViewInject(R.id.rc_chusuoleixing)private RightButtonCheckBox rc_chusuoleixing;
 	@ViewInject(R.id.rc_fuwuchusuo)private RightButtonCheckBox rc_fuwuchusuo;
 	@ViewInject(R.id.rc_danweidizhi)private RightButtonCheckBox rc_danweidizhi;
+
+	@ViewInject(R.id.ll_member)private LinearLayout ll_member;
+	@ViewInject(R.id.layout_b)private ScrollView sv_b;
 	private People people,people2;
 	private Calendar c;
 	private boolean isHandleID;
@@ -612,6 +617,37 @@ public class HandleIDActivity extends BaseActiviy{
 			}
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+	@Event(value={R.id.ib_addmember})
+	private void addMemberClick(View view){
+		View member=getMemberView();
+		switch (ll_member.getChildCount()){
+			case 0:
+				memberView1=member;
+				break;
+			case 1:
+				memberView2=member;
+				break;
+			case 2:
+				memberView3=member;
+				break;
+			case 3:
+				memberView4=member;
+				break;
+		}
+		((TextView)member.findViewById(R.id.tv_number)).setText((ll_member.getChildCount()+1)+"");
+		if (ll_member.getChildCount()>=4){
+			Toast.makeText(HandleIDActivity.this,"最多添加四名子女！",Toast.LENGTH_SHORT).show();
+			return;
+		}
+		ll_member.addView(member);
+		sv_b.post(new Runnable() {
+			@Override
+			public void run() {
+				sv_b.smoothScrollTo(0,CommonUtils.dip2px(HandleIDActivity.this,232)+sv_b.getScrollY());
+			}
+		});
+
 	}
 	@Event(value={R.id.rl_canbaoshijian})//参保时间
 	private void canbaoshijianClick(View view){
