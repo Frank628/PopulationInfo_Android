@@ -103,7 +103,37 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.rc_chusuoleixing)private RightButtonCheckBox rc_chusuoleixing;
 	@ViewInject(R.id.rc_fuwuchusuo)private RightButtonCheckBox rc_fuwuchusuo;
 	@ViewInject(R.id.rc_danweidizhi)private RightButtonCheckBox rc_danweidizhi;
+//新增A类
+	@ViewInject(R.id.edt_fzxm)private EditText edt_fzxm;
+	@ViewInject(R.id.rb_shiyimiao)private RadioButton rb_shiyimiao;
+//B类项
+	@ViewInject(R.id.edt_jyrq)private TextView edt_jyrq;
+	@ViewInject(R.id.edt_hyqfrq)private TextView edt_hyqfrq;
+	@ViewInject(R.id.edt_jhrq)private TextView edt_jhrq;
+	@ViewInject(R.id.edt_bycsrq)private TextView edt_bycsrq;
+	@ViewInject(R.id.edt_czqx1)private TextView edt_czqx1;
+	@ViewInject(R.id.edt_czqx2)private TextView edt_czqx2;
+	@ViewInject(R.id.tv_lsrq)private TextView tv_lsrq;
+	@ViewInject(R.id.tv_zjdq)private TextView tv_zjdq;
 
+	@ViewInject(R.id.edt_msn)private EditText edt_msn;
+	@ViewInject(R.id.edt_email)private EditText edt_email;
+	@ViewInject(R.id.edt_addition)private EditText edt_addition;
+	@ViewInject(R.id.edt_fzdh)private EditText edt_fzdh;
+	@ViewInject(R.id.edt_fzsfz)private EditText edt_fzsfz;
+	@ViewInject(R.id.edt_dwlxdh)private EditText edt_dwlxdh;
+	@ViewInject(R.id.edt_zwmc)private EditText edt_zwmc;
+	@ViewInject(R.id.edt_sbbh)private EditText edt_sbbh;
+	@ViewInject(R.id.edt_jkzbh)private EditText edt_jkzbh;
+	@ViewInject(R.id.edt_dwfzr)private EditText edt_dwfzr;
+	@ViewInject(R.id.edt_hyzmbh)private EditText edt_hyzmbh;
+	@ViewInject(R.id.edt_yfjzzh)private EditText edt_yfjzzh;
+	@ViewInject(R.id.edt_fwkh)private EditText edt_fwkh;
+	@ViewInject(R.id.edt_beizhu2)private EditText edt_beizhu2;
+
+	@ViewInject(R.id.tv_ldhtqj)private TextView tv_ldhtqj;
+	@ViewInject(R.id.tv_hyzmzl)private TextView tv_hyzmzl;
+	@ViewInject(R.id.ll_guanxi)private LinearLayout ll_guanxi;
 	@ViewInject(R.id.ll_member)private LinearLayout ll_member;
 	@ViewInject(R.id.layout_b)private ScrollView sv_b;
 	private People people,people2;
@@ -294,6 +324,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		zanzhushiyou=tv_zanzhushiyou.getText().toString().trim();
 		chanyeleixing=tv_chanyeleixing.getText().toString().trim();
 		juzhufangshi=tv_juzhufangshi.getText().toString().trim();
+		fzxm=edt_fzxm.getText().toString().trim();
 		fangdongguanxi=tv_fangdongguanxi.getText().toString().trim();
 		jieyucuoshi=tv_jieyucuoshi.getText().toString().trim();
 		xianyunnianyue=tv_xianyunnianyue.getText().toString().trim();
@@ -309,6 +340,84 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		shoujixinghao=edt_shoujixinghao.getText().toString().trim();
 		beiyong1=rb_banzhengshi.isChecked()?"是":"否";
 		zinvgeshu=edt_zinvgeshu.getText().toString().trim();
+		//A类
+		jqjzym=rb_shiyimiao.isChecked()?"1":"0";
+		//B类
+		MSN=edt_msn.getText().toString().trim();
+		Email=edt_email.getText().toString().trim();
+		czwxz=edt_addition.getText().toString().trim();
+		fzdh=edt_fzdh.getText().toString().trim();
+		fzsfz=edt_fzsfz.getText().toString().trim();
+		dwlxdh=edt_dwlxdh.getText().toString().trim();
+		zymc=edt_zwmc.getText().toString().trim();
+		sbbh=edt_sbbh.getText().toString().trim();
+		jkzbh=edt_jkzbh.getText().toString().trim();
+		dwfzr=edt_dwfzr.getText().toString().trim();
+		hyzmbh=edt_hyzmbh.getText().toString().trim();
+		yfjzzh=edt_yfjzzh.getText().toString().trim();
+		fwkh=edt_fwkh.getText().toString().trim();
+		beizhu2=edt_beizhu2.getText().toString().trim();
+		if(memberView1!=null){
+			xdr1=memberGuanxi1.getText().toString().trim();
+			xdxm1=memberName1.getText().toString().trim();
+			xdxb1=memberSex1.isChecked()?"1":"2";
+			xdrq1=memberBirth1.getText().toString().trim();
+			xdsfz1=memberSfz1.getText().toString().trim();
+		}
+		if(memberView2!=null){
+			xdr2=memberGuanxi2.getText().toString().trim();
+			xdxm2=memberName2.getText().toString().trim();
+			xdxb2=memberSex2.isChecked()?"1":"2";
+			xdrq2=memberBirth2.getText().toString().trim();
+			xdsfz2=memberSfz2.getText().toString().trim();
+		}
+		if(memberView3!=null){
+			xdr3=memberGuanxi3.getText().toString().trim();
+			xdxm3=memberName3.getText().toString().trim();
+			xdxb3=memberSex3.isChecked()?"1":"2";
+			xdrq3=memberBirth3.getText().toString().trim();
+			xdsfz3=memberSfz3.getText().toString().trim();
+		}
+		if(memberView4!=null){
+			xdr4=memberGuanxi4.getText().toString().trim();
+			xdxm4=memberName4.getText().toString().trim();
+			xdxb4=memberSex4.isChecked()?"1":"2";
+			xdrq4=memberBirth4.getText().toString().trim();
+			xdsfz4=memberSfz4.getText().toString().trim();
+		}
+		if(relationView1!=null){
+			gxr1="0";
+			gxxm1=zinvName1.getText().toString().trim();
+			gxxb1=zinvSex1.isChecked()?"1":"2";
+			gxrq1=zinvBirth1.getText().toString().trim();
+			gxsfz1=zinvSfz1.getText().toString().trim();
+			gxrjzk1=zinvJiezhong1.isChecked()?"1":"2";
+		}
+		if(relationView2!=null){
+			gxr2="0";
+			gxxm2=zinvName2.getText().toString().trim();
+			gxxb2=zinvSex2.isChecked()?"1":"2";
+			gxrq2=zinvBirth2.getText().toString().trim();
+			gxsfz2=zinvSfz2.getText().toString().trim();
+			gxrjzk2=zinvJiezhong2.isChecked()?"1":"2";
+		}
+		if(relationView3!=null){
+			gxr3="0";
+			gxxm3=zinvName3.getText().toString().trim();
+			gxxb3=zinvSex3.isChecked()?"1":"2";
+			gxrq3=zinvBirth3.getText().toString().trim();
+			gxsfz3=zinvSfz3.getText().toString().trim();
+			gxrjzk3=zinvJiezhong3.isChecked()?"1":"2";
+		}
+		if(relationView4!=null){
+			gxr4="0";
+			gxxm4=zinvName4.getText().toString().trim();
+			gxxb4=zinvSex4.isChecked()?"1":"2";
+			gxrq4=zinvBirth4.getText().toString().trim();
+			gxsfz4=zinvSfz4.getText().toString().trim();
+			gxrjzk4=zinvJiezhong4.isChecked()?"1":"2";
+
+		}
 		if (isHandleID) {
 			if (height.equals("")) {
 				Toast.makeText(this, "请填写身高~", Toast.LENGTH_SHORT).show();
@@ -395,7 +504,16 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					isHandleID?"登记":"变更", CommonUtils.GenerateGUID(), isHandleID?"0":"1", people.card_type, people.user_id, "1", height, wenhua, hunyin, zhengzhi,
 					fangwubiaohao, zanzhudizhi,shihao , chusuoleixing, zanzhushiyou, fuwuchusuo, danweidizhi, chanyeleixing, shifoucanbao, canbaoshijian, dianhua, fubingyi,
 					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
-					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date);
+					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,MSN,Email,czwxz,lsrq,djrq,fzxm,fzdh,fzsfz,dwlxdh,zymc,ldhtqj,sbbh,
+					jyrq,jkzbh,dwfzr,sfjy,hyzmzl,hyzmbh,jqjzym,hyqfrq,jhrq,yfjzzh,fwkh,bycsrq,czqx1,czqx2,
+					zjdq,beizhu2 ,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
+					xdr2,xdxm2,xdxb2,xdrq2,xdsfz2,
+					xdr3,xdxm3,xdxb3,xdrq3,xdsfz3,
+					xdr4,xdxm4,xdxb4,xdrq4,xdsfz4,
+					gxr1,gxxm1,gxxb1,gxrq1,gxsfz1,gxrjzk1,
+					gxr2,gxxm2,gxxb2,gxrq2,gxsfz2,gxrjzk2,
+					gxr3,gxxm3,gxxb3,gxrq3,gxsfz3,gxrjzk3,
+					gxr4,gxxm4,gxxb4,gxrq4,gxsfz4,gxrjzk4);
 			if (rb_banzhengshi.isChecked()) {
 				PopBianzheng popBianzheng = new PopBianzheng(HandleIDActivity.this, new OnbEnsureClickListener() {
 					@Override
@@ -486,7 +604,16 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					isHandleID?"登记":"变更", CommonUtils.GenerateGUID(), isHandleID?"0":"1", people.card_type, people.user_id, "1", height, wenhua, hunyin, zhengzhi,
 					fangwubiaohao, zanzhudizhi,shihao , chusuoleixing, zanzhushiyou, fuwuchusuo, danweidizhi, chanyeleixing, shifoucanbao, canbaoshijian, dianhua, fubingyi,
 					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
-					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,getIntent().getBooleanExtra("isAdd",false)?"":"1",people.realId);
+					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,getIntent().getBooleanExtra("isAdd",false)?"":"1",people.realId,MSN,Email,czwxz,lsrq,djrq,fzxm,fzdh,fzsfz,dwlxdh,zymc,ldhtqj,sbbh,
+					jyrq,jkzbh,dwfzr,sfjy,hyzmzl,hyzmbh,jqjzym,hyqfrq,jhrq,yfjzzh,fwkh,bycsrq,czqx1,czqx2,
+					zjdq,beizhu2 ,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
+					xdr2,xdxm2,xdxb2,xdrq2,xdsfz2,
+					xdr3,xdxm3,xdxb3,xdrq3,xdsfz3,
+					xdr4,xdxm4,xdxb4,xdrq4,xdsfz4,
+					gxr1,gxxm1,gxxb1,gxrq1,gxsfz1,gxrjzk1,
+					gxr2,gxxm2,gxxb2,gxrq2,gxsfz2,gxrjzk2,
+					gxr3,gxxm3,gxxb3,gxrq3,gxsfz3,gxrjzk3,
+					gxr4,gxxm4,gxxb4,gxrq4,gxsfz4,gxrjzk4);
 			try {
 				dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
 				dbUtils.save(people2);
@@ -618,37 +745,418 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
 	}
+
+	@Event(value={R.id.rl_ldhtqj})//劳动合同签订情况
+	private void ldhtqjClick(View view){
+		hideSoftKeyBord();
+		StringWheel stringWheel=new StringWheel(this, Constants.LAODONGHETONGQIANDING, new OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+			tv_ldhtqj.setText(str);
+				if (str.equals("一年以下")){
+					ldhtqj="1";
+				}else if(str.equals("一年及以上")){
+					ldhtqj="2";
+				}else{
+					ldhtqj="0";
+				}
+			}
+		});
+		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+	@Event(value={R.id.rl_hyzmzl})//婚育证明种类
+	private void hyzmzlClick(View view){
+		hideSoftKeyBord();
+		StringWheel stringWheel=new StringWheel(this, Constants.HUYUZHENGMING, new OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+				tv_hyzmzl.setText(str);
+				if (str.equals("全国婚育证明")){
+					hyzmzl="1";
+				}else if(str.equals("本地管理服务卡")){
+					hyzmzl="2";
+				}else{
+					hyzmzl="9";
+				}
+			}
+		});
+		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
 	@Event(value={R.id.ib_addmember})
 	private void addMemberClick(View view){
-		View member=getMemberView();
+		final View member=getMemberView();
 		switch (ll_member.getChildCount()){
-			case 0:
+			case 0://成员1
 				memberView1=member;
+				memberGuanxi1=(EditText) member.findViewById(R.id.edt_guanxi);
+				memberName1=(EditText) member.findViewById(R.id.edt_name);
+				memberBirth1=(TextView) member.findViewById(R.id.tv_birth);
+				memberSex1=(RadioButton)member.findViewById(R.id.rb_male);
+				memberSfz1=(EditText) member.findViewById(R.id.edt_idcard);
+				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								memberBirth1.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				member.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (ll_member.getChildCount()>1){
+							Toast.makeText(HandleIDActivity.this,"请先按序号由大到小删除！",Toast.LENGTH_SHORT).show();
+							return;
+						}
+						memberView1=null;
+						ll_member.removeViewAt(0);
+					}
+				});
 				break;
-			case 1:
+			case 1://成员2
 				memberView2=member;
+				memberGuanxi2=(EditText) member.findViewById(R.id.edt_guanxi);
+				memberName2=(EditText) member.findViewById(R.id.edt_name);
+				memberBirth2=(TextView) member.findViewById(R.id.tv_birth);
+				memberSex2=(RadioButton)member.findViewById(R.id.rb_male);
+				memberSfz2=(EditText) member.findViewById(R.id.edt_idcard);
+				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								memberBirth2.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				member.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (ll_member.getChildCount()>2){
+							Toast.makeText(HandleIDActivity.this,"请先按序号由大到小删除！",Toast.LENGTH_SHORT).show();
+							return;
+						}
+						memberView2=null;
+						ll_member.removeViewAt(1);
+					}
+				});
 				break;
-			case 2:
+			case 2://成员3
 				memberView3=member;
+				memberGuanxi3=(EditText) member.findViewById(R.id.edt_guanxi);
+				memberName3=(EditText) member.findViewById(R.id.edt_name);
+				memberBirth3=(TextView) member.findViewById(R.id.tv_birth);
+				memberSex3=(RadioButton)member.findViewById(R.id.rb_male);
+				memberSfz3=(EditText) member.findViewById(R.id.edt_idcard);
+				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								memberBirth3.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				member.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (ll_member.getChildCount()>3){
+							Toast.makeText(HandleIDActivity.this,"请先按序号由大到小删除！",Toast.LENGTH_SHORT).show();
+							return;
+						}
+						memberView3=null;
+						ll_member.removeViewAt(2);
+					}
+				});
 				break;
-			case 3:
+			case 3://成员4
 				memberView4=member;
+				memberView4=member;
+				memberGuanxi4=(EditText) member.findViewById(R.id.edt_guanxi);
+				memberName4=(EditText) member.findViewById(R.id.edt_name);
+				memberBirth4=(TextView) member.findViewById(R.id.tv_birth);
+				memberSex4=(RadioButton)member.findViewById(R.id.rb_male);
+				memberSfz4=(EditText) member.findViewById(R.id.edt_idcard);
+				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								memberBirth4.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				member.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						memberView4=null;
+						ll_member.removeViewAt(3);
+					}
+				});
 				break;
 		}
 		((TextView)member.findViewById(R.id.tv_number)).setText((ll_member.getChildCount()+1)+"");
 		if (ll_member.getChildCount()>=4){
-			Toast.makeText(HandleIDActivity.this,"最多添加四名子女！",Toast.LENGTH_SHORT).show();
+			Toast.makeText(HandleIDActivity.this,"最多添加四名成员！",Toast.LENGTH_SHORT).show();
 			return;
 		}
 		ll_member.addView(member);
 		sv_b.post(new Runnable() {
 			@Override
 			public void run() {
-				sv_b.smoothScrollTo(0,CommonUtils.dip2px(HandleIDActivity.this,232)+sv_b.getScrollY());
+				sv_b.smoothScrollTo(0,CommonUtils.dip2px(HandleIDActivity.this,280)+sv_b.getScrollY());
 			}
 		});
 
 	}
+	@Event(value={R.id.ib_addguanxi})
+	private void addGuanxirenClick(View view){
+		final View guanxi=getGuanxirenView();
+		switch (ll_guanxi.getChildCount()){
+			case 0://子女1
+				relationView1=guanxi;
+				zinvName1=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvBirth1=(TextView) guanxi.findViewById(R.id.tv_birth);
+				zinvSex1=(RadioButton)guanxi.findViewById(R.id.rb_male);
+				zinvSfz1=(EditText) guanxi.findViewById(R.id.edt_idcard);
+				zinvJiezhong1=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								zinvBirth1.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				guanxi.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (ll_guanxi.getChildCount()>1){
+							Toast.makeText(HandleIDActivity.this,"请先按序号由大到小删除！",Toast.LENGTH_SHORT).show();
+							return;
+						}
+						relationView1=null;
+						ll_guanxi.removeViewAt(0);
+					}
+				});
+				break;
+			case 1://子女2
+				relationView2=guanxi;
+				zinvName2=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvBirth2=(TextView) guanxi.findViewById(R.id.tv_birth);
+				zinvSex2=(RadioButton)guanxi.findViewById(R.id.rb_male);
+				zinvSfz2=(EditText) guanxi.findViewById(R.id.edt_idcard);
+				zinvJiezhong2=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								zinvBirth2.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				guanxi.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (ll_guanxi.getChildCount()>2){
+							Toast.makeText(HandleIDActivity.this,"请先按序号由大到小删除！",Toast.LENGTH_SHORT).show();
+							return;
+						}
+						relationView2=null;
+						ll_guanxi.removeViewAt(1);
+					}
+				});
+				break;
+			case 2://子女3
+				relationView3=guanxi;
+				zinvName3=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvBirth3=(TextView) guanxi.findViewById(R.id.tv_birth);
+				zinvSex3=(RadioButton)guanxi.findViewById(R.id.rb_male);
+				zinvSfz3=(EditText) guanxi.findViewById(R.id.edt_idcard);
+				zinvJiezhong3=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								zinvBirth3.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				guanxi.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (ll_guanxi.getChildCount()>3){
+							Toast.makeText(HandleIDActivity.this,"请先按序号由大到小删除！",Toast.LENGTH_SHORT).show();
+							return;
+						}
+						relationView3=null;
+						ll_guanxi.removeViewAt(2);
+					}
+				});
+				break;
+			case 3://子女4
+				relationView4=guanxi;
+				zinvName4=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvBirth4=(TextView) guanxi.findViewById(R.id.tv_birth);
+				zinvSex4=(RadioButton)guanxi.findViewById(R.id.rb_male);
+				zinvSfz4=(EditText) guanxi.findViewById(R.id.edt_idcard);
+				zinvJiezhong4=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								zinvBirth4.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+							}
+						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+						monPickerDialogcanbao.show();
+					}
+				});
+				guanxi.findViewById(R.id.ib_close).setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						relationView4=null;
+						ll_guanxi.removeViewAt(3);
+					}
+				});
+				break;
+		}
+		((TextView)guanxi.findViewById(R.id.tv_number)).setText((ll_guanxi.getChildCount()+1)+"");
+		if (ll_guanxi.getChildCount()>=4){
+			Toast.makeText(HandleIDActivity.this,"最多添加四名子女！",Toast.LENGTH_SHORT).show();
+			return;
+		}
+		ll_guanxi.addView(guanxi);
+		sv_b.post(new Runnable() {
+			@Override
+			public void run() {
+				sv_b.smoothScrollTo(0,CommonUtils.dip2px(HandleIDActivity.this,280)+sv_b.getScrollY());
+			}
+		});
+
+	}
+	@Event(value={R.id.rl_jyrq})//就业日期
+	private void jyrqnClick(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerjy,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerjy =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			edt_jyrq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			jyrq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
+	@Event(value={R.id.rl_huqfrq})//婚育证明签发日期
+	private void huqfrqClick(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerhuqfrq,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerhuqfrq =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			edt_hyqfrq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			hyqfrq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
+	@Event(value={R.id.rl_jhrq})//结婚日期
+	private void jhrqClick(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerjhrq,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerjhrq =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			edt_jhrq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			jhrq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
+	@Event(value={R.id.rl_bycsrq})//避孕措施落实日期日期
+	private void bycsrqClick(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerbycsrq,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerbycsrq =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			edt_bycsrq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			bycsrq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
+	@Event(value={R.id.rl_czqx1})//出租开始日期
+	private void czqx1Click(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerczqx1,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerczqx1 =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			edt_czqx1.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			czqx1=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
+	@Event(value={R.id.rl_czqx2})//出租结束日期
+	private void czqx2Click(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerczqx2,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerczqx2 =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			edt_czqx2.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			czqx2=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
+	@Event(value={R.id.rl_lsrq})//来苏日期
+	private void lsrqClick(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerlsrq,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerlsrq =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			tv_lsrq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			lsrq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
+	@Event(value={R.id.rl_zjdq})//租金到期日期
+	private void zjdqClick(View view){
+		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerzjdq,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+		monPickerDialogcanbao.show();
+	}
+	private OnDateSetListener onDateSetListenerzjdq =new OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			tv_zjdq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+			zjdq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+		}
+	};
 	@Event(value={R.id.rl_canbaoshijian})//参保时间
 	private void canbaoshijianClick(View view){
 		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenercanbao,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);

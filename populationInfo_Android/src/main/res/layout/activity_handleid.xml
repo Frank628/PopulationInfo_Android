@@ -13,25 +13,25 @@
 	<RadioGroup
 		android:id="@+id/rg_tab"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="52dp"
 		android:orientation="horizontal">
 		<RadioButton
 			android:id="@+id/rb_a"
 			android:layout_width="0dp"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:layout_weight="1"
 			android:text="A类项"
 			android:button="@null"
 			android:gravity="center"
 			android:textSize="@dimen/large_middle_size"
 			android:textColor="@color/ab_radio_check_textcolor"
-			android:paddingTop="8dp"
-			android:paddingBottom="10dp"
+			android:background="@drawable/ab_bg"
 			android:checked="true"/>
 		<RadioButton
 			android:id="@+id/rb_b"
 			android:layout_width="0dp"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
+			android:background="@drawable/ab_bg"
 			android:layout_weight="1"
 			android:text="B类项"
 			android:button="@null"

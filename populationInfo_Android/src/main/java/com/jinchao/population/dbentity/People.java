@@ -685,7 +685,19 @@ public class People implements Serializable{
 			String carNo, String rent, String qQ, String mAC_id,
 			String jieYuCuoShi, String sq_name, String juZhuShiJian,
 			String lingQuFangShi, String shenQingLeiBie, String shouJiXingHao,
-			String shouJiChuanHao, String beiYong,String collect_datetime) {
+			String shouJiChuanHao, String beiYong,String collect_datetime,
+
+			String MSN,String Email,String czwxz,String lsrq,String djrq,String fzxm,String fzdh,String fzsfz,String dwlxdh,String zymc,String ldhtqj,String sbbh,
+				  String jyrq,String jkzbh,String dwfzr,String sfjy,String hyzmzl,String hyzmbh,String jqjzym,String hyqfrq,String jhrq,String yfjzzh,String fwkh,String bycsrq,String czqx1,String czqx2,String
+				  zjdq,String beizhu2 ,String xdr1,String xdxm1,String xdxb1,String xdrq1,String xdsfz1,String
+				  xdr2,String xdxm2,String xdxb2,String xdrq2,String xdsfz2,String
+				  xdr3,String xdxm3,String xdxb3,String xdrq3,String xdsfz3,String
+				  xdr4,String xdxm4,String xdxb4,String xdrq4,String xdsfz4,String
+				  gxr1,String gxxm1,String gxxb1,String gxrq1,String gxsfz1,String gxrjzk1,String
+				  gxr2,String gxxm2,String gxxb2,String gxrq2,String gxsfz2,String gxrjzk2,String
+				  gxr3,String gxxm3,String gxxb3,String gxrq3,String gxsfz3,String gxrjzk3,String
+				  gxr4,String gxxm4,String gxxb4,String gxrq4,String gxsfz4,String gxrjzk4
+				  ) {
 		super();
 		this.name = name;
 		this.cardno = cardno;
@@ -740,6 +752,18 @@ public class People implements Serializable{
 		this.ShouJiChuanHao = shouJiChuanHao;
 		this.BeiYong = beiYong;
 		this.collect_datetime=collect_datetime;
+
+		this.MSN=MSN   ; this.Email= Email  ; this.czwxz= czwxz  ; this.lsrq= lsrq  ; this.djrq= djrq  ; this.fzxm= fzxm  ; this.fzdh= fzdh  ; this.fzsfz= fzsfz  ; this.dwlxdh= dwlxdh  ; this.zymc= zymc  ; this.ldhtqj= ldhtqj  ; this.sbbh= sbbh  ;
+		this.jyrq= jyrq  ; this.jkzbh= jkzbh  ; this.dwfzr=dwfzr   ; this.sfjy= sfjy  ; this.hyzmzl= hyzmzl  ; this.hyzmbh= hyzmbh  ; this.jqjzym= jqjzym  ; this.hyqfrq= hyqfrq  ; this.jhrq= jhrq  ; this.yfjzzh= yfjzzh  ; this.fwkh=  fwkh ; this.bycsrq=bycsrq   ; this.czqx1=  czqx1 ; this.czqx2= czqx2  ;
+		this.zjdq=  zjdq ; this.beizhu2 =beizhu2   ;
+		this.xdr1=  xdr1 ; this.xdxm1=   xdxm1; this.xdxb1=  xdxb1 ; this.xdrq1=   xdrq1; this.xdsfz1= xdsfz1  ;
+		this.xdr2=   xdr2; this.xdxm2= xdxm2  ; this.xdxb2=  xdxb2 ; this.xdrq2= xdrq2  ; this.xdsfz2= xdsfz2  ;
+		this.xdr3=  xdr3 ; this.xdxm3=  xdxm3 ; this.xdxb3= xdxb3  ; this.xdrq3= xdrq3  ; this.xdsfz3= xdsfz3  ;
+		this.xdr4=  xdr4 ; this.xdxm4=  xdxm4 ; this.xdxb4= xdxb4  ; this.xdrq4= xdrq4  ; this.xdsfz4=xdsfz4   ;
+		this.gxr1=  gxr1 ; this.gxxm1= gxxm1  ; this.gxxb1=  gxxb1 ; this.gxrq1= gxrq1  ; this.gxsfz1=  gxsfz1 ; this.gxrjzk1= gxrjzk1  ;
+		this.gxr2=  gxr2 ; this.gxxm2=  gxxm2 ; this.gxxb2= gxxb2  ; this.gxrq2= gxrq2  ; this.gxsfz2= gxsfz2  ; this.gxrjzk2= gxrjzk2  ;
+		this.gxr3=  gxr3 ; this.gxxm3=   gxxm3; this.gxxb3= gxxb3  ; this.gxrq3= gxrq3  ; this.gxsfz3= gxsfz3  ; this.gxrjzk3= gxrjzk3  ;
+		this.gxr4=  gxr4 ; this.gxxm4=  gxxm4 ; this.gxxb4= gxxb4  ; this.gxrq4=  gxrq4 ; this.gxsfz4=  gxsfz4 ; this.gxrjzk4=gxrjzk4;
 	}
 
 	//变更
@@ -758,7 +782,17 @@ public class People implements Serializable{
 				  String carNo, String rent, String qQ, String mAC_id,
 				  String jieYuCuoShi, String sq_name, String juZhuShiJian,
 				  String lingQuFangShi, String shenQingLeiBie, String shouJiXingHao,
-				  String shouJiChuanHao, String beiYong,String collect_datetime,String isReal,String realId) {
+				  String shouJiChuanHao, String beiYong,String collect_datetime,String isReal,String realId,
+				  String MSN,String Email,String czwxz,String lsrq,String djrq,String fzxm,String fzdh,String fzsfz,String dwlxdh,String zymc,String ldhtqj,String sbbh,
+				  String jyrq,String jkzbh,String dwfzr,String sfjy,String hyzmzl,String hyzmbh,String jqjzym,String hyqfrq,String jhrq,String yfjzzh,String fwkh,String bycsrq,String czqx1,String czqx2,String
+						  zjdq,String beizhu2 ,String xdr1,String xdxm1,String xdxb1,String xdrq1,String xdsfz1,String
+						  xdr2,String xdxm2,String xdxb2,String xdrq2,String xdsfz2,String
+						  xdr3,String xdxm3,String xdxb3,String xdrq3,String xdsfz3,String
+						  xdr4,String xdxm4,String xdxb4,String xdrq4,String xdsfz4,String
+						  gxr1,String gxxm1,String gxxb1,String gxrq1,String gxsfz1,String gxrjzk1,String
+						  gxr2,String gxxm2,String gxxb2,String gxrq2,String gxsfz2,String gxrjzk2,String
+						  gxr3,String gxxm3,String gxxb3,String gxrq3,String gxsfz3,String gxrjzk3,String
+						  gxr4,String gxxm4,String gxxb4,String gxrq4,String gxsfz4,String gxrjzk4) {
 		super();
 		this.name = name;
 		this.cardno = cardno;
@@ -815,6 +849,17 @@ public class People implements Serializable{
 		this.collect_datetime=collect_datetime;
 		this.isReal=isReal;
 		this.realId=realId;
+		this.MSN=MSN   ; this.Email= Email  ; this.czwxz= czwxz  ; this.lsrq= lsrq  ; this.djrq= djrq  ; this.fzxm= fzxm  ; this.fzdh= fzdh  ; this.fzsfz= fzsfz  ; this.dwlxdh= dwlxdh  ; this.zymc= zymc  ; this.ldhtqj= ldhtqj  ; this.sbbh= sbbh  ;
+		this.jyrq= jyrq  ; this.jkzbh= jkzbh  ; this.dwfzr=dwfzr   ; this.sfjy= sfjy  ; this.hyzmzl= hyzmzl  ; this.hyzmbh= hyzmbh  ; this.jqjzym= jqjzym  ; this.hyqfrq= hyqfrq  ; this.jhrq= jhrq  ; this.yfjzzh= yfjzzh  ; this.fwkh=  fwkh ; this.bycsrq=bycsrq   ; this.czqx1=  czqx1 ; this.czqx2= czqx2  ;
+		this.zjdq=  zjdq ; this.beizhu2 =beizhu2   ;
+		this.xdr1=  xdr1 ; this.xdxm1=   xdxm1; this.xdxb1=  xdxb1 ; this.xdrq1=   xdrq1; this.xdsfz1= xdsfz1  ;
+		this.xdr2=   xdr2; this.xdxm2= xdxm2  ; this.xdxb2=  xdxb2 ; this.xdrq2= xdrq2  ; this.xdsfz2= xdsfz2  ;
+		this.xdr3=  xdr3 ; this.xdxm3=  xdxm3 ; this.xdxb3= xdxb3  ; this.xdrq3= xdrq3  ; this.xdsfz3= xdsfz3  ;
+		this.xdr4=  xdr4 ; this.xdxm4=  xdxm4 ; this.xdxb4= xdxb4  ; this.xdrq4= xdrq4  ; this.xdsfz4=xdsfz4   ;
+		this.gxr1=  gxr1 ; this.gxxm1= gxxm1  ; this.gxxb1=  gxxb1 ; this.gxrq1= gxrq1  ; this.gxsfz1=  gxsfz1 ; this.gxrjzk1= gxrjzk1  ;
+		this.gxr2=  gxr2 ; this.gxxm2=  gxxm2 ; this.gxxb2= gxxb2  ; this.gxrq2= gxrq2  ; this.gxsfz2= gxsfz2  ; this.gxrjzk2= gxrjzk2  ;
+		this.gxr3=  gxr3 ; this.gxxm3=   gxxm3; this.gxxb3= gxxb3  ; this.gxrq3= gxrq3  ; this.gxsfz3= gxsfz3  ; this.gxrjzk3= gxrjzk3  ;
+		this.gxr4=  gxr4 ; this.gxxm4=  gxxm4 ; this.gxxb4= gxxb4  ; this.gxrq4=  gxrq4 ; this.gxsfz4=  gxsfz4 ; this.gxrjzk4=gxrjzk4;
 	}
 
 	public People(int id, String name, String cardno, String people,

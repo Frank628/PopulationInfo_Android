@@ -65,6 +65,9 @@ public class Constants {
 	public static final String IS_FUWUCHUSUO_STR="IS_FUWUCHUSUO_STR";
 	public static final String IS_DANWEIDIZHI_STR="IS_DANWEIDIZHI_STR";
 
+	public static final String[] LAODONGHETONGQIANDING={"未签","一年以下","一年及以上"};
+	public static final String[] HUYUZHENGMING={"全国婚育证明","本地管理服务卡","无"};
+
 	public static final String IS_FROM_REALPOPULATION="IS_FROM_REALPOPULATION";//是否来自实有人口
 }
                           

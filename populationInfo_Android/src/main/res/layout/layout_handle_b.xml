@@ -293,6 +293,7 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_ldhtqj"
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"
@@ -309,20 +310,17 @@
                 android:layout_centerVertical="true"
                 android:text="劳动合同签订情况"
                 />
-            <EditText
-                android:id="@+id/edt_ldhtqj"
+            <TextView
+                android:id="@+id/tv_ldhtqj"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_ldhtqjleft"
-                android:hint="请输入"
-                android:textColorHint="@color/title4"
-                android:background="@color/white"
-                android:inputType="text"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
                 />
         </RelativeLayout>
         <View
@@ -373,6 +371,7 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_jyrq"
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"
@@ -389,7 +388,8 @@
                 android:layout_centerVertical="true"
                 android:text="就业日期"
                 />
-            <EditText
+
+            <TextView
                 android:id="@+id/edt_jyrq"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -397,15 +397,9 @@
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_jyrqleft"
+                android:singleLine="true"
                 android:drawableRight="@drawable/ico_search_next"
                 android:drawablePadding="10dp"
-                android:hint="点击选择"
-                android:textColorHint="@color/title4"
-                android:focusable="false"
-                android:background="@color/white"
-                android:inputType="text"
-                android:singleLine="true"
-                android:paddingRight="10dp"
                 />
         </RelativeLayout>
         <View
@@ -470,7 +464,7 @@
                 android:textColor="@color/title1"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:text="健康证编号"
+                android:text="单位负责人"
                 />
             <EditText
                 android:id="@+id/edt_dwfzr"
@@ -496,6 +490,7 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_hyzmzl"
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"
@@ -512,20 +507,17 @@
                 android:layout_centerVertical="true"
                 android:text="婚育证明种类"
                 />
-            <EditText
-                android:id="@+id/edt_hyzmzl"
+            <TextView
+                android:id="@+id/tv_hyzmzl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_hyzmzlleft"
-                android:hint="请输入"
-                android:textColorHint="@color/title4"
-                android:background="@color/white"
-                android:inputType="text"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
                 />
         </RelativeLayout>
         <View
@@ -576,6 +568,7 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_huqfrq"
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"
@@ -592,7 +585,8 @@
                 android:layout_centerVertical="true"
                 android:text="婚育证明签发日期"
                 />
-            <EditText
+
+            <TextView
                 android:id="@+id/edt_hyqfrq"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -600,15 +594,9 @@
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_hyqfrqleft"
+                android:singleLine="true"
                 android:drawableRight="@drawable/ico_search_next"
                 android:drawablePadding="10dp"
-                android:hint="点击选择"
-                android:textColorHint="@color/title4"
-                android:focusable="false"
-                android:background="@color/white"
-                android:inputType="text"
-                android:singleLine="true"
-                android:paddingRight="10dp"
                 />
         </RelativeLayout>
         <View
@@ -619,6 +607,7 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_jhrq"
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"
@@ -635,7 +624,8 @@
                 android:layout_centerVertical="true"
                 android:text="结婚登记日期"
                 />
-            <EditText
+
+            <TextView
                 android:id="@+id/edt_jhrq"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -643,15 +633,9 @@
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_jhrqleft"
+                android:singleLine="true"
                 android:drawableRight="@drawable/ico_search_next"
                 android:drawablePadding="10dp"
-                android:hint="点击选择"
-                android:textColorHint="@color/title4"
-                android:focusable="false"
-                android:background="@color/white"
-                android:inputType="text"
-                android:singleLine="true"
-                android:paddingRight="10dp"
                 />
         </RelativeLayout>
         <View
@@ -702,17 +686,276 @@
             android:layout_marginLeft="@dimen/layout_leftright_padding"
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_dushengzinvleft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="独生子女证"
+                />
+            <RadioGroup
+                android:id="@+id/rg_dushengzinv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                >
+                <RadioButton
+                    android:id="@+id/rb_shicanbao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:button="@null"
+                    android:text="是"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="@dimen/small_middle_size"
+                    android:background="@drawable/radio_check_bg_leftclick"
+                    android:textColor="@color/radio_check_textcolor"
+                    />
+                <RadioButton
+                    android:id="@+id/rb_foucanbao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:button="@null"
+                    android:text="否"
+                    android:textSize="@dimen/small_middle_size"
+                    android:background="@drawable/radio_check_bg_leftclick"
+                    android:textColor="@color/radio_check_textcolor"
+                    android:checked="true"
+                    />
+            </RadioGroup>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_fwkhleft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="服务卡号"
+                />
+            <EditText
+                android:id="@+id/edt_fwkh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_fwkhleft"
+                android:hint="请输入服务卡号"
+                android:textColorHint="@color/title4"
+                android:background="@color/white"
+                android:inputType="text"
+                android:singleLine="true"
+                android:paddingRight="10dp"
+
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_bycsrq"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_bycsrqleft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="避孕措施落实日期"
+                />
+
+            <TextView
+                android:id="@+id/edt_bycsrq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_bycsrqleft"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_czqx1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_czqx1left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="出租开始日期"
+                />
+
+            <TextView
+                android:id="@+id/edt_czqx1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_czqx1left"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_czqx2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_czqx2left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="出租结束日期"
+                />
+
+            <TextView
+                android:id="@+id/edt_czqx2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_czqx2left"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_beizhu2left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="备注"
+                />
+            <EditText
+                android:id="@+id/edt_beizhu2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_beizhu2left"
+                android:hint="请输入备注"
+                android:textColorHint="@color/title4"
+                android:background="@color/white"
+                android:inputType="text"
+                android:singleLine="true"
+                android:paddingRight="10dp"
+
+                />
+        </RelativeLayout>
+
+
 
         <!--成员-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:background="@drawable/member_top_bg"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/orange"
-                android:text="子女"
+                android:text="成员"
                 android:textStyle="bold"
                 android:textSize="@dimen/large_size"
                 />
@@ -729,10 +972,63 @@
             android:id="@+id/ll_member"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/member_body_bg"
+            android:paddingBottom="15dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:orientation="vertical">
 
 
         </LinearLayout>
 
+
+        <!--关系人-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/member_top_bg"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/orange"
+                android:text="子女"
+                android:textStyle="bold"
+                android:textSize="@dimen/large_size"
+                />
+            <ImageButton
+                android:id="@+id/ib_addguanxi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_custom_bg"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                />
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/ll_guanxi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/member_body_bg"
+            android:paddingBottom="15dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

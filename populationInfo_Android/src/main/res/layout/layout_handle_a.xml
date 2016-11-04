@@ -558,6 +558,65 @@
             android:paddingRight="@dimen/layout_leftright_padding"
             >
             <TextView
+                android:id="@+id/tv_leftyimiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="近期是否接种疫苗"
+                />
+            <RadioGroup
+                android:id="@+id/rg_isyimiao"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                >
+                <RadioButton
+                    android:id="@+id/rb_shiyimiao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:button="@null"
+                    android:text="是"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="@dimen/small_middle_size"
+                    android:background="@drawable/radio_check_bg_leftclick"
+                    android:textColor="@color/radio_check_textcolor"
+                    />
+                <RadioButton
+                    android:id="@+id/rb_fouyimiao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:button="@null"
+                    android:text="否"
+                    android:textSize="@dimen/small_middle_size"
+                    android:background="@drawable/radio_check_bg_leftclick"
+                    android:textColor="@color/radio_check_textcolor"
+                    android:checked="true"
+                    />
+            </RadioGroup>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
                 android:id="@+id/tv_leftiscanbao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -847,6 +906,46 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_leffangzhuxingming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="房主姓名"
+                />
+            <EditText
+                android:id="@+id/edt_fzxm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_leffangzhuxingming"
+                android:hint="请输入房主姓名"
+                android:textColorHint="@color/title4"
+                android:background="@color/white"
+                android:inputType="text"
+                android:singleLine="true"
+                android:paddingRight="10dp"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
             android:id="@+id/rl_fangdongguanxi"
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
@@ -1051,6 +1150,7 @@
                 android:layout_marginLeft="@dimen/layout_leftright_padding"
                 android:layout_marginRight="@dimen/layout_leftright_padding"
                 />
+
             <RelativeLayout
                 android:id="@+id/rl_jieyucuoshi"
                 android:layout_width="match_parent"
@@ -1297,6 +1397,82 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:paddingRight="10dp"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_zjdq"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_leftzujinriqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="租金到期日期"
+                />
+            <TextView
+                android:id="@+id/tv_zjdq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_leftzujinriqi"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_lsrq"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_leftlsrq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="来苏日期"
+                />
+            <TextView
+                android:id="@+id/tv_lsrq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_leftlsrq"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
                 />
         </RelativeLayout>
         <View
