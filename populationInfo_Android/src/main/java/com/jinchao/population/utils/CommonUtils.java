@@ -123,6 +123,15 @@ public class CommonUtils {
 			Matcher m = p.matcher(str);
 			return m.matches();
 	}
+    public static boolean isEmail(String mail) {
+        if (mail.length()==11) {
+            Pattern p = Pattern.compile("/^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w{2,3}){1,3})$/");
+            Matcher m = p.matcher(mail);
+            return m.matches();
+        }else{
+            return false;
+        }
+    }
 	public static boolean isMobile(String mobiles) {
 		if (mobiles.length()==11) {
 			Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$");
@@ -132,6 +141,7 @@ public class CommonUtils {
 			return false;
 		}
 	}
+
 	public static boolean isTEL(String mobiles) {
 		if (mobiles.length()==11) {
 
@@ -142,10 +152,20 @@ public class CommonUtils {
 			return m.matches();
 		}
 	}
+    public static boolean isGuangdaTel(String mobiles) {
+        if (mobiles.length()==8||mobiles.length()==11||mobiles.length()==12) {
+            if (mobiles.equals("00000000")||mobiles.equals("00000000000")||mobiles.equals("000000000000"))
+                return false;
+            else
+                return true;
+        }else{
+            return false;
+        }
+    }
 	public static boolean isTrueHigh(String high) {
 		if (isNumeric(high)) {
 			int highInt=Integer.parseInt(high);
-			if (highInt>230||highInt<90) {
+			if (highInt>250||highInt<30) {
 				return false;
 			}else{
 				return true;
@@ -213,6 +233,14 @@ public class CommonUtils {
 				 return false;
 		 }
 	 }
+    public static boolean isCarAndMotoNo(String str){
+        String reg="^[\\u4e00-\\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\\u4e00-\\u9fa5]$|^[a-zA-Z]{2}\\d{7}$";
+        if (str.matches(reg)) {
+            return true;
+        } else{
+            return false;
+        }
+    }
 	public static String getIMEI(Context context) {
 			if(context != null){
 				TelephonyManager tm = (TelephonyManager) context.getApplicationContext().getSystemService(

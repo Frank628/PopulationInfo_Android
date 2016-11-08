@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/micro_size"
                     android:textColor="@color/title3"
-                    android:text="姓    名"
+                    android:text="姓      名"
                     />
                 <EditText 
                     android:id="@+id/edt_name"
@@ -47,6 +47,7 @@
                     android:layout_marginLeft="5dp"
                     android:hint="自动读取"
                     android:focusable="false"
+                    android:maxLength="30"
                     android:textColorHint="@color/title4"
                     />
             </LinearLayout>
@@ -60,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/micro_size"
                     android:textColor="@color/title3"
-                    android:text="别    名"
+                    android:text="别      名"
                     />
                 <EditText
                     android:id="@+id/edt_formername"
@@ -70,6 +71,7 @@
                     android:textColor="@color/title2"
                     android:layout_marginLeft="5dp"
                     android:hint="输入别名"
+                    android:maxLength="30"
                     android:textColorHint="@color/title4"
                     />
             </LinearLayout>
@@ -84,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/micro_size"
                     android:textColor="@color/title3"
-                    android:text="性    别"
+                    android:text="性      别"
                     />
                 <EditText 
                     android:id="@+id/edt_sex"
@@ -109,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/micro_size"
                     android:textColor="@color/title3"
-                    android:text="民    族"
+                    android:text="民      族"
                     />
                 <EditText 
                     android:id="@+id/edt_region"
@@ -134,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/micro_size"
                     android:textColor="@color/title3"
-                    android:text="出    生"
+                    android:text="出      生"
                     />
                 <EditText 
                     android:id="@+id/edt_birth"
@@ -145,7 +147,7 @@
                     android:layout_marginLeft="5dp"
                     android:hint="自动读取"
                     android:focusable="false"
-                    android:maxEms="8"
+                    android:maxLength="8"
                     android:singleLine="true"
                     android:inputType="number"
                     android:textColorHint="@color/title4"
@@ -182,7 +184,7 @@
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="身份证"
+            android:text="身 份 证"
             android:textSize="@dimen/micro_size"
             android:textColor="@color/title3"
             />
@@ -233,6 +235,7 @@
             android:textColor="@color/title2"
             android:layout_below="@+id/ll_address"
             android:layout_margin="12dp"
+            android:maxLength="25"
             android:visibility="gone"
             />
     <RelativeLayout
@@ -256,8 +259,8 @@
         <ImageButton
             android:id="@+id/replace"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
+            android:layout_height="wrap_content"
 
             android:background="@null"
             android:src="@drawable/replaze"

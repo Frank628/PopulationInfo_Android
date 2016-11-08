@@ -2,211 +2,211 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\commons-codec-1.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="fd32786786e2adb664d5ecc965da47629dca14ba">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\commons-codec-1.3_d1de92cb766b329434f2500d2377ccdcfc4b46c7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="6d7d803871e3203465f71a163e7af104f807b446">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.1.1_03385dbeeb41b85a7b5a2bdca594edd94a2cbf11.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\Program Files\Android\Android Studio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\gson-2.2.4_c39460929435d6671271ad80d707fe804dd77614.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\xUtils-2.6.13.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="149586602e581f306ccc6fe813a60d7b956252d9">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\xUtils-2.6.13_dd1d08f0097bbff21e83b3959f4c719b0bf1d4aa.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\okhttp-3.4.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\okhttp-3.4.1_f43d1a7728c4b5dce970da8f864485550783e9f6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="4add8aa95c9f4e9a2ad64b7e2bf08e97e28955c1">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-24.1.1_3aac8e64b57545fa3b210019a7e4b289b96d22f3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="787871951412550519b0222aba3c9df4cea49875">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.1.1_d2ed6bbdf09c59de21570537f1a67aeda9266438.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\internal_impl-24.1.1_6f2c55a1192ccdb4c4307fd32a5ab156b38fe14a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\design\24.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.android.support-design-24.1.1_3ae103a1bf547b6ef8bbcb60133ed05a757663e3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\BaiduLBS_Android.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="06ebfcd4db88d37ea920b41abf6724a7090723b7">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\BaiduLBS_Android_f0fd5f0a564ec50572de122e6ec989e857f07aa3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="f62e763609f65e47dc6c498760a4accf02776788">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.1.1_6ef6e5e3f23c2159123a7892d151dad5c41f5ec7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.1.1_e73a59f9ee5eee2db0a2341d08950490c9dc0cef.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\okio-1.9.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\okio-1.9.0_6e317cf412398dbb0f199aaeb078d0e3bada04d6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.soundcloud.android\android-crop\1.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="11a65cf2b30c192b38a881d626fa771a78a2293d">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.soundcloud.android-android-crop-1.0.1_b8eadd1debcbee872373e6b0f81d10ea39006706.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-8.1.0_307d1ab3b18be8ad18435f69a38902e633724452.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="224c93f1824fa17b96db7250c2e5e2703d45e052">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\ksoap2-android-assembly-3.0.0-jar-with-dependencies_cd494cf95e494bac7b2c449d59df1ae0959d38e6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-8.1.0_4625db21db34d2dcdd808d88c89d68595b6f41bf.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.1.1_107d50ecace7785f15c4f3c69e370e822f8edb10.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\lib_xutils\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="a9c1fa56e03a517e8ebf051592415dbcf135110b">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\PopulationInfo_Android-lib_xutils-unspecified_22f4259f2b1618f8a334e2171a4213458103cb0d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\eventBus\unspecified\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.0"
-        sha1="ab7a195ea8446c194d0a736553ccfbd9bc66963f">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\PopulationInfo_Android-eventBus-unspecified_f2ec421ccbbaa398ba37c1aa1b4ddfc059264dad.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\JunyiClondLib_pro_V2.3.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\JunyiClondLib_pro_V2.3.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.0"
         sha1="be0f7e3eeffb3e875afe3bf0268f2c8660f4e019">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\JunyiClondLib_pro_V2.3_ee07951a16b8cafa83ece2ec6affe0b82b49b22b.jar" />
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\JunyiClondLib_pro_V2.3_c6c9455dd8233f5df006760dfa467b06d66cf609\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\libs\commons-lang-2.5.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\BaiduLBS_Android.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.0"
-        sha1="50596100265634884b6e6b487d935c35fda1a897">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\commons-lang-2.5_9b480281d03ebd01553e84215c6adc65475d0474.jar" />
+        sha1="06ebfcd4db88d37ea920b41abf6724a7090723b7">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\BaiduLBS_Android_99bc444957efda1f14459b6827ac7ba4205d2640\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="E:\AndroidStudioSDK2.0\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="b6fb76b2f9cb924b7fe511cc32ed14606f85a45a">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ec87a36190e67039639cff246949daee9991cb21\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.1.0_0d00dd49e5fac1b6600c4ce2d5068e54f241cdf5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\okio-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\okio-1.9.0_ab67cd95338cdec5ea03c98b9f4a4156402f506f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\95\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\24.1.1\3af19f153122737b372622fa6c81dd11a1c6b999\support-annotations-24.1.1.jar"
+        jumboMode="true"
         optimize="true"
         revision="24.0.0"
         sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
-        <dex dex="E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\pre-dexed\debug\support-annotations-24.1.1_498e8d05d005a5d836d2466bb4438a8cc86e94bd.jar" />
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.1_c2421902d13aa71f63d3643142678580fc280a5b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.1.1_1ab28518bf22f03128cd50998667f7975011c813\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="224c93f1824fa17b96db7250c2e5e2703d45e052">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\ksoap2-android-assembly-3.0.0-jar-with-dependencies_3978bf5c60f49b3dcb85810374ef85a6cba317cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.1.1_7040088d3f6165ce87f08d5c31096d7da8131195\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\xUtils-2.6.13.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="149586602e581f306ccc6fe813a60d7b956252d9">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\xUtils-2.6.13_a681a255aa936a718f0c5fcaad1a51a55ffa2a44\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.1.1_a9340fa2efe7487e07aa7b21533c585872d4a99b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.1.1_895823d6ea87ab9c26bb2bab78888f927fc35b75\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="4add8aa95c9f4e9a2ad64b7e2bf08e97e28955c1">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.1.1_f90580562d25690b7f977acceef2f972678a26f9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\commons-lang-2.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="50596100265634884b6e6b487d935c35fda1a897">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\commons-lang-2.5_bc02a98977903d4dae7c5ccf344bdd9f6b643a9f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.1.0_184241ac80c4eea953e52e2622445e247986a651\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\commons-codec-1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="fd32786786e2adb664d5ecc965da47629dca14ba">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\commons-codec-1.3_94d66cb4ba781e715876484deba6274571c16e19\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\libs\okhttp-3.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\2\okhttp-3.4.1_9f54d5c9de5ba1d640de96b90902030cc3afffb4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\design\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.1.1_fb804a2b4d66791a8dae4fe60e2118e9b194cc9d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.soundcloud.android\android-crop\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="11a65cf2b30c192b38a881d626fa771a78a2293d">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.soundcloud.android-android-crop-1.0.1_e54ec90e9c713c24f72bd93939273acda4777a80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_cf3205b67a7719e600c4df4d8c1440adf482b61c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="b74e006eb54efc52b2b77eafe595876cc8b8a832">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_64bc77c956219fe6eaea0b99f4b7146fe3facfd4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.1.1_1b0212fb872388b567006a04a0bca9047d6069f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Android\Android Studio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.0"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="E:\workspaceas\PopulationInfo_Android\populationInfo_Android\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_8631d5e575adbf6eb46989f066d9266c74a8b80f\classes.dex" />
     </item>
 
 </items>

@@ -58,4 +58,34 @@ public class BaseHandleIDActivity extends BaseActiviy{
             ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+    public boolean BiggerorEqualCurrent(String currentTime,String compareTime){
+        try {
+            int current=Integer.parseInt(currentTime);
+            int compare=Integer.parseInt(compareTime);
+            if (compare>=current)
+                return true;
+            else
+                return false;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public String getGuanXiRenCode(String str){
+        switch (str){
+            case "配偶":
+                return "0";
+            case "子女":
+                return "1";
+            case "父母":
+                return "2";
+            case "兄弟姐妹":
+                return "3";
+            case "其他":
+                return "4";
+            default:
+                return "4";
+        }
+    }
+
 }

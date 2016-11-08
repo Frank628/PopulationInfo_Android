@@ -150,7 +150,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			canyeleixing="",chanyeleixing="",shifoucanbao="",canbaoshijian="",dianhua="",fubingyi="",
 			juzhuleibie="",juzhufangshi="",fangdongguanxi="",fuqitongxing="",shengyuzhuangkuang="",
 			zinvgeshu="",jieyucuoshi="",xianyunnianyue="",shifoulingzheng="",jiaotonggongju="",
-			chepaihao="",zujin="",qq="",macaddress="",shoujixinghao="",shoujichuanhao="",beiyong1="";
+			chepaihao="",zujin="",qq="",macaddress="",shoujixinghao="",shoujichuanhao="",beiyong1="",currentTime="";
 	private DbUtils dbUtils;
 	private RealHouseOne realHouseOne;
 	private RenyuanInHouseBean.RenyuanInhouseOne renyuanInhouseOne;
@@ -180,8 +180,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		});
 		dbUtils=DeviceUtils.getDbUtils(this);
 		c = Calendar.getInstance();
-		tv_djrq.setText(c.get(Calendar.YEAR)+""+ (c.get(Calendar.MONTH)+1)+""+c.get(Calendar.DAY_OF_MONTH));
-		rg_tab.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        currentTime=c.get(Calendar.YEAR)+""+ ((c.get(Calendar.MONTH)+1)>9?((c.get(Calendar.MONTH)+1)+""):("0"+(c.get(Calendar.MONTH)+1)))+(c.get(Calendar.DAY_OF_MONTH)>9?(c.get(Calendar.DAY_OF_MONTH)+""):("0"+c.get(Calendar.DAY_OF_MONTH)));
+		tv_djrq.setText(c.get(Calendar.YEAR)+""+ ((c.get(Calendar.MONTH)+1)>9?((c.get(Calendar.MONTH)+1)+""):("0"+(c.get(Calendar.MONTH)+1)))+(c.get(Calendar.DAY_OF_MONTH)>9?(c.get(Calendar.DAY_OF_MONTH)+""):("0"+c.get(Calendar.DAY_OF_MONTH))));
+        djrq=c.get(Calendar.YEAR)+""+ ((c.get(Calendar.MONTH)+1)>9?((c.get(Calendar.MONTH)+1)+""):("0"+(c.get(Calendar.MONTH)+1)))+(c.get(Calendar.DAY_OF_MONTH)>9?(c.get(Calendar.DAY_OF_MONTH)+""):("0"+c.get(Calendar.DAY_OF_MONTH)));
+        rg_tab.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				switch (checkedId){
@@ -470,18 +472,24 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				Toast.makeText(this, "请填写电话号码~", Toast.LENGTH_SHORT).show();
 				return;
 			}
-			if (!CommonUtils.isTEL(dianhua)) {
+			if (!CommonUtils.isGuangdaTel(dianhua)) {
 				Toast.makeText(this, "电话号码格式错误，请核实~", Toast.LENGTH_SHORT).show();
 				return;
 			}
-			if (!hunyin.equals("未婚")) {
-				if (shengyuzhuangkuang.equals("已育")) {
+            if(TextUtils.isEmpty(fzxm)){
+                Toast.makeText(this, "请输入房主姓名~", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (zinvgeshu.equals("")) {
+                Toast.makeText(this, "请填写子女个数~", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (shengyuzhuangkuang.equals("已育")) {
 					if (zinvgeshu.equals("")||zinvgeshu.equals("0")) {
 						Toast.makeText(this, "请填写子女个数~", Toast.LENGTH_SHORT).show();
 						return;
 					}
-				}
-			}
+            }
 			if (hunyin.equals("己婚")) {
 				if (sfjy.equals("1")) {
 					if (jieyucuoshi.equals("")) {
@@ -490,12 +498,22 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					}
 				}
 			}
+            if (jiaotonggongju.equals("汽车")||jiaotonggongju.equals("摩托车")){
+                if(!CommonUtils.isCarAndMotoNo(chepaihao)){
+                    Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
 			if (!TextUtils.isEmpty(chepaihao)) {
 				if (!CommonUtils.isCarNo(chepaihao)) {
 					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
 					return;
 				}	
 			}
+            if (TextUtils.isEmpty(lsrq)){
+                Toast.makeText(this, "请选择来苏日期~", Toast.LENGTH_SHORT).show();
+                return;
+            }
 			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 			String date =sDateFormat.format(new java.util.Date());
 			SharePrefUtil.saveString(HandleIDActivity.this, "realroomcode", shihao);
@@ -1164,10 +1182,36 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private OnDateSetListener onDateSetListenerlsrq =new OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+            if (!BiggerorEqualCurrent(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)),djrq)){
+                Toast.makeText(HandleIDActivity.this,"来苏日期必须小于登记日期！",Toast.LENGTH_SHORT).show();
+                return;
+            }
 			tv_lsrq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
 			lsrq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
 		}
 	};
+    @Event(value={R.id.rl_djrq})//登记日期
+    private void djrqClick(View view){
+        MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerdjrq,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
+        monPickerDialogcanbao.show();
+    }
+    private OnDateSetListener onDateSetListenerdjrq =new OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+            if (!BiggerorEqualCurrent(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)),currentTime)){
+                Toast.makeText(HandleIDActivity.this,"登记日期必须小于等于当前日期！",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!TextUtils.isEmpty(tv_lsrq.getText().toString().trim())){
+                if (!BiggerorEqualCurrent(lsrq,year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)))){
+                    Toast.makeText(HandleIDActivity.this,"来苏日期必须小于登记日期！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            tv_djrq.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
+            djrq=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
+        }
+    };
 	@Event(value={R.id.rl_zjdq})//租金到期日期
 	private void zjdqClick(View view){
 		MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(this, onDateSetListenerzjdq,c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
@@ -1212,7 +1256,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				switch (checkedId) {
 				case R.id.rb_weihun:
 					Log.d(TAG, "未婚");
-					ll_hunhou.setVisibility(View.GONE);
+//					ll_hunhou.setVisibility(View.GONE);
 					edt_zinvgeshu.setText("0");
 					zinvgeshu="0";
 					hunyin="未婚";
@@ -1353,5 +1397,20 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		}
 	};
 	private PopHouse popHouse;
+
+    private void saveB(){
+        MSN=edt_msn.getText().toString().trim();
+        Email=edt_email.getText().toString().trim();
+        fzdh=edt_fzdh.getText().toString().trim();
+        fzsfz=edt_fzsfz.getText().toString().trim();
+        dwlxdh=edt_dwlxdh.getText().toString().trim();
+        zymc=edt_zwmc.getText().toString().trim();
+        ldhtqj=tv_ldhtqj.getText().toString().trim();
+        sbbh=edt_sbbh.getText().toString().trim();
+        if (TextUtils.isEmpty(MSN)){
+
+        }
+    }
+
 
 }
