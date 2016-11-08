@@ -78,6 +78,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	@ViewInject(R.id.compare)private ImageButton compare;
 	@ViewInject(R.id.replace)private ImageButton replace;
 	@ViewInject(R.id.iv_pic)private ImageView iv_pic;
+	@ViewInject(R.id.edt_formername)private EditText edt_formername;
 	private Bitmap bmp;
 	private DbUtils dbUtils;
 	private NationPop nationPop;
@@ -286,6 +287,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
         edt_address.setHint("自动获取（若信息不符请点击选择）");
         edt_xaddress.setHint("请输入户籍详址");
         edt_idcard.setText("");
+		edt_formername.setText("");
         edt_name.setText("");
         edt_region.setText("");
         edt_sex.setText("");
@@ -297,16 +299,16 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
         edt_idcard.setFocusable(true);
         edt_name.setFocusable(true);
 //		edt_region.setFocusable(true);
-        edt_sex.setFocusable(true);
-        edt_birth.setFocusable(true);
-        edt_address.setFocusable(true);
+//        edt_sex.setFocusable(true);
+//        edt_birth.setFocusable(true);
+        edt_address.setFocusable(false);
         edt_xaddress.setFocusable(true);
         edt_idcard.setFocusableInTouchMode(true);
         edt_name.setFocusableInTouchMode(true);
 //		edt_region.setFocusableInTouchMode(true);
-        edt_sex.setFocusableInTouchMode(true);
-        edt_birth.setFocusableInTouchMode(true);
-		edt_address.setFocusableInTouchMode(true);
+//        edt_sex.setFocusableInTouchMode(true);
+//        edt_birth.setFocusableInTouchMode(true);
+		edt_address.setFocusableInTouchMode(false);
         edt_xaddress.setVisibility(View.VISIBLE);
 	}
 	private void resetSecondGenerationIDCardText(){
@@ -317,6 +319,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
         edt_birth.setHint("自动读取");
         edt_address.setHint("自动读取");
         edt_idcard.setText("");
+		edt_formername.setText("");
         edt_name.setText("");
         edt_region.setText("");
         edt_sex.setText("");
@@ -524,78 +527,21 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
                         }).show();
 	}
 
-//	@Event(value={R.id.ib_readcard})//点击“读卡”，读取身份证；
-//	private void onReadCardClick(View view) {
-//		isFirstGenerationIDCard=false;
-//		showIDCardInfo(true,null);
-//		String net = SharePrefUtil.getString(this,Constants.DEVICE_WAY,"自动");
-//		switch (net) {
-//
-//			case "自动":
-//				int a = HasOTGDeviceConnected();
-//				if (a == 0) {
-//					showProcessDialog("正在读卡中，请稍后");
-//					idReader.connect(ConnectType.OTG);
-//				} else if (a == 1) {
-//					showProcessDialog("正在读卡中，请稍后");
-//					idReader.connect(ConnectType.OTGAccessory);
-//				} else {
-//					String mac=SharePrefUtil.getString(RegisterActivity.this,"mac",null);
-//					if (mac == null) {
-//						deviceListDialogFragment.show(getSupportFragmentManager(), "");
-//					} else {
-//						showProcessDialog("正在读卡中，请稍后");
-//						int delayMillis = SharePrefUtil.getInt(RegisterActivity.this, Constants.BluetoothSetting_long_time,15);
-//						idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-//					}
-//				}
-//				break;
-//			case "蓝牙":
-//				String mac=SharePrefUtil.getString(RegisterActivity.this,"mac",null);
-//				if (mac == null) {
-//					deviceListDialogFragment.show(getSupportFragmentManager(), "");
-//				} else {
-//					showProcessDialog("正在读卡中，请稍后");
-//					int delayMillis = SharePrefUtil.getInt(RegisterActivity.this, Constants.BluetoothSetting_long_time,15);
-//					idReader.connect(ConnectType.BLUETOOTH, mac, delayMillis);
-//				}
-//				break;
-//			case "OTG":
-//				int a2 = HasOTGDeviceConnected();
-//				if (a2 == 0) {
-//					showProcessDialog("正在读卡中，请稍后");
-//					idReader.connect(ConnectType.OTG);
-//				} else if (a2 == 1) {
-//					showProcessDialog("正在读卡中，请稍后");
-//					idReader.connect(ConnectType.OTGAccessory);
-//				} else {
-//					AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-//					builder.setMessage("找不到OTG设备");
-//					builder.setPositiveButton("确定", null);
-//					builder.show();
-//				}
-//				break;
-//
-//			case "NFC":
-//				AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this, AlertDialog.THEME_HOLO_LIGHT);
-//				builder.setMessage("当前是NFC模式，请将身份证贴在手机背面");
-//				builder.setPositiveButton("确定", null);
-//				builder.show();
-//				break;
-//		}
-//	}
+
 	@Event(value={R.id.ib_firstgencard})//点击  一代证；
 	private void onReadFirstGenerationCardClick(View view) {
 		isFirstGenerationIDCard=true;
 		resetFirstGenerationIDCardText();
 	}
-//	@Event(value={R.id.edt_address})暂时去除选择户籍地址
-//	private void onAddressClick(View view){
-//		if (getCurrentFocus()!=null) {
-//			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-//		}
-//		 nationPop.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
-//	}
+	@Event(value={R.id.edt_address})//暂时去除选择户籍地址
+	private void onAddressClick(View view){
+		if (isFirstGenerationIDCard) {
+			if (getCurrentFocus() != null) {
+				((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+			}
+			nationPop.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+		}
+	}
 	@Event(value={R.id.edt_region})
 	private void mingzuClick(View view){
 		if (getCurrentFocus()!=null) {
@@ -704,21 +650,21 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		}
 		address=address+xaddress;
 		if (pic==null) {
-			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) ;
-			Dialog.showSelectDialog(RegisterActivity.this, "未拍照，是否放弃拍照?", new DialogClickListener() {
+			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim()) ;
+			Dialog.showSelectDialog(RegisterActivity.this, "未拍照，请拍照?", new DialogClickListener() {
 				@Override
 				public void confirm() {
-					if (isreal) {
-						Intent intent =new Intent(RegisterActivity.this, SingleRealPopulationActivity.class);
-						intent.putExtra("people", oPeople );
-						intent.putExtra("realhouseone", realHouseOne);
-						startActivity(intent);
-						RegisterActivity.this.finish();
-					}else{
-						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
-						intent.putExtra("people",oPeople);
-						startActivity(intent);
-					}
+//					if (isreal) {
+//						Intent intent =new Intent(RegisterActivity.this, SingleRealPopulationActivity.class);
+//						intent.putExtra("people", oPeople );
+//						intent.putExtra("realhouseone", realHouseOne);
+//						startActivity(intent);
+//						RegisterActivity.this.finish();
+//					}else{
+//						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
+//						intent.putExtra("people",oPeople);
+//						startActivity(intent);
+//					}
 				}
 				
 				@Override
@@ -730,13 +676,13 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		}
 		if (isreal) {
 			Intent intent =new Intent(this, SingleRealPopulationActivity.class);
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
+			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)));
 			intent.putExtra("realhouseone", realHouseOne);
 			startActivity(intent);
 			RegisterActivity.this.finish();
 		}else{
 			Intent intent =new Intent(this, ZanZhuActivity.class);//isReplace?"1":(isFirstGenerationIDCard?"1":"2")
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)) );
+			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim()));
 			startActivity(intent);
 		}
 	}

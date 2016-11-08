@@ -23,7 +23,10 @@ public class People implements Serializable{
 	
 	@Column(column="name")
 	public String name="";
-	
+
+	@Column(column="formername")
+	public String formername="";
+
 	@Column(column="collect_datetime")
 	public String collect_datetime="";
 	
@@ -578,7 +581,6 @@ public class People implements Serializable{
 		this.user_id = user_id;
 		this.collect_datetime = collect_datetime;
 	}
-
 	public People(String name, String cardno, String people, String sex,
 				  String birthday, String address, String picture, String hjdxz,
 				  String card_type, String user_id, String sq_name) {
@@ -595,7 +597,24 @@ public class People implements Serializable{
 		this.user_id = user_id;
 		this.sq_name = sq_name;
 	}
-;
+	public People(String name, String cardno, String people, String sex,
+				  String birthday, String address, String picture, String hjdxz,
+				  String card_type, String user_id, String sq_name,String formername) {
+		super();
+		this.name = name;
+		this.cardno = cardno;
+		this.people = people;
+		this.sex = sex;
+		this.birthday = birthday;
+		this.address = address;
+		this.picture = picture;
+		this.hjdxz = hjdxz;
+		this.card_type = card_type;
+		this.user_id = user_id;
+		this.sq_name = sq_name;
+		this.formername=formername;
+	}
+
 	//登记新
 	public People(String name, String cardno, String people, String sex,
 				  String birthday, String address, String picture, String hjdxz,
@@ -2041,5 +2060,13 @@ public class People implements Serializable{
 
 	public void setGxrjzk4(String gxrjzk4) {
 		this.gxrjzk4 = gxrjzk4;
+	}
+
+	public String getFormername() {
+		return formername;
+	}
+
+	public void setFormername(String formername) {
+		this.formername = formername;
 	}
 }

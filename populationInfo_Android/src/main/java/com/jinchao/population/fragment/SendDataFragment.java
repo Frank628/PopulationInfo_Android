@@ -381,6 +381,10 @@ public class SendDataFragment  extends BaseFragment{
                 serializer.text(people.name);
                 serializer.endTag(null, "name");
 
+                serializer.startTag(null, "formername");
+                serializer.text(people.formername);
+                serializer.endTag(null, "formername");
+
                 serializer.startTag(null, "sex");
                 serializer.text(people.sex);
                 serializer.endTag(null, "sex");

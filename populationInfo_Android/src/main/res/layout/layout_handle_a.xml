@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -344,6 +346,46 @@
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 android:inputType="number"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_leftdizhibuchong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="地址补充"
+                />
+            <EditText
+                android:id="@+id/edt_addition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_leftdizhibuchong"
+                android:hint="请输入补充内容"
+                android:textColorHint="@color/title4"
+                android:background="@color/white"
+                android:inputType="text"
+                android:singleLine="true"
+                android:paddingRight="10dp"
                 />
         </RelativeLayout>
         <View
@@ -708,6 +750,45 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_cbqk"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_leftcbqk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="参保情况"
+                />
+            <TextView
+                android:id="@+id/tv_cbqk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_leftcbqk"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
+                android:text="单身居住"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"
@@ -922,6 +1003,17 @@
                 android:layout_centerVertical="true"
                 android:text="房主姓名"
                 />
+            <TextView
+                android:id="@+id/tv_lefmiddlefangzhuxingm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/micro_size"
+                android:textColor="@color/red"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_leffangzhuxingming"
+                android:text="（复用）"
+                />
             <EditText
                 android:id="@+id/edt_fzxm"
                 android:layout_width="match_parent"
@@ -929,7 +1021,7 @@
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
-                android:layout_toRightOf="@+id/tv_leffangzhuxingming"
+                android:layout_toRightOf="@+id/tv_lefmiddlefangzhuxingm"
                 android:hint="请输入房主姓名"
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
@@ -1150,7 +1242,65 @@
                 android:layout_marginLeft="@dimen/layout_leftright_padding"
                 android:layout_marginRight="@dimen/layout_leftright_padding"
                 />
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/relative_row_height"
+                android:background="@drawable/white_click_bg2"
+                android:paddingLeft="@dimen/layout_leftright_padding"
+                android:paddingRight="@dimen/layout_leftright_padding"
+                >
+                <TextView
+                    android:id="@+id/tv_shifoujieyu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/small_size"
+                    android:textColor="@color/title1"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:text="是否采取节育措施"
+                    />
+                <RadioGroup
+                    android:id="@+id/rg_jieyu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    >
+                    <RadioButton
+                        android:id="@+id/rb_shijieyu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:button="@null"
+                        android:text="是"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:textSize="@dimen/small_middle_size"
+                        android:background="@drawable/radio_check_bg_leftclick"
+                        android:textColor="@color/radio_check_textcolor"
+                        />
+                    <RadioButton
+                        android:id="@+id/rb_foujieyu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:button="@null"
+                        android:text="否"
+                        android:textSize="@dimen/small_middle_size"
+                        android:background="@drawable/radio_check_bg_leftclick"
+                        android:textColor="@color/radio_check_textcolor"
+                        android:checked="true"
+                        />
+                </RadioGroup>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CACACA"
+                android:layout_marginLeft="@dimen/layout_leftright_padding"
+                android:layout_marginRight="@dimen/layout_leftright_padding"
+                />
             <RelativeLayout
                 android:id="@+id/rl_jieyucuoshi"
                 android:layout_width="match_parent"
@@ -1470,6 +1620,44 @@
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_leftlsrq"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:id="@+id/rl_djrq"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_leftdjrq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_size"
+                android:textColor="@color/title1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:text="登记日期"
+                />
+            <TextView
+                android:id="@+id/tv_djrq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_leftdjrq"
                 android:singleLine="true"
                 android:drawableRight="@drawable/ico_search_next"
                 android:drawablePadding="10dp"

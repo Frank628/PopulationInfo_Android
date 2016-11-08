@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class BaseHandleIDActivity extends BaseActiviy{
     public EditText zinvName1,zinvName2,zinvName3,zinvName4,zinvSfz1,zinvSfz2,zinvSfz3,zinvSfz4;
     public RadioButton zinvSex1,zinvSex2,zinvSex3,zinvSex4,zinvJiezhong1,zinvJiezhong2,zinvJiezhong3,zinvJiezhong4;
     public TextView zinvBirth1,zinvBirth2,zinvBirth3,zinvBirth4;
-    public String MSN="",Email="",czwxz="",lsrq="",djrq="",fzxm="",fzdh="",fzsfz="",dwlxdh="",zymc="",ldhtqj="",sbbh="",
+    public String cbqk="",MSN="",Email="",czwxz="",lsrq="",djrq="",fzxm="",fzdh="",fzsfz="",dwlxdh="",zymc="",ldhtqj="",sbbh="",
             jyrq="",jkzbh="",dwfzr="",sfjy="",hyzmzl="",hyzmbh="",jqjzym="",hyqfrq="",jhrq="",yfjzzh="",fwkh="",bycsrq="",czqx1="",czqx2="",
             zjdq="",beizhu2 ="",xdr1="",xdxm1="",xdxb1="",xdrq1="",xdsfz1="",
             xdr2="",xdxm2="",xdxb2="",xdrq2="",xdsfz2="",
@@ -50,5 +51,11 @@ public class BaseHandleIDActivity extends BaseActiviy{
         LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //将view对象挂载到那个父元素上，这里没有就为null
         return inflater.inflate(R.layout.item_relation, null);
+    }
+
+    public void hideSoftKeyBord(){
+        if (getCurrentFocus()!=null) {
+            ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

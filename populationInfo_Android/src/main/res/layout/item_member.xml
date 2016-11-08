@@ -14,42 +14,8 @@
         android:layout_marginRight="12dp"
         android:background="@drawable/member_bg"
         android:layout_marginTop="16dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/relative_row_height"
-            android:background="@color/white"
-            >
-            <TextView
-                android:id="@+id/tv_guanxileft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
-                android:text="成员关系"
-                />
-            <EditText
-                android:id="@+id/edt_guanxi"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right"
-                android:textSize="@dimen/small_middle_size"
-                android:textColor="@color/title2"
-                android:layout_toRightOf="@+id/tv_guanxileft"
-                android:hint="请输入成员关系"
-                android:textColorHint="@color/title4"
-                android:inputType="text"
-                android:singleLine="true"
-                android:paddingRight="10dp"
-                android:background="@color/white"
-                />
-        </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CACACA"
-            />
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
@@ -63,7 +29,7 @@
                 android:textColor="@color/title1"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:text="成员姓名"
+                android:text="姓名"
                 />
             <EditText
                 android:id="@+id/edt_name"
@@ -73,7 +39,7 @@
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_nameleft"
-                android:hint="请输入成员姓名"
+                android:hint="请输入姓名"
                 android:textColorHint="@color/title4"
                 android:inputType="text"
                 android:singleLine="true"
@@ -99,7 +65,7 @@
                 android:textColor="@color/title1"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:text="成员性别"
+                android:text="性别"
                 />
             <RadioGroup
                 android:id="@+id/rg_sex"
@@ -156,7 +122,7 @@
                 android:textColor="@color/title1"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:text="成员生日"
+                android:text="生日"
                 />
 
             <TextView
@@ -190,7 +156,7 @@
                 android:textColor="@color/title1"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:text="成员身份证"
+                android:text="身份证"
                 />
             <EditText
                 android:id="@+id/edt_idcard"
@@ -200,7 +166,7 @@
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_idcardleft"
-                android:hint="请输入成员身份证"
+                android:hint="请输入身份证"
                 android:textColorHint="@color/title4"
                 android:inputType="text"
                 android:singleLine="true"

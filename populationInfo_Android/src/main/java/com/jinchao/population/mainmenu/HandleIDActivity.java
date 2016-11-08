@@ -46,6 +46,7 @@ import com.jinchao.population.view.NationPop.OnEnsureClickListener;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.view.PopBianzheng;
+import com.jinchao.population.view.PopCanBaoQingKuang;
 import com.jinchao.population.view.PopHouse;
 import com.jinchao.population.view.PopHouse.OnHouseEnsureClickListener;
 import com.jinchao.population.view.StringWheel;
@@ -77,12 +78,15 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.rg_iscanbao)private RadioGroup rg_iscanbao;
 	@ViewInject(R.id.rg_isfubingyi)private RadioGroup rg_isfubingyi;
 	@ViewInject(R.id.rg_isfuqitongxing)private RadioGroup rg_isfuqitongxing;
+	@ViewInject(R.id.rg_shenyuqingkuang)private RadioGroup rg_shenyuqingkuang;
+	@ViewInject(R.id.rg_jieyu)private RadioGroup rg_jieyu;
 	@ViewInject(R.id.rg_isjunzhu)private RadioGroup rg_isjunzhu;
 	@ViewInject(R.id.rg_isbanzheng)private RadioGroup rg_isbanzheng;
 	@ViewInject(R.id.rb_banzhengshi)private RadioButton rb_banzhengshi;
 	@ViewInject(R.id.rb_banzhengfou)private RadioButton rb_banzhengfou;
 	@ViewInject(R.id.rl_canbaoshijian)private RelativeLayout rl_canbaoshijian;
 	@ViewInject(R.id.rl_shifoubanzheng)private RelativeLayout rl_shifoubanzheng;
+
 	@ViewInject(R.id.tv_canbaoshijian)private TextView tv_canbaoshijian;
 	@ViewInject(R.id.tv_xianyunnianyue)private TextView tv_xianyunnianyue;
 	@ViewInject(R.id.tv_degree)private TextView tv_degree;
@@ -106,6 +110,8 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 //新增A类
 	@ViewInject(R.id.edt_fzxm)private EditText edt_fzxm;
 	@ViewInject(R.id.rb_shiyimiao)private RadioButton rb_shiyimiao;
+	@ViewInject(R.id.tv_djrq)private TextView tv_djrq;
+	@ViewInject(R.id.tv_cbqk)private TextView tv_cbqk;
 //B类项
 	@ViewInject(R.id.edt_jyrq)private TextView edt_jyrq;
 	@ViewInject(R.id.edt_hyqfrq)private TextView edt_hyqfrq;
@@ -174,6 +180,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		});
 		dbUtils=DeviceUtils.getDbUtils(this);
 		c = Calendar.getInstance();
+		tv_djrq.setText(c.get(Calendar.YEAR)+""+ (c.get(Calendar.MONTH)+1)+""+c.get(Calendar.DAY_OF_MONTH));
 		rg_tab.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -195,6 +202,8 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		rg_isfubingyi.setOnCheckedChangeListener(onCheckedChangeListener);
 		rg_isfuqitongxing.setOnCheckedChangeListener(onCheckedChangeListener);
 		rg_isjunzhu.setOnCheckedChangeListener(onCheckedChangeListener);
+		rg_shenyuqingkuang.setOnCheckedChangeListener(onCheckedChangeListener);
+		rg_jieyu.setOnCheckedChangeListener(onCheckedChangeListener);
 		if (isHandleID){
 			rl_shifoubanzheng.setVisibility(View.VISIBLE);
 		}else{
@@ -229,7 +238,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			}
 		});
 		if (isHandleID) {
-			hunyin="未婚";zhengzhi="群众";shifoucanbao="否";fubingyi="否";juzhuleibie="否";shifoulingzheng="是";fuqitongxing="否";shengyuzhuangkuang="未育";
+			hunyin="未婚";sfjy="2";cbqk="没有参保";zhengzhi="群众";shifoucanbao="否";fubingyi="否";juzhuleibie="否";shifoulingzheng="是";fuqitongxing="否";shengyuzhuangkuang="未育";
 		}else{
 //			tv_degree.setText("");tv_chusuoleixing.setText("");tv_zanzhushiyou.setText("");
 		}
@@ -358,28 +367,28 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		fwkh=edt_fwkh.getText().toString().trim();
 		beizhu2=edt_beizhu2.getText().toString().trim();
 		if(memberView1!=null){
-			xdr1=memberGuanxi1.getText().toString().trim();
+			xdr1="子女";
 			xdxm1=memberName1.getText().toString().trim();
 			xdxb1=memberSex1.isChecked()?"1":"2";
 			xdrq1=memberBirth1.getText().toString().trim();
 			xdsfz1=memberSfz1.getText().toString().trim();
 		}
 		if(memberView2!=null){
-			xdr2=memberGuanxi2.getText().toString().trim();
+			xdr2="子女";
 			xdxm2=memberName2.getText().toString().trim();
 			xdxb2=memberSex2.isChecked()?"1":"2";
 			xdrq2=memberBirth2.getText().toString().trim();
 			xdsfz2=memberSfz2.getText().toString().trim();
 		}
 		if(memberView3!=null){
-			xdr3=memberGuanxi3.getText().toString().trim();
+			xdr3="子女";
 			xdxm3=memberName3.getText().toString().trim();
 			xdxb3=memberSex3.isChecked()?"1":"2";
 			xdrq3=memberBirth3.getText().toString().trim();
 			xdsfz3=memberSfz3.getText().toString().trim();
 		}
 		if(memberView4!=null){
-			xdr4=memberGuanxi4.getText().toString().trim();
+			xdr4="子女";
 			xdxm4=memberName4.getText().toString().trim();
 			xdxb4=memberSex4.isChecked()?"1":"2";
 			xdrq4=memberBirth4.getText().toString().trim();
@@ -473,10 +482,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					}
 				}
 			}
-			if (hunyin.equals("已婚")) {
-				if (jieyucuoshi.equals("")) {
-					Toast.makeText(this, "请填选择节育措施~", Toast.LENGTH_SHORT).show();
-					return;
+			if (hunyin.equals("己婚")) {
+				if (sfjy.equals("1")) {
+					if (jieyucuoshi.equals("")) {
+						Toast.makeText(this, "请填选择节育措施~", Toast.LENGTH_SHORT).show();
+						return;
+					}
 				}
 			}
 			if (!TextUtils.isEmpty(chepaihao)) {
@@ -667,7 +678,20 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
 	}
-	
+	@Event(value={R.id.rl_cbqk})//参保情况
+	private void cbqkClick(View view){
+		if (shifoucanbao.equals("否")){
+			return;
+		}
+		PopCanBaoQingKuang popCanBaoQingKuang=new PopCanBaoQingKuang(this, Constants.CANBAOZHONGLEI, new PopCanBaoQingKuang.OnbEnsureClickListener() {
+			@Override
+			public void onEnsureClick(String juzhu) {
+				tv_cbqk.setText(juzhu);
+				cbqk=juzhu;
+			}
+		});
+		popCanBaoQingKuang.showAtLocation(findViewById(R.id.root), Gravity.CENTER, 0, 0);
+	}
 	@Event(value={R.id.rl_chusuoleixing})//处所类型
 	private void chushuoleixingClick(View view){
 		hideSoftKeyBord();
@@ -788,7 +812,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		switch (ll_member.getChildCount()){
 			case 0://成员1
 				memberView1=member;
-				memberGuanxi1=(EditText) member.findViewById(R.id.edt_guanxi);
+//				memberGuanxi1=(EditText) member.findViewById(R.id.edt_guanxi);
 				memberName1=(EditText) member.findViewById(R.id.edt_name);
 				memberBirth1=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex1=(RadioButton)member.findViewById(R.id.rb_male);
@@ -819,7 +843,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 1://成员2
 				memberView2=member;
-				memberGuanxi2=(EditText) member.findViewById(R.id.edt_guanxi);
+//				memberGuanxi2=(EditText) member.findViewById(R.id.edt_guanxi);
 				memberName2=(EditText) member.findViewById(R.id.edt_name);
 				memberBirth2=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex2=(RadioButton)member.findViewById(R.id.rb_male);
@@ -850,7 +874,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 2://成员3
 				memberView3=member;
-				memberGuanxi3=(EditText) member.findViewById(R.id.edt_guanxi);
+//				memberGuanxi3=(EditText) member.findViewById(R.id.edt_guanxi);
 				memberName3=(EditText) member.findViewById(R.id.edt_name);
 				memberBirth3=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex3=(RadioButton)member.findViewById(R.id.rb_male);
@@ -881,8 +905,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 3://成员4
 				memberView4=member;
-				memberView4=member;
-				memberGuanxi4=(EditText) member.findViewById(R.id.edt_guanxi);
+//				memberGuanxi4=(EditText) member.findViewById(R.id.edt_guanxi);
 				memberName4=(EditText) member.findViewById(R.id.edt_name);
 				memberBirth4=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex4=(RadioButton)member.findViewById(R.id.rb_male);
@@ -1234,12 +1257,16 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					rl_canbaoshijian.setVisibility(View.GONE);
 					tv_canbaoshijian.setText("");
 					shifoucanbao="否";
+					tv_cbqk.setText("没有参保");
+					cbqk="没有参保";
 					break;
 				case R.id.rb_shicanbao:
 //					rl_canbaoshijian.setFocusable(true);
 //					rl_canbaoshijian.setFocusableInTouchMode(true);
 					rl_canbaoshijian.setVisibility(View.VISIBLE);
 					shifoucanbao="是";
+					tv_cbqk.setText("");
+					cbqk="";
 					break;
 				default:
 					break;
@@ -1307,15 +1334,24 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					break;
 				}
 				break;
+				case R.id.rg_jieyu://是否节育
+					switch (checkedId) {
+						case R.id.rb_shijieyu:
+							sfjy="1";
+							break;
+						case R.id.rb_foujieyu:
+							sfjy="2";
+
+							break;
+						default:
+							break;
+					}
+					break;
 			default:
 				break;
 			}
 		}
 	};
 	private PopHouse popHouse;
-	private void hideSoftKeyBord(){
-		if (getCurrentFocus()!=null) {
-			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-		}
-	}
+
 }

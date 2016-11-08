@@ -9,6 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -91,46 +93,7 @@
             android:layout_marginLeft="@dimen/layout_leftright_padding"
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/relative_row_height"
-            android:background="@drawable/white_click_bg2"
-            android:paddingLeft="@dimen/layout_leftright_padding"
-            android:paddingRight="@dimen/layout_leftright_padding"
-            >
-            <TextView
-                android:id="@+id/tv_leftdizhibuchong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
-                android:text="地址补充"
-                />
-            <EditText
-                android:id="@+id/edt_addition"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right"
-                android:textSize="@dimen/small_middle_size"
-                android:textColor="@color/title2"
-                android:layout_toRightOf="@+id/tv_leftdizhibuchong"
-                android:hint="请输入补充内容"
-                android:textColorHint="@color/title4"
-                android:background="@color/white"
-                android:inputType="text"
-                android:singleLine="true"
-                android:paddingRight="10dp"
-                />
-        </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CACACA"
-            android:layout_marginLeft="@dimen/layout_leftright_padding"
-            android:layout_marginRight="@dimen/layout_leftright_padding"
-            />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
@@ -148,6 +111,17 @@
                 android:layout_centerVertical="true"
                 android:text="房主电话"
                 />
+            <TextView
+                android:id="@+id/tv_lefmiddledh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/micro_size"
+                android:textColor="@color/red"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_fzdhleft"
+                android:text="（复用）"
+                />
             <EditText
                 android:id="@+id/edt_fzdh"
                 android:layout_width="match_parent"
@@ -155,7 +129,7 @@
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
-                android:layout_toRightOf="@+id/tv_fzdhleft"
+                android:layout_toRightOf="@+id/tv_lefmiddledh"
                 android:hint="请输入房主电话"
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
@@ -189,6 +163,17 @@
                 android:layout_centerVertical="true"
                 android:text="房主身份证"
                 />
+            <TextView
+                android:id="@+id/tv_lefmiddlesfz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/micro_size"
+                android:textColor="@color/red"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_fzsfzleft"
+                android:text="（复用）"
+                />
             <EditText
                 android:id="@+id/edt_fzsfz"
                 android:layout_width="match_parent"
@@ -196,7 +181,7 @@
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
-                android:layout_toRightOf="@+id/tv_fzsfzleft"
+                android:layout_toRightOf="@+id/tv_lefmiddlesfz"
                 android:hint="请输入房主身份证"
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
@@ -955,7 +940,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/orange"
-                android:text="成员"
+                android:text="子女"
                 android:textStyle="bold"
                 android:textSize="@dimen/large_size"
                 />
@@ -1001,7 +986,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/orange"
-                android:text="子女"
+                android:text="成员"
                 android:textStyle="bold"
                 android:textSize="@dimen/large_size"
                 />
