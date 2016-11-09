@@ -21,7 +21,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -33,10 +32,7 @@ import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
-import com.jinchao.population.dbentity.HouseAddress;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.RealHouseBean.RealHouseOne;
 import com.jinchao.population.utils.CommonUtils;
@@ -146,6 +142,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private People people,people2;
 	private Calendar c;
 	private boolean isHandleID;
+	private PopHouse popHouse;
 	private String height="",wenhua="",hunyin="",zhengzhi="",fangwubiaohao="",
 			zanzhudizhi="",shihao="",chusuoleixing="",zanzhushiyou="",fuwuchusuo="",danweidizhi="",
 			canyeleixing="",chanyeleixing="",shifoucanbao="",canbaoshijian="",dianhua="",fubingyi="",
@@ -480,10 +477,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				Toast.makeText(this, "电话号码格式错误，请核实~", Toast.LENGTH_SHORT).show();
 				return;
 			}
-            if(TextUtils.isEmpty(fzxm)){
-                Toast.makeText(this, "请输入房主姓名~", Toast.LENGTH_SHORT).show();
-                return;
-            }
+
             if (zinvgeshu.equals("")) {
                 Toast.makeText(this, "请填写子女个数~", Toast.LENGTH_SHORT).show();
                 return;
@@ -514,10 +508,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					return;
 				}	
 			}
-            if (TextUtils.isEmpty(lsrq)){
-                Toast.makeText(this, "请选择来苏日期~", Toast.LENGTH_SHORT).show();
-                return;
-            }
+
 			MSN=edt_msn.getText().toString().trim();
 			Email=edt_email.getText().toString().trim();
 			fzdh=edt_fzdh.getText().toString().trim();
@@ -1711,23 +1702,8 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			}
 		}
 	};
-	private PopHouse popHouse;
 
-	private void validateIdCard(EditText v,String idcard){
-		if (CommonIdcard.validateCard(idcard)) {
-			if (idcard.length() == 15) {
-				idcard = CommonIdcard.conver15CardTo18(idcard);
-				v.setText(idcard);
-				Toast.makeText(HandleIDActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
-			} else if (idcard.length() == 17) {
-				idcard = CommonIdcard.conver17CardTo18(idcard);
-				v.setText(idcard);
-				Toast.makeText(HandleIDActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
-			}
-		} else {
-			Toast.makeText(HandleIDActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
-			return;
-		}
-	}
+
+
 
 }

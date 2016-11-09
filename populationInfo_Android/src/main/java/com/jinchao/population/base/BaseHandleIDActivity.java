@@ -8,8 +8,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jinchao.population.R;
+import com.jinchao.population.mainmenu.HandleIDActivity;
+import com.jinchao.population.utils.CommonIdcard;
 
 /**
  * Created by OfferJiShu01 on 2016/11/3.
@@ -41,15 +44,11 @@ public class BaseHandleIDActivity extends BaseActiviy{
     }
 
     public View getMemberView() {
-        //将xml布局文件生成view对象通过LayoutInflater
         LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //将view对象挂载到那个父元素上，这里没有就为null
         return inflater.inflate(R.layout.item_member, null);
     }
     public View getGuanxirenView() {
-        //将xml布局文件生成view对象通过LayoutInflater
         LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //将view对象挂载到那个父元素上，这里没有就为null
         return inflater.inflate(R.layout.item_relation, null);
     }
 
@@ -100,5 +99,20 @@ public class BaseHandleIDActivity extends BaseActiviy{
                 return "4";
         }
     }
-
+    public void validateIdCard(EditText v,String idcard){
+        if (CommonIdcard.validateCard(idcard)) {
+            if (idcard.length() == 15) {
+                idcard = CommonIdcard.conver15CardTo18(idcard);
+                v.setText(idcard);
+                Toast.makeText(BaseHandleIDActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
+            } else if (idcard.length() == 17) {
+                idcard = CommonIdcard.conver17CardTo18(idcard);
+                v.setText(idcard);
+                Toast.makeText(BaseHandleIDActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(BaseHandleIDActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
 }
