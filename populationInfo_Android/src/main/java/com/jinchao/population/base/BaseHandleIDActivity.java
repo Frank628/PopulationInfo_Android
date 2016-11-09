@@ -18,9 +18,9 @@ import com.jinchao.population.R;
 public class BaseHandleIDActivity extends BaseActiviy{
 
     public View memberView1,memberView2,memberView3,memberView4,relationView1,relationView2,relationView3,relationView4;
-    public EditText memberName1,memberName2,memberName3,memberName4,memberGuanxi1,memberGuanxi2,memberGuanxi3,memberGuanxi4,memberSfz1,memberSfz2,memberSfz3,memberSfz4;
+    public EditText memberName1,memberName2,memberName3,memberName4,memberSfz1,memberSfz2,memberSfz3,memberSfz4;
     public RadioButton memberSex1,memberSex2,memberSex3,memberSex4;
-    public TextView memberBirth1,memberBirth2,memberBirth3,memberBirth4;
+    public TextView memberBirth1,memberBirth2,memberBirth3,memberBirth4,memberGuanxi1,memberGuanxi2,memberGuanxi3,memberGuanxi4;
 
     public EditText zinvName1,zinvName2,zinvName3,zinvName4,zinvSfz1,zinvSfz2,zinvSfz3,zinvSfz4;
     public RadioButton zinvSex1,zinvSex2,zinvSex3,zinvSex4,zinvJiezhong1,zinvJiezhong2,zinvJiezhong3,zinvJiezhong4;
@@ -63,6 +63,19 @@ public class BaseHandleIDActivity extends BaseActiviy{
             int current=Integer.parseInt(currentTime);
             int compare=Integer.parseInt(compareTime);
             if (compare>=current)
+                return true;
+            else
+                return false;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean BiggerCurrent(String currentTime,String compareTime){
+        try {
+            int current=Integer.parseInt(currentTime);
+            int compare=Integer.parseInt(compareTime);
+            if (compare>current)
                 return true;
             else
                 return false;

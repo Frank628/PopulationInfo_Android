@@ -12,6 +12,7 @@ import org.xutils.view.annotation.ViewInject;
 import com.jinchao.population.base.BaseHandleIDActivity;
 import com.jinchao.population.entity.HouseAddressOldBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
+import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.view.PopBianzheng.OnbEnsureClickListener;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.os.Bundle;
@@ -240,7 +241,8 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			}
 		});
 		if (isHandleID) {
-			hunyin="未婚";sfjy="2";cbqk="没有参保";zhengzhi="群众";shifoucanbao="否";fubingyi="否";juzhuleibie="否";shifoulingzheng="是";fuqitongxing="否";shengyuzhuangkuang="未育";
+			tv_cbqk.setText("没有参保");
+			hunyin="未婚";sfjy="2";cbqk="00000010";zhengzhi="群众";shifoucanbao="否";fubingyi="否";juzhuleibie="否";shifoulingzheng="是";fuqitongxing="否";shengyuzhuangkuang="未育";
 		}else{
 //			tv_degree.setText("");tv_chusuoleixing.setText("");tv_zanzhushiyou.setText("");
 		}
@@ -397,7 +399,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			xdsfz4=memberSfz4.getText().toString().trim();
 		}
 		if(relationView1!=null){
-			gxr1="0";
 			gxxm1=zinvName1.getText().toString().trim();
 			gxxb1=zinvSex1.isChecked()?"1":"2";
 			gxrq1=zinvBirth1.getText().toString().trim();
@@ -405,7 +406,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			gxrjzk1=zinvJiezhong1.isChecked()?"1":"2";
 		}
 		if(relationView2!=null){
-			gxr2="0";
 			gxxm2=zinvName2.getText().toString().trim();
 			gxxb2=zinvSex2.isChecked()?"1":"2";
 			gxrq2=zinvBirth2.getText().toString().trim();
@@ -413,7 +413,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			gxrjzk2=zinvJiezhong2.isChecked()?"1":"2";
 		}
 		if(relationView3!=null){
-			gxr3="0";
 			gxxm3=zinvName3.getText().toString().trim();
 			gxxb3=zinvSex3.isChecked()?"1":"2";
 			gxrq3=zinvBirth3.getText().toString().trim();
@@ -421,7 +420,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			gxrjzk3=zinvJiezhong3.isChecked()?"1":"2";
 		}
 		if(relationView4!=null){
-			gxr4="0";
 			gxxm4=zinvName4.getText().toString().trim();
 			gxxb4=zinvSex4.isChecked()?"1":"2";
 			gxrq4=zinvBirth4.getText().toString().trim();
@@ -465,6 +463,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			if (canbaoshijian.equals("")) {
 				if (shifoucanbao.equals("是")) {
 					Toast.makeText(this, "请选择参保时间~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (shifoucanbao.equals("是")){
+				if (TextUtils.isEmpty(cbqk)){
+					Toast.makeText(this, "请选择参保情况~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
@@ -514,6 +518,54 @@ public class HandleIDActivity extends BaseHandleIDActivity{
                 Toast.makeText(this, "请选择来苏日期~", Toast.LENGTH_SHORT).show();
                 return;
             }
+			MSN=edt_msn.getText().toString().trim();
+			Email=edt_email.getText().toString().trim();
+			fzdh=edt_fzdh.getText().toString().trim();
+			fzsfz=edt_fzsfz.getText().toString().trim();
+			dwlxdh=edt_dwlxdh.getText().toString().trim();
+			zymc=edt_zwmc.getText().toString().trim();
+			ldhtqj=tv_ldhtqj.getText().toString().trim();
+			sbbh=edt_sbbh.getText().toString().trim();
+			if (!TextUtils.isEmpty(MSN)){
+				if (!CommonUtils.isEmail(MSN)){
+					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(Email)){
+				if (!CommonUtils.isEmail(Email)){
+					Toast.makeText(this, "邮箱格式错误~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(fzdh)){
+				if (!CommonUtils.isGuangdaTel(fzdh)){
+					Toast.makeText(this, "房主电话格式错误~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(fzsfz)){
+				if (CommonIdcard.validateCard(fzsfz)) {
+					if (fzsfz.length() == 15) {
+						fzsfz = CommonIdcard.conver15CardTo18(fzdh);
+						edt_fzsfz.setText(fzsfz);
+						Toast.makeText(HandleIDActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
+					} else if (fzsfz.length() == 17) {
+						fzsfz = CommonIdcard.conver17CardTo18(fzsfz);
+						edt_fzsfz.setText(fzsfz);
+						Toast.makeText(HandleIDActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					Toast.makeText(HandleIDActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(dwlxdh)){
+				if (!CommonUtils.isGuangdaTel(dwlxdh)){
+					Toast.makeText(this, "单位联系l电话格式错误~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
 			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 			String date =sDateFormat.format(new java.util.Date());
 			SharePrefUtil.saveString(HandleIDActivity.this, "realroomcode", shihao);
@@ -535,7 +587,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
 					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,MSN,Email,czwxz,lsrq,djrq,fzxm,fzdh,fzsfz,dwlxdh,zymc,ldhtqj,sbbh,
 					jyrq,jkzbh,dwfzr,sfjy,hyzmzl,hyzmbh,jqjzym,hyqfrq,jhrq,yfjzzh,fwkh,bycsrq,czqx1,czqx2,
-					zjdq,beizhu2 ,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
+					zjdq,beizhu2 ,cbqk,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
 					xdr2,xdxm2,xdxb2,xdrq2,xdsfz2,
 					xdr3,xdxm3,xdxb3,xdrq3,xdsfz3,
 					xdr4,xdxm4,xdxb4,xdrq4,xdsfz4,
@@ -592,9 +644,120 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					return;
 				}
 			}
+			if (shifoucanbao.equals("是")){
+				if (TextUtils.isEmpty(cbqk)){
+					Toast.makeText(this, "请选择参保情况~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
 			if (!dianhua.equals("")) {
 				if (!CommonUtils.isTEL(dianhua)) {
 					Toast.makeText(this, "电话号码格式错误，请核实~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if(memberView1!=null){
+				xdr1="子女";
+				xdxm1=memberName1.getText().toString().trim();
+				xdxb1=memberSex1.isChecked()?"1":"2";
+				xdrq1=memberBirth1.getText().toString().trim();
+				xdsfz1=memberSfz1.getText().toString().trim();
+			}
+			if(memberView2!=null){
+				xdr2="子女";
+				xdxm2=memberName2.getText().toString().trim();
+				xdxb2=memberSex2.isChecked()?"1":"2";
+				xdrq2=memberBirth2.getText().toString().trim();
+				xdsfz2=memberSfz2.getText().toString().trim();
+			}
+			if(memberView3!=null){
+				xdr3="子女";
+				xdxm3=memberName3.getText().toString().trim();
+				xdxb3=memberSex3.isChecked()?"1":"2";
+				xdrq3=memberBirth3.getText().toString().trim();
+				xdsfz3=memberSfz3.getText().toString().trim();
+			}
+			if(memberView4!=null){
+				xdr4="子女";
+				xdxm4=memberName4.getText().toString().trim();
+				xdxb4=memberSex4.isChecked()?"1":"2";
+				xdrq4=memberBirth4.getText().toString().trim();
+				xdsfz4=memberSfz4.getText().toString().trim();
+			}
+			if(relationView1!=null){
+				gxxm1=zinvName1.getText().toString().trim();
+				gxxb1=zinvSex1.isChecked()?"1":"2";
+				gxrq1=zinvBirth1.getText().toString().trim();
+				gxsfz1=zinvSfz1.getText().toString().trim();
+				gxrjzk1=zinvJiezhong1.isChecked()?"1":"2";
+			}
+			if(relationView2!=null){
+				gxxm2=zinvName2.getText().toString().trim();
+				gxxb2=zinvSex2.isChecked()?"1":"2";
+				gxrq2=zinvBirth2.getText().toString().trim();
+				gxsfz2=zinvSfz2.getText().toString().trim();
+				gxrjzk2=zinvJiezhong2.isChecked()?"1":"2";
+			}
+			if(relationView3!=null){
+				gxxm3=zinvName3.getText().toString().trim();
+				gxxb3=zinvSex3.isChecked()?"1":"2";
+				gxrq3=zinvBirth3.getText().toString().trim();
+				gxsfz3=zinvSfz3.getText().toString().trim();
+				gxrjzk3=zinvJiezhong3.isChecked()?"1":"2";
+			}
+			if(relationView4!=null){
+				gxxm4=zinvName4.getText().toString().trim();
+				gxxb4=zinvSex4.isChecked()?"1":"2";
+				gxrq4=zinvBirth4.getText().toString().trim();
+				gxsfz4=zinvSfz4.getText().toString().trim();
+				gxrjzk4=zinvJiezhong4.isChecked()?"1":"2";
+
+			}
+			MSN=edt_msn.getText().toString().trim();
+			Email=edt_email.getText().toString().trim();
+			fzdh=edt_fzdh.getText().toString().trim();
+			fzsfz=edt_fzsfz.getText().toString().trim();
+			dwlxdh=edt_dwlxdh.getText().toString().trim();
+			zymc=edt_zwmc.getText().toString().trim();
+			ldhtqj=tv_ldhtqj.getText().toString().trim();
+			sbbh=edt_sbbh.getText().toString().trim();
+			if (!TextUtils.isEmpty(MSN)){
+				if (!CommonUtils.isEmail(MSN)){
+					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(Email)){
+				if (!CommonUtils.isEmail(Email)){
+					Toast.makeText(this, "邮箱格式错误~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(fzdh)){
+				if (!CommonUtils.isGuangdaTel(fzdh)){
+					Toast.makeText(this, "房主电话格式错误~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(fzsfz)){
+				if (CommonIdcard.validateCard(fzsfz)) {
+					if (fzsfz.length() == 15) {
+						fzsfz = CommonIdcard.conver15CardTo18(fzdh);
+						edt_fzsfz.setText(fzsfz);
+						Toast.makeText(HandleIDActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
+					} else if (fzsfz.length() == 17) {
+						fzsfz = CommonIdcard.conver17CardTo18(fzsfz);
+						edt_fzsfz.setText(fzsfz);
+						Toast.makeText(HandleIDActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					Toast.makeText(HandleIDActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
+			if (!TextUtils.isEmpty(dwlxdh)){
+				if (!CommonUtils.isGuangdaTel(dwlxdh)){
+					Toast.makeText(this, "单位联系l电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
@@ -635,7 +798,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
 					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,getIntent().getBooleanExtra("isAdd",false)?"":"1",people.realId,MSN,Email,czwxz,lsrq,djrq,fzxm,fzdh,fzsfz,dwlxdh,zymc,ldhtqj,sbbh,
 					jyrq,jkzbh,dwfzr,sfjy,hyzmzl,hyzmbh,jqjzym,hyqfrq,jhrq,yfjzzh,fwkh,bycsrq,czqx1,czqx2,
-					zjdq,beizhu2 ,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
+					zjdq,beizhu2 ,cbqk,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
 					xdr2,xdxm2,xdxb2,xdrq2,xdsfz2,
 					xdr3,xdxm3,xdxb3,xdrq3,xdsfz3,
 					xdr4,xdxm4,xdxb4,xdrq4,xdsfz4,
@@ -703,9 +866,9 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		}
 		PopCanBaoQingKuang popCanBaoQingKuang=new PopCanBaoQingKuang(this, Constants.CANBAOZHONGLEI, new PopCanBaoQingKuang.OnbEnsureClickListener() {
 			@Override
-			public void onEnsureClick(String juzhu) {
+			public void onEnsureClick(String juzhu,String code) {
 				tv_cbqk.setText(juzhu);
-				cbqk=juzhu;
+				cbqk=code;
 			}
 		});
 		popCanBaoQingKuang.showAtLocation(findViewById(R.id.root), Gravity.CENTER, 0, 0);
@@ -828,19 +991,33 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private void addMemberClick(View view){
 		final View member=getMemberView();
 		switch (ll_member.getChildCount()){
-			case 0://成员1
+			case 0://子女1
 				memberView1=member;
 //				memberGuanxi1=(EditText) member.findViewById(R.id.edt_guanxi);
 				memberName1=(EditText) member.findViewById(R.id.edt_name);
 				memberBirth1=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex1=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz1=(EditText) member.findViewById(R.id.edt_idcard);
+				memberSfz1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(memberSfz1.getText().toString().trim())){
+									validateIdCard(memberSfz1,memberSfz1.getText().toString().trim());
+							}
+						}
+					}
+				});
 				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						MonPickerDialog monPickerDialogcanbao =new MonPickerDialog(HandleIDActivity.this, new OnDateSetListener() {
 							@Override
 							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								if (BiggerorEqualCurrent(currentTime,year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)))){
+									Toast.makeText(HandleIDActivity.this,"生日必须小于等于当前日期！",Toast.LENGTH_SHORT).show();
+									return;
+								}
 								memberBirth1.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
 							}
 						}, c.get(Calendar.YEAR), c.get(Calendar.MONTH), 1);
@@ -866,6 +1043,16 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				memberBirth2=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex2=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz2=(EditText) member.findViewById(R.id.edt_idcard);
+				memberSfz2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(memberSfz2.getText().toString().trim())){
+								validateIdCard(memberSfz2,memberSfz2.getText().toString().trim());
+							}
+						}
+					}
+				});
 				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -897,6 +1084,16 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				memberBirth3=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex3=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz3=(EditText) member.findViewById(R.id.edt_idcard);
+				memberSfz3.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(memberSfz3.getText().toString().trim())){
+								validateIdCard(memberSfz3,memberSfz3.getText().toString().trim());
+							}
+						}
+					}
+				});
 				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -928,6 +1125,16 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				memberBirth4=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex4=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz4=(EditText) member.findViewById(R.id.edt_idcard);
+				memberSfz4.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(memberSfz4.getText().toString().trim())){
+								validateIdCard(memberSfz4,memberSfz4.getText().toString().trim());
+							}
+						}
+					}
+				});
 				member.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -951,7 +1158,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		}
 		((TextView)member.findViewById(R.id.tv_number)).setText((ll_member.getChildCount()+1)+"");
 		if (ll_member.getChildCount()>=4){
-			Toast.makeText(HandleIDActivity.this,"最多添加四名成员！",Toast.LENGTH_SHORT).show();
+			Toast.makeText(HandleIDActivity.this,"最多添加四名子女！",Toast.LENGTH_SHORT).show();
 			return;
 		}
 		ll_member.addView(member);
@@ -969,11 +1176,35 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		switch (ll_guanxi.getChildCount()){
 			case 0://子女1
 				relationView1=guanxi;
+				memberGuanxi1=(TextView) guanxi.findViewById(R.id.tv_guanxi);
 				zinvName1=(EditText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth1=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex1=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz1=(EditText) guanxi.findViewById(R.id.edt_idcard);
+				zinvSfz1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(zinvSfz1.getText().toString().trim())){
+								validateIdCard(zinvSfz1,zinvSfz1.getText().toString().trim());
+							}
+						}
+					}
+				});
 				zinvJiezhong1=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				memberGuanxi1.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						StringWheel stringWheel=new StringWheel(HandleIDActivity.this, Constants.GUANXIREN, new OnEnsureClickListener() {
+							@Override
+							public void OnEnSureClick(String str) {
+								memberGuanxi1.setText(str);
+								gxr1=getGuanXiRenCode(str);
+							}
+						});
+						stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+					}
+				});
 				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -1000,11 +1231,35 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 1://子女2
 				relationView2=guanxi;
+				memberGuanxi2=(TextView) guanxi.findViewById(R.id.tv_guanxi);
 				zinvName2=(EditText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth2=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex2=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz2=(EditText) guanxi.findViewById(R.id.edt_idcard);
 				zinvJiezhong2=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				zinvSfz2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(zinvSfz2.getText().toString().trim())){
+								validateIdCard(zinvSfz2,zinvSfz2.getText().toString().trim());
+							}
+						}
+					}
+				});
+				memberGuanxi2.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						StringWheel stringWheel=new StringWheel(HandleIDActivity.this, Constants.GUANXIREN, new OnEnsureClickListener() {
+							@Override
+							public void OnEnSureClick(String str) {
+								memberGuanxi2.setText(str);
+								gxr2=getGuanXiRenCode(str);
+							}
+						});
+						stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+					}
+				});
 				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -1031,11 +1286,35 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 2://子女3
 				relationView3=guanxi;
+				memberGuanxi3=(TextView) guanxi.findViewById(R.id.tv_guanxi);
 				zinvName3=(EditText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth3=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex3=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz3=(EditText) guanxi.findViewById(R.id.edt_idcard);
 				zinvJiezhong3=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				zinvSfz3.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(zinvSfz3.getText().toString().trim())){
+								validateIdCard(zinvSfz3,zinvSfz3.getText().toString().trim());
+							}
+						}
+					}
+				});
+				memberGuanxi3.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						StringWheel stringWheel=new StringWheel(HandleIDActivity.this, Constants.GUANXIREN, new OnEnsureClickListener() {
+							@Override
+							public void OnEnSureClick(String str) {
+								memberGuanxi3.setText(str);
+								gxr3=getGuanXiRenCode(str);
+							}
+						});
+						stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+					}
+				});
 				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -1062,11 +1341,35 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 3://子女4
 				relationView4=guanxi;
+				memberGuanxi4=(TextView) guanxi.findViewById(R.id.tv_guanxi);
 				zinvName4=(EditText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth4=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex4=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz4=(EditText) guanxi.findViewById(R.id.edt_idcard);
 				zinvJiezhong4=(RadioButton) guanxi.findViewById(R.id.rb_you);
+				zinvSfz4.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus){
+							if (!TextUtils.isEmpty(zinvSfz4.getText().toString().trim())){
+								validateIdCard(zinvSfz4,zinvSfz4.getText().toString().trim());
+							}
+						}
+					}
+				});
+				memberGuanxi4.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						StringWheel stringWheel=new StringWheel(HandleIDActivity.this, Constants.GUANXIREN, new OnEnsureClickListener() {
+							@Override
+							public void OnEnSureClick(String str) {
+								memberGuanxi4.setText(str);
+								gxr4=getGuanXiRenCode(str);
+							}
+						});
+						stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+					}
+				});
 				guanxi.findViewById(R.id.rl_birth).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -1090,7 +1393,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		}
 		((TextView)guanxi.findViewById(R.id.tv_number)).setText((ll_guanxi.getChildCount()+1)+"");
 		if (ll_guanxi.getChildCount()>=4){
-			Toast.makeText(HandleIDActivity.this,"最多添加四名子女！",Toast.LENGTH_SHORT).show();
+			Toast.makeText(HandleIDActivity.this,"最多添加四名成员！",Toast.LENGTH_SHORT).show();
 			return;
 		}
 		ll_guanxi.addView(guanxi);
@@ -1158,6 +1461,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private OnDateSetListener onDateSetListenerczqx1 =new OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			if (!TextUtils.isEmpty(czqx2)) {
+				if (!BiggerCurrent(year + ((monthOfYear + 1) > 9 ? ((monthOfYear + 1) + "") : ("0" + (monthOfYear + 1))) + (dayOfMonth > 9 ? (dayOfMonth + "") : ("0" + dayOfMonth)), czqx2)) {
+					Toast.makeText(HandleIDActivity.this, "出租开始日期小于出租结束日期！", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
 			edt_czqx1.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
 			czqx1=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
 		}
@@ -1170,6 +1479,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private OnDateSetListener onDateSetListenerczqx2 =new OnDateSetListener() {
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			if (!TextUtils.isEmpty(czqx1)) {
+				if (BiggerorEqualCurrent(year + ((monthOfYear + 1) > 9 ? ((monthOfYear + 1) + "") : ("0" + (monthOfYear + 1))) + (dayOfMonth > 9 ? (dayOfMonth + "") : ("0" + dayOfMonth)), czqx1)) {
+					Toast.makeText(HandleIDActivity.this, "出租结束日期需大于出租开始日期！", Toast.LENGTH_SHORT).show();
+					return;
+				}
+			}
 			edt_czqx2.setText(year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth)));
 			czqx2=year+((monthOfYear+1)>9?((monthOfYear+1)+""):("0"+(monthOfYear+1)))+(dayOfMonth>9?(dayOfMonth+""):("0"+dayOfMonth));
 		}
@@ -1302,7 +1617,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					tv_canbaoshijian.setText("");
 					shifoucanbao="否";
 					tv_cbqk.setText("没有参保");
-					cbqk="没有参保";
+					cbqk="00000010";
 					break;
 				case R.id.rb_shicanbao:
 //					rl_canbaoshijian.setFocusable(true);
@@ -1398,19 +1713,21 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	};
 	private PopHouse popHouse;
 
-    private void saveB(){
-        MSN=edt_msn.getText().toString().trim();
-        Email=edt_email.getText().toString().trim();
-        fzdh=edt_fzdh.getText().toString().trim();
-        fzsfz=edt_fzsfz.getText().toString().trim();
-        dwlxdh=edt_dwlxdh.getText().toString().trim();
-        zymc=edt_zwmc.getText().toString().trim();
-        ldhtqj=tv_ldhtqj.getText().toString().trim();
-        sbbh=edt_sbbh.getText().toString().trim();
-        if (TextUtils.isEmpty(MSN)){
-
-        }
-    }
-
+	private void validateIdCard(EditText v,String idcard){
+		if (CommonIdcard.validateCard(idcard)) {
+			if (idcard.length() == 15) {
+				idcard = CommonIdcard.conver15CardTo18(idcard);
+				v.setText(idcard);
+				Toast.makeText(HandleIDActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
+			} else if (idcard.length() == 17) {
+				idcard = CommonIdcard.conver17CardTo18(idcard);
+				v.setText(idcard);
+				Toast.makeText(HandleIDActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
+			}
+		} else {
+			Toast.makeText(HandleIDActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
+			return;
+		}
+	}
 
 }

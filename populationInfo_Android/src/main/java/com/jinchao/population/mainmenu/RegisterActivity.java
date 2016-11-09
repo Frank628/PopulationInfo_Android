@@ -20,6 +20,7 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -596,6 +597,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	private void yanZhengClick(View view){
 		String idcard =edt_idcard.getText().toString().trim();
 		String name =edt_name.getText().toString().trim();
+		String formername =edt_formername.getText().toString().trim();
 		String nation =edt_region.getText().toString().trim();
 		String gender =edt_sex.getText().toString().trim();
 		String birth =edt_birth.getText().toString().trim();
@@ -607,6 +609,12 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			else
 				Toast.makeText(this, "请先读卡", Toast.LENGTH_SHORT).show();
 			return;
+		}
+		if (!TextUtils.isEmpty(formername)){
+			if (!CommonUtils.isChinese(formername)){
+				Toast.makeText(this, "别名中含非中文字符！", Toast.LENGTH_SHORT).show();
+				return;
+			}
 		}
 		if (CommonUtils.isEmpty(gender)) {
 			Toast.makeText(this, "请输入性别", Toast.LENGTH_SHORT).show();

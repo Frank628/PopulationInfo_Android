@@ -194,6 +194,9 @@ public class People implements Serializable{
 
 	@Column(column="Email")
 	public String Email="";
+
+	@Column(column="cbqk")
+	public String cbqk="";
 	/**
 	 * 地址补充
 	 */
@@ -708,7 +711,7 @@ public class People implements Serializable{
 
 			String MSN,String Email,String czwxz,String lsrq,String djrq,String fzxm,String fzdh,String fzsfz,String dwlxdh,String zymc,String ldhtqj,String sbbh,
 				  String jyrq,String jkzbh,String dwfzr,String sfjy,String hyzmzl,String hyzmbh,String jqjzym,String hyqfrq,String jhrq,String yfjzzh,String fwkh,String bycsrq,String czqx1,String czqx2,String
-				  zjdq,String beizhu2 ,String xdr1,String xdxm1,String xdxb1,String xdrq1,String xdsfz1,String
+				  zjdq,String beizhu2 ,String cbqk,String xdr1,String xdxm1,String xdxb1,String xdrq1,String xdsfz1,String
 				  xdr2,String xdxm2,String xdxb2,String xdrq2,String xdsfz2,String
 				  xdr3,String xdxm3,String xdxb3,String xdrq3,String xdsfz3,String
 				  xdr4,String xdxm4,String xdxb4,String xdrq4,String xdsfz4,String
@@ -771,7 +774,7 @@ public class People implements Serializable{
 		this.ShouJiChuanHao = shouJiChuanHao;
 		this.BeiYong = beiYong;
 		this.collect_datetime=collect_datetime;
-
+		this.cbqk=cbqk;
 		this.MSN=MSN   ; this.Email= Email  ; this.czwxz= czwxz  ; this.lsrq= lsrq  ; this.djrq= djrq  ; this.fzxm= fzxm  ; this.fzdh= fzdh  ; this.fzsfz= fzsfz  ; this.dwlxdh= dwlxdh  ; this.zymc= zymc  ; this.ldhtqj= ldhtqj  ; this.sbbh= sbbh  ;
 		this.jyrq= jyrq  ; this.jkzbh= jkzbh  ; this.dwfzr=dwfzr   ; this.sfjy= sfjy  ; this.hyzmzl= hyzmzl  ; this.hyzmbh= hyzmbh  ; this.jqjzym= jqjzym  ; this.hyqfrq= hyqfrq  ; this.jhrq= jhrq  ; this.yfjzzh= yfjzzh  ; this.fwkh=  fwkh ; this.bycsrq=bycsrq   ; this.czqx1=  czqx1 ; this.czqx2= czqx2  ;
 		this.zjdq=  zjdq ; this.beizhu2 =beizhu2   ;
@@ -804,7 +807,7 @@ public class People implements Serializable{
 				  String shouJiChuanHao, String beiYong,String collect_datetime,String isReal,String realId,
 				  String MSN,String Email,String czwxz,String lsrq,String djrq,String fzxm,String fzdh,String fzsfz,String dwlxdh,String zymc,String ldhtqj,String sbbh,
 				  String jyrq,String jkzbh,String dwfzr,String sfjy,String hyzmzl,String hyzmbh,String jqjzym,String hyqfrq,String jhrq,String yfjzzh,String fwkh,String bycsrq,String czqx1,String czqx2,String
-						  zjdq,String beizhu2 ,String xdr1,String xdxm1,String xdxb1,String xdrq1,String xdsfz1,String
+						  zjdq,String beizhu2 ,String cbqk,String xdr1,String xdxm1,String xdxb1,String xdrq1,String xdsfz1,String
 						  xdr2,String xdxm2,String xdxb2,String xdrq2,String xdsfz2,String
 						  xdr3,String xdxm3,String xdxb3,String xdrq3,String xdsfz3,String
 						  xdr4,String xdxm4,String xdxb4,String xdrq4,String xdsfz4,String
@@ -865,6 +868,7 @@ public class People implements Serializable{
 		this.ShouJiXingHao = shouJiXingHao;
 		this.ShouJiChuanHao = shouJiChuanHao;
 		this.BeiYong = beiYong;
+		this.cbqk=cbqk;
 		this.collect_datetime=collect_datetime;
 		this.isReal=isReal;
 		this.realId=realId;
@@ -2068,5 +2072,13 @@ public class People implements Serializable{
 
 	public void setFormername(String formername) {
 		this.formername = formername;
+	}
+
+	public String getCbqk() {
+		return cbqk;
+	}
+
+	public void setCbqk(String cbqk) {
+		this.cbqk = cbqk;
 	}
 }

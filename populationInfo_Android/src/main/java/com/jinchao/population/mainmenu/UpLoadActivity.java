@@ -376,6 +376,10 @@ public class UpLoadActivity extends BaseActiviy{
                 serializer.text(people.formername);
                 serializer.endTag(null, "formername");
 
+                serializer.startTag(null, "cbqk");
+                serializer.text(people.cbqk);
+                serializer.endTag(null, "cbqk");
+
                 serializer.startTag(null, "sex");
                 serializer.text(people.sex);
                 serializer.endTag(null, "sex");

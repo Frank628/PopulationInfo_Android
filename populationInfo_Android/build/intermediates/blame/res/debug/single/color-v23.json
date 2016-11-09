@@ -4,12 +4,36 @@
         "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_edittext.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_color_highlight_material.xml"
+    },
+    {
         "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
         "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_btn_checkable.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
         "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
         "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_track.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_spinner.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
         "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_edittext.xml",
@@ -32,7 +56,19 @@
         "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_seek_thumb.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_thumb.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_switch_thumb.xml"
+    },
+    {
         "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
         "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\color-v23\\abc_tint_seek_thumb.xml"
     }
 ]

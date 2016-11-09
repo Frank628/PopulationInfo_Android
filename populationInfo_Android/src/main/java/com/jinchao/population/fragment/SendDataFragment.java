@@ -210,7 +210,7 @@ public class SendDataFragment  extends BaseFragment{
                     text.setText(succCount+"/"+total+",共"+total+"条");
                     try {
                         dbUtils.delete(People.class,WhereBuilder.b("id", "=", people.id));
-//                        FileUtils.deleteFile(Constants.DB_PATH+people.uuid+".xml");
+                        FileUtils.deleteFile(Constants.DB_PATH+people.uuid+".xml");
                     } catch (DbException e) {
                         e.printStackTrace();
                     }
@@ -384,6 +384,10 @@ public class SendDataFragment  extends BaseFragment{
                 serializer.startTag(null, "formername");
                 serializer.text(people.formername);
                 serializer.endTag(null, "formername");
+
+                serializer.startTag(null, "cbqk");
+                serializer.text(people.cbqk);
+                serializer.endTag(null, "cbqk");
 
                 serializer.startTag(null, "sex");
                 serializer.text(people.sex);

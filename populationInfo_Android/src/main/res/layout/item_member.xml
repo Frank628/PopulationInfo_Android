@@ -42,6 +42,7 @@
                 android:hint="请输入姓名"
                 android:textColorHint="@color/title4"
                 android:inputType="text"
+                android:maxLength="30"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 android:background="@color/white"
@@ -169,6 +170,7 @@
                 android:hint="请输入身份证"
                 android:textColorHint="@color/title4"
                 android:inputType="text"
+                android:maxLength="18"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 android:background="@color/white"/>

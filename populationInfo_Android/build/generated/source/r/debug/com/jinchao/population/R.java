@@ -276,7 +276,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int backgroundTint=0x7f010155;
+        public static final int backgroundTint=0x7f01015a;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -290,7 +290,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
          */
-        public static final int backgroundTintMode=0x7f010156;
+        public static final int backgroundTintMode=0x7f01015b;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -1453,7 +1453,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int paddingEnd=0x7f010153;
+        public static final int paddingEnd=0x7f010158;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -1463,7 +1463,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int paddingStart=0x7f010152;
+        public static final int paddingStart=0x7f010157;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -2195,7 +2195,7 @@ containing a value of this type.
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int theme=0x7f010154;
+        public static final int theme=0x7f010159;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -2409,6 +2409,40 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int useCompatPadding=0x7f0100de;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vd_drawable_left=0x7f010155;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vd_drawable_right=0x7f010154;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int vd_textColor=0x7f010156;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int vd_textHint=0x7f010152;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int vd_textHintColor=0x7f010153;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -3202,7 +3236,6 @@ containing a value of this type.
         public static final int edt_fzdh=0x7f0b01e4;
         public static final int edt_fzsfz=0x7f0b01e7;
         public static final int edt_fzxm=0x7f0b01a4;
-        public static final int edt_guanxi=0x7f0b0161;
         public static final int edt_houseid=0x7f0b0139;
         public static final int edt_hyqfrq=0x7f0b01fe;
         public static final int edt_hyzmbh=0x7f0b01fb;
@@ -3550,6 +3583,7 @@ containing a value of this type.
         public static final int tv_fzdhleft=0x7f0b01e2;
         public static final int tv_fzsfzleft=0x7f0b01e5;
         public static final int tv_gosearch=0x7f0b0217;
+        public static final int tv_guanxi=0x7f0b0161;
         public static final int tv_guanxileft=0x7f0b0160;
         public static final int tv_houseaddress=0x7f0b015d;
         public static final int tv_housecode=0x7f0b015a;
@@ -3917,11 +3951,6 @@ containing a value of this type.
         public static final int Animation_Design_BottomSheetDialog=0x7f070095;
         /**  API 11 theme customizations can go here. 
  API 14 theme customizations can go here. 
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
          */
         public static final int AppBaseTheme=0x7f07000c;
         public static final int AppTheme=0x7f070096;
@@ -4091,8 +4120,6 @@ containing a value of this type.
         public static final int Crop_ActionButtonText_Done=0x7f0700d2;
         public static final int Crop_DoneCancelBar=0x7f0700d3;
         public static final int DialogStyle=0x7f0700d4;
-        /** 模糊
-         */
         public static final int LoginDialogTheme=0x7f0700d5;
         public static final int MenuTextStyle=0x7f0700d6;
         public static final int MyButtonStyle=0x7f0700d7;
@@ -8153,7 +8180,7 @@ containing a value of this type.
          */
         public static final int[] FloatingActionButton = {
             0x7f01001d, 0x7f0100da, 0x7f0100db, 0x7f0100dc,
-            0x7f0100dd, 0x7f0100de, 0x7f010155, 0x7f010156
+            0x7f0100dd, 0x7f0100de, 0x7f01015a, 0x7f01015b
         };
         /**
           <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#backgroundTint}
@@ -11261,6 +11288,92 @@ containing a value of this type.
           @attr name com.jinchao.population:titleTextColor
         */
         public static final int Toolbar_titleTextColor = 27;
+        /** Attributes that can be used with a ValidateEditText.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_drawable_left com.jinchao.population:vd_drawable_left}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_drawable_right com.jinchao.population:vd_drawable_right}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_textColor com.jinchao.population:vd_textColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_textHint com.jinchao.population:vd_textHint}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_textHintColor com.jinchao.population:vd_textHintColor}</code></td><td></td></tr>
+           </table>
+           @see #ValidateEditText_vd_drawable_left
+           @see #ValidateEditText_vd_drawable_right
+           @see #ValidateEditText_vd_textColor
+           @see #ValidateEditText_vd_textHint
+           @see #ValidateEditText_vd_textHintColor
+         */
+        public static final int[] ValidateEditText = {
+            0x7f010152, 0x7f010153, 0x7f010154, 0x7f010155,
+            0x7f010156
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_left}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.jinchao.population:vd_drawable_left
+        */
+        public static final int ValidateEditText_vd_drawable_left = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_right}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.jinchao.population:vd_drawable_right
+        */
+        public static final int ValidateEditText_vd_drawable_right = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textColor}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.jinchao.population:vd_textColor
+        */
+        public static final int ValidateEditText_vd_textColor = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textHint}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.jinchao.population:vd_textHint
+        */
+        public static final int ValidateEditText_vd_textHint = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textHintColor}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.jinchao.population:vd_textHintColor
+        */
+        public static final int ValidateEditText_vd_textHintColor = 1;
         /** Attributes that can be used with a View.
            <p>Includes the following attributes:</p>
            <table>
@@ -11280,8 +11393,8 @@ containing a value of this type.
            @see #View_theme
          */
         public static final int[] View = {
-            0x01010000, 0x010100da, 0x7f010152, 0x7f010153,
-            0x7f010154
+            0x01010000, 0x010100da, 0x7f010157, 0x7f010158,
+            0x7f010159
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#focusable}
@@ -11352,7 +11465,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            @see #ViewBackgroundHelper_backgroundTintMode
          */
         public static final int[] ViewBackgroundHelper = {
-            0x010100d4, 0x7f010155, 0x7f010156
+            0x010100d4, 0x7f01015a, 0x7f01015b
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#background}

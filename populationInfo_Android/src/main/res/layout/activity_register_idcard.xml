@@ -71,7 +71,7 @@
                     android:textColor="@color/title2"
                     android:layout_marginLeft="5dp"
                     android:hint="输入别名"
-                    android:maxLength="30"
+                    android:maxLength="15"
                     android:textColorHint="@color/title4"
                     />
             </LinearLayout>

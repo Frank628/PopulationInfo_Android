@@ -35,9 +35,11 @@ public class PopCanBaoQingKuang extends PopupWindow implements OnClickListener{
 	private ViewFlipper viewfipper;
 	private TextView submit,cancel;
 	private List<String> list =new ArrayList<String>();
+	private String[] listcode=new String[]{"0","0","0","0","0","0","0","0"};
 	private OnbEnsureClickListener onEnsureClickListener;
+	private int index=0;
 	public  interface OnbEnsureClickListener{
-		void onEnsureClick(String juzhu);
+		void onEnsureClick(String juzhu,String code);
 	}
 	private String[] str;
 	public PopCanBaoQingKuang(Activity context,String[] str, OnbEnsureClickListener onEnsureClickListener) {
@@ -53,6 +55,7 @@ public class PopCanBaoQingKuang extends PopupWindow implements OnClickListener{
 		cancel.setOnClickListener(this);
 		LinearLayout content=(LinearLayout) mMenuView.findViewById(R.id.content);
 		for (int i=0;i<str.length;i++){
+			index=i;
 			CheckBox checkBox =new CheckBox(context);
 			checkBox.setText(str[i]);
 			checkBox.setTextSize(17);
@@ -62,10 +65,12 @@ public class PopCanBaoQingKuang extends PopupWindow implements OnClickListener{
 					if (isChecked){
 						if(!list.contains(buttonView.getText().toString().trim())){
 							list.add(buttonView.getText().toString().trim());
+							listcode[index]="1";
 						}
 					}else{
 						if(list.contains(buttonView.getText().toString().trim())){
 							list.remove(buttonView.getText().toString().trim());
+							listcode[index]="0";
 						}
 					}
 				}
@@ -105,11 +110,19 @@ public class PopCanBaoQingKuang extends PopupWindow implements OnClickListener{
 		}
 		return rets;
 	}
+	private String getCode(String str[]){
+		String code="";
+		for (int i=0;i<str.length;i++){
+			code=code+str[i];
+		}
+		return code.trim();
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_ensure:
-            onEnsureClickListener.onEnsureClick(getStrs(list));
+            onEnsureClickListener.onEnsureClick(getStrs(list),getCode(listcode));
             this.dismiss();
 			break;
 		case R.id.btn_cancle:

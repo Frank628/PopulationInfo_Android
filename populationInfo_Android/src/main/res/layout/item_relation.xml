@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="5dp">
-
     <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -29,20 +28,17 @@
                 android:layout_centerVertical="true"
                 android:text="成员关系"
                 />
-            <EditText
-                android:id="@+id/edt_guanxi"
+            <TextView
+                android:id="@+id/tv_guanxi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|right"
                 android:textSize="@dimen/small_middle_size"
                 android:textColor="@color/title2"
                 android:layout_toRightOf="@+id/tv_guanxileft"
-                android:hint="请输入成员关系"
-                android:textColorHint="@color/title4"
-                android:inputType="text"
                 android:singleLine="true"
-                android:paddingRight="10dp"
-                android:background="@color/white"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
                 />
         </RelativeLayout>
         <View
@@ -77,6 +73,7 @@
                 android:textColorHint="@color/title4"
                 android:inputType="text"
                 android:singleLine="true"
+                android:maxLength="30"
                 android:paddingRight="10dp"
                 android:background="@color/white"
                 />
@@ -203,6 +200,7 @@
                 android:textColorHint="@color/title4"
                 android:inputType="text"
                 android:singleLine="true"
+                android:maxLength="18"
                 android:paddingRight="10dp"
                 android:background="@color/white"/>
         </RelativeLayout>

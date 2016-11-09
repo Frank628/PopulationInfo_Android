@@ -41,6 +41,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="30"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 />
@@ -83,6 +84,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:drawablePadding="10dp"
+                android:maxLength="30"
                 android:inputType="textEmailAddress"
                 />
         </RelativeLayout>
@@ -133,8 +135,9 @@
                 android:hint="请输入房主电话"
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
-                android:inputType="text"
+                android:inputType="number"
                 android:singleLine="true"
+                android:maxLength="12"
                 android:paddingRight="10dp"
                 />
         </RelativeLayout>
@@ -187,6 +190,7 @@
                 android:background="@color/white"
                 android:inputType="text"
                 android:singleLine="true"
+                android:maxLength="18"
                 android:paddingRight="10dp"
                 />
         </RelativeLayout>
@@ -225,7 +229,8 @@
                 android:hint="请输入单位联系电话"
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
-                android:inputType="phone"
+                android:inputType="number"
+                android:maxLength="12"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 />
@@ -267,6 +272,7 @@
                 android:background="@color/white"
                 android:inputType="text"
                 android:singleLine="true"
+                android:maxLength="5"
                 android:paddingRight="10dp"
                 />
         </RelativeLayout>
@@ -344,6 +350,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="18"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 />
@@ -423,6 +430,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="10"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 />
@@ -463,6 +471,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="30"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 />
@@ -541,6 +550,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="20"
                 android:singleLine="true"
                 android:paddingRight="10dp"
                 />
@@ -659,6 +669,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="10"
                 android:singleLine="true"
                 android:paddingRight="10dp"
 
@@ -759,6 +770,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="12"
                 android:singleLine="true"
                 android:paddingRight="10dp"
 
@@ -917,6 +929,7 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
+                android:maxLength="40"
                 android:singleLine="true"
                 android:paddingRight="10dp"
 

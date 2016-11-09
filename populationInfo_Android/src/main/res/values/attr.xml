@@ -19,5 +19,11 @@
         <attr name="rc_textColor" format="color" />
         <attr name="rc_checked" format="boolean"/>
     </declare-styleable>
-
+    <declare-styleable name="ValidateEditText">
+        <attr name="vd_textHint" format="string"/>
+        <attr name="vd_textHintColor" format="color"/>
+        <attr name="vd_drawable_right" format="reference"/>
+        <attr name="vd_drawable_left" format="reference"/>
+        <attr name="vd_textColor" format="color" />
+    </declare-styleable>
 </resources>

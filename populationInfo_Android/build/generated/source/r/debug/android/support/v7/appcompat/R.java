@@ -66,8 +66,8 @@ public final class R {
 		public static final int background = 0x7f01000d;
 		public static final int backgroundSplit = 0x7f01000f;
 		public static final int backgroundStacked = 0x7f01000e;
-		public static final int backgroundTint = 0x7f010155;
-		public static final int backgroundTintMode = 0x7f010156;
+		public static final int backgroundTint = 0x7f01015a;
+		public static final int backgroundTintMode = 0x7f01015b;
 		public static final int barLength = 0x7f0100d8;
 		public static final int borderlessButtonStyle = 0x7f010066;
 		public static final int buttonBarButtonStyle = 0x7f010063;
@@ -157,8 +157,8 @@ public final class R {
 		public static final int navigationIcon = 0x7f01014d;
 		public static final int navigationMode = 0x7f010005;
 		public static final int overlapAnchor = 0x7f0100f2;
-		public static final int paddingEnd = 0x7f010153;
-		public static final int paddingStart = 0x7f010152;
+		public static final int paddingEnd = 0x7f010158;
+		public static final int paddingStart = 0x7f010157;
 		public static final int panelBackground = 0x7f01007e;
 		public static final int panelMenuListTheme = 0x7f010080;
 		public static final int panelMenuListWidth = 0x7f01007f;
@@ -211,7 +211,7 @@ public final class R {
 		public static final int textAppearanceSmallPopupMenu = 0x7f010058;
 		public static final int textColorAlertDialogListItem = 0x7f010090;
 		public static final int textColorSearchUrl = 0x7f010073;
-		public static final int theme = 0x7f010154;
+		public static final int theme = 0x7f010159;
 		public static final int thickness = 0x7f0100d9;
 		public static final int thumbTextPadding = 0x7f010122;
 		public static final int thumbTint = 0x7f01011d;
@@ -1350,8 +1350,8 @@ public final class R {
 		public static final int Toolbar_titleMargins = 19;
 		public static final int Toolbar_titleTextAppearance = 12;
 		public static final int Toolbar_titleTextColor = 27;
-		public static final int[] View = { 0x01010000, 0x010100da, 0x7f010152, 0x7f010153, 0x7f010154 };
-		public static final int[] ViewBackgroundHelper = { 0x010100d4, 0x7f010155, 0x7f010156 };
+		public static final int[] View = { 0x01010000, 0x010100da, 0x7f010157, 0x7f010158, 0x7f010159 };
+		public static final int[] ViewBackgroundHelper = { 0x010100d4, 0x7f01015a, 0x7f01015b };
 		public static final int ViewBackgroundHelper_android_background = 0;
 		public static final int ViewBackgroundHelper_backgroundTint = 1;
 		public static final int ViewBackgroundHelper_backgroundTintMode = 2;
