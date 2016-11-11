@@ -276,7 +276,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int backgroundTint=0x7f01015a;
+        public static final int backgroundTint=0x7f01015c;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -290,7 +290,7 @@ containing a value of this type.
 <tr><td><code>screen</code></td><td>15</td><td></td></tr>
 </table>
          */
-        public static final int backgroundTintMode=0x7f01015b;
+        public static final int backgroundTintMode=0x7f01015d;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -1453,7 +1453,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int paddingEnd=0x7f010158;
+        public static final int paddingEnd=0x7f01015a;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -1463,7 +1463,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int paddingStart=0x7f010157;
+        public static final int paddingStart=0x7f010159;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -2195,7 +2195,7 @@ containing a value of this type.
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int theme=0x7f010159;
+        public static final int theme=0x7f01015b;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -2412,11 +2412,19 @@ containing a value of this type.
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int vd_drawable_left=0x7f010155;
+        public static final int vd_drawable_left_error=0x7f010157;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int vd_drawable_right=0x7f010154;
+        public static final int vd_drawable_left_right=0x7f010156;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vd_drawable_right_error=0x7f010155;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vd_drawable_right_right=0x7f010154;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -2425,15 +2433,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int vd_textColor=0x7f010156;
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int vd_textHint=0x7f010152;
+        public static final int vd_textErrorColor=0x7f010153;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -2442,7 +2442,26 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int vd_textHintColor=0x7f010153;
+        public static final int vd_textRightColor=0x7f010152;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>mobile</code></td><td>0</td><td></td></tr>
+<tr><td><code>former_name</code></td><td>1</td><td></td></tr>
+<tr><td><code>email</code></td><td>2</td><td></td></tr>
+<tr><td><code>id_card</code></td><td>3</td><td></td></tr>
+<tr><td><code>number_plate</code></td><td>4</td><td></td></tr>
+<tr><td><code>stature</code></td><td>5</td><td></td></tr>
+<tr><td><code>room_code</code></td><td>6</td><td></td></tr>
+<tr><td><code>position_name</code></td><td>7</td><td></td></tr>
+<tr><td><code>shebao_card</code></td><td>8</td><td></td></tr>
+<tr><td><code>health_card</code></td><td>9</td><td></td></tr>
+</table>
+         */
+        public static final int vd_validate_type=0x7f010158;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -3005,704 +3024,717 @@ containing a value of this type.
         public static final int ico_search_next=0x7f020093;
         public static final int ico_shrink2_tint=0x7f020094;
         public static final int ico_shrinkup2=0x7f020095;
-        public static final int img01=0x7f020096;
-        public static final int img02=0x7f020097;
-        public static final int img03=0x7f020098;
-        public static final int img04=0x7f020099;
-        public static final int img_close=0x7f02009a;
-        public static final int index01=0x7f02009b;
-        public static final int index01_=0x7f02009c;
-        public static final int index02=0x7f02009d;
-        public static final int index02_=0x7f02009e;
-        public static final int index03=0x7f02009f;
-        public static final int index03_=0x7f0200a0;
-        public static final int index04=0x7f0200a1;
-        public static final int index05=0x7f0200a2;
-        public static final int index05_=0x7f0200a3;
-        public static final int index06=0x7f0200a4;
-        public static final int index06_=0x7f0200a5;
-        public static final int index_01=0x7f0200a6;
-        public static final int index_02=0x7f0200a7;
-        public static final int index_03=0x7f0200a8;
-        public static final int index_04=0x7f0200a9;
-        public static final int index_05=0x7f0200aa;
-        public static final int index_06=0x7f0200ab;
-        public static final int index_06_01=0x7f0200ac;
-        public static final int index_07=0x7f0200ad;
-        public static final int index_07_01=0x7f0200ae;
-        public static final int index_08=0x7f0200af;
-        public static final int index_08_01=0x7f0200b0;
-        public static final int index_09=0x7f0200b1;
-        public static final int index_09_01=0x7f0200b2;
-        public static final int index_10=0x7f0200b3;
-        public static final int index_10_01=0x7f0200b4;
-        public static final int index_11=0x7f0200b5;
-        public static final int index_11_01=0x7f0200b6;
-        public static final int index_12=0x7f0200b7;
-        public static final int index_12_01=0x7f0200b8;
-        public static final int index_13=0x7f0200b9;
-        public static final int index_13_01=0x7f0200ba;
-        public static final int index_14=0x7f0200bb;
-        public static final int index_14_01=0x7f0200bc;
-        public static final int index_15=0x7f0200bd;
-        public static final int index_15_01=0x7f0200be;
-        public static final int index_16=0x7f0200bf;
-        public static final int index_16_01=0x7f0200c0;
-        public static final int index_17=0x7f0200c1;
-        public static final int index_17_01=0x7f0200c2;
-        public static final int index_18=0x7f0200c3;
-        public static final int index_18_01=0x7f0200c4;
-        public static final int index_19=0x7f0200c5;
-        public static final int index_19_01=0x7f0200c6;
-        public static final int index_20=0x7f0200c7;
-        public static final int index_20_01=0x7f0200c8;
-        public static final int index_21=0x7f0200c9;
-        public static final int index_21_01=0x7f0200ca;
-        public static final int index_22=0x7f0200cb;
-        public static final int index_22_01=0x7f0200cc;
-        public static final int index_23=0x7f0200cd;
-        public static final int index_23_01=0x7f0200ce;
-        public static final int index_bg=0x7f0200cf;
-        public static final int jinghui=0x7f0200d0;
-        public static final int linearlayoutbackground=0x7f0200d1;
-        public static final int loading_bg=0x7f0200d2;
-        public static final int login_bg=0x7f0200d3;
-        public static final int lv_bg=0x7f0200d4;
-        public static final int map_bottom_bg=0x7f0200d5;
-        public static final int map_bubble_normal=0x7f0200d6;
-        public static final int member_bg=0x7f0200d7;
-        public static final int member_body_bg=0x7f0200d8;
-        public static final int member_top_bg=0x7f0200d9;
-        public static final int menudialog_bottom2_selector=0x7f0200da;
-        public static final int menudialog_bottom_selector=0x7f0200db;
-        public static final int menudialog_center_selector=0x7f0200dc;
-        public static final int menudialog_top_selector=0x7f0200dd;
-        public static final int mpay__ic_clear_pressed=0x7f0200de;
-        public static final int mybuttonbackground=0x7f0200df;
-        public static final int mybuttonbackground_normal=0x7f0200e0;
-        public static final int mybuttonbackground_pressed=0x7f0200e1;
-        public static final int notification_template_icon_bg=0x7f020109;
-        public static final int number_bg=0x7f0200e2;
-        public static final int pay_btn_default=0x7f0200e3;
-        public static final int pay_btn_pressed=0x7f0200e4;
-        public static final int pop_dengji_bg=0x7f0200e5;
-        public static final int ptr_rotate_arrow=0x7f0200e6;
-        public static final int radio_check_bg_leftclick=0x7f0200e7;
-        public static final int radio_check_left_bg=0x7f0200e8;
-        public static final int radio_checked_left_bg=0x7f0200e9;
-        public static final int replaze=0x7f0200ea;
-        public static final int round_add_bg=0x7f0200eb;
-        public static final int search=0x7f0200ec;
-        public static final int search_bg=0x7f0200ed;
-        public static final int select_bg=0x7f0200ee;
-        public static final int side_nav_bar=0x7f0200ef;
-        public static final int smarttravel_map_start=0x7f0200f0;
-        public static final int splash=0x7f0200f1;
-        public static final int stroke_dialog=0x7f0200f2;
-        public static final int stroke_dialog_down=0x7f0200f3;
-        public static final int stroke_dialog_down_left=0x7f0200f4;
-        public static final int stroke_dialog_down_right=0x7f0200f5;
-        public static final int tab_top_select=0x7f0200f6;
-        public static final int take_pic_bg=0x7f0200f7;
-        public static final int toast_actionsheet_bottom_normal=0x7f0200f8;
-        public static final int toast_actionsheet_bottom_pressed=0x7f0200f9;
-        public static final int toast_actionsheet_middle_normal=0x7f0200fa;
-        public static final int toast_actionsheet_middle_pressed=0x7f0200fb;
-        public static final int toast_actionsheet_single_normal=0x7f0200fc;
-        public static final int toast_actionsheet_single_pressed=0x7f0200fd;
-        public static final int toast_actionsheet_top_normal=0x7f0200fe;
-        public static final int toast_actionsheet_top_pressed=0x7f0200ff;
-        public static final int trail=0x7f020100;
-        public static final int transaction_bg=0x7f020101;
-        public static final int transaction_click_bg=0x7f020102;
-        public static final int wait=0x7f020103;
-        public static final int warning=0x7f020104;
-        public static final int wheel_bg=0x7f020105;
-        public static final int wheel_val=0x7f020106;
-        public static final int white_click_bg=0x7f020107;
-        public static final int white_click_bg2=0x7f020108;
+        public static final int icon_empty=0x7f020096;
+        public static final int icon_gantan=0x7f020097;
+        public static final int icon_gou=0x7f020098;
+        public static final int img01=0x7f020099;
+        public static final int img02=0x7f02009a;
+        public static final int img03=0x7f02009b;
+        public static final int img04=0x7f02009c;
+        public static final int img_close=0x7f02009d;
+        public static final int index01=0x7f02009e;
+        public static final int index01_=0x7f02009f;
+        public static final int index02=0x7f0200a0;
+        public static final int index02_=0x7f0200a1;
+        public static final int index03=0x7f0200a2;
+        public static final int index03_=0x7f0200a3;
+        public static final int index04=0x7f0200a4;
+        public static final int index05=0x7f0200a5;
+        public static final int index05_=0x7f0200a6;
+        public static final int index06=0x7f0200a7;
+        public static final int index06_=0x7f0200a8;
+        public static final int index_01=0x7f0200a9;
+        public static final int index_02=0x7f0200aa;
+        public static final int index_03=0x7f0200ab;
+        public static final int index_04=0x7f0200ac;
+        public static final int index_05=0x7f0200ad;
+        public static final int index_06=0x7f0200ae;
+        public static final int index_06_01=0x7f0200af;
+        public static final int index_07=0x7f0200b0;
+        public static final int index_07_01=0x7f0200b1;
+        public static final int index_08=0x7f0200b2;
+        public static final int index_08_01=0x7f0200b3;
+        public static final int index_09=0x7f0200b4;
+        public static final int index_09_01=0x7f0200b5;
+        public static final int index_10=0x7f0200b6;
+        public static final int index_10_01=0x7f0200b7;
+        public static final int index_11=0x7f0200b8;
+        public static final int index_11_01=0x7f0200b9;
+        public static final int index_12=0x7f0200ba;
+        public static final int index_12_01=0x7f0200bb;
+        public static final int index_13=0x7f0200bc;
+        public static final int index_13_01=0x7f0200bd;
+        public static final int index_14=0x7f0200be;
+        public static final int index_14_01=0x7f0200bf;
+        public static final int index_15=0x7f0200c0;
+        public static final int index_15_01=0x7f0200c1;
+        public static final int index_16=0x7f0200c2;
+        public static final int index_16_01=0x7f0200c3;
+        public static final int index_17=0x7f0200c4;
+        public static final int index_17_01=0x7f0200c5;
+        public static final int index_18=0x7f0200c6;
+        public static final int index_18_01=0x7f0200c7;
+        public static final int index_19=0x7f0200c8;
+        public static final int index_19_01=0x7f0200c9;
+        public static final int index_20=0x7f0200ca;
+        public static final int index_20_01=0x7f0200cb;
+        public static final int index_21=0x7f0200cc;
+        public static final int index_21_01=0x7f0200cd;
+        public static final int index_22=0x7f0200ce;
+        public static final int index_22_01=0x7f0200cf;
+        public static final int index_23=0x7f0200d0;
+        public static final int index_23_01=0x7f0200d1;
+        public static final int index_bg=0x7f0200d2;
+        public static final int jinghui=0x7f0200d3;
+        public static final int linearlayoutbackground=0x7f0200d4;
+        public static final int loading_bg=0x7f0200d5;
+        public static final int login_bg=0x7f0200d6;
+        public static final int lv_bg=0x7f0200d7;
+        public static final int map_bottom_bg=0x7f0200d8;
+        public static final int map_bubble_normal=0x7f0200d9;
+        public static final int member_bg=0x7f0200da;
+        public static final int member_body_bg=0x7f0200db;
+        public static final int member_top_bg=0x7f0200dc;
+        public static final int menudialog_bottom2_selector=0x7f0200dd;
+        public static final int menudialog_bottom_selector=0x7f0200de;
+        public static final int menudialog_center_selector=0x7f0200df;
+        public static final int menudialog_top_selector=0x7f0200e0;
+        public static final int mpay__ic_clear_pressed=0x7f0200e1;
+        public static final int mybuttonbackground=0x7f0200e2;
+        public static final int mybuttonbackground_normal=0x7f0200e3;
+        public static final int mybuttonbackground_pressed=0x7f0200e4;
+        public static final int notification_template_icon_bg=0x7f02010c;
+        public static final int number_bg=0x7f0200e5;
+        public static final int pay_btn_default=0x7f0200e6;
+        public static final int pay_btn_pressed=0x7f0200e7;
+        public static final int pop_dengji_bg=0x7f0200e8;
+        public static final int ptr_rotate_arrow=0x7f0200e9;
+        public static final int radio_check_bg_leftclick=0x7f0200ea;
+        public static final int radio_check_left_bg=0x7f0200eb;
+        public static final int radio_checked_left_bg=0x7f0200ec;
+        public static final int replaze=0x7f0200ed;
+        public static final int round_add_bg=0x7f0200ee;
+        public static final int search=0x7f0200ef;
+        public static final int search_bg=0x7f0200f0;
+        public static final int select_bg=0x7f0200f1;
+        public static final int side_nav_bar=0x7f0200f2;
+        public static final int smarttravel_map_start=0x7f0200f3;
+        public static final int splash=0x7f0200f4;
+        public static final int stroke_dialog=0x7f0200f5;
+        public static final int stroke_dialog_down=0x7f0200f6;
+        public static final int stroke_dialog_down_left=0x7f0200f7;
+        public static final int stroke_dialog_down_right=0x7f0200f8;
+        public static final int tab_top_select=0x7f0200f9;
+        public static final int take_pic_bg=0x7f0200fa;
+        public static final int toast_actionsheet_bottom_normal=0x7f0200fb;
+        public static final int toast_actionsheet_bottom_pressed=0x7f0200fc;
+        public static final int toast_actionsheet_middle_normal=0x7f0200fd;
+        public static final int toast_actionsheet_middle_pressed=0x7f0200fe;
+        public static final int toast_actionsheet_single_normal=0x7f0200ff;
+        public static final int toast_actionsheet_single_pressed=0x7f020100;
+        public static final int toast_actionsheet_top_normal=0x7f020101;
+        public static final int toast_actionsheet_top_pressed=0x7f020102;
+        public static final int trail=0x7f020103;
+        public static final int transaction_bg=0x7f020104;
+        public static final int transaction_click_bg=0x7f020105;
+        public static final int wait=0x7f020106;
+        public static final int warning=0x7f020107;
+        public static final int wheel_bg=0x7f020108;
+        public static final int wheel_val=0x7f020109;
+        public static final int white_click_bg=0x7f02010a;
+        public static final int white_click_bg2=0x7f02010b;
     }
     public static final class id {
         public static final int FILL=0x7f0b003d;
         public static final int STROKE=0x7f0b003e;
-        public static final int action0=0x7f0b021f;
-        public static final int action_bar=0x7f0b0062;
+        public static final int action0=0x7f0b0229;
+        public static final int action_bar=0x7f0b006c;
         public static final int action_bar_activity_content=0x7f0b0000;
-        public static final int action_bar_container=0x7f0b0061;
-        public static final int action_bar_root=0x7f0b005d;
+        public static final int action_bar_container=0x7f0b006b;
+        public static final int action_bar_root=0x7f0b0067;
         public static final int action_bar_spinner=0x7f0b0001;
-        public static final int action_bar_subtitle=0x7f0b0042;
-        public static final int action_bar_title=0x7f0b0041;
-        public static final int action_context_bar=0x7f0b0063;
-        public static final int action_divider=0x7f0b0223;
+        public static final int action_bar_subtitle=0x7f0b004c;
+        public static final int action_bar_title=0x7f0b004b;
+        public static final int action_context_bar=0x7f0b006d;
+        public static final int action_divider=0x7f0b022d;
         public static final int action_menu_divider=0x7f0b0002;
         public static final int action_menu_presenter=0x7f0b0003;
-        public static final int action_mode_bar=0x7f0b005f;
-        public static final int action_mode_bar_stub=0x7f0b005e;
-        public static final int action_mode_close_button=0x7f0b0043;
-        public static final int action_settings=0x7f0b0243;
-        public static final int activeBtn=0x7f0b012f;
-        public static final int activeCodeEt=0x7f0b012e;
-        public static final int activeCodeTV=0x7f0b0133;
-        public static final int activeFormalBtn=0x7f0b014c;
-        public static final int activity_chooser_view_content=0x7f0b0044;
+        public static final int action_mode_bar=0x7f0b0069;
+        public static final int action_mode_bar_stub=0x7f0b0068;
+        public static final int action_mode_close_button=0x7f0b004d;
+        public static final int action_settings=0x7f0b024d;
+        public static final int activeBtn=0x7f0b0139;
+        public static final int activeCodeEt=0x7f0b0138;
+        public static final int activeCodeTV=0x7f0b013d;
+        public static final int activeFormalBtn=0x7f0b0156;
+        public static final int activity_chooser_view_content=0x7f0b004e;
         public static final int add=0x7f0b001a;
         public static final int adjust_height=0x7f0b0038;
         public static final int adjust_width=0x7f0b0039;
-        public static final int alertTitle=0x7f0b0050;
+        public static final int alertTitle=0x7f0b005a;
         public static final int always=0x7f0b0031;
         public static final int auto=0x7f0b0034;
         public static final int beginning=0x7f0b0036;
         public static final int bottom=0x7f0b0021;
-        public static final int btn_banzheng=0x7f0b00f8;
-        public static final int btn_cancel=0x7f0b010d;
-        public static final int btn_cancle=0x7f0b022d;
-        public static final int btn_compare=0x7f0b0235;
-        public static final int btn_done=0x7f0b010e;
-        public static final int btn_ensure=0x7f0b0101;
-        public static final int btn_jiaru=0x7f0b00f7;
-        public static final int btn_login=0x7f0b00b2;
-        public static final int btn_readcard=0x7f0b00d9;
-        public static final int btn_seach=0x7f0b00c3;
-        public static final int btn_search=0x7f0b0236;
-        public static final int btn_toggle=0x7f0b00b3;
-        public static final int btn_tongwu=0x7f0b00ee;
-        public static final int btn_unregist=0x7f0b00ef;
-        public static final int btn_xinzeng=0x7f0b00f5;
-        public static final int btn_xinzengertong=0x7f0b00f6;
-        public static final int btn_yanqi=0x7f0b00ec;
-        public static final int btn_zhuxiao=0x7f0b00ed;
-        public static final int buttonPanel=0x7f0b004b;
-        public static final int cancel=0x7f0b0126;
-        public static final int cancel_action=0x7f0b0220;
-        public static final int cardview=0x7f0b0079;
+        public static final int btn_banzheng=0x7f0b0102;
+        public static final int btn_cancel=0x7f0b0117;
+        public static final int btn_cancle=0x7f0b0237;
+        public static final int btn_compare=0x7f0b023f;
+        public static final int btn_done=0x7f0b0118;
+        public static final int btn_ensure=0x7f0b010b;
+        public static final int btn_jiaru=0x7f0b0101;
+        public static final int btn_login=0x7f0b00bc;
+        public static final int btn_readcard=0x7f0b00e3;
+        public static final int btn_seach=0x7f0b00cd;
+        public static final int btn_search=0x7f0b0240;
+        public static final int btn_toggle=0x7f0b00bd;
+        public static final int btn_tongwu=0x7f0b00f8;
+        public static final int btn_unregist=0x7f0b00f9;
+        public static final int btn_xinzeng=0x7f0b00ff;
+        public static final int btn_xinzengertong=0x7f0b0100;
+        public static final int btn_yanqi=0x7f0b00f6;
+        public static final int btn_zhuxiao=0x7f0b00f7;
+        public static final int buttonPanel=0x7f0b0055;
+        public static final int cancel=0x7f0b0130;
+        public static final int cancel_action=0x7f0b022a;
+        public static final int cardview=0x7f0b0083;
         public static final int center=0x7f0b0022;
         public static final int center_horizontal=0x7f0b0023;
         public static final int center_vertical=0x7f0b0024;
         public static final int changing=0x7f0b0032;
-        public static final int checkbox=0x7f0b0059;
-        public static final int chronometer=0x7f0b0225;
+        public static final int checkbox=0x7f0b0063;
+        public static final int chronometer=0x7f0b022f;
         public static final int clip_horizontal=0x7f0b002d;
         public static final int clip_vertical=0x7f0b002e;
-        public static final int close=0x7f0b0232;
+        public static final int close=0x7f0b023c;
         public static final int collapseActionView=0x7f0b003a;
-        public static final int compare=0x7f0b00d0;
-        public static final int confirm=0x7f0b0128;
-        public static final int connectBTN=0x7f0b0121;
-        public static final int container=0x7f0b010a;
-        public static final int content=0x7f0b0150;
-        public static final int contentPanel=0x7f0b0051;
-        public static final int copyActiveCodeBtn=0x7f0b0134;
-        public static final int crop_image=0x7f0b010c;
-        public static final int custom=0x7f0b0057;
-        public static final int customPanel=0x7f0b0056;
-        public static final int decor_content_parent=0x7f0b0060;
-        public static final int default_activity_button=0x7f0b0047;
-        public static final int design_bottom_sheet=0x7f0b0115;
-        public static final int design_menu_item_action_area=0x7f0b011c;
-        public static final int design_menu_item_action_area_stub=0x7f0b011b;
-        public static final int design_menu_item_text=0x7f0b011a;
-        public static final int design_navigation_view=0x7f0b0119;
-        public static final int devicelistEmptyTV=0x7f0b011e;
-        public static final int devicelistLV=0x7f0b011d;
-        public static final int dialogLayout=0x7f0b0129;
+        public static final int compare=0x7f0b00da;
+        public static final int confirm=0x7f0b0132;
+        public static final int connectBTN=0x7f0b012b;
+        public static final int container=0x7f0b0114;
+        public static final int content=0x7f0b015a;
+        public static final int contentPanel=0x7f0b005b;
+        public static final int copyActiveCodeBtn=0x7f0b013e;
+        public static final int crop_image=0x7f0b0116;
+        public static final int custom=0x7f0b0061;
+        public static final int customPanel=0x7f0b0060;
+        public static final int decor_content_parent=0x7f0b006a;
+        public static final int default_activity_button=0x7f0b0051;
+        public static final int design_bottom_sheet=0x7f0b011f;
+        public static final int design_menu_item_action_area=0x7f0b0126;
+        public static final int design_menu_item_action_area_stub=0x7f0b0125;
+        public static final int design_menu_item_text=0x7f0b0124;
+        public static final int design_navigation_view=0x7f0b0123;
+        public static final int devicelistEmptyTV=0x7f0b0128;
+        public static final int devicelistLV=0x7f0b0127;
+        public static final int dialogLayout=0x7f0b0133;
         public static final int disableHome=0x7f0b000e;
-        public static final int divider=0x7f0b0127;
-        public static final int divider1=0x7f0b0124;
-        public static final int done_cancel_bar=0x7f0b010b;
-        public static final int drawer_layout=0x7f0b00b4;
-        public static final int edit_query=0x7f0b0064;
-        public static final int edt_addition=0x7f0b017a;
-        public static final int edt_address=0x7f0b00ce;
-        public static final int edt_beizhu2=0x7f0b0212;
-        public static final int edt_bianhao=0x7f0b0085;
-        public static final int edt_birth=0x7f0b00c9;
-        public static final int edt_bycsrq=0x7f0b0203;
-        public static final int edt_chepaihao=0x7f0b01c2;
-        public static final int edt_content=0x7f0b00c2;
-        public static final int edt_czqx1=0x7f0b0206;
-        public static final int edt_czqx2=0x7f0b0209;
-        public static final int edt_danweidizhi=0x7f0b0184;
-        public static final int edt_dianhua=0x7f0b0090;
-        public static final int edt_dizhi=0x7f0b0177;
-        public static final int edt_dwfzr=0x7f0b01ef;
-        public static final int edt_dwlxdh=0x7f0b01e2;
-        public static final int edt_email=0x7f0b01d7;
-        public static final int edt_fangdongxingming=0x7f0b008b;
-        public static final int edt_formername=0x7f0b00c6;
-        public static final int edt_fuhao=0x7f0b009e;
-        public static final int edt_fuwuchusuo=0x7f0b0182;
-        public static final int edt_fwkh=0x7f0b0200;
-        public static final int edt_fzdh=0x7f0b01dd;
-        public static final int edt_fzsfz=0x7f0b01e0;
-        public static final int edt_fzxm=0x7f0b01da;
-        public static final int edt_houseid=0x7f0b0139;
-        public static final int edt_hyqfrq=0x7f0b01f7;
-        public static final int edt_hyzmbh=0x7f0b01f4;
-        public static final int edt_idcard=0x7f0b00cc;
-        public static final int edt_jhrq=0x7f0b01fa;
-        public static final int edt_jieluxiang=0x7f0b0099;
-        public static final int edt_jkzbh=0x7f0b01ed;
-        public static final int edt_jyrq=0x7f0b01eb;
-        public static final int edt_louhao=0x7f0b00a2;
-        public static final int edt_mac=0x7f0b01cb;
-        public static final int edt_menpaihao=0x7f0b009b;
-        public static final int edt_msn=0x7f0b01d6;
-        public static final int edt_name=0x7f0b007b;
-        public static final int edt_password=0x7f0b00ae;
-        public static final int edt_password2=0x7f0b00b1;
-        public static final int edt_qq=0x7f0b01c9;
-        public static final int edt_region=0x7f0b00c8;
-        public static final int edt_roomcode=0x7f0b012a;
-        public static final int edt_sbbh=0x7f0b01e8;
-        public static final int edt_sex=0x7f0b00c7;
-        public static final int edt_shenfenzheng=0x7f0b008d;
-        public static final int edt_shihao=0x7f0b00a5;
-        public static final int edt_shoujichuanhao=0x7f0b01cf;
-        public static final int edt_shoujixinghao=0x7f0b01cd;
-        public static final int edt_stature=0x7f0b0167;
-        public static final int edt_user=0x7f0b00ad;
-        public static final int edt_user2=0x7f0b00b0;
-        public static final int edt_xaddress=0x7f0b00cf;
-        public static final int edt_yfjzzh=0x7f0b01fc;
-        public static final int edt_zinvgeshu=0x7f0b01af;
-        public static final int edt_zujin=0x7f0b01c4;
-        public static final int edt_zwmc=0x7f0b01e4;
+        public static final int divider=0x7f0b0131;
+        public static final int divider1=0x7f0b012e;
+        public static final int done_cancel_bar=0x7f0b0115;
+        public static final int drawer_layout=0x7f0b00be;
+        public static final int edit_query=0x7f0b006e;
+        public static final int edt_addition=0x7f0b0184;
+        public static final int edt_address=0x7f0b00d8;
+        public static final int edt_beizhu2=0x7f0b021c;
+        public static final int edt_bianhao=0x7f0b008f;
+        public static final int edt_birth=0x7f0b00d3;
+        public static final int edt_bycsrq=0x7f0b020d;
+        public static final int edt_chepaihao=0x7f0b01cc;
+        public static final int edt_content=0x7f0b00cc;
+        public static final int edt_czqx1=0x7f0b0210;
+        public static final int edt_czqx2=0x7f0b0213;
+        public static final int edt_danweidizhi=0x7f0b018e;
+        public static final int edt_dianhua=0x7f0b009a;
+        public static final int edt_dizhi=0x7f0b0181;
+        public static final int edt_dwfzr=0x7f0b01f9;
+        public static final int edt_dwlxdh=0x7f0b01ec;
+        public static final int edt_email=0x7f0b01e1;
+        public static final int edt_fangdongxingming=0x7f0b0095;
+        public static final int edt_formername=0x7f0b00d0;
+        public static final int edt_fuhao=0x7f0b00a8;
+        public static final int edt_fuwuchusuo=0x7f0b018c;
+        public static final int edt_fwkh=0x7f0b020a;
+        public static final int edt_fzdh=0x7f0b01e7;
+        public static final int edt_fzsfz=0x7f0b01ea;
+        public static final int edt_fzxm=0x7f0b01e4;
+        public static final int edt_houseid=0x7f0b0143;
+        public static final int edt_hyqfrq=0x7f0b0201;
+        public static final int edt_hyzmbh=0x7f0b01fe;
+        public static final int edt_idcard=0x7f0b00d6;
+        public static final int edt_jhrq=0x7f0b0204;
+        public static final int edt_jieluxiang=0x7f0b00a3;
+        public static final int edt_jkzbh=0x7f0b01f7;
+        public static final int edt_jyrq=0x7f0b01f5;
+        public static final int edt_louhao=0x7f0b00ac;
+        public static final int edt_mac=0x7f0b01d5;
+        public static final int edt_menpaihao=0x7f0b00a5;
+        public static final int edt_msn=0x7f0b01e0;
+        public static final int edt_name=0x7f0b0085;
+        public static final int edt_password=0x7f0b00b8;
+        public static final int edt_password2=0x7f0b00bb;
+        public static final int edt_qq=0x7f0b01d3;
+        public static final int edt_region=0x7f0b00d2;
+        public static final int edt_roomcode=0x7f0b0134;
+        public static final int edt_sbbh=0x7f0b01f2;
+        public static final int edt_sex=0x7f0b00d1;
+        public static final int edt_shenfenzheng=0x7f0b0097;
+        public static final int edt_shihao=0x7f0b00af;
+        public static final int edt_shoujichuanhao=0x7f0b01d9;
+        public static final int edt_shoujixinghao=0x7f0b01d7;
+        public static final int edt_stature=0x7f0b0171;
+        public static final int edt_user=0x7f0b00b7;
+        public static final int edt_user2=0x7f0b00ba;
+        public static final int edt_xaddress=0x7f0b00d9;
+        public static final int edt_yfjzzh=0x7f0b0206;
+        public static final int edt_zinvgeshu=0x7f0b01b9;
+        public static final int edt_zujin=0x7f0b01ce;
+        public static final int edt_zwmc=0x7f0b01ee;
+        public static final int email=0x7f0b0041;
         public static final int end=0x7f0b0025;
-        public static final int endTimeTV=0x7f0b0131;
-        public static final int end_padder=0x7f0b0229;
+        public static final int endTimeTV=0x7f0b013b;
+        public static final int end_padder=0x7f0b0233;
         public static final int enterAlways=0x7f0b0015;
         public static final int enterAlwaysCollapsed=0x7f0b0016;
         public static final int exitUntilCollapsed=0x7f0b0017;
-        public static final int expand_activities_button=0x7f0b0045;
-        public static final int expanded_menu=0x7f0b0058;
+        public static final int expand_activities_button=0x7f0b004f;
+        public static final int expanded_menu=0x7f0b0062;
         public static final int fill=0x7f0b002f;
         public static final int fill_horizontal=0x7f0b0030;
         public static final int fill_vertical=0x7f0b0026;
         public static final int fixed=0x7f0b003f;
-        public static final int header=0x7f0b021c;
+        public static final int former_name=0x7f0b0042;
+        public static final int header=0x7f0b0226;
+        public static final int health_card=0x7f0b0043;
         public static final int home=0x7f0b0004;
         public static final int homeAsUp=0x7f0b000f;
-        public static final int ib_addguanxi=0x7f0b0215;
-        public static final int ib_addmember=0x7f0b0213;
-        public static final int ib_banzheng=0x7f0b0105;
-        public static final int ib_biangeng=0x7f0b0106;
-        public static final int ib_checkinfo=0x7f0b00d4;
-        public static final int ib_close=0x7f0b0159;
-        public static final int ib_fasong=0x7f0b0103;
-        public static final int ib_firstgencard=0x7f0b00d3;
-        public static final int ib_quan=0x7f0b00d6;
-        public static final int ib_readcard=0x7f0b00d2;
-        public static final int ib_tian=0x7f0b00d7;
-        public static final int ib_tiaozhuan=0x7f0b0107;
-        public static final int ib_tongji=0x7f0b0102;
-        public static final int ib_yanzheng=0x7f0b0104;
-        public static final int ib_zen=0x7f0b00d5;
-        public static final int icon=0x7f0b0049;
+        public static final int ib_addguanxi=0x7f0b021f;
+        public static final int ib_addmember=0x7f0b021d;
+        public static final int ib_banzheng=0x7f0b010f;
+        public static final int ib_biangeng=0x7f0b0110;
+        public static final int ib_checkinfo=0x7f0b00de;
+        public static final int ib_close=0x7f0b0163;
+        public static final int ib_fasong=0x7f0b010d;
+        public static final int ib_firstgencard=0x7f0b00dd;
+        public static final int ib_quan=0x7f0b00e0;
+        public static final int ib_readcard=0x7f0b00dc;
+        public static final int ib_tian=0x7f0b00e1;
+        public static final int ib_tiaozhuan=0x7f0b0111;
+        public static final int ib_tongji=0x7f0b010c;
+        public static final int ib_yanzheng=0x7f0b010e;
+        public static final int ib_zen=0x7f0b00df;
+        public static final int icon=0x7f0b0053;
+        public static final int id_card=0x7f0b0044;
         public static final int ifRoom=0x7f0b003b;
-        public static final int image=0x7f0b0046;
-        public static final int info=0x7f0b0228;
+        public static final int image=0x7f0b0050;
+        public static final int info=0x7f0b0232;
         public static final int item_touch_helper_previous_elevation=0x7f0b0005;
-        public static final int iv=0x7f0b014f;
-        public static final int iv1=0x7f0b0233;
-        public static final int iv2=0x7f0b0234;
-        public static final int iv_aa=0x7f0b0135;
-        public static final int iv_allpopulation=0x7f0b00b7;
-        public static final int iv_dianpingche=0x7f0b00b9;
-        public static final int iv_house=0x7f0b013b;
-        public static final int iv_outpopulation=0x7f0b00b6;
-        public static final int iv_personinfocheck=0x7f0b0092;
-        public static final int iv_photo=0x7f0b0095;
-        public static final int iv_pic=0x7f0b00ca;
-        public static final int iv_register=0x7f0b0091;
-        public static final int iv_rentalhousecheck=0x7f0b0094;
-        public static final int iv_rentalhouseregist=0x7f0b0093;
-        public static final int iv_requestloc=0x7f0b013f;
-        public static final int iv_send=0x7f0b00ba;
-        public static final int iv_sys=0x7f0b0096;
-        public static final int iv_xunluo=0x7f0b00b8;
-        public static final int lLayout_content=0x7f0b0239;
-        public static final int layout_a=0x7f0b00aa;
-        public static final int layout_b=0x7f0b00ab;
+        public static final int iv=0x7f0b0159;
+        public static final int iv1=0x7f0b023d;
+        public static final int iv2=0x7f0b023e;
+        public static final int iv_aa=0x7f0b013f;
+        public static final int iv_allpopulation=0x7f0b00c1;
+        public static final int iv_dianpingche=0x7f0b00c3;
+        public static final int iv_house=0x7f0b0145;
+        public static final int iv_outpopulation=0x7f0b00c0;
+        public static final int iv_personinfocheck=0x7f0b009c;
+        public static final int iv_photo=0x7f0b009f;
+        public static final int iv_pic=0x7f0b00d4;
+        public static final int iv_register=0x7f0b009b;
+        public static final int iv_rentalhousecheck=0x7f0b009e;
+        public static final int iv_rentalhouseregist=0x7f0b009d;
+        public static final int iv_requestloc=0x7f0b0149;
+        public static final int iv_send=0x7f0b00c4;
+        public static final int iv_sys=0x7f0b00a0;
+        public static final int iv_xunluo=0x7f0b00c2;
+        public static final int lLayout_content=0x7f0b0243;
+        public static final int layout_a=0x7f0b00b4;
+        public static final int layout_b=0x7f0b00b5;
         public static final int left=0x7f0b0027;
-        public static final int line1=0x7f0b0145;
-        public static final int line3=0x7f0b0227;
+        public static final int line1=0x7f0b014f;
+        public static final int line3=0x7f0b0231;
         public static final int listMode=0x7f0b000b;
-        public static final int list_item=0x7f0b0048;
-        public static final int ll_address=0x7f0b00cd;
-        public static final int ll_default=0x7f0b00ac;
-        public static final int ll_footlayout=0x7f0b0218;
-        public static final int ll_guanxi=0x7f0b0216;
-        public static final int ll_hunhou=0x7f0b01a5;
-        public static final int ll_idcard=0x7f0b00cb;
-        public static final int ll_loc=0x7f0b0140;
-        public static final int ll_member=0x7f0b0214;
-        public static final int ll_right=0x7f0b0137;
-        public static final int ll_search=0x7f0b00de;
-        public static final int ll_toggle=0x7f0b00af;
-        public static final int ll_top=0x7f0b00c5;
-        public static final int loadmorelv=0x7f0b00df;
-        public static final int loc=0x7f0b0141;
-        public static final int lv=0x7f0b00bf;
-        public static final int mainVP=0x7f0b00bb;
-        public static final int mapview=0x7f0b013e;
-        public static final int media_actions=0x7f0b0222;
+        public static final int list_item=0x7f0b0052;
+        public static final int ll_address=0x7f0b00d7;
+        public static final int ll_default=0x7f0b00b6;
+        public static final int ll_footlayout=0x7f0b0222;
+        public static final int ll_guanxi=0x7f0b0220;
+        public static final int ll_hunhou=0x7f0b01af;
+        public static final int ll_idcard=0x7f0b00d5;
+        public static final int ll_loc=0x7f0b014a;
+        public static final int ll_member=0x7f0b021e;
+        public static final int ll_right=0x7f0b0141;
+        public static final int ll_search=0x7f0b00e8;
+        public static final int ll_toggle=0x7f0b00b9;
+        public static final int ll_top=0x7f0b00cf;
+        public static final int loadmorelv=0x7f0b00e9;
+        public static final int loc=0x7f0b014b;
+        public static final int lv=0x7f0b00c9;
+        public static final int mainVP=0x7f0b00c5;
+        public static final int mapview=0x7f0b0148;
+        public static final int media_actions=0x7f0b022c;
         public static final int middle=0x7f0b0037;
         public static final int mini=0x7f0b0035;
+        public static final int mobile=0x7f0b0045;
         public static final int multiply=0x7f0b001b;
-        public static final int nav_alien=0x7f0b023c;
-        public static final int nav_diandongche=0x7f0b023f;
-        public static final int nav_loc=0x7f0b0240;
-        public static final int nav_send=0x7f0b0241;
-        public static final int nav_setting=0x7f0b0242;
-        public static final int nav_shi=0x7f0b023d;
-        public static final int nav_view=0x7f0b00b5;
-        public static final int nav_xunluo=0x7f0b023e;
-        public static final int navgation_top=0x7f0b0072;
-        public static final int navigation_header_container=0x7f0b0118;
+        public static final int nav_alien=0x7f0b0246;
+        public static final int nav_diandongche=0x7f0b0249;
+        public static final int nav_loc=0x7f0b024a;
+        public static final int nav_send=0x7f0b024b;
+        public static final int nav_setting=0x7f0b024c;
+        public static final int nav_shi=0x7f0b0247;
+        public static final int nav_view=0x7f0b00bf;
+        public static final int nav_xunluo=0x7f0b0248;
+        public static final int navgation_top=0x7f0b007c;
+        public static final int navigation_header_container=0x7f0b0122;
         public static final int never=0x7f0b0033;
         public static final int none=0x7f0b0010;
         public static final int normal=0x7f0b000c;
-        public static final int ok=0x7f0b0125;
+        public static final int number_plate=0x7f0b0046;
+        public static final int ok=0x7f0b012f;
         public static final int parallax=0x7f0b002b;
-        public static final int parentPanel=0x7f0b004d;
-        public static final int pb=0x7f0b00fc;
+        public static final int parentPanel=0x7f0b0057;
+        public static final int pb=0x7f0b0106;
         public static final int pin=0x7f0b002c;
-        public static final int point=0x7f0b0122;
-        public static final int progressBar=0x7f0b014e;
-        public static final int progressBar1=0x7f0b021b;
+        public static final int point=0x7f0b012c;
+        public static final int position_name=0x7f0b0047;
+        public static final int progressBar=0x7f0b0158;
+        public static final int progressBar1=0x7f0b0225;
         public static final int progress_circular=0x7f0b0006;
         public static final int progress_horizontal=0x7f0b0007;
-        public static final int ptr_classic_header_rotate_view=0x7f0b0112;
-        public static final int ptr_classic_header_rotate_view_header_last_update=0x7f0b0111;
-        public static final int ptr_classic_header_rotate_view_header_text=0x7f0b010f;
-        public static final int ptr_classic_header_rotate_view_header_title=0x7f0b0110;
-        public static final int ptr_classic_header_rotate_view_progressbar=0x7f0b0113;
-        public static final int pull_to_refresh_progress=0x7f0b0219;
-        public static final int radio=0x7f0b005b;
-        public static final int rb_a=0x7f0b00a8;
-        public static final int rb_b=0x7f0b00a9;
-        public static final int rb_banli=0x7f0b00be;
-        public static final int rb_banzhengfou=0x7f0b01d4;
-        public static final int rb_banzhengshi=0x7f0b01d3;
-        public static final int rb_dangyuan=0x7f0b0174;
-        public static final int rb_fangwu=0x7f0b00db;
-        public static final int rb_female=0x7f0b007e;
-        public static final int rb_foucanbao=0x7f0b018f;
-        public static final int rb_foufubingyi=0x7f0b019a;
-        public static final int rb_foufuqingtongxing=0x7f0b01a9;
-        public static final int rb_foujieyu=0x7f0b01b3;
-        public static final int rb_foujuzhu=0x7f0b019e;
-        public static final int rb_foulingzheng=0x7f0b01bd;
-        public static final int rb_fouyimiao=0x7f0b018b;
-        public static final int rb_lihun=0x7f0b016f;
-        public static final int rb_male=0x7f0b007d;
-        public static final int rb_nearby=0x7f0b00dd;
-        public static final int rb_qita=0x7f0b0231;
-        public static final int rb_quneisuowai=0x7f0b022f;
-        public static final int rb_qunzhong=0x7f0b0172;
-        public static final int rb_renyuan=0x7f0b00dc;
-        public static final int rb_shicanbao=0x7f0b018e;
-        public static final int rb_shifubingyi=0x7f0b0199;
-        public static final int rb_shifuqitongxing=0x7f0b01a8;
-        public static final int rb_shihao=0x7f0b00fb;
-        public static final int rb_shijieyu=0x7f0b01b2;
-        public static final int rb_shijuzhuleibie=0x7f0b019d;
-        public static final int rb_shilingzheng=0x7f0b01bc;
-        public static final int rb_shiwai=0x7f0b0230;
-        public static final int rb_shiyimiao=0x7f0b018a;
-        public static final int rb_suoneitawai=0x7f0b022e;
-        public static final int rb_time=0x7f0b00fa;
-        public static final int rb_tuanyuan=0x7f0b0173;
-        public static final int rb_weihun=0x7f0b016d;
-        public static final int rb_weiyu=0x7f0b01ad;
-        public static final int rb_wu=0x7f0b0165;
-        public static final int rb_yihun=0x7f0b016e;
-        public static final int rb_yiyu=0x7f0b01ac;
-        public static final int rb_you=0x7f0b0164;
-        public static final int rb_zaizhu=0x7f0b00bd;
-        public static final int rc_bianhao=0x7f0b0175;
-        public static final int rc_chusuoleixing=0x7f0b017c;
-        public static final int rc_danweidizhi=0x7f0b0183;
-        public static final int rc_dizhi=0x7f0b0176;
-        public static final int rc_fuwuchusuo=0x7f0b0181;
-        public static final int rc_shihao=0x7f0b0178;
-        public static final int refreshBTN=0x7f0b011f;
-        public static final int replace=0x7f0b00d1;
-        public static final int rg=0x7f0b007c;
-        public static final int rg_dushengzinv=0x7f0b01fe;
-        public static final int rg_hunyin=0x7f0b016c;
-        public static final int rg_isbanzheng=0x7f0b01d2;
-        public static final int rg_iscanbao=0x7f0b018d;
-        public static final int rg_isfubingyi=0x7f0b0198;
-        public static final int rg_isfuqitongxing=0x7f0b01a7;
-        public static final int rg_isjunzhu=0x7f0b019c;
-        public static final int rg_islingzheng=0x7f0b01bb;
-        public static final int rg_isyimiao=0x7f0b0189;
-        public static final int rg_jieyu=0x7f0b01b1;
-        public static final int rg_jiezhong=0x7f0b0163;
-        public static final int rg_search=0x7f0b00da;
-        public static final int rg_sex=0x7f0b0153;
-        public static final int rg_shenyuqingkuang=0x7f0b01ab;
-        public static final int rg_tab=0x7f0b00a7;
-        public static final int rg_zai=0x7f0b00bc;
-        public static final int rg_zhengzhi=0x7f0b0171;
-        public static final int ri_s=0x7f0b00c1;
+        public static final int ptr_classic_header_rotate_view=0x7f0b011c;
+        public static final int ptr_classic_header_rotate_view_header_last_update=0x7f0b011b;
+        public static final int ptr_classic_header_rotate_view_header_text=0x7f0b0119;
+        public static final int ptr_classic_header_rotate_view_header_title=0x7f0b011a;
+        public static final int ptr_classic_header_rotate_view_progressbar=0x7f0b011d;
+        public static final int pull_to_refresh_progress=0x7f0b0223;
+        public static final int radio=0x7f0b0065;
+        public static final int rb_a=0x7f0b00b2;
+        public static final int rb_b=0x7f0b00b3;
+        public static final int rb_banli=0x7f0b00c8;
+        public static final int rb_banzhengfou=0x7f0b01de;
+        public static final int rb_banzhengshi=0x7f0b01dd;
+        public static final int rb_dangyuan=0x7f0b017e;
+        public static final int rb_fangwu=0x7f0b00e5;
+        public static final int rb_female=0x7f0b0088;
+        public static final int rb_foucanbao=0x7f0b0199;
+        public static final int rb_foufubingyi=0x7f0b01a4;
+        public static final int rb_foufuqingtongxing=0x7f0b01b3;
+        public static final int rb_foujieyu=0x7f0b01bd;
+        public static final int rb_foujuzhu=0x7f0b01a8;
+        public static final int rb_foulingzheng=0x7f0b01c7;
+        public static final int rb_fouyimiao=0x7f0b0195;
+        public static final int rb_lihun=0x7f0b0179;
+        public static final int rb_male=0x7f0b0087;
+        public static final int rb_nearby=0x7f0b00e7;
+        public static final int rb_qita=0x7f0b023b;
+        public static final int rb_quneisuowai=0x7f0b0239;
+        public static final int rb_qunzhong=0x7f0b017c;
+        public static final int rb_renyuan=0x7f0b00e6;
+        public static final int rb_shicanbao=0x7f0b0198;
+        public static final int rb_shifubingyi=0x7f0b01a3;
+        public static final int rb_shifuqitongxing=0x7f0b01b2;
+        public static final int rb_shihao=0x7f0b0105;
+        public static final int rb_shijieyu=0x7f0b01bc;
+        public static final int rb_shijuzhuleibie=0x7f0b01a7;
+        public static final int rb_shilingzheng=0x7f0b01c6;
+        public static final int rb_shiwai=0x7f0b023a;
+        public static final int rb_shiyimiao=0x7f0b0194;
+        public static final int rb_suoneitawai=0x7f0b0238;
+        public static final int rb_time=0x7f0b0104;
+        public static final int rb_tuanyuan=0x7f0b017d;
+        public static final int rb_weihun=0x7f0b0177;
+        public static final int rb_weiyu=0x7f0b01b7;
+        public static final int rb_wu=0x7f0b016f;
+        public static final int rb_yihun=0x7f0b0178;
+        public static final int rb_yiyu=0x7f0b01b6;
+        public static final int rb_you=0x7f0b016e;
+        public static final int rb_zaizhu=0x7f0b00c7;
+        public static final int rc_bianhao=0x7f0b017f;
+        public static final int rc_chusuoleixing=0x7f0b0186;
+        public static final int rc_danweidizhi=0x7f0b018d;
+        public static final int rc_dizhi=0x7f0b0180;
+        public static final int rc_fuwuchusuo=0x7f0b018b;
+        public static final int rc_shihao=0x7f0b0182;
+        public static final int refreshBTN=0x7f0b0129;
+        public static final int replace=0x7f0b00db;
+        public static final int rg=0x7f0b0086;
+        public static final int rg_dushengzinv=0x7f0b0208;
+        public static final int rg_hunyin=0x7f0b0176;
+        public static final int rg_isbanzheng=0x7f0b01dc;
+        public static final int rg_iscanbao=0x7f0b0197;
+        public static final int rg_isfubingyi=0x7f0b01a2;
+        public static final int rg_isfuqitongxing=0x7f0b01b1;
+        public static final int rg_isjunzhu=0x7f0b01a6;
+        public static final int rg_islingzheng=0x7f0b01c5;
+        public static final int rg_isyimiao=0x7f0b0193;
+        public static final int rg_jieyu=0x7f0b01bb;
+        public static final int rg_jiezhong=0x7f0b016d;
+        public static final int rg_search=0x7f0b00e4;
+        public static final int rg_sex=0x7f0b015d;
+        public static final int rg_shenyuqingkuang=0x7f0b01b5;
+        public static final int rg_tab=0x7f0b00b1;
+        public static final int rg_zai=0x7f0b00c6;
+        public static final int rg_zhengzhi=0x7f0b017b;
+        public static final int ri_s=0x7f0b00cb;
         public static final int right=0x7f0b0028;
-        public static final int rl_aboutus=0x7f0b014b;
-        public static final int rl_baoxiu=0x7f0b0078;
-        public static final int rl_bianhao=0x7f0b0083;
-        public static final int rl_birth=0x7f0b0154;
-        public static final int rl_bottom=0x7f0b0143;
-        public static final int rl_bycsrq=0x7f0b0201;
-        public static final int rl_canbaoshijian=0x7f0b0190;
-        public static final int rl_cbqk=0x7f0b0193;
-        public static final int rl_chanyeleixing=0x7f0b0185;
-        public static final int rl_chusuoleixing=0x7f0b017b;
-        public static final int rl_czqx1=0x7f0b0204;
-        public static final int rl_czqx2=0x7f0b0207;
-        public static final int rl_defaultindex=0x7f0b0147;
-        public static final int rl_degree=0x7f0b0168;
-        public static final int rl_dizhibianji=0x7f0b0086;
-        public static final int rl_djrq=0x7f0b020e;
-        public static final int rl_end=0x7f0b00ff;
-        public static final int rl_fangdongguanxi=0x7f0b01a2;
-        public static final int rl_fangdongxingming=0x7f0b0089;
-        public static final int rl_huqfrq=0x7f0b01f5;
-        public static final int rl_hyzmzl=0x7f0b01f0;
-        public static final int rl_jhrq=0x7f0b01f8;
-        public static final int rl_jiaotonggongju=0x7f0b01be;
-        public static final int rl_jieluxiang=0x7f0b0097;
-        public static final int rl_jieyucuoshi=0x7f0b01b4;
-        public static final int rl_jihuo=0x7f0b0149;
-        public static final int rl_juzhufangshi=0x7f0b019f;
-        public static final int rl_jyrq=0x7f0b01e9;
-        public static final int rl_ldhtqj=0x7f0b01e5;
-        public static final int rl_lianxi=0x7f0b008e;
-        public static final int rl_lsrq=0x7f0b020a;
-        public static final int rl_shequ=0x7f0b0080;
-        public static final int rl_shifoubanzheng=0x7f0b01d0;
-        public static final int rl_start=0x7f0b00fd;
-        public static final int rl_tel=0x7f0b0074;
-        public static final int rl_top=0x7f0b0136;
-        public static final int rl_web=0x7f0b0076;
-        public static final int rl_xianyunnianyue=0x7f0b01b7;
-        public static final int rl_zanzhushiyou=0x7f0b017e;
-        public static final int rl_zhan=0x7f0b013c;
-        public static final int rl_zjdq=0x7f0b01c5;
-        public static final int root=0x7f0b0071;
-        public static final int rotate_header_list_view_frame=0x7f0b00c4;
-        public static final int rp=0x7f0b012b;
-        public static final int sLayout_content=0x7f0b0238;
+        public static final int rl_aboutus=0x7f0b0155;
+        public static final int rl_baoxiu=0x7f0b0082;
+        public static final int rl_bianhao=0x7f0b008d;
+        public static final int rl_birth=0x7f0b015e;
+        public static final int rl_bottom=0x7f0b014d;
+        public static final int rl_bycsrq=0x7f0b020b;
+        public static final int rl_canbaoshijian=0x7f0b019a;
+        public static final int rl_cbqk=0x7f0b019d;
+        public static final int rl_chanyeleixing=0x7f0b018f;
+        public static final int rl_chusuoleixing=0x7f0b0185;
+        public static final int rl_czqx1=0x7f0b020e;
+        public static final int rl_czqx2=0x7f0b0211;
+        public static final int rl_defaultindex=0x7f0b0151;
+        public static final int rl_degree=0x7f0b0172;
+        public static final int rl_dizhibianji=0x7f0b0090;
+        public static final int rl_djrq=0x7f0b0218;
+        public static final int rl_end=0x7f0b0109;
+        public static final int rl_fangdongguanxi=0x7f0b01ac;
+        public static final int rl_fangdongxingming=0x7f0b0093;
+        public static final int rl_huqfrq=0x7f0b01ff;
+        public static final int rl_hyzmzl=0x7f0b01fa;
+        public static final int rl_jhrq=0x7f0b0202;
+        public static final int rl_jiaotonggongju=0x7f0b01c8;
+        public static final int rl_jieluxiang=0x7f0b00a1;
+        public static final int rl_jieyucuoshi=0x7f0b01be;
+        public static final int rl_jihuo=0x7f0b0153;
+        public static final int rl_juzhufangshi=0x7f0b01a9;
+        public static final int rl_jyrq=0x7f0b01f3;
+        public static final int rl_ldhtqj=0x7f0b01ef;
+        public static final int rl_lianxi=0x7f0b0098;
+        public static final int rl_lsrq=0x7f0b0214;
+        public static final int rl_shequ=0x7f0b008a;
+        public static final int rl_shifoubanzheng=0x7f0b01da;
+        public static final int rl_start=0x7f0b0107;
+        public static final int rl_tel=0x7f0b007e;
+        public static final int rl_top=0x7f0b0140;
+        public static final int rl_web=0x7f0b0080;
+        public static final int rl_xianyunnianyue=0x7f0b01c1;
+        public static final int rl_zanzhushiyou=0x7f0b0188;
+        public static final int rl_zhan=0x7f0b0146;
+        public static final int rl_zjdq=0x7f0b01cf;
+        public static final int room_code=0x7f0b0048;
+        public static final int root=0x7f0b007b;
+        public static final int rotate_header_list_view_frame=0x7f0b00ce;
+        public static final int rp=0x7f0b0135;
+        public static final int sLayout_content=0x7f0b0242;
         public static final int screen=0x7f0b001c;
         public static final int scroll=0x7f0b0018;
-        public static final int scrollIndicatorDown=0x7f0b0055;
-        public static final int scrollIndicatorUp=0x7f0b0052;
-        public static final int scrollView=0x7f0b0053;
+        public static final int scrollIndicatorDown=0x7f0b005f;
+        public static final int scrollIndicatorUp=0x7f0b005c;
+        public static final int scrollView=0x7f0b005d;
         public static final int scrollable=0x7f0b0040;
-        public static final int search_badge=0x7f0b0066;
-        public static final int search_bar=0x7f0b0065;
-        public static final int search_button=0x7f0b0067;
-        public static final int search_close_btn=0x7f0b006c;
-        public static final int search_edit_frame=0x7f0b0068;
-        public static final int search_go_btn=0x7f0b006e;
-        public static final int search_mag_icon=0x7f0b0069;
-        public static final int search_plate=0x7f0b006a;
-        public static final int search_src_text=0x7f0b006b;
-        public static final int search_voice_btn=0x7f0b006f;
-        public static final int select_dialog_listview=0x7f0b0070;
-        public static final int shortcut=0x7f0b005a;
+        public static final int search_badge=0x7f0b0070;
+        public static final int search_bar=0x7f0b006f;
+        public static final int search_button=0x7f0b0071;
+        public static final int search_close_btn=0x7f0b0076;
+        public static final int search_edit_frame=0x7f0b0072;
+        public static final int search_go_btn=0x7f0b0078;
+        public static final int search_mag_icon=0x7f0b0073;
+        public static final int search_plate=0x7f0b0074;
+        public static final int search_src_text=0x7f0b0075;
+        public static final int search_voice_btn=0x7f0b0079;
+        public static final int select_dialog_listview=0x7f0b007a;
+        public static final int shebao_card=0x7f0b0049;
+        public static final int shortcut=0x7f0b0064;
         public static final int showCustom=0x7f0b0011;
         public static final int showHome=0x7f0b0012;
         public static final int showTitle=0x7f0b0013;
-        public static final int snTV=0x7f0b0120;
-        public static final int snackbar_action=0x7f0b0117;
-        public static final int snackbar_text=0x7f0b0116;
+        public static final int snTV=0x7f0b012a;
+        public static final int snackbar_action=0x7f0b0121;
+        public static final int snackbar_text=0x7f0b0120;
         public static final int snap=0x7f0b0019;
-        public static final int spacer=0x7f0b004c;
-        public static final int spinner=0x7f0b007a;
+        public static final int spacer=0x7f0b0056;
+        public static final int spinner=0x7f0b0084;
         public static final int split_action_bar=0x7f0b0008;
         public static final int src_atop=0x7f0b001d;
         public static final int src_in=0x7f0b001e;
         public static final int src_over=0x7f0b001f;
         public static final int start=0x7f0b0029;
-        public static final int startTimeTV=0x7f0b0130;
-        public static final int status_bar_latest_event_content=0x7f0b0221;
-        public static final int submenuarrow=0x7f0b005c;
-        public static final int submit_area=0x7f0b006d;
-        public static final int sv_b=0x7f0b01d5;
+        public static final int startTimeTV=0x7f0b013a;
+        public static final int stature=0x7f0b004a;
+        public static final int status_bar_latest_event_content=0x7f0b022b;
+        public static final int submenuarrow=0x7f0b0066;
+        public static final int submit_area=0x7f0b0077;
+        public static final int sv_b=0x7f0b01df;
         public static final int tabMode=0x7f0b000d;
-        public static final int text=0x7f0b012c;
-        public static final int text2=0x7f0b0226;
-        public static final int textSpacerNoButtons=0x7f0b0054;
-        public static final int textView=0x7f0b012d;
-        public static final int textView2=0x7f0b014d;
-        public static final int textView3=0x7f0b0132;
-        public static final int textview=0x7f0b00f2;
-        public static final int time=0x7f0b0224;
-        public static final int title=0x7f0b004a;
-        public static final int title_template=0x7f0b004f;
-        public static final int toast=0x7f0b0123;
-        public static final int toolbar=0x7f0b0108;
+        public static final int text=0x7f0b0136;
+        public static final int text2=0x7f0b0230;
+        public static final int textSpacerNoButtons=0x7f0b005e;
+        public static final int textView=0x7f0b0137;
+        public static final int textView2=0x7f0b0157;
+        public static final int textView3=0x7f0b013c;
+        public static final int textview=0x7f0b00fc;
+        public static final int time=0x7f0b022e;
+        public static final int title=0x7f0b0054;
+        public static final int title_template=0x7f0b0059;
+        public static final int toast=0x7f0b012d;
+        public static final int toolbar=0x7f0b0112;
         public static final int top=0x7f0b002a;
-        public static final int topPanel=0x7f0b004e;
-        public static final int touch_outside=0x7f0b0114;
-        public static final int tv_address=0x7f0b00e9;
-        public static final int tv_awlxdhleft=0x7f0b01e1;
-        public static final int tv_beizhu2left=0x7f0b0211;
-        public static final int tv_bianhao=0x7f0b00e7;
-        public static final int tv_bianji=0x7f0b0088;
-        public static final int tv_birth=0x7f0b007f;
-        public static final int tv_birthleft=0x7f0b0155;
-        public static final int tv_bottom=0x7f0b015f;
-        public static final int tv_bycsrqleft=0x7f0b0202;
-        public static final int tv_canbaoshijian=0x7f0b0192;
-        public static final int tv_card=0x7f0b00e4;
-        public static final int tv_cardno=0x7f0b00f4;
-        public static final int tv_cbqk=0x7f0b0195;
-        public static final int tv_center=0x7f0b021e;
-        public static final int tv_chanyeleixing=0x7f0b0187;
-        public static final int tv_chusuoleixing=0x7f0b017d;
-        public static final int tv_content=0x7f0b00c0;
-        public static final int tv_czqx1left=0x7f0b0205;
-        public static final int tv_czqx2left=0x7f0b0208;
-        public static final int tv_danyuan=0x7f0b00a4;
-        public static final int tv_data=0x7f0b00d8;
-        public static final int tv_degree=0x7f0b016a;
-        public static final int tv_distance=0x7f0b015c;
-        public static final int tv_djrq=0x7f0b0210;
-        public static final int tv_dushengzinvleft=0x7f0b01fd;
-        public static final int tv_dwfzrleft=0x7f0b01ee;
-        public static final int tv_end=0x7f0b0100;
-        public static final int tv_error=0x7f0b023b;
-        public static final int tv_fangdongguanxi=0x7f0b01a4;
-        public static final int tv_fangdongxingming=0x7f0b008a;
-        public static final int tv_footerlable=0x7f0b021a;
-        public static final int tv_fuhaodanwei=0x7f0b009f;
-        public static final int tv_fwkhleft=0x7f0b01ff;
-        public static final int tv_fzdhleft=0x7f0b01db;
-        public static final int tv_fzsfzleft=0x7f0b01de;
-        public static final int tv_gosearch=0x7f0b0217;
-        public static final int tv_guanxi=0x7f0b0161;
-        public static final int tv_guanxileft=0x7f0b0160;
-        public static final int tv_houseaddress=0x7f0b015d;
-        public static final int tv_housecode=0x7f0b015a;
-        public static final int tv_hyqfrqleft=0x7f0b01f6;
-        public static final int tv_hyzmbhleft=0x7f0b01f3;
-        public static final int tv_hyzmzl=0x7f0b01f2;
-        public static final int tv_hyzmzlleft=0x7f0b01f1;
-        public static final int tv_idcardleft=0x7f0b0157;
-        public static final int tv_index=0x7f0b0148;
-        public static final int tv_jhrqleft=0x7f0b01f9;
-        public static final int tv_jiaotonggongju=0x7f0b01c0;
-        public static final int tv_jieyucuoshi=0x7f0b01b6;
-        public static final int tv_jiezhongleft=0x7f0b0162;
-        public static final int tv_jihuo=0x7f0b014a;
-        public static final int tv_jkzbhleft=0x7f0b01ec;
-        public static final int tv_juzhufangshi=0x7f0b01a1;
-        public static final int tv_jyrqleft=0x7f0b01ea;
-        public static final int tv_latlng=0x7f0b0146;
-        public static final int tv_ldhtqj=0x7f0b01e6;
-        public static final int tv_ldhtqjleft=0x7f0b0156;
-        public static final int tv_leffangzhuxingming=0x7f0b01d8;
-        public static final int tv_lefmac=0x7f0b01ca;
-        public static final int tv_lefmiddledh=0x7f0b01dc;
-        public static final int tv_lefmiddlefangzhuxingm=0x7f0b01d9;
-        public static final int tv_lefmiddlelsrq=0x7f0b020c;
-        public static final int tv_lefmiddlesfz=0x7f0b01df;
-        public static final int tv_lefqq=0x7f0b01c8;
-        public static final int tv_lefshoujichuanhao=0x7f0b01ce;
-        public static final int tv_lefshoujixinghao=0x7f0b01cc;
-        public static final int tv_left=0x7f0b021d;
-        public static final int tv_leftaddress=0x7f0b00e8;
-        public static final int tv_leftbeiyong1=0x7f0b01d1;
-        public static final int tv_leftbianhao=0x7f0b0084;
-        public static final int tv_leftcanbaoshijian=0x7f0b0191;
-        public static final int tv_leftcard=0x7f0b00e3;
-        public static final int tv_leftcbqk=0x7f0b0194;
-        public static final int tv_leftchanyeleixing=0x7f0b0186;
-        public static final int tv_leftchepaihao=0x7f0b01c1;
-        public static final int tv_leftdegree=0x7f0b0169;
-        public static final int tv_leftdianhua=0x7f0b0196;
-        public static final int tv_leftdizhibianji=0x7f0b0087;
-        public static final int tv_leftdizhibuchong=0x7f0b0179;
-        public static final int tv_leftdjrq=0x7f0b020f;
-        public static final int tv_leftfangdongguanxi=0x7f0b01a3;
-        public static final int tv_leftfuhao=0x7f0b009d;
-        public static final int tv_leftfuqitongxing=0x7f0b01a6;
-        public static final int tv_lefthunyin=0x7f0b016b;
-        public static final int tv_leftiscanbao=0x7f0b018c;
-        public static final int tv_leftisfubingyi=0x7f0b0197;
-        public static final int tv_leftislingzheng=0x7f0b01ba;
-        public static final int tv_leftjiantonggongju=0x7f0b01bf;
-        public static final int tv_leftjieluxiang=0x7f0b0098;
-        public static final int tv_leftjieyucuoshi=0x7f0b01b5;
-        public static final int tv_leftjuzhufangshi=0x7f0b01a0;
-        public static final int tv_leftjuzhuleibie=0x7f0b019b;
-        public static final int tv_leftlouzhuanghao=0x7f0b00a0;
-        public static final int tv_leftlsrq=0x7f0b020b;
-        public static final int tv_leftmenpaihao=0x7f0b009a;
-        public static final int tv_leftname=0x7f0b00e1;
-        public static final int tv_leftshenggao=0x7f0b0166;
-        public static final int tv_leftshengyuqingkuang=0x7f0b01aa;
-        public static final int tv_leftshequ=0x7f0b0081;
-        public static final int tv_leftstatus=0x7f0b00e5;
-        public static final int tv_lefttime=0x7f0b00ea;
-        public static final int tv_leftxianyunnianyue=0x7f0b01b8;
-        public static final int tv_leftyimiao=0x7f0b0188;
-        public static final int tv_leftzanzhushiyou=0x7f0b017f;
-        public static final int tv_leftzinvgeshu=0x7f0b01ae;
-        public static final int tv_leftzujin=0x7f0b01c3;
-        public static final int tv_leftzujinriqi=0x7f0b01c6;
-        public static final int tv_lefzhengzhi=0x7f0b0170;
-        public static final int tv_lianxidianhua=0x7f0b008f;
-        public static final int tv_loc=0x7f0b0142;
-        public static final int tv_lou=0x7f0b00a1;
-        public static final int tv_lsrq=0x7f0b020d;
-        public static final int tv_menpaihaodanwei=0x7f0b009c;
-        public static final int tv_name=0x7f0b00e2;
-        public static final int tv_nameleft=0x7f0b0151;
-        public static final int tv_number=0x7f0b0158;
-        public static final int tv_right=0x7f0b0109;
-        public static final int tv_sbkbhleft=0x7f0b01e7;
-        public static final int tv_search=0x7f0b0138;
-        public static final int tv_searchbyaddress=0x7f0b0144;
-        public static final int tv_sexleft=0x7f0b0152;
-        public static final int tv_shenf=0x7f0b008c;
-        public static final int tv_shequ=0x7f0b0082;
-        public static final int tv_shifoujieyu=0x7f0b01b0;
-        public static final int tv_shihao=0x7f0b00e0;
-        public static final int tv_shihaodanwei=0x7f0b00a6;
-        public static final int tv_shou=0x7f0b00f1;
-        public static final int tv_showpic=0x7f0b015b;
-        public static final int tv_start=0x7f0b00fe;
-        public static final int tv_status=0x7f0b00e6;
-        public static final int tv_takepic=0x7f0b013a;
-        public static final int tv_tel=0x7f0b0075;
-        public static final int tv_time=0x7f0b00eb;
-        public static final int tv_title=0x7f0b00f0;
-        public static final int tv_top=0x7f0b015e;
-        public static final int tv_version=0x7f0b0073;
-        public static final int tv_web=0x7f0b0077;
-        public static final int tv_xianyunnianyue=0x7f0b01b9;
-        public static final int tv_yfjzzhleft=0x7f0b01fb;
-        public static final int tv_zanzhushiyou=0x7f0b0180;
-        public static final int tv_zhan=0x7f0b013d;
-        public static final int tv_zhuanghao=0x7f0b00a3;
-        public static final int tv_zhuzhai=0x7f0b00f9;
-        public static final int tv_zhuzhi=0x7f0b00f3;
-        public static final int tv_zjdq=0x7f0b01c7;
-        public static final int tv_zwmcleft=0x7f0b01e3;
-        public static final int txt_cancel=0x7f0b023a;
-        public static final int txt_title=0x7f0b0237;
+        public static final int topPanel=0x7f0b0058;
+        public static final int touch_outside=0x7f0b011e;
+        public static final int tv_address=0x7f0b00f3;
+        public static final int tv_awlxdhleft=0x7f0b01eb;
+        public static final int tv_beizhu2left=0x7f0b021b;
+        public static final int tv_bianhao=0x7f0b00f1;
+        public static final int tv_bianji=0x7f0b0092;
+        public static final int tv_birth=0x7f0b0089;
+        public static final int tv_birthleft=0x7f0b015f;
+        public static final int tv_bottom=0x7f0b0169;
+        public static final int tv_bycsrqleft=0x7f0b020c;
+        public static final int tv_canbaoshijian=0x7f0b019c;
+        public static final int tv_card=0x7f0b00ee;
+        public static final int tv_cardno=0x7f0b00fe;
+        public static final int tv_cbqk=0x7f0b019f;
+        public static final int tv_center=0x7f0b0228;
+        public static final int tv_chanyeleixing=0x7f0b0191;
+        public static final int tv_chusuoleixing=0x7f0b0187;
+        public static final int tv_content=0x7f0b00ca;
+        public static final int tv_czqx1left=0x7f0b020f;
+        public static final int tv_czqx2left=0x7f0b0212;
+        public static final int tv_danyuan=0x7f0b00ae;
+        public static final int tv_data=0x7f0b00e2;
+        public static final int tv_degree=0x7f0b0174;
+        public static final int tv_distance=0x7f0b0166;
+        public static final int tv_djrq=0x7f0b021a;
+        public static final int tv_dushengzinvleft=0x7f0b0207;
+        public static final int tv_dwfzrleft=0x7f0b01f8;
+        public static final int tv_end=0x7f0b010a;
+        public static final int tv_error=0x7f0b0245;
+        public static final int tv_fangdongguanxi=0x7f0b01ae;
+        public static final int tv_fangdongxingming=0x7f0b0094;
+        public static final int tv_footerlable=0x7f0b0224;
+        public static final int tv_fuhaodanwei=0x7f0b00a9;
+        public static final int tv_fwkhleft=0x7f0b0209;
+        public static final int tv_fzdhleft=0x7f0b01e5;
+        public static final int tv_fzsfzleft=0x7f0b01e8;
+        public static final int tv_gosearch=0x7f0b0221;
+        public static final int tv_guanxi=0x7f0b016b;
+        public static final int tv_guanxileft=0x7f0b016a;
+        public static final int tv_houseaddress=0x7f0b0167;
+        public static final int tv_housecode=0x7f0b0164;
+        public static final int tv_hyqfrqleft=0x7f0b0200;
+        public static final int tv_hyzmbhleft=0x7f0b01fd;
+        public static final int tv_hyzmzl=0x7f0b01fc;
+        public static final int tv_hyzmzlleft=0x7f0b01fb;
+        public static final int tv_idcardleft=0x7f0b0161;
+        public static final int tv_index=0x7f0b0152;
+        public static final int tv_jhrqleft=0x7f0b0203;
+        public static final int tv_jiaotonggongju=0x7f0b01ca;
+        public static final int tv_jieyucuoshi=0x7f0b01c0;
+        public static final int tv_jiezhongleft=0x7f0b016c;
+        public static final int tv_jihuo=0x7f0b0154;
+        public static final int tv_jkzbhleft=0x7f0b01f6;
+        public static final int tv_juzhufangshi=0x7f0b01ab;
+        public static final int tv_jyrqleft=0x7f0b01f4;
+        public static final int tv_latlng=0x7f0b0150;
+        public static final int tv_ldhtqj=0x7f0b01f0;
+        public static final int tv_ldhtqjleft=0x7f0b0160;
+        public static final int tv_leffangzhuxingming=0x7f0b01e2;
+        public static final int tv_lefmac=0x7f0b01d4;
+        public static final int tv_lefmiddledh=0x7f0b01e6;
+        public static final int tv_lefmiddlefangzhuxingm=0x7f0b01e3;
+        public static final int tv_lefmiddlelsrq=0x7f0b0216;
+        public static final int tv_lefmiddlesfz=0x7f0b01e9;
+        public static final int tv_lefqq=0x7f0b01d2;
+        public static final int tv_lefshoujichuanhao=0x7f0b01d8;
+        public static final int tv_lefshoujixinghao=0x7f0b01d6;
+        public static final int tv_left=0x7f0b0227;
+        public static final int tv_leftaddress=0x7f0b00f2;
+        public static final int tv_leftbeiyong1=0x7f0b01db;
+        public static final int tv_leftbianhao=0x7f0b008e;
+        public static final int tv_leftcanbaoshijian=0x7f0b019b;
+        public static final int tv_leftcard=0x7f0b00ed;
+        public static final int tv_leftcbqk=0x7f0b019e;
+        public static final int tv_leftchanyeleixing=0x7f0b0190;
+        public static final int tv_leftchepaihao=0x7f0b01cb;
+        public static final int tv_leftdegree=0x7f0b0173;
+        public static final int tv_leftdianhua=0x7f0b01a0;
+        public static final int tv_leftdizhibianji=0x7f0b0091;
+        public static final int tv_leftdizhibuchong=0x7f0b0183;
+        public static final int tv_leftdjrq=0x7f0b0219;
+        public static final int tv_leftfangdongguanxi=0x7f0b01ad;
+        public static final int tv_leftfuhao=0x7f0b00a7;
+        public static final int tv_leftfuqitongxing=0x7f0b01b0;
+        public static final int tv_lefthunyin=0x7f0b0175;
+        public static final int tv_leftiscanbao=0x7f0b0196;
+        public static final int tv_leftisfubingyi=0x7f0b01a1;
+        public static final int tv_leftislingzheng=0x7f0b01c4;
+        public static final int tv_leftjiantonggongju=0x7f0b01c9;
+        public static final int tv_leftjieluxiang=0x7f0b00a2;
+        public static final int tv_leftjieyucuoshi=0x7f0b01bf;
+        public static final int tv_leftjuzhufangshi=0x7f0b01aa;
+        public static final int tv_leftjuzhuleibie=0x7f0b01a5;
+        public static final int tv_leftlouzhuanghao=0x7f0b00aa;
+        public static final int tv_leftlsrq=0x7f0b0215;
+        public static final int tv_leftmenpaihao=0x7f0b00a4;
+        public static final int tv_leftname=0x7f0b00eb;
+        public static final int tv_leftshenggao=0x7f0b0170;
+        public static final int tv_leftshengyuqingkuang=0x7f0b01b4;
+        public static final int tv_leftshequ=0x7f0b008b;
+        public static final int tv_leftstatus=0x7f0b00ef;
+        public static final int tv_lefttime=0x7f0b00f4;
+        public static final int tv_leftxianyunnianyue=0x7f0b01c2;
+        public static final int tv_leftyimiao=0x7f0b0192;
+        public static final int tv_leftzanzhushiyou=0x7f0b0189;
+        public static final int tv_leftzinvgeshu=0x7f0b01b8;
+        public static final int tv_leftzujin=0x7f0b01cd;
+        public static final int tv_leftzujinriqi=0x7f0b01d0;
+        public static final int tv_lefzhengzhi=0x7f0b017a;
+        public static final int tv_lianxidianhua=0x7f0b0099;
+        public static final int tv_loc=0x7f0b014c;
+        public static final int tv_lou=0x7f0b00ab;
+        public static final int tv_lsrq=0x7f0b0217;
+        public static final int tv_menpaihaodanwei=0x7f0b00a6;
+        public static final int tv_name=0x7f0b00ec;
+        public static final int tv_nameleft=0x7f0b015b;
+        public static final int tv_number=0x7f0b0162;
+        public static final int tv_right=0x7f0b0113;
+        public static final int tv_sbkbhleft=0x7f0b01f1;
+        public static final int tv_search=0x7f0b0142;
+        public static final int tv_searchbyaddress=0x7f0b014e;
+        public static final int tv_sexleft=0x7f0b015c;
+        public static final int tv_shenf=0x7f0b0096;
+        public static final int tv_shequ=0x7f0b008c;
+        public static final int tv_shifoujieyu=0x7f0b01ba;
+        public static final int tv_shihao=0x7f0b00ea;
+        public static final int tv_shihaodanwei=0x7f0b00b0;
+        public static final int tv_shou=0x7f0b00fb;
+        public static final int tv_showpic=0x7f0b0165;
+        public static final int tv_start=0x7f0b0108;
+        public static final int tv_status=0x7f0b00f0;
+        public static final int tv_takepic=0x7f0b0144;
+        public static final int tv_tel=0x7f0b007f;
+        public static final int tv_time=0x7f0b00f5;
+        public static final int tv_title=0x7f0b00fa;
+        public static final int tv_top=0x7f0b0168;
+        public static final int tv_version=0x7f0b007d;
+        public static final int tv_web=0x7f0b0081;
+        public static final int tv_xianyunnianyue=0x7f0b01c3;
+        public static final int tv_yfjzzhleft=0x7f0b0205;
+        public static final int tv_zanzhushiyou=0x7f0b018a;
+        public static final int tv_zhan=0x7f0b0147;
+        public static final int tv_zhuanghao=0x7f0b00ad;
+        public static final int tv_zhuzhai=0x7f0b0103;
+        public static final int tv_zhuzhi=0x7f0b00fd;
+        public static final int tv_zjdq=0x7f0b01d1;
+        public static final int tv_zwmcleft=0x7f0b01ed;
+        public static final int txt_cancel=0x7f0b0244;
+        public static final int txt_title=0x7f0b0241;
         public static final int up=0x7f0b0009;
         public static final int useLogo=0x7f0b0014;
         public static final int view_offset_helper=0x7f0b000a;
         public static final int withText=0x7f0b003c;
         public static final int wrap_content=0x7f0b0020;
-        public static final int wv_1=0x7f0b022a;
-        public static final int wv_2=0x7f0b022b;
-        public static final int wv_3=0x7f0b022c;
+        public static final int wv_1=0x7f0b0234;
+        public static final int wv_2=0x7f0b0235;
+        public static final int wv_3=0x7f0b0236;
     }
     public static final class integer {
         public static final int abc_config_activityDefaultDur=0x7f090001;
@@ -4328,6 +4360,8 @@ containing a value of this type.
         public static final int dialogAnim=0x7f07017c;
         public static final int divider_horizontal=0x7f07017d;
         public static final int divider_vertical=0x7f07017e;
+        public static final int handle_id_left_text_style=0x7f07017f;
+        public static final int handle_id_line_style=0x7f070180;
     }
     public static final class styleable {
         /** Attributes that can be used with a ActionBar.
@@ -8180,7 +8214,7 @@ containing a value of this type.
          */
         public static final int[] FloatingActionButton = {
             0x7f01001d, 0x7f0100da, 0x7f0100db, 0x7f0100dc,
-            0x7f0100dd, 0x7f0100de, 0x7f01015a, 0x7f01015b
+            0x7f0100dd, 0x7f0100de, 0x7f01015c, 0x7f01015d
         };
         /**
           <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#backgroundTint}
@@ -11294,44 +11328,68 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ValidateEditText_vd_drawable_left com.jinchao.population:vd_drawable_left}</code></td><td></td></tr>
-           <tr><td><code>{@link #ValidateEditText_vd_drawable_right com.jinchao.population:vd_drawable_right}</code></td><td></td></tr>
-           <tr><td><code>{@link #ValidateEditText_vd_textColor com.jinchao.population:vd_textColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #ValidateEditText_vd_textHint com.jinchao.population:vd_textHint}</code></td><td></td></tr>
-           <tr><td><code>{@link #ValidateEditText_vd_textHintColor com.jinchao.population:vd_textHintColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_drawable_left_error com.jinchao.population:vd_drawable_left_error}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_drawable_left_right com.jinchao.population:vd_drawable_left_right}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_drawable_right_error com.jinchao.population:vd_drawable_right_error}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_drawable_right_right com.jinchao.population:vd_drawable_right_right}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_textErrorColor com.jinchao.population:vd_textErrorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_textRightColor com.jinchao.population:vd_textRightColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValidateEditText_vd_validate_type com.jinchao.population:vd_validate_type}</code></td><td></td></tr>
            </table>
-           @see #ValidateEditText_vd_drawable_left
-           @see #ValidateEditText_vd_drawable_right
-           @see #ValidateEditText_vd_textColor
-           @see #ValidateEditText_vd_textHint
-           @see #ValidateEditText_vd_textHintColor
+           @see #ValidateEditText_vd_drawable_left_error
+           @see #ValidateEditText_vd_drawable_left_right
+           @see #ValidateEditText_vd_drawable_right_error
+           @see #ValidateEditText_vd_drawable_right_right
+           @see #ValidateEditText_vd_textErrorColor
+           @see #ValidateEditText_vd_textRightColor
+           @see #ValidateEditText_vd_validate_type
          */
         public static final int[] ValidateEditText = {
             0x7f010152, 0x7f010153, 0x7f010154, 0x7f010155,
-            0x7f010156
+            0x7f010156, 0x7f010157, 0x7f010158
         };
         /**
-          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_left}
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_left_error}
           attribute's value can be found in the {@link #ValidateEditText} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.jinchao.population:vd_drawable_left
+          @attr name com.jinchao.population:vd_drawable_left_error
         */
-        public static final int ValidateEditText_vd_drawable_left = 3;
+        public static final int ValidateEditText_vd_drawable_left_error = 5;
         /**
-          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_right}
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_left_right}
           attribute's value can be found in the {@link #ValidateEditText} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.jinchao.population:vd_drawable_right
+          @attr name com.jinchao.population:vd_drawable_left_right
         */
-        public static final int ValidateEditText_vd_drawable_right = 2;
+        public static final int ValidateEditText_vd_drawable_left_right = 4;
         /**
-          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textColor}
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_right_error}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.jinchao.population:vd_drawable_right_error
+        */
+        public static final int ValidateEditText_vd_drawable_right_error = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_drawable_right_right}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.jinchao.population:vd_drawable_right_right
+        */
+        public static final int ValidateEditText_vd_drawable_right_right = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textErrorColor}
           attribute's value can be found in the {@link #ValidateEditText} array.
 
 
@@ -11342,25 +11400,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.jinchao.population:vd_textColor
+          @attr name com.jinchao.population:vd_textErrorColor
         */
-        public static final int ValidateEditText_vd_textColor = 4;
+        public static final int ValidateEditText_vd_textErrorColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textHint}
-          attribute's value can be found in the {@link #ValidateEditText} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.jinchao.population:vd_textHint
-        */
-        public static final int ValidateEditText_vd_textHint = 0;
-        /**
-          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textHintColor}
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_textRightColor}
           attribute's value can be found in the {@link #ValidateEditText} array.
 
 
@@ -11371,9 +11415,34 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name com.jinchao.population:vd_textHintColor
+          @attr name com.jinchao.population:vd_textRightColor
         */
-        public static final int ValidateEditText_vd_textHintColor = 1;
+        public static final int ValidateEditText_vd_textRightColor = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.jinchao.population.R.attr#vd_validate_type}
+          attribute's value can be found in the {@link #ValidateEditText} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>mobile</code></td><td>0</td><td></td></tr>
+<tr><td><code>former_name</code></td><td>1</td><td></td></tr>
+<tr><td><code>email</code></td><td>2</td><td></td></tr>
+<tr><td><code>id_card</code></td><td>3</td><td></td></tr>
+<tr><td><code>number_plate</code></td><td>4</td><td></td></tr>
+<tr><td><code>stature</code></td><td>5</td><td></td></tr>
+<tr><td><code>room_code</code></td><td>6</td><td></td></tr>
+<tr><td><code>position_name</code></td><td>7</td><td></td></tr>
+<tr><td><code>shebao_card</code></td><td>8</td><td></td></tr>
+<tr><td><code>health_card</code></td><td>9</td><td></td></tr>
+</table>
+          @attr name com.jinchao.population:vd_validate_type
+        */
+        public static final int ValidateEditText_vd_validate_type = 6;
         /** Attributes that can be used with a View.
            <p>Includes the following attributes:</p>
            <table>
@@ -11393,8 +11462,8 @@ containing a value of this type.
            @see #View_theme
          */
         public static final int[] View = {
-            0x01010000, 0x010100da, 0x7f010157, 0x7f010158,
-            0x7f010159
+            0x01010000, 0x010100da, 0x7f010159, 0x7f01015a,
+            0x7f01015b
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#focusable}
@@ -11465,7 +11534,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            @see #ViewBackgroundHelper_backgroundTintMode
          */
         public static final int[] ViewBackgroundHelper = {
-            0x010100d4, 0x7f01015a, 0x7f01015b
+            0x010100d4, 0x7f01015c, 0x7f01015d
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#background}

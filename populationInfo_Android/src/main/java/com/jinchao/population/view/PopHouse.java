@@ -21,6 +21,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.jinchao.population.R;
+import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.dbentity.HouseAddress;
@@ -28,6 +29,7 @@ import com.jinchao.population.dbentity.HouseJLX;
 import com.jinchao.population.dbentity.JLX;
 import com.jinchao.population.entity.HouseAddressOldBean;
 import com.jinchao.population.entity.UserBean.AccountOne;
+import com.jinchao.population.mainmenu.HandleIDActivity;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.view.Dialog.DialogClickListener;
 import com.jinchao.population.widget.wheel.OnWheelChangedListener;
@@ -58,14 +60,19 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 	private EditText edt_content;
 	private DbUtils dbUtils;
 	private CommonAdapter<HouseAddressOldBean> adapter;
-	private List<HouseAddress> list_er;
+	private HouseAddress list_er;
 	public interface OnHouseEnsureClickListener{
 		void OnHouseEnSureClick(String bianhao,String dizhi);
 	}
 
-	public PopHouse(Activity context,OnHouseEnsureClickListener onEnsureClickListener1) {
+	public PopHouse(Activity context,String[] PSCName,String[] USERName,String[] UserId,Map<String, String[]> UserNameMap,Map<String, String[]> UserIdMap,OnHouseEnsureClickListener onEnsureClickListener1) {
 		this.onEnsureClickListener = onEnsureClickListener1;
 		this.context1=context;
+		this.PSCName=PSCName;
+		this.USERName=USERName;
+		this.UserId=UserId;
+		this.UserNameMap=UserNameMap;
+		this.UserIdMap=UserIdMap;
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mPopView=inflater.inflate(R.layout.pop_house, null);
 		viewfipper = new ViewFlipper(context);
@@ -90,13 +97,20 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		dbUtils=DeviceUtils.getDbUtils(context);
 		try {
-			list_er=dbUtils.findAll(HouseAddress.class);
-			if (list_er!=null) {
-                new InitData().execute();
-            }
+			list_er=dbUtils.findFirst(HouseAddress.class);
+//			if (list_er!=null) {
+//             initData();
+//            }
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
+		PCSView.setViewAdapter(new ArrayWheelAdapter<String>(context1, PSCName));
+		PCSView.addChangingListener(PopHouse.this);
+		USERView.addChangingListener(PopHouse.this);
+		PCSView.setVisibleItems(7);
+		USERView.setVisibleItems(7);
+		updateUser();
+
 		edt_content.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -113,7 +127,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 					try {
 						list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("address", "like", "%"+content+"%"));
 						if (list==null) {
-							Toast.makeText(context1, "未下载地址库,请先下载全库地址~", 0).show();
+							Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						if (list.size()==0) {
@@ -143,65 +157,9 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 				PopHouse.this.dismiss();
 			}
 		});
-//		try {
-//			List<HouseAddress> list=dbUtils.findAll(HouseAddress.class);
-//			if (list==null) {
-//				Dialog.showSelectDialog(context1, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
-//					@Override
-//					public void confirm() {
-//					}
-//					@Override
-//					public void cancel() {
-//					}
-//				});
-//			}
-//		} catch (DbException e) {
-//			e.printStackTrace();
-//		}
-	}
-	class InitData extends AsyncTask<String ,Integer ,String>{
-		@Override
-		protected String doInBackground(String... strings) {
-			try {
-				List<JLX> jlxList=dbUtils.findAll(Selector.from(JLX.class));
-				PSCName=new String[jlxList.size()];
-				for (int i = 0; i < jlxList.size(); i++) {
-					PSCName[i]=jlxList.get(i).jlx_name;
-					List<HouseJLX> housejlxList=dbUtils.findAll(Selector.from(HouseJLX.class).where("fk_p","=",jlxList.get(i).id));
-					if (housejlxList.size()!=0) {
-						USERName=new String[housejlxList.size()];
-						UserId=new String[housejlxList.size()];
-						for (int j = 0; j <housejlxList.size(); j++) {
-							USERName[j]=housejlxList.get(j).hosejlx_name;
-							UserId[j]=housejlxList.get(j).id;
-						}
-						UserNameMap.put(jlxList.get(i).jlx_name, USERName);
-						UserIdMap.put(jlxList.get(i).jlx_name, UserId);
-					}else{
-						USERName=new String[]{""};
-						UserId=new String[]{""};
-						UserNameMap.put(jlxList.get(i).jlx_name, USERName);
-						UserIdMap.put(jlxList.get(i).jlx_name, UserId);
-					}
-				}
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String s) {
-			super.onPostExecute(s);
-			PCSView.setViewAdapter(new ArrayWheelAdapter<String>(context1, PSCName));
-			PCSView.addChangingListener(PopHouse.this);
-			USERView.addChangingListener(PopHouse.this);
-			PCSView.setVisibleItems(7);
-			USERView.setVisibleItems(7);
-			updateUser();
-		}
 	}
+
 	private void initData(){
 				try {
 					List<JLX> jlxList=dbUtils.findAll(Selector.from(JLX.class));
@@ -274,7 +232,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 				Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
 				return;
 			}
-			onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName);
+			onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName.trim());
 			this.dismiss();
 			break;
 		case R.id.btn_cancle:

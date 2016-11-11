@@ -20,10 +20,23 @@
         <attr name="rc_checked" format="boolean"/>
     </declare-styleable>
     <declare-styleable name="ValidateEditText">
-        <attr name="vd_textHint" format="string"/>
-        <attr name="vd_textHintColor" format="color"/>
-        <attr name="vd_drawable_right" format="reference"/>
-        <attr name="vd_drawable_left" format="reference"/>
-        <attr name="vd_textColor" format="color" />
+        <attr name="vd_textRightColor" format="color"/>
+        <attr name="vd_textErrorColor" format="color"/>
+        <attr name="vd_drawable_right_right" format="reference"/>
+        <attr name="vd_drawable_right_error" format="reference"/>
+        <attr name="vd_drawable_left_right" format="reference"/>
+        <attr name="vd_drawable_left_error" format="reference"/>
+        <attr name="vd_validate_type">
+            <enum name="mobile" value="0"></enum>
+            <enum name="former_name" value="1"></enum>
+            <enum name="email" value="2"></enum>
+            <enum name="id_card" value="3"></enum>
+            <enum name="number_plate" value="4"></enum>
+            <enum name="stature" value="5"></enum>
+            <enum name="room_code" value="6"></enum>
+            <enum name="position_name" value="7"></enum>
+            <enum name="shebao_card" value="8"></enum>
+            <enum name="health_card" value="9"></enum>
+        </attr>
     </declare-styleable>
 </resources>

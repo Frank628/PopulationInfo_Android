@@ -24,6 +24,7 @@ import android.graphics.BitmapFactory;
 import android.nfc.NdefRecord;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -139,14 +140,41 @@ public class CommonUtils {
 		}
 		return true;
 	}
+	public static boolean isSBBH(String str){//社保卡编号
+		int length=0;
+		for(int i = 0 ;i<str.length();i++) {
+			char ch = str.charAt(i);
+			if (checkChar(ch)) {
+				length=length+2;
+			}else{
+				length=length+1;
+			}
+		}
+		if (length>18)
+			return false;
+		else
+			return true;
+	}
+	public static boolean isJKZBH(String str){//健康证编号
+		int length=0;
+		for(int i = 0 ;i<str.length();i++) {
+			char ch = str.charAt(i);
+			if (checkChar(ch)) {
+				length=length+2;
+			}else{
+				length=length+1;
+			}
+		}
+		if (length>10)
+			return false;
+		else
+			return true;
+	}
+
     public static boolean isEmail(String mail) {
-        if (mail.length()==11) {
-            Pattern p = Pattern.compile("/^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w{2,3}){1,3})$/");
+            Pattern p = Pattern.compile("^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$");
             Matcher m = p.matcher(mail);
             return m.matches();
-        }else{
-            return false;
-        }
     }
 	public static boolean isMobile(String mobiles) {
 		if (mobiles.length()==11) {
@@ -179,15 +207,19 @@ public class CommonUtils {
         }
     }
 	public static boolean isTrueHigh(String high) {
-		if (isNumeric(high)) {
-			int highInt=Integer.parseInt(high);
-			if (highInt>250||highInt<30) {
-				return false;
-			}else{
-				return true;
-			}
-		}else{
+		if (TextUtils.isEmpty(high)){
 			return false;
+		}else{
+			if (isNumeric(high)) {
+				int highInt=Integer.parseInt(high);
+				if (highInt>250||highInt<30) {
+					return false;
+				}else{
+					return true;
+				}
+			}else{
+				return false;
+			}
 		}
 	}
 	public static boolean isNumeric(String str){ 
@@ -321,4 +353,7 @@ public class CommonUtils {
 		bitmap = BitmapFactory.decodeFile(srcPath, newOpts);
 		return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
 	}
+
+
+
 }

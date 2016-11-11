@@ -13,11 +13,12 @@
 	        android:textColorHint="@color/title4"
 	        android:hint="请输入房屋地址 或 房屋编号查询"
 	        android:textSize="@dimen/micro_middle_size"
-	        android:layout_marginTop="20dp"
+	        android:layout_marginTop="40dp"
 	        android:singleLine="true"
 	        android:paddingLeft="20dp"
 	        android:paddingRight="20dp"
-	        android:layout_margin="20dp"
+	        android:layout_marginLeft="15dp"
+		    android:layout_marginRight="15dp"
 	        android:layout_alignParentTop="true"
 	        />
     <ListView 
@@ -53,10 +54,10 @@
             android:textSize="@dimen/large_size"
             android:layout_alignParentLeft="true"
             android:text="取消"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:background="@drawable/btn_ensure_bg"
             />
         <TextView 
@@ -67,10 +68,10 @@
             android:textSize="@dimen/large_size"
             android:layout_alignParentRight="true"
             android:text="确定"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:background="@drawable/btn_ensure_bg"
             />
     </RelativeLayout>

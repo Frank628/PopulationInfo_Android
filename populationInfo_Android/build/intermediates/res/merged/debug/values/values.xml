@@ -390,7 +390,18 @@
             
             <flag name="bottom" value="0x50"/>
         </attr><attr format="reference" name="collapseIcon"/><attr format="string" name="collapseContentDescription"/><attr name="popupTheme"/><attr format="reference" name="navigationIcon"/><attr format="string" name="navigationContentDescription"/><attr name="logo"/><attr format="string" name="logoDescription"/><attr format="color" name="titleTextColor"/><attr format="color" name="subtitleTextColor"/><attr name="android:minHeight"/></declare-styleable>
-    <declare-styleable name="ValidateEditText"><attr format="string" name="vd_textHint"/><attr format="color" name="vd_textHintColor"/><attr format="reference" name="vd_drawable_right"/><attr format="reference" name="vd_drawable_left"/><attr format="color" name="vd_textColor"/></declare-styleable>
+    <declare-styleable name="ValidateEditText"><attr format="color" name="vd_textRightColor"/><attr format="color" name="vd_textErrorColor"/><attr format="reference" name="vd_drawable_right_right"/><attr format="reference" name="vd_drawable_right_error"/><attr format="reference" name="vd_drawable_left_right"/><attr format="reference" name="vd_drawable_left_error"/><attr name="vd_validate_type">
+            <enum name="mobile" value="0"/>
+            <enum name="former_name" value="1"/>
+            <enum name="email" value="2"/>
+            <enum name="id_card" value="3"/>
+            <enum name="number_plate" value="4"/>
+            <enum name="stature" value="5"/>
+            <enum name="room_code" value="6"/>
+            <enum name="position_name" value="7"/>
+            <enum name="shebao_card" value="8"/>
+            <enum name="health_card" value="9"/>
+        </attr></declare-styleable>
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/></declare-styleable>
     <declare-styleable name="ViewBackgroundHelper"><attr name="android:background"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode">
             
@@ -2257,5 +2268,23 @@
         <item name="android:layout_height">fill_parent</item>
         <item name="android:background">@android:color/darker_gray</item>
         <item name="android:orientation">vertical</item>
+    </style>
+    <style name="handle_id_left_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/title1</item>
+        <item name="android:textSize">@dimen/small_size</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_centerVertical">true</item>
+
+    </style>
+    <style name="handle_id_line_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/title1</item>
+        <item name="android:textSize">@dimen/small_size</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_centerVertical">true</item>
+
     </style>
 </resources>

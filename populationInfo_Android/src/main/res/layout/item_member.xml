@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="5dp">
@@ -159,7 +160,7 @@
                 android:layout_centerVertical="true"
                 android:text="身份证"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_idcard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -172,8 +173,13 @@
                 android:inputType="text"
                 android:maxLength="18"
                 android:singleLine="true"
-                android:paddingRight="10dp"
-                android:background="@color/white"/>
+                android:background="@color/white"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="id_card"/>
         </RelativeLayout>
         <View
             android:layout_width="match_parent"

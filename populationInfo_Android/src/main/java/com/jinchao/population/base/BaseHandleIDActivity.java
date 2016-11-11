@@ -1,6 +1,7 @@
 package com.jinchao.population.base;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,21 +12,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jinchao.population.R;
+import com.jinchao.population.dbentity.HouseJLX;
+import com.jinchao.population.dbentity.JLX;
 import com.jinchao.population.mainmenu.HandleIDActivity;
 import com.jinchao.population.utils.CommonIdcard;
+import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.widget.ValidateEidtText;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by OfferJiShu01 on 2016/11/3.
  */
 
 public class BaseHandleIDActivity extends BaseActiviy{
-
+    public DbUtils dbUtils;
     public View memberView1,memberView2,memberView3,memberView4,relationView1,relationView2,relationView3,relationView4;
-    public EditText memberName1,memberName2,memberName3,memberName4,memberSfz1,memberSfz2,memberSfz3,memberSfz4;
+    public EditText memberName1,memberName2,memberName3,memberName4;
     public RadioButton memberSex1,memberSex2,memberSex3,memberSex4;
     public TextView memberBirth1,memberBirth2,memberBirth3,memberBirth4,memberGuanxi1,memberGuanxi2,memberGuanxi3,memberGuanxi4;
-
-    public EditText zinvName1,zinvName2,zinvName3,zinvName4,zinvSfz1,zinvSfz2,zinvSfz3,zinvSfz4;
+    public ValidateEidtText zinvSfz1,zinvSfz2,zinvSfz3,zinvSfz4,memberSfz1,memberSfz2,memberSfz3,memberSfz4;
+    public EditText zinvName1,zinvName2,zinvName3,zinvName4;
     public RadioButton zinvSex1,zinvSex2,zinvSex3,zinvSex4,zinvJiezhong1,zinvJiezhong2,zinvJiezhong3,zinvJiezhong4;
     public TextView zinvBirth1,zinvBirth2,zinvBirth3,zinvBirth4;
     public String cbqk="",MSN="",Email="",czwxz="",lsrq="",djrq="",fzxm="",fzdh="",fzsfz="",dwlxdh="",zymc="",ldhtqj="",sbbh="",
@@ -38,9 +49,21 @@ public class BaseHandleIDActivity extends BaseActiviy{
             gxr2="",gxxm2="",gxxb2="",gxrq2="",gxsfz2="",gxrjzk2="",
             gxr3="",gxxm3="",gxxb3="",gxrq3="",gxsfz3="",gxrjzk3="",
             gxr4="",gxxm4="",gxxb4="",gxrq4="",gxsfz4="",gxrjzk4="";
+    public static final int IMAGE_REQUEST_CODE = 0;
+    public static final int CAMERA_REQUEST_CODE = 1;
+    public static final int RESULT_REQUEST_CODE = 2;
+    public static final int REQUEST_CODE_CAMERA=3;
+    public static final String IMAGE_FILE_NAME = "faceImage.jpg";
+
+    public String[] PSCName,USERName,UserId;
+    public Map<String, String[]> UserNameMap=new HashMap<String, String[]>();
+    public Map<String, String[]> UserIdMap=new HashMap<String, String[]>();
+    public boolean isHouseAddressInital=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbUtils= DeviceUtils.getDbUtils(this);
+
     }
 
     public View getMemberView() {
@@ -115,4 +138,6 @@ public class BaseHandleIDActivity extends BaseActiviy{
             return;
         }
     }
+
+
 }

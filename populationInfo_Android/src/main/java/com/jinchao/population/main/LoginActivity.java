@@ -112,8 +112,7 @@ public class LoginActivity extends BaseActiviy{
 				return;
 			}	
 		}
-		final DialogLoading dialogLoading =new DialogLoading(LoginActivity.this, "登录中...");
-		dialogLoading.show();
+		showProgressDialog("","登录中...");
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -123,7 +122,7 @@ public class LoginActivity extends BaseActiviy{
 					for (int i = 0; i < userBean.data.size(); i++) {
 						for (int j = 0; j <userBean.data.get(i).account.size(); j++) {
 							if (username.equals(userBean.data.get(i).account.get(j).userName.trim())) {
-								dialogLoading.dismiss();
+								dismissProgressDialog();
 								if (isToggle) {
 									if (!password.equals("123456")) {
 										runOnUiThread(new Runnable() {
@@ -153,7 +152,7 @@ public class LoginActivity extends BaseActiviy{
 								return;
 							}
 							if (i==(userBean.data.size()-1)&&j==(userBean.data.get(i).account.size()-1)) {
-								dialogLoading.dismiss();
+								dismissProgressDialog();
 								runOnUiThread(new Runnable() {
 									public void run() {
 										Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();

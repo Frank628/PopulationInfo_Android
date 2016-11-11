@@ -56,6 +56,7 @@ import com.jinchao.population.view.NationPop;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.webservice.CompareAsyncTask;
 import com.jinchao.population.webservice.CompareResult;
+import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
@@ -79,7 +80,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	@ViewInject(R.id.compare)private ImageButton compare;
 	@ViewInject(R.id.replace)private ImageButton replace;
 	@ViewInject(R.id.iv_pic)private ImageView iv_pic;
-	@ViewInject(R.id.edt_formername)private EditText edt_formername;
+	@ViewInject(R.id.edt_formername)private ValidateEidtText edt_formername;
 	private Bitmap bmp;
 	private DbUtils dbUtils;
 	private NationPop nationPop;
@@ -89,7 +90,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	private static final int REQUEST_CODE_CAMERA=3;
 	private static final String IMAGE_FILE_NAME = "faceImage.jpg";
 	private boolean isFirstGenerationIDCard=false;
-	private String hjdz="";
+	private String hjdz="",istakephoto="0";
 	private String pic;
 	private boolean isreal=false,isReplace=false;
 	private RealHouseOne realHouseOne ;//实有人口传参
@@ -198,6 +199,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			}
 			idReader.setLink(link);
 			showIDCardInfo(true, null,null);
+			istakephoto="0";
 			showProcessDialog("正在读卡中，请稍后");
 			isFirstGenerationIDCard=false;
 			isReplace=false;
@@ -430,6 +432,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
 			byte[] b = stream.toByteArray();
 			pic = new String(Base64Coder.encodeLines(b));
+			istakephoto="1";
 			isReplace=true;
 			iv_pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			iv_pic.setImageDrawable(drawable);
@@ -450,6 +453,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				isReplace=true;
 				iv_pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 				iv_pic.setImageDrawable(drawable);
+				istakephoto="1";
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -531,6 +535,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 
 	@Event(value={R.id.ib_firstgencard})//点击  一代证；
 	private void onReadFirstGenerationCardClick(View view) {
+		istakephoto="0";
 		isFirstGenerationIDCard=true;
 		resetFirstGenerationIDCardText();
 	}
@@ -632,6 +637,12 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			Toast.makeText(this, "请输入身份证号", Toast.LENGTH_SHORT).show();
 			return;
 		}
+		if (isFirstGenerationIDCard){
+			if (xaddress.length()<5){
+				Toast.makeText(this, "详细地址至少5个字符！", Toast.LENGTH_SHORT).show();
+				return;
+			}
+		}
 		if (CommonIdcard.validateCard(idcard)) {
 			if (idcard.length() == 15) {
 				idcard = CommonIdcard.conver15CardTo18(idcard);
@@ -662,17 +673,17 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			Dialog.showSelectDialog(RegisterActivity.this, "未拍照，请拍照?", new DialogClickListener() {
 				@Override
 				public void confirm() {
-//					if (isreal) {
-//						Intent intent =new Intent(RegisterActivity.this, SingleRealPopulationActivity.class);
-//						intent.putExtra("people", oPeople );
-//						intent.putExtra("realhouseone", realHouseOne);
-//						startActivity(intent);
-//						RegisterActivity.this.finish();
-//					}else{
-//						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
-//						intent.putExtra("people",oPeople);
-//						startActivity(intent);
-//					}
+					if (isreal) {
+						Intent intent =new Intent(RegisterActivity.this, SingleRealPopulationActivity.class);
+						intent.putExtra("people", oPeople );
+						intent.putExtra("realhouseone", realHouseOne);
+						startActivity(intent);
+						RegisterActivity.this.finish();
+					}else{
+						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
+						intent.putExtra("people",oPeople);
+						startActivity(intent);
+					}
 				}
 				
 				@Override
@@ -684,13 +695,17 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		}
 		if (isreal) {
 			Intent intent =new Intent(this, SingleRealPopulationActivity.class);
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this)));
+			People p1=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this));
+			p1.setIstakephoto(istakephoto);
+			intent.putExtra("people",p1 );
 			intent.putExtra("realhouseone", realHouseOne);
 			startActivity(intent);
 			RegisterActivity.this.finish();
 		}else{
 			Intent intent =new Intent(this, ZanZhuActivity.class);//isReplace?"1":(isFirstGenerationIDCard?"1":"2")
-			intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim()));
+			People p1=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim());
+			p1.setIstakephoto(istakephoto);
+			intent.putExtra("people", p1);
 			startActivity(intent);
 		}
 	}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -21,15 +22,10 @@
             >
             <TextView
                 android:id="@+id/tv_leftshenggao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="MSN账号"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_msn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -43,7 +39,12 @@
                 android:inputType="text"
                 android:maxLength="30"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="email"
                 />
         </RelativeLayout>
         <View
@@ -63,15 +64,10 @@
             >
             <TextView
                 android:id="@+id/tv_leftdegree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="电子邮箱"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -83,9 +79,14 @@
                 android:hint="请输入电子邮箱"
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
-                android:drawablePadding="10dp"
                 android:maxLength="30"
                 android:inputType="textEmailAddress"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="email"
                 />
         </RelativeLayout>
         <View
@@ -104,12 +105,7 @@
             >
             <TextView
                 android:id="@+id/tv_leffangzhuxingming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="房主姓名"
                 />
             <TextView
@@ -156,12 +152,7 @@
             >
             <TextView
                 android:id="@+id/tv_fzdhleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="房主电话"
                 />
             <TextView
@@ -175,7 +166,7 @@
                 android:layout_toRightOf="@+id/tv_fzdhleft"
                 android:text="（复用）"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_fzdh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -189,7 +180,12 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:maxLength="12"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="mobile"
                 />
         </RelativeLayout>
         <View
@@ -209,12 +205,7 @@
             >
             <TextView
                 android:id="@+id/tv_fzsfzleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="房主身份证"
                 />
             <TextView
@@ -228,7 +219,7 @@
                 android:layout_toRightOf="@+id/tv_fzsfzleft"
                 android:text="（复用）"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_fzsfz"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -242,7 +233,12 @@
                 android:inputType="text"
                 android:singleLine="true"
                 android:maxLength="18"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="id_card"
                 />
         </RelativeLayout>
         <View
@@ -261,15 +257,10 @@
             >
             <TextView
                 android:id="@+id/tv_awlxdhleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="单位联系电话"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_dwlxdh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -283,7 +274,12 @@
                 android:inputType="number"
                 android:maxLength="12"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="mobile"
                 />
         </RelativeLayout>
         <View
@@ -302,15 +298,10 @@
             >
             <TextView
                 android:id="@+id/tv_zwmcleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="职业名称"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_zwmc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -324,7 +315,12 @@
                 android:inputType="text"
                 android:singleLine="true"
                 android:maxLength="5"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="position_name"
                 />
         </RelativeLayout>
         <View
@@ -344,12 +340,7 @@
             >
             <TextView
                 android:id="@+id/tv_ldhtqjleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="劳动合同签订情况"
                 />
             <TextView
@@ -381,15 +372,10 @@
             >
             <TextView
                 android:id="@+id/tv_sbkbhleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="社保卡编号"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_sbbh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -403,7 +389,12 @@
                 android:inputType="text"
                 android:maxLength="18"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="shebao_card"
                 />
         </RelativeLayout>
         <View
@@ -423,12 +414,7 @@
             >
             <TextView
                 android:id="@+id/tv_jyrqleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="就业日期"
                 />
 
@@ -461,15 +447,10 @@
             >
             <TextView
                 android:id="@+id/tv_jkzbhleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="健康证编号"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_jkzbh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -483,7 +464,12 @@
                 android:inputType="text"
                 android:maxLength="10"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="health_card"
                 />
         </RelativeLayout>
         <View
@@ -502,12 +488,7 @@
             >
             <TextView
                 android:id="@+id/tv_dwfzrleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="单位负责人"
                 />
             <EditText
@@ -544,12 +525,7 @@
             >
             <TextView
                 android:id="@+id/tv_hyzmzlleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="婚育证明种类"
                 />
             <TextView
@@ -581,12 +557,7 @@
             >
             <TextView
                 android:id="@+id/tv_hyzmbhleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="婚育证明编号"
                 />
             <EditText
@@ -623,12 +594,7 @@
             >
             <TextView
                 android:id="@+id/tv_hyqfrqleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="婚育证明签发日期"
                 />
 
@@ -662,12 +628,7 @@
             >
             <TextView
                 android:id="@+id/tv_jhrqleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="结婚登记日期"
                 />
 
@@ -700,12 +661,7 @@
             >
             <TextView
                 android:id="@+id/tv_yfjzzhleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="预防接种证号"
                 />
             <EditText
@@ -742,12 +698,7 @@
             >
             <TextView
                 android:id="@+id/tv_dushengzinvleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="独生子女证"
                 />
             <RadioGroup
@@ -801,12 +752,7 @@
             >
             <TextView
                 android:id="@+id/tv_fwkhleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="服务卡号"
                 />
             <EditText
@@ -844,12 +790,7 @@
             >
             <TextView
                 android:id="@+id/tv_bycsrqleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="避孕措施落实日期"
                 />
 
@@ -883,12 +824,7 @@
             >
             <TextView
                 android:id="@+id/tv_czqx1left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="出租开始日期"
                 />
 
@@ -922,12 +858,7 @@
             >
             <TextView
                 android:id="@+id/tv_czqx2left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="出租结束日期"
                 />
 
@@ -961,12 +892,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftlsrq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="来苏日期"
                 />
             <TextView
@@ -1010,12 +936,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftdjrq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="登记日期"
                 />
             <TextView
@@ -1047,12 +968,7 @@
             >
             <TextView
                 android:id="@+id/tv_beizhu2left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="备注"
                 />
             <EditText

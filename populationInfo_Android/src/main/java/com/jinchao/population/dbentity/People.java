@@ -566,6 +566,11 @@ public class People implements Serializable{
 	 */
 	@Column(column="gxrjzk4")
 	public String gxrjzk4="";
+	/**
+	 * （办证时用）是否登记最新照片
+	 */
+	@Column(column="istakephoto")//1为登记
+	public String istakephoto="";
 	public People(String name, String cardno, String people, String sex,
 				  String birthday, String address) {
 		super();
@@ -2080,5 +2085,13 @@ public class People implements Serializable{
 
 	public void setCbqk(String cbqk) {
 		this.cbqk = cbqk;
+	}
+
+	public String getIstakephoto() {
+		return istakephoto;
+	}
+
+	public void setIstakephoto(String istakephoto) {
+		this.istakephoto = istakephoto;
 	}
 }

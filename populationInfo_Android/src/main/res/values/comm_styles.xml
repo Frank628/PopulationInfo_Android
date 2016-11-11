@@ -1,0 +1,26 @@
+<resources>
+
+
+    <style name="handle_id_left_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/title1</item>
+        <item name="android:textSize">@dimen/small_size</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_centerVertical">true</item>
+
+    </style>
+    <style name="handle_id_line_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/title1</item>
+        <item name="android:textSize">@dimen/small_size</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_centerVertical">true</item>
+
+    </style>
+
+    
+    
+
+</resources>

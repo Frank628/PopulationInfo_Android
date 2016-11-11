@@ -20,15 +20,10 @@
             >
             <TextView
                 android:id="@+id/tv_leftshenggao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="身高"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_stature"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -42,7 +37,12 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:maxLength="3"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="stature"
                 />
         </RelativeLayout>
         <View
@@ -62,12 +62,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftdegree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="文化程度"
                 />
             <TextView
@@ -100,12 +95,7 @@
             >
             <TextView
                 android:id="@+id/tv_lefthunyin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="婚姻状况"
                 />
             <RadioGroup
@@ -171,12 +161,7 @@
             >
             <TextView
                 android:id="@+id/tv_lefzhengzhi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="政治面貌"
                 />
             <RadioGroup
@@ -331,7 +316,7 @@
                 app:rc_textColor="@color/title1"
                 />
 
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_shihao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -344,8 +329,13 @@
                 android:background="@color/white"
                 android:maxLength="4"
                 android:singleLine="true"
-                android:paddingRight="10dp"
                 android:inputType="number"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="room_code"
                 />
         </RelativeLayout>
         <View
@@ -364,12 +354,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftdizhibuchong"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="地址补充"
                 />
             <EditText
@@ -445,12 +430,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftzanzhushiyou"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="居住事由"
                 />
             <TextView
@@ -566,12 +546,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftchanyeleixing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="产业类型"
                 />
             <TextView
@@ -604,12 +579,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftyimiao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="近期是否接种疫苗"
                 />
             <RadioGroup
@@ -663,12 +633,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftiscanbao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="是否参保"
                 />
             <RadioGroup
@@ -724,12 +689,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftcanbaoshijian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="参保时间"
                 />
             <TextView
@@ -762,12 +722,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftcbqk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="参保情况"
                 />
             <TextView
@@ -799,15 +754,10 @@
             >
             <TextView
                 android:id="@+id/tv_leftdianhua"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="电话"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_dianhua"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -821,7 +771,12 @@
                 android:inputType="number"
                 android:maxLength="12"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="mobile"
                 />
         </RelativeLayout>
         <View
@@ -840,12 +795,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftisfubingyi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="服兵役"
                 />
             <RadioGroup
@@ -899,12 +849,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftjuzhuleibie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="居住类别"
                 />
             <RadioGroup
@@ -960,12 +905,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftjuzhufangshi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="居住方式"
                 />
             <TextView
@@ -1000,12 +940,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftfangdongguanxi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="房东关系"
                 />
             <TextView
@@ -1044,12 +979,7 @@
                 >
                 <TextView
                     android:id="@+id/tv_leftfuqitongxing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_size"
-                    android:textColor="@color/title1"
-                    android:gravity="center_vertical"
-                    android:layout_centerVertical="true"
+                    style="@style/handle_id_left_text_style"
                     android:text="夫妻同行"
                     />
                 <RadioGroup
@@ -1103,12 +1033,7 @@
                 >
                 <TextView
                     android:id="@+id/tv_leftshengyuqingkuang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_size"
-                    android:textColor="@color/title1"
-                    android:gravity="center_vertical"
-                    android:layout_centerVertical="true"
+                    style="@style/handle_id_left_text_style"
                     android:text="生育情况"
                     />
                 <RadioGroup
@@ -1162,12 +1087,7 @@
                 >
                 <TextView
                     android:id="@+id/tv_leftzinvgeshu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_size"
-                    android:textColor="@color/title1"
-                    android:gravity="center_vertical"
-                    android:layout_centerVertical="true"
+                    style="@style/handle_id_left_text_style"
                     android:text="子女个数"
                     />
                 <EditText
@@ -1203,12 +1123,7 @@
                 >
                 <TextView
                     android:id="@+id/tv_shifoujieyu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_size"
-                    android:textColor="@color/title1"
-                    android:gravity="center_vertical"
-                    android:layout_centerVertical="true"
+                    style="@style/handle_id_left_text_style"
                     android:text="是否采取节育措施"
                     />
                 <RadioGroup
@@ -1263,12 +1178,7 @@
                 >
                 <TextView
                     android:id="@+id/tv_leftjieyucuoshi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_size"
-                    android:textColor="@color/title1"
-                    android:gravity="center_vertical"
-                    android:layout_centerVertical="true"
+                    style="@style/handle_id_left_text_style"
                     android:text="节育措施"
                     />
                 <TextView
@@ -1301,12 +1211,7 @@
                 >
                 <TextView
                     android:id="@+id/tv_leftxianyunnianyue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_size"
-                    android:textColor="@color/title1"
-                    android:gravity="center_vertical"
-                    android:layout_centerVertical="true"
+                    style="@style/handle_id_left_text_style"
                     android:text="现孕年月"
                     />
                 <TextView
@@ -1339,12 +1244,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftislingzheng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="是否领证"
                 />
             <RadioGroup
@@ -1399,12 +1299,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftjiantonggongju"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="交通工具"
                 />
             <TextView
@@ -1437,15 +1332,10 @@
             >
             <TextView
                 android:id="@+id/tv_leftchepaihao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="车牌号"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_chepaihao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1458,7 +1348,12 @@
                 android:background="@color/white"
                 android:inputType="text"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="number_plate"
                 />
         </RelativeLayout>
         <View
@@ -1477,12 +1372,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftzujin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="租金"
                 />
             <EditText
@@ -1519,12 +1409,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftzujinriqi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="租金到期日期"
                 />
             <TextView
@@ -1557,12 +1442,7 @@
             >
             <TextView
                 android:id="@+id/tv_lefqq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="QQ"
                 />
             <EditText
@@ -1598,12 +1478,7 @@
             >
             <TextView
                 android:id="@+id/tv_lefmac"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="MAC地址"
                 />
             <EditText
@@ -1639,12 +1514,7 @@
             >
             <TextView
                 android:id="@+id/tv_lefshoujixinghao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="手机品牌/型号"
                 />
             <EditText
@@ -1679,12 +1549,7 @@
             >
             <TextView
                 android:id="@+id/tv_lefshoujichuanhao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="手机串号"
                 />
             <EditText
@@ -1721,12 +1586,7 @@
             >
             <TextView
                 android:id="@+id/tv_leftbeiyong1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/small_size"
-                android:textColor="@color/title1"
-                android:gravity="center_vertical"
-                android:layout_centerVertical="true"
+                style="@style/handle_id_left_text_style"
                 android:text="是否办证"
                 />
 
