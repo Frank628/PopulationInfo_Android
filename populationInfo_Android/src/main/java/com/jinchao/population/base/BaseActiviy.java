@@ -2,12 +2,14 @@ package com.jinchao.population.base;
 
 import org.xutils.x;
 import com.jinchao.population.SysApplication;
+import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.utils.network.NetWorkManager;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class BaseActiviy extends Activity implements NetWorkManager.NetConnectChangeListener{
 	public ProgressDialog progressDialog;
@@ -56,4 +58,5 @@ public class BaseActiviy extends Activity implements NetWorkManager.NetConnectCh
 			progressDialog.dismiss();
 		}
 	}
+
 }

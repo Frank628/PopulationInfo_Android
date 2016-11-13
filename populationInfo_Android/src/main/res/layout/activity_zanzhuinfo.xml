@@ -65,14 +65,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#aaffffff">
+        android:background="#e2e2e2">
     <TextView 
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="@color/title2"
         android:textSize="@dimen/small_size"
-        android:background="#aaffffff"
+        android:background="#e2e2e2"
         android:lineSpacingExtra="12dp"
         android:layout_margin="5dp"
         android:padding="5dp"

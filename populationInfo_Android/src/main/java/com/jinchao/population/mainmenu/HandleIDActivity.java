@@ -20,6 +20,7 @@ import com.jinchao.population.entity.HouseAddressOldBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
+import com.jinchao.population.view.PicRepacePop;
 import com.jinchao.population.view.PopBianzheng.OnbEnsureClickListener;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
@@ -36,11 +37,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -163,6 +166,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private Calendar c;
 	private boolean isHandleID;
 	private PopHouse popHouse;
+    String pic="";
 	private String height="",wenhua="",hunyin="",zhengzhi="",fangwubiaohao="",
 			zanzhudizhi="",shihao="",chusuoleixing="",zanzhushiyou="",fuwuchusuo="",danweidizhi="",
 			canyeleixing="",chanyeleixing="",shifoucanbao="",canbaoshijian="",dianhua="",fubingyi="",
@@ -445,91 +449,75 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		}
 		if (isHandleID) {
 			if (height.equals("")) {
-                showToastDialog("请填写身高~");
 				Toast.makeText(this, "请填写身高~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!CommonUtils.isTrueHigh(height)) {
-                showToastDialog("身高填写有误~");
 				Toast.makeText(this, "身高填写有误~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (wenhua.equals("")) {
-                showToastDialog("请选择文化程度~");
 				Toast.makeText(this, "请选择文化程度~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (fangwubiaohao.equals("")) {
-                showToastDialog("请选择房屋地址~");
 				Toast.makeText(this, "请选择房屋地址~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (shihao.equals("")) {
-                showToastDialog("请输入室号~");
 				Toast.makeText(this, "请输入室号~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (shihao.length()!=4) {
-                showToastDialog("请输入4位的室号~");
 				Toast.makeText(this, "请输入4位的室号~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (fuwuchusuo.equals("")) {
-                showToastDialog("请填写服务处所~");
 				Toast.makeText(this, "请填写服务处所~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (danweidizhi.equals("")) {
-                showToastDialog("请填写单位地址~");
 				Toast.makeText(this, "请填写单位地址~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (canbaoshijian.equals("")) {
 				if (shifoucanbao.equals("是")) {
-                    showToastDialog("请选择参保时间~");
 					Toast.makeText(this, "请选择参保时间~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (shifoucanbao.equals("是")){
 				if (TextUtils.isEmpty(cbqk)){
-                    showToastDialog("请选择参保情况~");
 					Toast.makeText(this, "请选择参保情况~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (dianhua.equals("")) {
-                showToastDialog("请填写电话号码~");
 				Toast.makeText(this, "请填写电话号码~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!CommonUtils.isGuangdaTel(dianhua)) {
-                showToastDialog("电话号码格式错误，请核实~");
 				Toast.makeText(this, "电话号码格式错误，请核实~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
             if (zinvgeshu.equals("")) {
-                showToastDialog("请填写子女个数~");
                 Toast.makeText(this, "请填写子女个数~", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (shengyuzhuangkuang.equals("已育")) {
 					if (zinvgeshu.equals("")||zinvgeshu.equals("0")) {
-                        showToastDialog("请填写子女个数~");
 						Toast.makeText(this, "请填写子女个数~", Toast.LENGTH_SHORT).show();
 						return;
 					}
             }
 			if (shengyuzhuangkuang.equals("未育")&&(!zinvgeshu.equals("00"))){
-                showToastDialog("未育，子女个数不可大于0~");
 				Toast.makeText(this, "未育，子女个数不可大于0~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (hunyin.equals("己婚")) {
 				if (sfjy.equals("1")) {
 					if (jieyucuoshi.equals("")) {
-                        showToastDialog("请填选择节育措施~");
 						Toast.makeText(this, "请填选择节育措施~", Toast.LENGTH_SHORT).show();
 						return;
 					}
@@ -537,14 +525,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			}
             if (jiaotonggongju.equals("汽车")||jiaotonggongju.equals("摩托车")){
                 if(!CommonUtils.isCarAndMotoNo(chepaihao)){
-                    showToastDialog("车牌号格式有误~");
                     Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
 			if (!TextUtils.isEmpty(chepaihao)) {
 				if (!CommonUtils.isCarNo(chepaihao)) {
-                    showToastDialog("车牌号格式有误~");
 					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
 					return;
 				}	
@@ -552,21 +538,18 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 
 			if (!TextUtils.isEmpty(MSN)){
 				if (!CommonUtils.isEmail(MSN)){
-                    showToastDialog("MSN账号格式错误~");
 					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(Email)){
 				if (!CommonUtils.isEmail(Email)){
-                    showToastDialog("邮箱格式错误~");
 					Toast.makeText(this, "邮箱格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(fzdh)){
 				if (!CommonUtils.isGuangdaTel(fzdh)){
-                    showToastDialog("房主电话格式错误~");
 					Toast.makeText(this, "房主电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
@@ -583,35 +566,30 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 						Toast.makeText(HandleIDActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
 					}
 				} else {
-                    showToastDialog("请先输入合法的身份证号~");
 					Toast.makeText(HandleIDActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(dwlxdh)){
 				if (!CommonUtils.isGuangdaTel(dwlxdh)){
-                    showToastDialog("单位联系电话格式错误~");
 					Toast.makeText(this, "单位联系电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(zymc)){
 				if (!(zymc.trim().length()<=5&&CommonUtils.isChinese(zymc))){
-                    showToastDialog("职位名称5个汉字以内~");
 					Toast.makeText(this, "职位名称5个汉字以内~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(sbbh)){
 				if (!CommonUtils.isSBBH(sbbh)){
-                    showToastDialog("社保卡18个字符或9个汉字~");
 					Toast.makeText(this, "社保卡18个字符或9个汉字~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(jkzbh)){
 				if (!CommonUtils.isJKZBH(jkzbh)){
-                    showToastDialog("健康证10个字符或5个汉字~");
 					Toast.makeText(this, "健康证10个字符或5个汉字~", Toast.LENGTH_SHORT).show();
 					return;
 				}
@@ -700,37 +678,31 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			}
 		}else{
 			if (fangwubiaohao.equals("")) {
-                showToastDialog("请选择房屋地址~");
 				Toast.makeText(this, "请选择房屋地址~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (shihao.equals("")) {
-                showToastDialog("请输入室号~");
 				Toast.makeText(this, "请输入室号~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (shihao.length()!=4) {
-                showToastDialog("请输入4位的室号~");
 				Toast.makeText(this, "请输入4位的室号~", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (!height.equals("")) {
 				if (!CommonUtils.isTrueHigh(height)) {
-                    showToastDialog("身高填写有误~");
 					Toast.makeText(this, "身高填写有误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (shifoucanbao.equals("是")){
 				if (TextUtils.isEmpty(cbqk)){
-                    showToastDialog("请选择参保情况~");
 					Toast.makeText(this, "请选择参保情况~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!dianhua.equals("")) {
 				if (!CommonUtils.isTEL(dianhua)) {
-                    showToastDialog("电话号码格式错误，请核实~");
 					Toast.makeText(this, "电话号码格式错误，请核实~", Toast.LENGTH_SHORT).show();
 					return;
 				}
@@ -738,21 +710,18 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 
 			if (!TextUtils.isEmpty(MSN)){
 				if (!CommonUtils.isEmail(MSN)){
-                    showToastDialog("MSN账号格式错误~");
 					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(Email)){
 				if (!CommonUtils.isEmail(Email)){
-                    showToastDialog("邮箱格式错误~");
 					Toast.makeText(this, "邮箱格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(fzdh)){
 				if (!CommonUtils.isGuangdaTel(fzdh)){
-                    showToastDialog("房主电话格式错误~");
 					Toast.makeText(this, "房主电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
@@ -769,35 +738,30 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 						Toast.makeText(HandleIDActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
 					}
 				} else {
-                    showToastDialog("请先输入合法的身份证号~");
 					Toast.makeText(HandleIDActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(dwlxdh)){
 				if (!CommonUtils.isGuangdaTel(dwlxdh)){
-                    showToastDialog("单位联系电话格式错误~");
 					Toast.makeText(this, "单位联系电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(zymc)){
 				if (!(zymc.trim().length()<=5&&CommonUtils.isChinese(zymc))){
-                    showToastDialog("职位名称5个汉字以内~");
 					Toast.makeText(this, "职位名称5个汉字以内~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(sbbh)){
 				if (!CommonUtils.isSBBH(sbbh)){
-                    showToastDialog("社保卡18个字符或9个汉字~");
 					Toast.makeText(this, "社保卡18个字符或9个汉字~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
 			if (!TextUtils.isEmpty(jkzbh)){
 				if (!CommonUtils.isJKZBH(jkzbh)){
-                    showToastDialog("健康证10个字符或5个汉字~");
 					Toast.makeText(this, "健康证10个字符或5个汉字~", Toast.LENGTH_SHORT).show();
 					return;
 				}
@@ -807,14 +771,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			String date =sDateFormat.format(new java.util.Date());
 			if (!TextUtils.isEmpty(chepaihao)) {
 				if (!CommonUtils.isCarNo(chepaihao)) {
-                    showToastDialog("车牌号格式有误~");
 					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
 					return;
 				}	
 			}
 			if (realHouseOne!=null||renyuanInhouseOne!=null) {
 				if (shihao.length()!=4) {
-                    showToastDialog("请输入4位的室号~");
 					Toast.makeText(this, "请输入4位的室号~", Toast.LENGTH_SHORT).show();
 					return;
 				}
@@ -1722,31 +1684,57 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				ByteArrayOutputStream stream = new ByteArrayOutputStream();
 				photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
 				byte[] b = stream.toByteArray();
-				String pic = new String(Base64Coder.encodeLines(b));
-				try {
-					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
-					people2.setIstakephoto("1");
-					people2.setPicture(pic);
-					dbUtils.save(people2);
-//					Toast.makeText(HandleIDActivity.this, "登记成功！", Toast.LENGTH_SHORT).show();
-                    Dialog.showSelectDialog(HandleIDActivity.this, "登记成功!", new DialogClickListener() {
-                        @Override
-                        public void confirm() {
-                            ((MyApplication)getApplication()).setIsSureDengji(true);
-                            HandleIDActivity.this.finish();
-                        }
-                        @Override
-                        public void cancel() {
-                            ((MyApplication)getApplication()).setIsSureDengji(false);
-                            HandleIDActivity.this.finish();
+				pic = new String(Base64Coder.encodeLines(b));
+                PicRepacePop picRepacePop=new PicRepacePop(HandleIDActivity.this, drawable, new PicRepacePop.OnEnsureClick() {
+                    @Override
+                    public void onClick(boolean isEnsure) {
+                        if (isEnsure){
+                            try {
+                                dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
+                                people2.setIstakephoto("1");
+                                people2.setPicture(pic);
+                                dbUtils.save(people2);
+                                Dialog.showSelectDialog(HandleIDActivity.this, "登记成功!", new DialogClickListener() {
+                                    @Override
+                                    public void confirm() {
+                                        ((MyApplication)getApplication()).setIsSureDengji(true);
+                                        HandleIDActivity.this.finish();
+                                    }
+                                    @Override
+                                    public void cancel() {
+                                        ((MyApplication)getApplication()).setIsSureDengji(false);
+                                        HandleIDActivity.this.finish();
 
-                        }
-                    });
+                                    }
+                                });
 
-				} catch (DbException e) {
-					Toast.makeText(HandleIDActivity.this, "数据库操作失败！请发送掉全部数据,并下载全库地址！", Toast.LENGTH_LONG).show();
-					e.printStackTrace();
-				}
+                            } catch (DbException e) {
+                                Toast.makeText(HandleIDActivity.this, "数据库操作失败！请发送掉全部数据,并下载全库地址！", Toast.LENGTH_LONG).show();
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Intent intentFromCapture = new Intent(
+                                    MediaStore.ACTION_IMAGE_CAPTURE);
+                            // 判断存储卡是否可以用，可用进行存储
+                            if (DeviceUtils.hasSDCard()) {
+                                intentFromCapture.putExtra(
+                                        MediaStore.EXTRA_OUTPUT,
+                                        Uri.fromFile(new File(Environment
+                                                .getExternalStorageDirectory(),
+                                                IMAGE_FILE_NAME)));
+                            }
+                            startActivityForResult(intentFromCapture,CAMERA_REQUEST_CODE);
+                        }
+                    }
+                });
+                picRepacePop.showPopupWindow(findViewById(R.id.root),0,0);
+                backgroundAlpha(0.3f);
+                picRepacePop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        backgroundAlpha(1f);
+                    }
+                });
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -1799,4 +1787,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			}
 		}
 	}
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = HandleIDActivity.this.getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        HandleIDActivity.this.getWindow().setAttributes(lp);
+    }
 }

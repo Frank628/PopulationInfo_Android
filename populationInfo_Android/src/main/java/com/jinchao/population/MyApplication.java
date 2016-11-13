@@ -34,7 +34,7 @@ public class MyApplication extends Application{
 	public static MyApplication myApplication=null;
 	public  LocationService locationService;
 	public MyLocation myLocation=new MyLocation();
-    public boolean isSureDengji=true;
+    public boolean isSureDengji=false;
 	@Override
 	public void onCreate() {
 		super.onCreate();

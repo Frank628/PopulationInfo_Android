@@ -111,6 +111,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				onBackPressed();
 			}
 		});
+
         dbUtils =DeviceUtils.getDbUtils(RegisterActivity.this);
 		idReader.setListener(this);
 		isreal =getIntent().getBooleanExtra("isreal", false);
@@ -197,6 +198,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				}
 				return;
 			}
+            ((MyApplication)getApplication()).setIsSureDengji(false);
 			idReader.setLink(link);
 			showIDCardInfo(true, null,null);
 			istakephoto="0";
@@ -279,6 +281,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	 }
 
 	private void resetFirstGenerationIDCardText(){
+        ((MyApplication)getApplication()).setIsSureDengji(false);
 		compare.setVisibility(View.GONE);
 		replace.setVisibility(View.GONE);
 		pic=null;
@@ -749,8 +752,10 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
             if (!TextUtils.isEmpty(edt_idcard.getText().toString())){
                 try {
                     People people=dbUtils.findFirst(Selector.from(People.class).where("cardno","=",edt_idcard.getText().toString().trim()));
-                    if (!TextUtils.isEmpty(people.picture)){
-                        iv_pic.setImageBitmap(CommonUtils.base64ToBitmap(people.picture));
+                    if (people!=null) {
+                        if (!TextUtils.isEmpty(people.picture)) {
+                            iv_pic.setImageBitmap(CommonUtils.base64ToBitmap(people.picture));
+                        }
                     }
                 } catch (DbException e) {
                     e.printStackTrace();
