@@ -1,9 +1,14 @@
 package com.jinchao.population.mainmenu;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import org.xutils.x;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -68,6 +73,10 @@ import com.jinchao.population.widget.LoadMoreListView;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import de.greenrobot.event.EventBus;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -322,7 +331,28 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			public void onFinished() {}
 		});
 	}
+    private void requestYanZheng(String idcard){
+        dialogLoading.show();
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("quePeople", result);
+                tv_content.setText(parseXML(result));
 
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                dialogLoading.dismiss();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                dialogLoading.dismiss();
+            }
+        });
+    }
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -514,7 +544,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			if (cardno.equals("")) {
 				Toast.makeText(this, "请输入房屋编号~", Toast.LENGTH_SHORT).show();
 				return;
-			}	
+			}
+            requestYanZheng(cardno);
 		}else{
 			if (cardno.equals("")) {
 				Toast.makeText(this, "请录入身份证号~", Toast.LENGTH_SHORT).show();
@@ -534,8 +565,9 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 				 Toast.makeText(SearchPeopleActivity.this, "请输入合法身份证！", Toast.LENGTH_SHORT).show();
 				 return;
 			}
+            getRequest(cardno);
 		}
-		getRequest(cardno);
+
 	}
 	
 	public static boolean isBigerthanElevenandSmallthanTwelve(String day) {  
@@ -600,4 +632,52 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		});
 
 	}
+    public  String parseXML(String xml){
+        String str="";
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document d = db.parse(xml);
+            Node n = d.getChildNodes().item(0);
+            NodeList nl = n.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node n2 = nl.item(i);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    if (n2.getNodeName().equals("ResultSet")) {
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                NodeList nl3 = n3.getChildNodes();
+                                for (int k = 0; k < nl3.getLength(); k++) {
+                                    Node n4 = nl3.item(k);
+                                    if (n4.getNodeType() == Node.ELEMENT_NODE) {
+                                        str = str + n4.getAttributes().getNamedItem("name").getNodeValue()+":"+n4.getTextContent()+"\n";
+                                    }
+                                }
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("AppType")){
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+//                                str=str+n3.getTextContent();
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("msg")){
+                        str=str+n2.getTextContent();
+                    }
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
 }

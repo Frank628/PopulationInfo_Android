@@ -4,15 +4,7 @@
         "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\menu\\main.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\menu\\activity_main_drawer.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\menu\\activity_main_drawer.xml"
-    },
-    {
         "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\menu\\activity_main_drawer.xml",
         "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\menu\\activity_main_drawer.xml"
-    },
-    {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\menu\\main.xml"
     }
 ]

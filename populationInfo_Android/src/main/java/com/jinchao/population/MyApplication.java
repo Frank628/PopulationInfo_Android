@@ -34,6 +34,7 @@ public class MyApplication extends Application{
 	public static MyApplication myApplication=null;
 	public  LocationService locationService;
 	public MyLocation myLocation=new MyLocation();
+    public boolean isSureDengji=true;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -70,6 +71,12 @@ public class MyApplication extends Application{
 			public void onFinished() {}
 		});
 	}
+    public void setIsSureDengji(boolean is){
+        this.isSureDengji=is;
+    }
+    public boolean getIsSureDengji(){
+       return isSureDengji;
+    }
 	private BDLocationListener BDListener=new BDLocationListener() {
 		@Override
 		public void onReceiveLocation(BDLocation location) {

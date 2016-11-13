@@ -17,6 +17,7 @@ import com.jinchao.population.dbentity.JLX;
 import com.jinchao.population.mainmenu.HandleIDActivity;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.view.Dialog;
 import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -138,6 +139,17 @@ public class BaseHandleIDActivity extends BaseActiviy{
             return;
         }
     }
+    public void showToastDialog(String content){
+        Dialog.showRadioDialog(this, content, new Dialog.DialogClickListener() {
+            @Override
+            public void confirm() {
+            }
 
+            @Override
+            public void cancel() {
+
+            }
+        });
+    }
 
 }

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
-import com.jinchao.population.view.NationPop.OnEnsureClickListener;
+import com.jinchao.population.view.StringWheel.OnEnsureClickListener;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.view.PopJLX;
 import com.jinchao.population.view.PopJLX.OnJLXListClickListener;

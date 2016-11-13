@@ -34,9 +34,11 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
 import com.caihua.cloud.common.entity.PersonInfo;
 import com.caihua.cloud.common.link.LinkFactory;
 import com.caihua.cloud.common.reader.IDReader;
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseReaderActiviy;
@@ -65,6 +67,8 @@ import com.jinchao.population.widget.ActionSheetDialog;
 import com.jinchao.population.widget.ActionSheetDialog.OnSheetItemClickListener;
 import com.jinchao.population.widget.ActionSheetDialog.SheetItemColor;
 import com.soundcloud.android.crop.Crop;
+
+import de.greenrobot.event.EventBus;
 
 @ContentView(R.layout.activity_register_idcard)
 public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDReaderListener{
@@ -107,20 +111,16 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				onBackPressed();
 			}
 		});
+        dbUtils =DeviceUtils.getDbUtils(RegisterActivity.this);
 		idReader.setListener(this);
 		isreal =getIntent().getBooleanExtra("isreal", false);
 		realHouseOne=(RealHouseOne) getIntent().getSerializableExtra("realhouseone");
 		setListener();
 		nationPop = new NationPop(RegisterActivity.this, new OnEnsureClickListener() {
 				@Override
-				public void OnEnSureClick(String nationid) {
-					try {
-			              dbUtils = DeviceUtils.getDbUtils(RegisterActivity.this);
-			              Nation nation = dbUtils.findById(Nation.class,nationid);
-			              edt_address.setText(nation.getNation_name());
-			            } catch (DbException e) {
-			                    e.printStackTrace();
-			            }
+				public void OnEnSureClick(String nationid,String huji) {
+                    edt_address.setText(huji);
+
 				}
 		});
 	}
@@ -161,7 +161,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
          edt_sex.setText(CommonIdcard.getGenderByIdCard(idcardNO));
          edt_region.setText("汉");
          try {
-             dbUtils =DeviceUtils.getDbUtils(RegisterActivity.this);
+
              Nation nation = dbUtils.findFirst(Selector.from(Nation.class).where("id", "=", idcardNO.substring(0, 6)));
              if (nation != null) {
                  edt_address.setText(nation.getNation_name());
@@ -553,7 +553,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		if (getCurrentFocus()!=null) {
 			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 		}
-		MingZuPop mingZuPop = new MingZuPop(this, new OnEnsureClickListener() {
+		MingZuPop mingZuPop = new MingZuPop(this, new com.jinchao.population.view.MingZuPop.OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(String str) {
 				edt_region.setText(str);
@@ -738,4 +738,29 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		lp.alpha = bgAlpha; //0.0-1.0
 		RegisterActivity.this.getWindow().setAttributes(lp);
 	}
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("sssssss"+((MyApplication)getApplication()).getIsSureDengji());
+        if (((MyApplication)getApplication()).getIsSureDengji()){
+            resetSecondGenerationIDCardText();
+        }else{
+            if (!TextUtils.isEmpty(edt_idcard.getText().toString())){
+                try {
+                    People people=dbUtils.findFirst(Selector.from(People.class).where("cardno","=",edt_idcard.getText().toString().trim()));
+                    if (!TextUtils.isEmpty(people.picture)){
+                        iv_pic.setImageBitmap(CommonUtils.base64ToBitmap(people.picture));
+                    }
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+
+
+
 }

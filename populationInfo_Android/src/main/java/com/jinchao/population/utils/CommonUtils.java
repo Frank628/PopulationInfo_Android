@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
@@ -16,7 +18,9 @@ import java.util.regex.Pattern;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.AppOpsManager;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -354,6 +358,35 @@ public class CommonUtils {
 		return compressImage(bitmap);//压缩好比例大小后再进行质量压缩
 	}
 
+    private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
+    private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
+    /**
+     * 用来判断是否开启通知权限
+     * */
+    public static boolean isNotificationEnabled(Context context){
 
+        AppOpsManager mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+        ApplicationInfo appInfo = context.getApplicationInfo();
 
+        String pkg = context.getApplicationContext().getPackageName();
+
+        int uid = appInfo.uid;
+
+        Class appOpsClass = null; /* Context.APP_OPS_MANAGER */
+
+        try {
+
+            appOpsClass = Class.forName(AppOpsManager.class.getName());
+
+            Method checkOpNoThrowMethod = appOpsClass.getMethod(CHECK_OP_NO_THROW, Integer.TYPE, Integer.TYPE, String.class);
+
+            Field opPostNotificationValue = appOpsClass.getDeclaredField(OP_POST_NOTIFICATION);
+            int value = (int)opPostNotificationValue.get(Integer.class);
+            return ((int)checkOpNoThrowMethod.invoke(mAppOps,value, uid, pkg) == AppOpsManager.MODE_ALLOWED);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }

@@ -3983,6 +3983,11 @@ containing a value of this type.
         public static final int Animation_Design_BottomSheetDialog=0x7f070095;
         /**  API 11 theme customizations can go here. 
  API 14 theme customizations can go here. 
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f07000c;
         public static final int AppTheme=0x7f070096;
@@ -4152,6 +4157,8 @@ containing a value of this type.
         public static final int Crop_ActionButtonText_Done=0x7f0700d2;
         public static final int Crop_DoneCancelBar=0x7f0700d3;
         public static final int DialogStyle=0x7f0700d4;
+        /** 模糊
+         */
         public static final int LoginDialogTheme=0x7f0700d5;
         public static final int MenuTextStyle=0x7f0700d6;
         public static final int MyButtonStyle=0x7f0700d7;

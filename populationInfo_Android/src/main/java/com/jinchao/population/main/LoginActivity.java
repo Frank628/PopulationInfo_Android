@@ -31,6 +31,7 @@ import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
+import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.PopupUser;
 import com.jinchao.population.view.PopupUser.OnEnsureClickListener;
@@ -82,6 +83,19 @@ public class LoginActivity extends BaseActiviy{
 			edt_user.setOnClickListener(null);
 		}
 		tv_version.setText("版本号：V"+CommonUtils.getVersionName(LoginActivity.this));
+        if(!CommonUtils.isNotificationEnabled(this)){
+            Dialog.showRadioDialog(this, "请在该手机“权限管理”应用中将（人口信息采集仪）的“通知”权限打开！否则将无法正常接收提示！", new Dialog.DialogClickListener() {
+                @Override
+                public void confirm() {
+
+                }
+
+                @Override
+                public void cancel() {
+
+                }
+            });
+        }
 	}
 	@Event(value=R.id.edt_user)
 	private void showPopClick(View view){

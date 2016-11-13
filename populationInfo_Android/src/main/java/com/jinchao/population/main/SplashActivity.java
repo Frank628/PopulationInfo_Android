@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.dbentity.Version;
 import com.jinchao.population.entity.DeviceBean;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
@@ -25,6 +26,8 @@ import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.TelephonyInfo;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.Dialog.DialogClickListener;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.exception.DbException;
 
 public class SplashActivity extends BaseActiviy{
 	private final int BUFFER_SIZE = 10000;
@@ -50,6 +53,16 @@ public class SplashActivity extends BaseActiviy{
 	private boolean isNeedDB(){
 		File file =new File(Constants.DB_PATH+Constants.DB_NAME);
 		if (file.exists()) {
+            Version version=null;
+            try {
+                DbUtils dbUtils=DeviceUtils.getDbUtils(this);
+                version=dbUtils.findFirst(Version.class);
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+            if (version==null){
+                return true;
+            }
 			return false;
 		}else{
 			return true;

@@ -1,5 +1,9 @@
 package com.jinchao.population.mainmenu;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import org.xutils.x;
 import org.xutils.common.Callback;
 import org.xutils.common.Callback.CancelledException;
@@ -25,6 +29,13 @@ import com.jinchao.population.utils.ResultBeanAndList;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.NavigationLayout;
+
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 @ContentView(R.layout.activity_zanzhuinfo)
 public class ZanZhuActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_content)
@@ -48,39 +59,61 @@ public class ZanZhuActivity extends BaseActiviy{
 		dialogLoading=new DialogLoading(this, "信息验证中...",true);
 	}
 	
-	private void requestYanZheng(String idcard){
-		dialogLoading.show();
-		RequestParams params=new RequestParams(Constants.URL+"quePeople.aspx");
-		params.addBodyParameter("type", "get_people");
-		params.addBodyParameter("idcard", idcard);
-		x.http().post(params, new Callback.CommonCallback<String>() {
-			@Override
-			public void onSuccess(String result) {
-				Log.d("quePeople", result);
-				try {
-					ResultBeanAndList<YanZhengBean> yanzhengxml = XmlUtils.getBeanByParseXml(result,"",YanZhengBean.class, "xml_people", YanZhengBean.class);
-					YanZhengBean yanZhengBean =(YanZhengBean) yanzhengxml.bean;
-					dialogLoading.dismiss();
-					if (yanZhengBean.result.equals("1")) {
-						tv_content.setText(yanZhengBean.toString());
-					}else if (yanZhengBean.result.equals("0")) {
-						handleID(true);
-					}
-					Log.d("quePeople", yanzhengxml.toString());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			@Override
-			public void onError(Throwable ex, boolean isOnCallback) {
-				dialogLoading.dismiss();
-			}
-			@Override
-			public void onCancelled(CancelledException cex) {}
-			@Override
-			public void onFinished() {}
-		});
-	}
+//	private void requestYanZheng(String idcard){
+//		dialogLoading.show();
+//		RequestParams params=new RequestParams(Constants.URL+"quePeople.aspx");
+//		params.addBodyParameter("type", "get_people");
+//		params.addBodyParameter("idcard", idcard);
+//		x.http().post(params, new Callback.CommonCallback<String>() {
+//			@Override
+//			public void onSuccess(String result) {
+//				Log.d("quePeople", result);
+//				try {
+//					ResultBeanAndList<YanZhengBean> yanzhengxml = XmlUtils.getBeanByParseXml(result,"",YanZhengBean.class, "xml_people", YanZhengBean.class);
+//					YanZhengBean yanZhengBean =(YanZhengBean) yanzhengxml.bean;
+//					dialogLoading.dismiss();
+//					if (yanZhengBean.result.equals("1")) {
+//						tv_content.setText(yanZhengBean.toString());
+//					}else if (yanZhengBean.result.equals("0")) {
+//						handleID(true);
+//					}
+//					Log.d("quePeople", yanzhengxml.toString());
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			@Override
+//			public void onError(Throwable ex, boolean isOnCallback) {
+//				dialogLoading.dismiss();
+//			}
+//			@Override
+//			public void onCancelled(CancelledException cex) {}
+//			@Override
+//			public void onFinished() {}
+//		});
+//	}
+private void requestYanZheng(String idcard){
+    dialogLoading.show();
+    RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
+    x.http().post(params, new Callback.CommonCallback<String>() {
+        @Override
+        public void onSuccess(String result) {
+            Log.d("quePeople", result);
+           tv_content.setText(parseXML(result));
+
+        }
+        @Override
+        public void onError(Throwable ex, boolean isOnCallback) {
+            dialogLoading.dismiss();
+        }
+        @Override
+        public void onCancelled(CancelledException cex) {}
+        @Override
+        public void onFinished() {
+            dialogLoading.dismiss();
+        }
+    });
+}
 	private void handleID(boolean isHandle) {
 		Intent intent = new Intent(ZanZhuActivity.this,HandleIDActivity.class);
 		intent.putExtra("people", people);
@@ -108,4 +141,53 @@ public class ZanZhuActivity extends BaseActiviy{
 	private void passit(View view){
 		handleID(false);
 	}
+
+    public  String parseXML(String xml){
+        String str="";
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document d = db.parse(xml);
+            Node n = d.getChildNodes().item(0);
+            NodeList nl = n.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node n2 = nl.item(i);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    if (n2.getNodeName().equals("ResultSet")) {
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                NodeList nl3 = n3.getChildNodes();
+                                for (int k = 0; k < nl3.getLength(); k++) {
+                                    Node n4 = nl3.item(k);
+                                    if (n4.getNodeType() == Node.ELEMENT_NODE) {
+                                        str = str + n4.getAttributes().getNamedItem("name").getNodeValue()+":"+n4.getTextContent()+"\n";
+                                    }
+                                }
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("AppType")){
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+//                                str=str+n3.getTextContent();
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("msg")){
+                        str=str+n2.getTextContent();
+                    }
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
 }

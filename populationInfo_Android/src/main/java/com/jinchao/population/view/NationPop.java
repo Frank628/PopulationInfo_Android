@@ -46,7 +46,7 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 	private DbUtils dbUtils;
 	private OnEnsureClickListener onEnsureClickListener;
 	public interface OnEnsureClickListener{
-		void OnEnSureClick(String nationid);
+		void OnEnSureClick(String nationid,String huji);
 	}
 	public NationPop(Activity context,OnEnsureClickListener onEnsureClickListener) {
 		super();
@@ -96,18 +96,7 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 		}).start();
 		
 	}
-	private Handler handler =new Handler(){
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case 1:
-				
-				break;
 
-			default:
-				break;
-			}
-			
-		};};
 	@Override
 	public void showAtLocation(View parent, int gravity,int x,int y) {
 		super.showAtLocation(parent, gravity, x, y);
@@ -131,8 +120,12 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 			}
 			mArea.setViewAdapter(new ArrayWheelAdapter<String>(ct, areas));
 			mArea.setCurrentItem(0);
-			CurrentArea=areas[0];
-			CurrentID=IDs[0];
+            if (areas[0].equals("")){
+                CurrentArea=areas[0];
+            }else{
+                CurrentArea=areas[0];
+                CurrentID=IDs[0];
+            }
 		}else{
 			
 			mCity.setCurrentItem(0);
@@ -154,8 +147,12 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 		}
 		mArea.setViewAdapter(new ArrayWheelAdapter<String>(ct, areas));
 		mArea.setCurrentItem(0);
-		CurrentArea=areas[0];
-		CurrentID=IDs[0];
+        if (areas[0].equals("")){
+            CurrentArea=areas[0];
+        }else{
+            CurrentArea=areas[0];
+            CurrentID=IDs[0];
+        }
 	}
 	/**
 	 * 省市区数据初始化
@@ -180,8 +177,10 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 							AreaDatasArr[k]=areaslist.get(k).getArea_name();
 							IDDatasArr[k]=areaslist.get(k).getId()+"";
 						}
-						AreaDatasMap.put(citieslist.get(j).getCity_name(), AreaDatasArr);
-						IDDatasMap.put(citieslist.get(j).getCity_name(), IDDatasArr);
+                        if(areaslist.size()!=0){
+                            AreaDatasMap.put(citieslist.get(j).getCity_name(), AreaDatasArr);
+                            IDDatasMap.put(citieslist.get(j).getCity_name(), IDDatasArr);
+                        }
 					}
 					CityDatasMap.put(provincelist.get(i).getProvince_name(), CityDatasArr);
 				}else{
@@ -193,9 +192,12 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 						AreaDatasArr[j]=areaslist.get(j).getArea_name();
 						IDDatasArr[j]=areaslist.get(j).getId()+"";
 					}
-					AreaDatasMap.put(provincelist.get(i).getProvince_name(), AreaDatasArr);
-					IDDatasMap.put(provincelist.get(i).getProvince_name(),IDDatasArr);
-					CityDatasMap.put(provincelist.get(i).getProvince_name(), CityDatasArr);
+                    if (areaslist.size()!=0){
+                        AreaDatasMap.put(provincelist.get(i).getProvince_name(), AreaDatasArr);
+                        IDDatasMap.put(provincelist.get(i).getProvince_name(),IDDatasArr);
+                    }
+                    CityDatasMap.put(provincelist.get(i).getProvince_name(), CityDatasArr);
+
 				}
 				
 			}
@@ -211,18 +213,18 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 	
 	@Override
 	public void onChanged(WheelView wheel, int oldValue, int newValue) {
-		if (wheel ==mProvince)
-		{
+		if (wheel ==mProvince){
+            CurrentID=ProvinceDatesArr[newValue];
 			updateCity(mContext);
-		} else if (wheel == mCity)
-		{
+		} else if (wheel == mCity){
 			updateArea(mContext);
-		} else if (wheel == mArea)
-		{
+		} else if (wheel == mArea){
 			if(CurrentCity.equals("")){
 				CurrentArea=AreaDatasMap.get(CurrentProvince)[newValue];
 				CurrentID=IDDatasMap.get(CurrentProvince)[newValue];
-			}else{
+			}else if(CurrentArea.equals("")){
+                CurrentID=ProvinceDatesArr[newValue];
+            }else{
 				CurrentArea=AreaDatasMap.get(CurrentCity)[newValue];
 				CurrentID=IDDatasMap.get(CurrentCity)[newValue];
 			}
@@ -236,7 +238,7 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 		case R.id.btn_ensure:
 			Message msg =new Message();
 //           data.putString("name", CurrentProvince+CurrentCity+CurrentArea);
-            onEnsureClickListener.OnEnSureClick(CurrentID);
+            onEnsureClickListener.OnEnSureClick(CurrentID,CurrentProvince+CurrentCity+CurrentArea);
             this.dismiss();
 			break;
 		case R.id.btn_cancle:

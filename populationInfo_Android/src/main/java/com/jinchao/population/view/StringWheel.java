@@ -33,6 +33,9 @@ public class StringWheel extends PopupWindow implements OnClickListener,OnWheelC
 	private ViewFlipper viewfipper;
 	private TextView submit,cancel;
 	private OnEnsureClickListener onEnsureClickListener;
+    public interface OnEnsureClickListener{
+        void OnEnSureClick(String nationid);
+    }
 	private String[] str;
 	public StringWheel(Activity context,String[] str,OnEnsureClickListener onEnsureClickListener) {
 		super();
