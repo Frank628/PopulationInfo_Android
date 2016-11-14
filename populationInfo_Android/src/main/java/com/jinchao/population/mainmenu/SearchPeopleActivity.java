@@ -545,7 +545,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 				Toast.makeText(this, "请输入房屋编号~", Toast.LENGTH_SHORT).show();
 				return;
 			}
-            requestYanZheng(cardno);
+			getRequest(cardno);
 		}else{
 			if (cardno.equals("")) {
 				Toast.makeText(this, "请录入身份证号~", Toast.LENGTH_SHORT).show();
@@ -565,7 +565,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 				 Toast.makeText(SearchPeopleActivity.this, "请输入合法身份证！", Toast.LENGTH_SHORT).show();
 				 return;
 			}
-            getRequest(cardno);
+
+			requestYanZheng(cardno);
 		}
 
 	}

@@ -13,7 +13,7 @@ android {
         signingConfigs {
             // your debug keystore
             debug {
-//                storeFile file("C:\\Users\\OfferJiShu01\\.android\\debug.keystore")
+                storeFile file("C:\\Users\\OfferJiShu01\\.android\\debug.keystore")
             }
 
         }
