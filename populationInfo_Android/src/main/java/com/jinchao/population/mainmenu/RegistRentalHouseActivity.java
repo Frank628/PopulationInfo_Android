@@ -316,7 +316,6 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		}
 		params.addBodyParameter("type", "get");
 		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
-		Toast.makeText(RegistRentalHouseActivity.this, SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"), 0).show();
 		params.addBodyParameter("last_udt",SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"));
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
