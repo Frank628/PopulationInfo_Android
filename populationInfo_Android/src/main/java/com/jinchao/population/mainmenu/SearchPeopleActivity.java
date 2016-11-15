@@ -37,6 +37,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -61,6 +62,7 @@ import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.entity.YanZhengBean;
 import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonIdcard;
+import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.ResultBeanAndList;
@@ -98,7 +100,9 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	@ViewInject(R.id.lv) private ListView lv;
 	@ViewInject(R.id.btn_seach) private TextView btn_seach;
 	@ViewInject(R.id.loadmorelv) private LoadMoreListView loadmorelv;
+	@ViewInject(R.id.ll_house) private LinearLayout ll_house;
 	@ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
+	@ViewInject(R.id.sv_content) private ScrollView sv_content;
 	public static final String TAG="IDCARD_DEVICE";
 	private RenyuanInHouseBean renyuanInHouseBean;
 	private boolean IsHouseID=true;
@@ -156,7 +160,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 //					btn_readcard.setEnabled(false);
 					IsHouseID=true;
 					edt_content.setText("");
-					tv_content.setVisibility(View.GONE);
+					ll_house.setVisibility(View.VISIBLE);
+					sv_content.setVisibility(View.GONE);
 					tv_content.setText("");
 					mPtrFrame.setVisibility(View.GONE);
 					break;
@@ -165,12 +170,13 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 					edt_content.setHint("请输入身份证号或读卡");
 //					btn_readcard.setEnabled(true);
 					IsHouseID=false;
-					tv_content.setVisibility(View.VISIBLE);
-					rg_zai.setVisibility(View.GONE);
+					ll_house.setVisibility(View.GONE);
+					sv_content.setVisibility(View.VISIBLE);
 					mPtrFrame.setVisibility(View.GONE);
 					break;
 					case R.id.rb_nearby:
 						MyApplication.myApplication.locationService.start();
+						ll_house.setVisibility(View.GONE);
 						ll_search.setVisibility(View.GONE);
 						mPtrFrame.setVisibility(View.VISIBLE);
 						mPtrFrame.postDelayed(new Runnable() {
@@ -363,16 +369,16 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	private void processData(RenyuanInHouseBean renyuanInHouseBean){
 		try {
 			if (renyuanInHouseBean.data.house_exist.equals("0")){
-				tv_content.setVisibility(View.VISIBLE);
+				sv_content.setVisibility(View.VISIBLE);
 				tv_content.setText("此房屋编号不存在！");
 				return;
 			}
 			if (renyuanInHouseBean.data.people_exist.equals("0")){
-				tv_content.setVisibility(View.VISIBLE);
+				sv_content.setVisibility(View.VISIBLE);
 				tv_content.setText("此房屋没有采集过人！");
 				return;
 			}
-			tv_content.setVisibility(View.GONE);
+			sv_content.setVisibility(View.GONE);
 			rg_zai.setVisibility(View.VISIBLE);
 			List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();
 			list.clear();
@@ -635,16 +641,18 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	}
     public  String parseXML(String xml){
         String str="";
+		xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-            Document d = db.parse(xml);
+            Document d = db.parse(CommonUtils.writeTxtToFile(xml,Constants.DB_PATH,"xml.xml"));
             Node n = d.getChildNodes().item(0);
             NodeList nl = n.getChildNodes();
             for (int i = 0; i < nl.getLength(); i++) {
                 Node n2 = nl.item(i);
                 if (n2.getNodeType() == Node.ELEMENT_NODE) {
                     if (n2.getNodeName().equals("ResultSet")) {
+						String huji1="",huji2="",zanzhu1="",zanzhu2="",name="",dianhua="",danweidizhi="",caijiren="",mocicaijishijian="",shifoulingzheng="";
                         NodeList nl2 = n2.getChildNodes();
                         for (int j = 0; j < nl2.getLength(); j++) {
                             Node n3 = nl2.item(j);
@@ -653,11 +661,41 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
                                 for (int k = 0; k < nl3.getLength(); k++) {
                                     Node n4 = nl3.item(k);
                                     if (n4.getNodeType() == Node.ELEMENT_NODE) {
-                                        str = str + n4.getAttributes().getNamedItem("name").getNodeValue()+":"+n4.getTextContent()+"\n";
+										if("姓名".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											name= "姓名:"+n4.getTextContent() + "\n";
+										}
+										if("个人联系电话".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											dianhua= "联系电话:"+n4.getTextContent() + "\n";
+										}
+										if("户籍地址名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											huji1= "户籍地址:"+n4.getTextContent();
+										}
+										if("是否领证".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											shifoulingzheng =  "是否领证:"+(n4.getTextContent().equals("1")?"是":"否") + "\n";
+										}
+										if("户籍地址详址".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											huji2 =  n4.getTextContent() + "\n";
+										}
+										if("名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											zanzhu1 = "暂住地址:"+ n4.getTextContent();
+										}
+										if("门牌号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											zanzhu2 = n4.getTextContent() + "\n";
+										}
+										if("更新时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											mocicaijishijian =  "末次采集时间:"+n4.getTextContent() + "\n";
+										}
+										if("设备识别号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											caijiren ="采集人:"+n4.getTextContent() + "\n";
+										}
+										if("服务处所".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											danweidizhi ="工作单位:"+n4.getTextContent() + "\n";
+										}
                                     }
                                 }
                             }
                         }
+						str=shifoulingzheng+name+huji1+huji2+zanzhu1+zanzhu2+dianhua+danweidizhi+mocicaijishijian+caijiren;
                     }else if(n2.getNodeName().equals("AppType")){
                         NodeList nl2 = n2.getChildNodes();
                         for (int j = 0; j < nl2.getLength(); j++) {
@@ -671,7 +709,6 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
                     }
                 }
             }
-
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {

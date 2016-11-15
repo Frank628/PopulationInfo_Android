@@ -103,14 +103,26 @@
         android:layout_height="1dp"
         android:background="#e2e2e2"
         />
-    <RadioGroup 
+
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/ll_house"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+        <RadioGroup
             android:id="@+id/rg_zai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:visibility="gone"
             >
-            <RadioButton 
+            <RadioButton
                 android:id="@+id/rb_zaizhu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -121,7 +133,7 @@
                 android:text="在住"
                 android:layout_weight="1"
                 />
-            <RadioButton 
+            <RadioButton
                 android:id="@+id/rb_banli"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -133,10 +145,6 @@
                 android:layout_weight="1"
                 />
         </RadioGroup>
-    <RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
     <ListView 
         android:id="@+id/lv"
         android:layout_width="match_parent"
@@ -144,6 +152,12 @@
         android:divider="#e2e2e2"
         android:dividerHeight="1dp"
         ></ListView>
+        </LinearLayout>
+        <ScrollView
+            android:id="@+id/sv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
     <TextView 
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
@@ -152,9 +166,11 @@
         android:textColor="@color/title2"
         android:textSize="@dimen/small_middle_size"
         android:lineSpacingExtra="15dp"
-        android:gravity="top|center"
-        android:visibility="gone"
+        android:gravity="top|left"
+        android:padding="15dp"
+
         />
+        </ScrollView>
     </RelativeLayout>
     </LinearLayout>
         <in.srain.cube.views.ptr.PtrClassicFrameLayout
