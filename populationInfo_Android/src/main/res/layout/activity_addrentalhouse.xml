@@ -207,7 +207,6 @@
 		            android:hint="请输入房东身份证号"
 		            android:textColorHint="@color/title4"
 		            android:background="@color/transaction"
-		            android:paddingRight="15dp"
 					android:maxLength="18"
 					app:vd_textErrorColor="@color/red"
 					app:vd_textRightColor="@color/title2"
