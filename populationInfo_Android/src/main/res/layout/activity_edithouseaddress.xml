@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,7 +35,8 @@
 		            android:gravity="center_vertical|right"
 		            android:textSize="@dimen/micro_middle_size"
 		            android:textColor="@color/title2"
-		            android:layout_toRightOf="@+id/tv_leftbianhao"
+		            android:layout_toRightOf="@+id/tv_leftjieluxiang"
+					android:layout_marginLeft="5dp"
 		            android:singleLine="true"
 		            android:hint="查找并选择街路巷"
 		            android:textColorHint="@color/title4"
@@ -84,7 +86,9 @@
 		            android:layout_toRightOf="@+id/tv_leftmenpaihao"
 		            android:singleLine="true"
 		            android:hint="输入门牌号"
+					android:inputType="number"
 		            android:textColorHint="@color/title4"
+					android:maxLength="4"
 		            android:layout_marginLeft="15dp"
 		            />
 		    </RelativeLayout>
@@ -148,6 +152,8 @@
 		            android:singleLine="true"
 		            android:hint="输入副号"
 		            android:textColorHint="@color/title4"
+					android:inputType="number"
+					android:maxLength="2"
 		            android:layout_marginLeft="15dp"
 		            />
 		    </RelativeLayout>
@@ -227,6 +233,8 @@
 		            android:singleLine="true"
 		            android:textColorHint="@color/title4"
 		            android:hint="输入楼号"
+					android:inputType="number"
+					android:maxLength="3"
 		            />
 		    <TextView 
 		        android:id="@+id/tv_zhuanghao"
@@ -330,6 +338,7 @@
 		            android:textColorHint="@color/title4"
 		            android:layout_marginLeft="15dp"
 		            android:hint="输入室号"
+					android:maxLength="4"
 					android:inputType="number"
 		            />
 		         <TextView 

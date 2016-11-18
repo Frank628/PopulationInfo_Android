@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#bb000000"
+	android:focusable="true"
+	android:focusableInTouchMode="true"
     android:orientation="vertical" >
       <EditText 
 	        android:id="@+id/edt_content"
@@ -25,14 +27,26 @@
 	    android:id="@+id/lv"
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
-	    android:divider="#e2e2e2"
-	    android:dividerHeight="1dp"
+	    android:dividerHeight="0dp"
 	    android:background="@color/transaction"
 	    android:layout_below="@+id/edt_content"
-	    android:layout_above="@+id/bottom"
+	    android:layout_above="@+id/tv_up"
+		android:layout_marginLeft="15dp"
+		android:layout_marginRight="15dp"
 	    >
 	</ListView>
-    
+    <TextView
+		android:id="@+id/tv_up"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="点击展开，二级联动街路巷地址"
+		android:textSize="17sp"
+		android:layout_alignParentBottom="true"
+		android:drawableLeft="@drawable/icon_up"
+		android:gravity="center"
+		android:background="#ffffff"
+		android:visibility="gone"
+		android:padding="12dp"/>
     <LinearLayout 
         android:id="@+id/bottom"
         android:layout_width="match_parent"

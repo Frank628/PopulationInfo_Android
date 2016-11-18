@@ -4,20 +4,26 @@
     android:layout_height="match_parent"
     android:background="#bb000000"
     android:orientation="vertical" >
-    <ImageButton 
-        android:id="@+id/ib_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/img_close"
-        android:background="@drawable/white_click_bg"
-        android:layout_marginLeft="10dp"
-        />
+	<TextView
+		android:id="@+id/ib_close"
+		android:layout_width="wrap_content"
+		android:layout_height="@dimen/navigation_bar_height"
+		android:drawableLeft="@drawable/icon_back"
+		android:drawablePadding="10dp"
+		android:textSize="17sp"
+		android:textColor="@color/white"
+		android:gravity="center"
+		android:layout_marginLeft="15dp"
+		android:text="返回"
+		/>
     <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginRight="15dp"
         >
-        <EditText 
+        <EditText
 	        android:id="@+id/edt_content"
 	        android:layout_width="match_parent"
 	        android:layout_height="48dp"
@@ -29,25 +35,21 @@
 	        android:singleLine="true"
 	        android:paddingLeft="20dp"
 	        android:paddingRight="20dp"
-	        android:layout_marginLeft="12dp"
 	        android:layout_marginRight="10dp"
 	        android:layout_toLeftOf="@+id/btn_search"
 	        />
         <Button
             android:id="@+id/btn_search" 
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/btn_login_click"
             android:layout_alignParentRight="true"
             android:text="查询"
             android:textColor="@color/white"
-            android:textSize="@dimen/large_middle_size"
+            android:textSize="@dimen/small_size"
 			android:textStyle="bold"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:layout_centerVertical="true"
             />
     </RelativeLayout>
@@ -68,7 +70,9 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:divider="#e2e2e2"
-		    android:dividerHeight="1dp"
+		    android:dividerHeight="0dp"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="15dp"
 		    >
 		</ListView>
 	</RelativeLayout>

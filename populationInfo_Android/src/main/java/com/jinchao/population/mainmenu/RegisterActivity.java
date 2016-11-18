@@ -688,7 +688,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 						startActivity(intent);
 					}
 				}
-				
+
 				@Override
 				public void cancel() {
 					Toast.makeText(RegisterActivity.this, "请先拍摄证件照",  Toast.LENGTH_SHORT).show();
@@ -745,7 +745,6 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("sssssss"+((MyApplication)getApplication()).getIsSureDengji());
         if (((MyApplication)getApplication()).getIsSureDengji()){
             resetSecondGenerationIDCardText();
         }else{

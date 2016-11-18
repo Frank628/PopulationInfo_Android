@@ -246,11 +246,11 @@ ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Andro
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:19-89
 activity#com.jinchao.population.mainmenu.RegisterActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:9-179
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:9-184
 	android:screenOrientation
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:83-125
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:126-177
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:126-182
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:19-82
 activity#com.jinchao.population.mainmenu.ZanZhuActivity
@@ -262,11 +262,11 @@ ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Andro
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:19-80
 activity#com.jinchao.population.mainmenu.HandleIDActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:9-182
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:9-184
 	android:screenOrientation
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:83-125
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:126-180
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:126-182
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:19-82
 activity#com.jinchao.population.mainmenu.RegistRentalHouseActivity

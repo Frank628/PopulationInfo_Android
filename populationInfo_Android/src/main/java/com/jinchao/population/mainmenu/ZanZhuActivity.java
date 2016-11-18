@@ -199,7 +199,7 @@ private void requestYanZheng(String idcard){
                                 }
                             }
                         }
-                        str=shifoulingzheng+name+huji1+huji2+zanzhu1+zanzhu2+dianhua+danweidizhi+mocicaijishijian+caijiren;
+                        str=shifoulingzheng+name+huji1+huji2+zanzhu1+zanzhu2+dianhua+danweidizhi+mocicaijishijian;
                     }else if(n2.getNodeName().equals("AppType")){
                         NodeList nl2 = n2.getChildNodes();
                         for (int j = 0; j < nl2.getLength(); j++) {

@@ -7,19 +7,15 @@ import java.util.List;
 
 import org.xutils.x;
 import org.xutils.common.Callback;
-import org.xutils.common.Callback.CancelledException;
 import org.xutils.ex.HttpException;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -27,9 +23,9 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
@@ -41,7 +37,6 @@ import com.jinchao.population.dbentity.HouseJLX;
 import com.jinchao.population.dbentity.JLX;
 import com.jinchao.population.entity.HouseAddressBean;
 import com.jinchao.population.entity.HouseAddressOldBean;
-import com.jinchao.population.entity.YanZhengBean;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.ResultBeanAndList;
@@ -53,7 +48,6 @@ import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.NavigationLayout;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.exception.DbException;
 @ContentView(R.layout.activity_registrentalhouse)
 public class RegistRentalHouseActivity extends BaseActiviy{
 	
@@ -94,6 +88,16 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 						}
 					};
 					lv.setAdapter(adapter);
+					Dialog.showRadioDialog(RegistRentalHouseActivity.this, "地址下载成功!", new DialogClickListener() {
+						@Override
+						public void confirm() {
+
+						}
+						@Override
+						public void cancel() {
+							((MyApplication)getApplication()).setIsSureDengji(false);
+						}
+					});
 					dialogLoading.dismiss();
 				} catch (Exception e) {
 					e.printStackTrace();

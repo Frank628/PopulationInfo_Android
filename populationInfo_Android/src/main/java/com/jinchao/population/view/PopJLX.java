@@ -146,6 +146,7 @@ public class PopJLX extends PopupWindow{
 							public void convert(ViewHolder helper, JLXBean item,
 									int position) {
 								helper.setText(R.id.tv_content, item.rn);
+								helper.getView(R.id.tv_bianhao).setVisibility(View.GONE);
 							}
 						};
 						lv.setAdapter(adapter);

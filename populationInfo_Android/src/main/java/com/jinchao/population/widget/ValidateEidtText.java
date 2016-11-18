@@ -235,6 +235,18 @@ public class ValidateEidtText extends EditText {
                                 null, null, drawableRight_Right, null);
                     }
                     break;
+                case 10://房屋编号
+                    if (!CommonUtils.isFangwuBianHao(getText().toString().trim())){
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, drawableRight_Error, null);
+                        setTextColor(textErrorColor);
+                        setError("房屋编号由6位字母或数字组成！",null);
+                    }else{
+                        setTextColor(textColor);
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, drawableRight_Right, null);
+                    }
+                    break;
                 default:
                     break;
             }

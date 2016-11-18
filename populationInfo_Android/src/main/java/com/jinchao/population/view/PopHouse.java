@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -61,11 +63,13 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 	private DbUtils dbUtils;
 	private CommonAdapter<HouseAddressOldBean> adapter;
 	private HouseAddress list_er;
+	private LinearLayout ll_bottom;
+	private TextView tv_up;
 	public interface OnHouseEnsureClickListener{
 		void OnHouseEnSureClick(String bianhao,String dizhi);
 	}
 
-	public PopHouse(Activity context,String[] PSCName,String[] USERName,String[] UserId,Map<String, String[]> UserNameMap,Map<String, String[]> UserIdMap,OnHouseEnsureClickListener onEnsureClickListener1) {
+	public PopHouse(final Activity context, String[] PSCName, String[] USERName, String[] UserId, Map<String, String[]> UserNameMap, Map<String, String[]> UserIdMap, OnHouseEnsureClickListener onEnsureClickListener1) {
 		this.onEnsureClickListener = onEnsureClickListener1;
 		this.context1=context;
 		this.PSCName=PSCName;
@@ -77,6 +81,8 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		mPopView=inflater.inflate(R.layout.pop_house, null);
 		viewfipper = new ViewFlipper(context);
 		viewfipper.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+		tv_up=(TextView) mPopView.findViewById(R.id.tv_up);
+		ll_bottom=(LinearLayout) mPopView.findViewById(R.id.bottom);
 		PCSView=(WheelView) mPopView.findViewById(R.id.wv_1);
 		USERView=(WheelView) mPopView.findViewById(R.id.wv_2);
 		btn_ensure=(TextView) mPopView.findViewById(R.id.btn_ensure);
@@ -98,9 +104,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		dbUtils=DeviceUtils.getDbUtils(context);
 		try {
 			list_er=dbUtils.findFirst(HouseAddress.class);
-//			if (list_er!=null) {
-//             initData();
-//            }
+
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
@@ -125,20 +129,27 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 				List<HouseAddressOldBean> list=new ArrayList<HouseAddressOldBean>();
 				if (content.length()>=1) {
 					try {
-						list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("address", "like", "%"+content+"%"));
+						list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode", "like", "%"+content+"%"));
 						if (list==null) {
 							Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
 							return;
 						}
 						if (list.size()==0) {
-							list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode", "like", "%"+content+"%"));
+							list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("address", "like", "%"+content+"%"));
 							if (list.size()==0) {
+								Dialog.showRadioDialog(context, "查无此房屋！！！", new DialogClickListener() {
+									@Override
+									public void confirm() {}
+									@Override
+									public void cancel() {}
+								});
 							}
 						}
 							adapter = new CommonAdapter<HouseAddressOldBean>(context1,list,R.layout.item_text) {
 								@Override
 								public void convert(ViewHolder helper,HouseAddressOldBean item, int position) {
 									helper.setText(R.id.tv_content, item.address);
+									helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
 								}
 							};
 							lv.setAdapter(adapter);	
@@ -147,6 +158,26 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 						e.printStackTrace();
 					}
 				}
+			}
+		});
+		edt_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus){
+					tv_up.setVisibility(View.VISIBLE);
+					ll_bottom.setVisibility(View.GONE);
+				}else{
+
+				}
+			}
+		});
+		tv_up.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				edt_content.setText("");
+				edt_content.clearFocus();
+				tv_up.setVisibility(View.GONE);
+				ll_bottom.setVisibility(View.VISIBLE);
 			}
 		});
 		lv.setOnItemClickListener(new OnItemClickListener() {

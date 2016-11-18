@@ -104,6 +104,10 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 				return;
 			}
 		}
+		if (TextUtils.isEmpty(menpaiTT)&&TextUtils.isEmpty(louhaoTT)){
+			Toast.makeText(EidtHouseAddressActivity.this, "门牌号与楼幢号不可同时为空！", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		Intent intent =new Intent();
 		intent.putExtra("address",jieluxiang+menpaiTT+fuhaoTT+louhaoTT+danyuandanwei+shihaoTT);
 		intent.putExtra("jieluxiang",jieluxiang);

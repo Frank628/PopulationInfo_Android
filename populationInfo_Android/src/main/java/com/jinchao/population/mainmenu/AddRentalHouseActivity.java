@@ -40,6 +40,7 @@ import com.jinchao.population.view.Dialog.DialogClickListener;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.view.ShequWheel;
 import com.jinchao.population.view.ShequWheel.OnEnsureClickListener;
+import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
@@ -48,10 +49,10 @@ import com.lidroid.xutils.exception.DbException;
 public class AddRentalHouseActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_shequ)private TextView tv_shequ;
 	@ViewInject(R.id.tv_bianji)private TextView tv_bianji;
-	@ViewInject(R.id.edt_bianhao)private EditText edt_bianhao;
+	@ViewInject(R.id.edt_bianhao)private ValidateEidtText edt_bianhao;
 	@ViewInject(R.id.edt_fangdongxingming)private EditText edt_fangdongxingming;
-	@ViewInject(R.id.edt_dianhua)private EditText edt_dianhua;
-	@ViewInject(R.id.edt_shenfenzheng)private EditText edt_shenfenzheng;
+	@ViewInject(R.id.edt_dianhua)private ValidateEidtText edt_dianhua;
+	@ViewInject(R.id.edt_shenfenzheng)private ValidateEidtText edt_shenfenzheng;
 	private final static int ADDRESS_EDIT=1;
 	private String sqid="",sqname="",address ="",mph="",jieluxiang="",menpaihao="",fuhao="",
 			louhao="",shihao="",menpaihaodanwei="",fuhaodanwei="",loudanwei="",louhaodanwei="",
@@ -123,7 +124,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 					Toast.makeText(AddRentalHouseActivity.this, "请输入房东电话~", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				if (!CommonUtils.isTEL(dianhua)) {
+				if (!CommonUtils.isGuangdaTel(dianhua)) {
 					Toast.makeText(AddRentalHouseActivity.this, "联系电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}

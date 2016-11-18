@@ -37,6 +37,7 @@
             <enum name="position_name" value="7"></enum>
             <enum name="shebao_card" value="8"></enum>
             <enum name="health_card" value="9"></enum>
+            <enum name="house_code" value="10"></enum>
         </attr>
     </declare-styleable>
 </resources>
