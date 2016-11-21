@@ -160,7 +160,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 //					btn_readcard.setEnabled(false);
 					IsHouseID=true;
 					edt_content.setText("");
-					ll_house.setVisibility(View.VISIBLE);
+					ll_house.setVisibility(View.GONE);
 					sv_content.setVisibility(View.GONE);
 					tv_content.setText("");
 					mPtrFrame.setVisibility(View.GONE);
@@ -170,6 +170,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 					edt_content.setHint("请输入身份证号或读卡");
 //					btn_readcard.setEnabled(true);
 					IsHouseID=false;
+					edt_content.setText("");
+					tv_content.setText("");
 					ll_house.setVisibility(View.GONE);
 					sv_content.setVisibility(View.VISIBLE);
 					mPtrFrame.setVisibility(View.GONE);
@@ -367,17 +369,23 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		}
 	}
 	private void processData(RenyuanInHouseBean renyuanInHouseBean){
+		if (!rb_fangwu.isChecked()){
+			return;
+		}
 		try {
 			if (renyuanInHouseBean.data.house_exist.equals("0")){
 				sv_content.setVisibility(View.VISIBLE);
+				ll_house.setVisibility(View.GONE);
 				tv_content.setText("此房屋编号不存在！");
 				return;
 			}
 			if (renyuanInHouseBean.data.people_exist.equals("0")){
 				sv_content.setVisibility(View.VISIBLE);
+				ll_house.setVisibility(View.GONE);
 				tv_content.setText("此房屋没有采集过人！");
 				return;
 			}
+			ll_house.setVisibility(View.VISIBLE);
 			sv_content.setVisibility(View.GONE);
 			rg_zai.setVisibility(View.VISIBLE);
 			List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();

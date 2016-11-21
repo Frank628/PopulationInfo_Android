@@ -124,6 +124,11 @@ public class CommonUtils {
 		UUID uuid = UUID.randomUUID();
 		return uuid.toString(); 
 	}
+	public static boolean isAddress(String str){
+		Pattern p = Pattern.compile("^([\\u4e00-\\u9fa5]|[a-zA-Z0-9]|[-]|[\\(]|[\\)])+$");
+		Matcher m = p.matcher(str);
+		return m.matches();
+	}
 	public static boolean isFangwuBianHao(String str){
 			Pattern p = Pattern.compile("[A-Za-z0-9]{6}");
 			Matcher m = p.matcher(str);

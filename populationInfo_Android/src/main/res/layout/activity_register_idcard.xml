@@ -233,7 +233,7 @@
             android:layout_marginLeft="5dp"
             />
     </LinearLayout>
-    <EditText 
+    <com.jinchao.population.widget.ValidateEidtText
             android:id="@+id/edt_xaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -244,6 +244,12 @@
             android:layout_margin="12dp"
             android:maxLength="25"
             android:visibility="gone"
+            android:drawablePadding="3dp"
+            app:vd_textErrorColor="@color/red"
+            app:vd_textRightColor="@color/title2"
+            app:vd_drawable_right_right="@drawable/icon_gou"
+            app:vd_drawable_right_error="@drawable/icon_gantan"
+            app:vd_validate_type="address"
             />
     <RelativeLayout
         android:layout_width="match_parent"

@@ -38,6 +38,7 @@
             <enum name="shebao_card" value="8"></enum>
             <enum name="health_card" value="9"></enum>
             <enum name="house_code" value="10"></enum>
+            <enum name="address" value="11"></enum>
         </attr>
     </declare-styleable>
 </resources>

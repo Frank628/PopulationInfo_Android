@@ -1800,6 +1800,7 @@
             <enum name="shebao_card" value="8"/>
             <enum name="health_card" value="9"/>
             <enum name="house_code" value="10"/>
+            <enum name="address" value="11"/>
         </attr>
     </declare-styleable><declare-styleable name="RoundProgressBar">  
         <attr format="color" name="roundColor"/>
@@ -2096,6 +2097,7 @@
             <enum name="shebao_card" value="8"/>
             <enum name="health_card" value="9"/>
             <enum name="house_code" value="10"/>
+            <enum name="address" value="11"/>
         </attr></declare-styleable><declare-styleable name="TabItem"><attr name="android:text"/><attr name="android:icon"/><attr name="android:layout"/></declare-styleable><declare-styleable name="ActionMode"><attr name="titleTextStyle"/><attr name="subtitleTextStyle"/><attr name="background"/><attr name="backgroundSplit"/><attr name="height"/><attr format="reference" name="closeItemLayout"/></declare-styleable><declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="color" name="thumbTint"/><attr name="thumbTintMode">
             
             <enum name="src_over" value="3"/>

@@ -402,6 +402,7 @@
             <enum name="shebao_card" value="8"/>
             <enum name="health_card" value="9"/>
             <enum name="house_code" value="10"/>
+            <enum name="address" value="11"/>
         </attr></declare-styleable>
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/></declare-styleable>
     <declare-styleable name="ViewBackgroundHelper"><attr name="android:background"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode">

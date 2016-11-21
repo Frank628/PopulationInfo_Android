@@ -247,6 +247,18 @@ public class ValidateEidtText extends EditText {
                                 null, null, drawableRight_Right, null);
                     }
                     break;
+                case 11://地址
+                    if (!CommonUtils.isAddress(getText().toString().trim())){
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, drawableRight_Error, null);
+                        setTextColor(textErrorColor);
+                        setError("详细地址由25个中文、字母、数字、-或者()组成！",null);
+                    }else{
+                        setTextColor(textColor);
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, drawableRight_Right, null);
+                    }
+                    break;
                 default:
                     break;
             }

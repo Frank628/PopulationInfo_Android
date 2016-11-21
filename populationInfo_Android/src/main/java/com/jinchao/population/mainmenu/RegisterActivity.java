@@ -80,7 +80,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	@ViewInject(R.id.edt_sex)private EditText edt_sex;
 	@ViewInject(R.id.edt_birth)private EditText edt_birth;
 	@ViewInject(R.id.edt_address)private EditText edt_address;
-	@ViewInject(R.id.edt_xaddress)private EditText edt_xaddress;
+	@ViewInject(R.id.edt_xaddress)private ValidateEidtText edt_xaddress;
 	@ViewInject(R.id.compare)private ImageButton compare;
 	@ViewInject(R.id.replace)private ImageButton replace;
 	@ViewInject(R.id.iv_pic)private ImageView iv_pic;
