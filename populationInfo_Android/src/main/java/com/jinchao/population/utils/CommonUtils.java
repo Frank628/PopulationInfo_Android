@@ -125,7 +125,7 @@ public class CommonUtils {
 		return uuid.toString(); 
 	}
 	public static boolean isAddress(String str){
-		Pattern p = Pattern.compile("^([\\u4e00-\\u9fa5]|[a-zA-Z0-9]|[-]|[\\(]|[\\)])+$");
+		Pattern p = Pattern.compile("^([\\u4e00-\\u9fa5]|[A-Z0-9]|[-]|[\\(]|[\\)]|[、])+$");
 		Matcher m = p.matcher(str);
 		return m.matches();
 	}

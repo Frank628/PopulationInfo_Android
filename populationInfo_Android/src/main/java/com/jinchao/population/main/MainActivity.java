@@ -206,7 +206,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (versionBean.versionNum.trim().equals("")){
                         return;
                     }
-                    if (!versionBean.versionNum.trim().equals(CommonUtils.getVersionName(MainActivity.this))) {
+                    String[] str =versionBean.versionNum.trim().split("\\.");
+                    String versionStr=str[0]+str[1]+str[2];
+                    int new_version =Integer.parseInt(versionStr);
+                    if (new_version>CommonUtils.getVersionCode(MainActivity.this)) {
 //                        if(NetWorkManager.checkNetwork(MainActivity.this)!= NetWorkManager.NetState.NET_WIFI){
 //                            String nettype="4G";
 //                            switch (NetWorkManager.checkNetwork(MainActivity.this)){

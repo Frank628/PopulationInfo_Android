@@ -252,7 +252,7 @@ public class ValidateEidtText extends EditText {
                         setCompoundDrawablesWithIntrinsicBounds(
                                 null, null, drawableRight_Error, null);
                         setTextColor(textErrorColor);
-                        setError("详细地址由25个中文、字母、数字、-或者()组成！",null);
+                        setError("提示:户籍详细地址只能输入汉字、数字、大写字母和-(中横线)以及英文半角小括号和、(中文半角顿号)!",null);
                     }else{
                         setTextColor(textColor);
                         setCompoundDrawablesWithIntrinsicBounds(
