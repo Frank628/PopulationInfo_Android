@@ -602,7 +602,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
         String date11 = simpleDateFormat.format(newDate11);
         int falg12=date12.compareTo(simpleDateFormat.format(new Date()));
         int falg11=date11.compareTo(simpleDateFormat.format(new Date()));
-        if (falg12>=0&&falg11<0) {
+        if (falg11<0) {
 			return true;
 		}else{
 			return false; 

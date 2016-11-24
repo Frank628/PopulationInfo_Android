@@ -58,6 +58,11 @@ public class RealFragment extends BaseFragment{
         intent.putExtra(Constants.IS_FROM_REALPOPULATION,true);
         startActivity(intent);
     }
+    @Event(value={R.id.iv_regist})
+    private void registClick(View view){
+        Intent intent =new Intent(getActivity(), RealPeopleSearchActivity.class);
+        startActivity(intent);
+    }
     @Event(value={R.id.iv_personinfocheck})
     private void personinfocheckClick(View view){
         Intent intent =new Intent(getActivity(), RealPeopleSearchActivity.class);
