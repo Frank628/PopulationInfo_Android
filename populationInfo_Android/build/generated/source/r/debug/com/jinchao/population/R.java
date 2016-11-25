@@ -3507,6 +3507,7 @@ containing a value of this type.
         public static final int rl_end=0x7f0b010f;
         public static final int rl_fangdongguanxi=0x7f0b01b3;
         public static final int rl_fangdongxingming=0x7f0b0095;
+        public static final int rl_housecode=0x7f0b00fd;
         public static final int rl_huqfrq=0x7f0b0206;
         public static final int rl_hyzmzl=0x7f0b0201;
         public static final int rl_jhrq=0x7f0b0209;
@@ -3519,7 +3520,6 @@ containing a value of this type.
         public static final int rl_ldhtqj=0x7f0b01f6;
         public static final int rl_lianxi=0x7f0b009a;
         public static final int rl_lsrq=0x7f0b021b;
-        public static final int rl_lv=0x7f0b00fd;
         public static final int rl_shequ=0x7f0b008c;
         public static final int rl_shifoubanzheng=0x7f0b01e1;
         public static final int rl_start=0x7f0b010d;

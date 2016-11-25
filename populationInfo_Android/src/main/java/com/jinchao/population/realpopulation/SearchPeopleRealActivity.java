@@ -2,42 +2,75 @@ package com.jinchao.population.realpopulation;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.caihua.cloud.common.entity.PersonInfo;
+import com.caihua.cloud.common.link.LinkFactory;
 import com.caihua.cloud.common.reader.IDReader;
+import com.jinchao.population.MyApplication;
+import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.activity.PersonInHouseActivity;
 import com.jinchao.population.base.BaseReaderActiviy;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.entity.NearbyHouseBean;
 import com.jinchao.population.entity.RealPeopleSearchBean;
 import com.jinchao.population.entity.RealPeopleinHouseBean;
 import com.jinchao.population.entity.SortbyRoomCodeClass;
 import com.jinchao.population.entity.SortbyTimeClass;
 import com.jinchao.population.entity.SortbyzaizhuClass;
+import com.jinchao.population.mainmenu.SearchPeopleActivity;
+import com.jinchao.population.utils.CommonHttp;
+import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.SharePrefUtil;
+import com.jinchao.population.view.DialogShowPic;
+import com.jinchao.population.view.NavigationLayout;
+import com.jinchao.population.widget.LoadMoreListView;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 
 /**
  * Created by OfferJiShu01 on 2016/11/25.
@@ -45,15 +78,100 @@ import java.util.List;
 
 @org.xutils.view.annotation.ContentView(R.layout.activity_searchpeoplereal)
 public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDReader.IDReaderListener{
+    @ViewInject(R.id.rg_search) private RadioGroup rg_search;
+    @ViewInject(R.id.rb_renyuan) private RadioButton rb_renyuan;
+    @ViewInject(R.id.rb_time) private RadioButton rb_time;
+    @ViewInject(R.id.sv_content) private ScrollView sv_content;
+    @ViewInject(R.id.rl_housecode) private RelativeLayout rl_housecode;
+    @ViewInject(R.id.tv_content) private TextView tv_content;
     @ViewInject(R.id.lv) private ListView lv;
     @ViewInject(R.id.rg)private RadioGroup rg_sort;
     @ViewInject(R.id.edt_content) private EditText edt_content;
-    @ViewInject(R.id.btn_seach) private TextView btn_seach;
+    @ViewInject(R.id.ll_search) private LinearLayout ll_search;
+    @ViewInject(R.id.loadmorelv) private LoadMoreListView loadmorelv;
+    @ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
     private CommonAdapter<RealPeopleinHouseBean.RealPeopleinHouseOne> adapter;
     private List<RealPeopleinHouseBean.RealPeopleinHouseOne> listreal=new ArrayList<RealPeopleinHouseBean.RealPeopleinHouseOne>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
+        navigationLayout.setCenterText("人员信息查询");
+        navigationLayout.setLeftTextOnClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        idReader.setListener(this);
+        mPtrFrame.setLastUpdateTimeRelateObject(this);
+        mPtrFrame.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                getNearbyList();
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+        //the following are default settings
+        mPtrFrame.setResistance(1.7f);
+        mPtrFrame.setRatioOfHeaderHeightToRefresh(1.2f);
+        mPtrFrame.setDurationToClose(200);
+        mPtrFrame.setDurationToCloseHeader(1000);
+        // default is false
+        mPtrFrame.setPullToRefresh(false);
+        // default is true
+        mPtrFrame.setKeepHeaderWhenRefresh(true);
+
+        loadmorelv.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
+        MyApplication.myApplication.locationService.start();
+        rg_search.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rb_fangwu:
+                        ll_search.setVisibility(View.VISIBLE);
+                        mPtrFrame.setVisibility(View.GONE);
+                        rl_housecode.setVisibility(View.GONE);
+                        sv_content.setVisibility(View.GONE);
+                        edt_content.setHint("请输入房屋编号");
+                        edt_content.setText("");
+                        tv_content.setText("");
+                        break;
+                    case R.id.rb_renyuan:
+                        ll_search.setVisibility(View.VISIBLE);
+                        mPtrFrame.setVisibility(View.GONE);
+                        rl_housecode.setVisibility(View.GONE);
+                        sv_content.setVisibility(View.VISIBLE);
+                        edt_content.setHint("请输入身份证号或读卡");
+                        edt_content.setText("");
+                        tv_content.setText("");
+                        break;
+                    case R.id.rb_nearby:
+                        rl_housecode.setVisibility(View.GONE);
+                        sv_content.setVisibility(View.GONE);
+                        ll_search.setVisibility(View.GONE);
+                        mPtrFrame.setVisibility(View.VISIBLE);
+                        mPtrFrame.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mPtrFrame.autoRefresh();
+                            }
+                        }, 100);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
         rg_sort.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -87,7 +205,51 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
             }
         });
     }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (link != null)
+            return;
+        Tag nfcTag = null;
+        try {
+            nfcTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        } catch (Exception e) {
 
+        }
+        if (nfcTag != null) {
+            link = LinkFactory.createExNFCLink(nfcTag);
+            try {
+                link.connect();
+            } catch (Exception e) {
+                showError(e.getMessage());
+                try {
+                    link.disconnect();
+                } catch (Exception ex) {
+                } finally {
+                    link = null;
+                }
+                return;
+            }
+            idReader.setLink(link);
+            showIDCardInfo(true, null,null);
+            showProcessDialog("正在读卡中，请稍后");
+
+            idReader.startReadCard();
+        }
+    }
+    private void showIDCardInfo(boolean isClear,PersonInfo user,String msg)  {//显示身份证数据到界面
+        hideProcessDialog();
+        if (isClear){
+            return;
+        }
+        if (user==null&&msg!=null){
+            showError(msg);
+        }else{
+            edt_content.setText(user.getIdNumber().trim());
+        }
+        isReading = false;
+
+    }
     @Override
     public void onReadCardSuccess(final PersonInfo personInfo) {
         try {
@@ -101,7 +263,7 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
             @Override
             public void run() {
                 hideProcessDialog();
-//                showIDCardInfo(false,personInfo,null);
+                showIDCardInfo(false,personInfo,null);
             }
         });
 
@@ -128,8 +290,9 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
     private void getPeopleinHouse(String house_id){
         showProcessDialog("数据加载中，请稍等...");
         RequestParams params=new RequestParams(Constants.URL+"syrkServer.aspx");
-        params.addBodyParameter("type","peoplelist");
-        params.addBodyParameter("house_id",house_id);
+        params.addBodyParameter("type","house_people");
+        params.addBodyParameter("scode",house_id);
+        params.addBodyParameter("sq_id", MyInfomationManager.getSQID(SearchPeopleRealActivity.this));
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -148,6 +311,15 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
             RealPeopleSearchBean realPeopleinHouseBean = GsonTools.changeGsonToBean(json, RealPeopleSearchBean.class);
             listreal.clear();
             listreal.addAll(realPeopleinHouseBean.data);
+            if (listreal.size()==0){
+                rl_housecode.setVisibility(View.GONE);
+                sv_content.setVisibility(View.VISIBLE);
+                tv_content.setText("该房屋编号不存在，或者无在住人员！");
+                return;
+            }
+            rl_housecode.setVisibility(View.VISIBLE);
+            sv_content.setVisibility(View.GONE);
+            rb_time.setChecked(true);
             SortbyTimeClass sortbyTimeClass =new SortbyTimeClass();
             Collections.sort(listreal, sortbyTimeClass);
             adapter = new CommonAdapter<RealPeopleinHouseBean.RealPeopleinHouseOne>(SearchPeopleRealActivity.this,listreal,R.layout.item_realhousepopulation) {
@@ -205,10 +377,33 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
     }
     @Event(value={R.id.btn_seach})
     private void seachClick(View view){
-        if (!CommonUtils.isFangwuBianHao(edt_content.getText().toString().trim())){
-            Toast.makeText(SearchPeopleRealActivity.this,"请输入6位的房屋编号！",Toast.LENGTH_SHORT).show();
+        String cardno=edt_content.getText().toString().trim();
+        if (rb_renyuan.isChecked()){
+            if (cardno.equals("")) {
+                Toast.makeText(this, "请录入身份证号~", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (CommonIdcard.validateCard(cardno)) {
+                if (cardno.length() == 15) {
+                    cardno = CommonIdcard.conver15CardTo18(cardno);
+                    edt_content.setText(cardno);
+                    Toast.makeText(SearchPeopleRealActivity.this, "15位转18位证件号成功", Toast.LENGTH_SHORT).show();
+                } else if (cardno.length() == 17) {
+                    cardno = CommonIdcard.conver17CardTo18(cardno);
+                    edt_content.setText(cardno);
+                    Toast.makeText(SearchPeopleRealActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                Toast.makeText(SearchPeopleRealActivity.this, "请输入合法身份证！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            requestYanZheng(cardno);
+        }else {
+            if (!CommonUtils.isFangwuBianHao(edt_content.getText().toString().trim())) {
+                Toast.makeText(SearchPeopleRealActivity.this, "请输入6位的房屋编号！", Toast.LENGTH_SHORT).show();
+            }
+            getPeopleinHouse(edt_content.getText().toString().trim());
         }
-        getPeopleinHouse(edt_content.getText().toString().trim());
     }
     public static boolean isOneYearLater(String day) {
         String[] s=day.split("-");
@@ -220,7 +415,7 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Date newDate2 = new Date(nowDate.getTime() + (long)365 * 24 * 60 * 60 * 1000);
+        Date newDate2 = new Date(nowDate.getTime() + (long)334 * 24 * 60 * 60 * 1000);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateOk = simpleDateFormat.format(newDate2);
         int falg=dateOk.compareTo(simpleDateFormat.format(new Date()));
@@ -229,5 +424,192 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
         }else{
             return true;
         }
+    }
+    private void getNearbyList(){
+        if (MyApplication.myApplication.myLocation.getLat()==0){
+            Toast.makeText(this,"位置信息获取失败，正在为您重新获取！",Toast.LENGTH_SHORT).show();
+            MyApplication.myApplication.locationService.start();
+            return;
+        }
+        int databaseType = SharePrefUtil.getInt(this,Constants.DATABASE_TYPE,0);
+        if (databaseType==0){
+            Toast.makeText(this,"数据库类型未获取，请稍后！",Toast.LENGTH_SHORT).show();
+            CommonHttp.getDataBaseType(this);
+            return;
+        }
+        RequestParams params =new RequestParams(Constants.URL+"HousePosition.aspx");
+        if (databaseType==1) {//1外来人口，2实有人口
+            params.addBodyParameter("type", "get_wlrklist");
+        }else {
+            params.addBodyParameter("type", "get_syrklist");
+        }
+        params.addBodyParameter("jd",MyApplication.myApplication.myLocation.getLog()+"");
+        params.addBodyParameter("wd",MyApplication.myApplication.myLocation.getLat()+"");
+        params.addBodyParameter("userid",MyInfomationManager.getUserID(SearchPeopleRealActivity.this));
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.i("houselistnearby",result);
+                processNearbyHouse(result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i("houselistnearby",ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+                mPtrFrame.refreshComplete();
+            }
+        });
+    }
+    private void processNearbyHouse(String result){
+        try {
+            NearbyHouseBean nearbyHouseBean =GsonTools.changeGsonToBean(result,NearbyHouseBean.class);
+            loadmorelv.setTotalNum(nearbyHouseBean.data.size());
+            if (nearbyHouseBean.data.size()==0){
+                loadmorelv.setNodata("附近暂无房屋",false,null);
+            }else{
+                CommonAdapter<NearbyHouseBean.NearbyHouseOne> adapter =new CommonAdapter<NearbyHouseBean.NearbyHouseOne>(SearchPeopleRealActivity.this,nearbyHouseBean.data,R.layout.item_nearby) {
+                    @Override
+                    public void convert(ViewHolder helper, final NearbyHouseBean.NearbyHouseOne item, int position) {
+                        helper.setText(R.id.tv_housecode,"房屋编号："+item.scode);
+                        helper.setText(R.id.tv_houseaddress,item.address);
+                        helper.setText(R.id.tv_distance,item.distance);
+                        helper.getView(R.id.tv_showpic).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                DialogShowPic dialogShowPic =new DialogShowPic(SearchPeopleRealActivity.this,item.house_pic);
+                                dialogShowPic.show();
+                            }
+                        });
+                        if (item.house_pic.trim().equals("")){
+                            helper.getView(R.id.tv_showpic).setVisibility(View.GONE);
+                        }else{
+                            helper.getView(R.id.tv_showpic).setVisibility(View.VISIBLE);
+                        }
+                    }
+                };
+                loadmorelv.setAdapter(adapter);
+                loadmorelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        NearbyHouseBean.NearbyHouseOne  nearbyHouseOne=(NearbyHouseBean.NearbyHouseOne)((ListView)adapterView).getItemAtPosition(i);
+                        Intent intent=new Intent(SearchPeopleRealActivity.this, PersonInHouseActivity.class);
+                        intent.putExtra("id",nearbyHouseOne.scode);
+                        startActivity(intent);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void requestYanZheng(String idcard){
+        showProcessDialog("数据加载中，请稍等...");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("quePeople", result);
+                tv_content.setText(parseXML(result));
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                hideProcessDialog();
+            }
+        });
+    }
+    public  String parseXML(String xml){
+        String str="";
+        xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document d = db.parse(CommonUtils.writeTxtToFile(xml,Constants.DB_PATH,"xml.xml"));
+            Node n = d.getChildNodes().item(0);
+            NodeList nl = n.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node n2 = nl.item(i);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    if (n2.getNodeName().equals("ResultSet")) {
+                        String huji1="",huji2="",zanzhu1="",zanzhu2="",name="",dianhua="",danweidizhi="",caijiren="",mocicaijishijian="",shifoulingzheng="";
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                NodeList nl3 = n3.getChildNodes();
+                                for (int k = 0; k < nl3.getLength(); k++) {
+                                    Node n4 = nl3.item(k);
+                                    if (n4.getNodeType() == Node.ELEMENT_NODE) {
+                                        if("姓名".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            name= "姓名:"+n4.getTextContent() + "\n";
+                                        }
+                                        if("个人联系电话".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            dianhua= "联系电话:"+n4.getTextContent() + "\n";
+                                        }
+                                        if("户籍地址名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            huji1= "户籍地址:"+n4.getTextContent();
+                                        }
+                                        if("是否领证".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            shifoulingzheng =  "是否领证:"+(n4.getTextContent().equals("1")?"是":"否") + "\n";
+                                        }
+                                        if("户籍地址详址".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            huji2 =  n4.getTextContent() + "\n";
+                                        }
+                                        if("名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            zanzhu1 = "暂住地址:"+ n4.getTextContent();
+                                        }
+                                        if("门牌号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            zanzhu2 = n4.getTextContent() + "\n";
+                                        }
+                                        if("更新时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            mocicaijishijian =  "末次采集时间:"+n4.getTextContent() + "\n";
+                                        }
+                                        if("设备识别号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            caijiren ="采集人:"+n4.getTextContent() + "\n";
+                                        }
+                                        if("服务处所".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            danweidizhi ="工作单位:"+n4.getTextContent() + "\n";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        str=shifoulingzheng+name+huji1+huji2+zanzhu1+zanzhu2+dianhua+danweidizhi+mocicaijishijian;
+                    }else if(n2.getNodeName().equals("AppType")){
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+//                                str=str+n3.getTextContent();
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("msg")){
+                        str=str+n2.getTextContent();
+                    }
+                }
+            }
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
     }
 }

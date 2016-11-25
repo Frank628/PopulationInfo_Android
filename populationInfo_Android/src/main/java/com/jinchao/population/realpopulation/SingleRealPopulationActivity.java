@@ -1,17 +1,14 @@
 package com.jinchao.population.realpopulation;
 
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import org.xutils.x;
 import org.xutils.common.Callback;
-import org.xutils.common.Callback.CancelledException;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;

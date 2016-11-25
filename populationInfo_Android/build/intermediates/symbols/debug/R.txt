@@ -1288,6 +1288,7 @@ int id rl_djrq 0x7f0b021f
 int id rl_end 0x7f0b010f
 int id rl_fangdongguanxi 0x7f0b01b3
 int id rl_fangdongxingming 0x7f0b0095
+int id rl_housecode 0x7f0b00fd
 int id rl_huqfrq 0x7f0b0206
 int id rl_hyzmzl 0x7f0b0201
 int id rl_jhrq 0x7f0b0209
@@ -1300,7 +1301,6 @@ int id rl_jyrq 0x7f0b01fa
 int id rl_ldhtqj 0x7f0b01f6
 int id rl_lianxi 0x7f0b009a
 int id rl_lsrq 0x7f0b021b
-int id rl_lv 0x7f0b00fd
 int id rl_shequ 0x7f0b008c
 int id rl_shifoubanzheng 0x7f0b01e1
 int id rl_start 0x7f0b010d

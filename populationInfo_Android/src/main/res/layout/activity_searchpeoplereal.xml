@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         >
         <RadioButton
             android:id="@+id/rb_fangwu"
@@ -43,6 +45,13 @@
             android:layout_weight="1"
             />
     </RadioGroup>
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -82,10 +91,15 @@
             android:layout_centerVertical="true"
             />
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rl_lv"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <RelativeLayout
+            android:id="@+id/rl_housecode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
         <RadioGroup
             android:id="@+id/rg"
             android:layout_width="match_parent"
@@ -97,7 +111,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="按时间排序"
+                android:text="按时间\n排序"
+                android:gravity="center"
                 android:textSize="@dimen/sb_middle_size"
                 android:textColor="@color/title2"
                 android:checked="true"
@@ -108,9 +123,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="按室号排序"
+                android:text="按室号\n排序"
                 android:textSize="@dimen/sb_middle_size"
                 android:textColor="@color/title2"
+                android:gravity="center"
                 android:layout_marginLeft="5dp"
                 />
             <RadioButton
@@ -118,7 +134,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="按在住状态排序"
+                android:text="按在住状态\n排序"
+                android:gravity="center"
                 android:textSize="@dimen/sb_middle_size"
                 android:textColor="@color/title2"
                 android:layout_marginLeft="5dp"
@@ -132,35 +149,66 @@
             android:divider="#e2e2e2"
             android:dividerHeight="1dp"
             android:layout_below="@id/rg"
+            android:layout_above="@+id/tv_bottom"
             />
+         <LinearLayout
+             android:id="@+id/tv_bottom"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignParentBottom="true"
+             android:orientation="horizontal">
         <TextView
-            android:id="@+id/tv_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="末次采集时间大于11个月的人员的条目为红色！"
+            android:text="末次采集时间大于11个月的为红色！"
             android:drawableLeft="@drawable/icon_gantan"
             android:background="#55ffffff"
-            android:drawablePadding="15dp"
+            android:drawablePadding="10dp"
+            android:textSize="17sp"
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
-    <ScrollView
-        android:id="@+id/sv_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-        <TextView
-            android:id="@+id/tv_content"
+            />
+         </LinearLayout>
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/sv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#f5f5f5"
-            android:textColor="@color/title2"
-            android:textSize="@dimen/small_middle_size"
-            android:lineSpacingExtra="15dp"
-            android:gravity="top|left"
-            android:padding="15dp"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/title2"
+                android:textSize="@dimen/small_middle_size"
+                android:lineSpacingExtra="15dp"
+                android:gravity="top|left"
+                android:padding="15dp"
+                />
+        </ScrollView>
+    </FrameLayout>
+    </LinearLayout>
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/rotate_header_list_view_frame"
+        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ri_s"
+        android:background="@color/white"
+        cube_ptr:ptr_duration_to_close="200"
+        cube_ptr:ptr_duration_to_close_header="1000"
+        cube_ptr:ptr_keep_header_when_refresh="true"
+        cube_ptr:ptr_pull_to_fresh="false"
+        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        android:visibility="gone"
+        cube_ptr:ptr_resistance="1.7">
+        <com.jinchao.population.widget.LoadMoreListView
+            android:id="@+id/loadmorelv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#e2e2e2"
+            android:dividerHeight="1dp"
             />
-    </ScrollView>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 </LinearLayout>
