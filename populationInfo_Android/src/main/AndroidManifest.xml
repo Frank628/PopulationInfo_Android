@@ -79,6 +79,7 @@
         <activity android:name="com.jinchao.population.mainmenu.AddRentalHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.EidtHouseAddressActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.SearchPeopleActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.realpopulation.SearchPeopleRealActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.SearchRentalHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
     	<activity android:name="com.jinchao.population.mainmenu.StatisticsActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
      	<activity android:name="com.jinchao.population.mainmenu.SysActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>

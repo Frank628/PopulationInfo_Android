@@ -25,6 +25,7 @@ import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.mainmenu.SearchPeopleActivity;
 import com.jinchao.population.mainmenu.SearchRentalHouseActivity;
 import com.jinchao.population.realpopulation.RealPeopleSearchActivity;
+import com.jinchao.population.realpopulation.SearchPeopleRealActivity;
 import com.jinchao.population.utils.GsonTools;
 
 import org.xutils.common.Callback;
@@ -65,7 +66,7 @@ public class RealFragment extends BaseFragment{
     }
     @Event(value={R.id.iv_personinfocheck})
     private void personinfocheckClick(View view){
-        Intent intent =new Intent(getActivity(), RealPeopleSearchActivity.class);
+        Intent intent =new Intent(getActivity(), SearchPeopleRealActivity.class);
         startActivity(intent);
     }
     @Event(value={R.id.iv_rentalhousecheck})
