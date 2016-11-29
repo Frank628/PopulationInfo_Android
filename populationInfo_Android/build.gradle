@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 114
         versionName "1.1.4"
+        multiDexEnabled true
         signingConfigs {
             // your debug keystore
             debug {
@@ -42,8 +43,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile files('libs/ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar')
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    compile files('libs/JunyiClondLib_pro_V2.3.jar')
     compile files('libs/okhttp-3.4.1.jar')
     compile files('libs/okio-1.9.0.jar')
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
+    compile files('libs/JunyiCloudLib_pro_V2.4.3.jar')
 }
