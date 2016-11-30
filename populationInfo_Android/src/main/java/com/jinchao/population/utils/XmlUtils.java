@@ -282,8 +282,8 @@ public class XmlUtils {
 										if("户籍地址名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
 											huji1= "户籍地址:"+n4.getTextContent();
 										}
-										if("是否领证".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
-											shifoulingzheng =  "是否领证:"+(n4.getTextContent().equals("1")?"是":"否") + "\n";
+										if("居住证申请时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											shifoulingzheng =  "是否领证:"+(n4.getTextContent().equals("")?"否":"是") + "\n";
 										}
 										if("户籍地址详址".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
 											huji2 =  n4.getTextContent() + "\n";
@@ -309,6 +309,7 @@ public class XmlUtils {
 										if("注销日期".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
 											currentstatus ="当前状态:"+(n4.getTextContent().trim().equals("")?"在住":"搬离")+ "\n";
 										}
+//										str=str+n4.getAttributes().getNamedItem("name").getNodeValue()+":"+n4.getTextContent()+"\n";
 									}
 								}
 							}
