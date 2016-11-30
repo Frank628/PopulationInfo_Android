@@ -119,8 +119,19 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		setListener();
 		nationPop = new NationPop(RegisterActivity.this, new OnEnsureClickListener() {
 				@Override
-				public void OnEnSureClick(String nationid,String huji) {
-                    edt_address.setText(huji);
+				public void OnEnSureClick(String nationid,final String huji,final String wushi_huji) {
+					Dialog.showSelectDialog(RegisterActivity.this, "保留/去除中间的“市”！", new DialogClickListener() {
+						@Override
+						public void confirm() {
+							edt_address.setText(huji);
+						}
+
+						@Override
+						public void cancel() {
+							edt_address.setText(wushi_huji);
+						}
+					},"保留","去除");
+
 
 				}
 		});
@@ -548,6 +559,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			if (getCurrentFocus() != null) {
 				((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			}
+			edt_idcard.clearFocus();
 			nationPop.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
 		}
 	}

@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -55,6 +56,9 @@ public class Dialog {
 	 */
 	public static android.app.Dialog showSelectDialog(Context context,String toast,final DialogClickListener dialogClickListener){
 		return ShowDialog(context,context.getResources().getString(R.string.pointMessage),toast,dialogClickListener,SELECT_DIALOG);
+	}
+	public static android.app.Dialog showSelectDialog(Context context,String toast,final DialogClickListener dialogClickListener,String ok,String cancle){
+		return ShowDialog(context,context.getResources().getString(R.string.pointMessage),toast,dialogClickListener,SELECT_DIALOG, ok, cancle);
 	}
 	/**
 	 * @param context
@@ -133,6 +137,75 @@ public class Dialog {
         mWindow.setAttributes(lp);
 		dialog.show();
 		
+		return dialog;
+	}
+	private static android.app.Dialog ShowDialog(Context context,String title,String toast,final DialogClickListener dialogClickListener,int DialogType,String ok,String cancle){
+		final android.app.Dialog dialog=new android.app.Dialog(context, R.style.DialogStyle);
+		dialog.setCancelable(false);
+		View view=LayoutInflater.from(context).inflate(R.layout.dialog, null);
+		dialog.setContentView(view);
+		((TextView)view.findViewById(R.id.point)).setText(title);
+		((TextView)view.findViewById(R.id.toast)).setText(toast);
+		if(DialogType==RADIO_DIALOG){
+		}else if (DialogType==SELECT_DIALOG){
+			if (!TextUtils.isEmpty(ok)){
+				((TextView)view.findViewById(R.id.cancel)).setText(cancle);
+				((TextView)view.findViewById(R.id.confirm)).setText(ok);
+			}
+			view.findViewById(R.id.ok).setVisibility(View.GONE);
+			view.findViewById(R.id.divider).setVisibility(View.VISIBLE);
+		}else if (DialogType==RADIO_DIALOG){
+			view.findViewById(R.id.cancel).setVisibility(View.GONE);
+			view.findViewById(R.id.confirm).setVisibility(View.GONE);
+			view.findViewById(R.id.divider).setVisibility(View.VISIBLE);
+		}
+
+		view.findViewById(R.id.cancel).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				dialog.dismiss();
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						dialogClickListener.cancel();
+					}
+				},200);
+			}
+		});
+		view.findViewById(R.id.confirm).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				dialog.dismiss();
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						dialogClickListener.confirm();
+					}
+				},200);
+			}
+		});
+		view.findViewById(R.id.ok).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				dialog.dismiss();
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						dialogClickListener.confirm();
+					}
+				},200);
+			}
+		});
+		Window mWindow=dialog.getWindow();
+		WindowManager.LayoutParams lp = mWindow.getAttributes();
+		if(context.getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){//�?�?
+			lp.width= getScreenHeight(context)/10*8;
+		}else{
+			lp.width= getScreenWidth(context)/10*8;
+		}
+		mWindow.setAttributes(lp);
+		dialog.show();
+
 		return dialog;
 	}
 	private static android.app.Dialog ShowDialog(Context context,String title,String[] items,final DialogItemClickListener dialogClickListener){ 

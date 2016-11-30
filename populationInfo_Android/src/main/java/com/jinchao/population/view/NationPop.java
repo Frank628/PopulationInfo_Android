@@ -46,7 +46,7 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 	private DbUtils dbUtils;
 	private OnEnsureClickListener onEnsureClickListener;
 	public interface OnEnsureClickListener{
-		void OnEnSureClick(String nationid,String huji);
+		void OnEnSureClick(String nationid,String huji,String wushi_huji);
 	}
 	public NationPop(Activity context,OnEnsureClickListener onEnsureClickListener) {
 		super();
@@ -238,7 +238,7 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 		case R.id.btn_ensure:
 			Message msg =new Message();
 //           data.putString("name", CurrentProvince+CurrentCity+CurrentArea);
-            onEnsureClickListener.OnEnSureClick(CurrentID,CurrentProvince+CurrentCity+CurrentArea);
+            onEnsureClickListener.OnEnSureClick(CurrentID,CurrentProvince+CurrentCity+CurrentArea,CurrentProvince+CurrentArea);
             this.dismiss();
 			break;
 		case R.id.btn_cancle:
