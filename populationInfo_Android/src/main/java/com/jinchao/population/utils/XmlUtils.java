@@ -283,7 +283,7 @@ public class XmlUtils {
 											huji1= "户籍地址:"+n4.getTextContent();
 										}
 										if("居住证申请时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
-											shifoulingzheng =  "是否领证:"+(n4.getTextContent().equals("")?"否":"是") + "\n";
+											shifoulingzheng =  "是否办证:"+(n4.getTextContent().equals("")?"否":"是") + "\n";
 										}
 										if("户籍地址详址".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
 											huji2 =  n4.getTextContent() + "\n";
@@ -304,7 +304,8 @@ public class XmlUtils {
 											danweidizhi ="工作单位:"+n4.getTextContent() + "\n";
 										}
 										if("社区名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
-											shequ ="初次办证社区:"+n4.getTextContent() + "\n";
+//											shequ ="初次办证社区:"+n4.getTextContent() + "\n";
+											shequ ="初次办证社区:" + "\n";
 										}
 										if("注销日期".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
 											currentstatus ="当前状态:"+(n4.getTextContent().trim().equals("")?"在住":"搬离")+ "\n";

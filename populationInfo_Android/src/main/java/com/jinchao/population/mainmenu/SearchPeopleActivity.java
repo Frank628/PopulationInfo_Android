@@ -26,6 +26,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,10 +36,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -94,6 +99,10 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	@ViewInject(R.id.tv_content) private TextView tv_content;
 	@ViewInject(R.id.ll_search) private LinearLayout ll_search;
 	@ViewInject(R.id.rg_zai) private RadioGroup rg_zai;
+	@ViewInject(R.id.rl_zai) private RelativeLayout rl_zai;
+	@ViewInject(R.id.rl_search) private RelativeLayout rl_search;
+	@ViewInject(R.id.edt_idcard) private EditText edt_idcard;
+	@ViewInject(R.id.ib_search) private ImageButton ib_search;
 	@ViewInject(R.id.rb_banli) private RadioButton rb_banli;
 	@ViewInject(R.id.rb_zaizhu) private RadioButton rb_zaizhu;
 	@ViewInject(R.id.rb_fangwu) private RadioButton rb_fangwu;
@@ -108,7 +117,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	private boolean IsHouseID=true;
 	private DialogLoading dialogLoading;
 	private ResultBeanAndList<RenYuanXinXiBean> renYuanXinXilist;
-	private boolean isZaizhu=true;
+	private boolean isZaizhu=true,isSearch=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -228,6 +237,20 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			edt_content.setText(getIntent().getStringExtra("housecode"));
 			btn_seach.performClick();
 		}
+		edt_idcard.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				processData(renyuanInHouseBean);
+			}
+		});
 	}
 
 
@@ -324,7 +347,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 					}
 					
 				} catch (Exception e) {
-					rg_zai.setVisibility(View.GONE);
+					rl_zai.setVisibility(View.GONE);
 					lv.setAdapter(null);
 					e.printStackTrace();
 				}
@@ -387,28 +410,41 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			}
 			ll_house.setVisibility(View.VISIBLE);
 			sv_content.setVisibility(View.GONE);
-			rg_zai.setVisibility(View.VISIBLE);
+			if (!isSearch){
+				rl_zai.setVisibility(View.VISIBLE);
+				ib_search.setVisibility(View.VISIBLE);
+			}
 			List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();
 			list.clear();
-			if (isZaizhu) {
+			if(isSearch&&(!TextUtils.isEmpty(edt_idcard.getText().toString().trim()))){
 				for (int i = 0; i <renyuanInHouseBean.data.peoplelist.size(); i++) {
-					if (renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("在住")) {
+					if (renyuanInHouseBean.data.peoplelist.get(i).idcard.trim().contains(edt_idcard.getText().toString().trim())){
 						list.add(renyuanInHouseBean.data.peoplelist.get(i));
 					}
 				}
-				rb_zaizhu.setText("在住("+list.size()+"人)");
-				rb_banli.setText("搬离("+(renyuanInHouseBean.data.peoplelist.size()-list.size())+"人)");
-			}else{
-				for (int i = 0; i <renyuanInHouseBean.data.peoplelist.size(); i++) {
-					if (renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("搬离")) {
-						list.add(renyuanInHouseBean.data.peoplelist.get(i));
+			}else {
+				rl_search.setVisibility(View.GONE);
+				if (isZaizhu) {
+					for (int i = 0; i < renyuanInHouseBean.data.peoplelist.size(); i++) {
+						if (renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("在住")) {
+							list.add(renyuanInHouseBean.data.peoplelist.get(i));
+						}
 					}
+					rb_zaizhu.setText("在住(" + list.size() + "人)");
+					rb_banli.setText("搬离(" + (renyuanInHouseBean.data.peoplelist.size() - list.size()) + "人)");
+				} else {
+					for (int i = 0; i < renyuanInHouseBean.data.peoplelist.size(); i++) {
+						if (renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("搬离")) {
+							list.add(renyuanInHouseBean.data.peoplelist.get(i));
+						}
+					}
+					rb_banli.setText("搬离(" + list.size() + "人)");
+					rb_zaizhu.setText("在住(" + (renyuanInHouseBean.data.peoplelist.size() - list.size()) + "人)");
 				}
-				rb_banli.setText("搬离("+list.size()+"人)");
-				rb_zaizhu.setText("在住("+(renyuanInHouseBean.data.peoplelist.size()-list.size())+"人)");
-			}
-			if(rb_fangwu.isChecked()){
-				rg_zai.setVisibility(View.VISIBLE);
+				if (rb_fangwu.isChecked()) {
+					rl_zai.setVisibility(View.VISIBLE);
+					ib_search.setVisibility(View.VISIBLE);
+				}
 			}
 			CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne> adapter =new CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne>(SearchPeopleActivity.this,list,R.layout.item_renyuan) {
 				@Override
@@ -550,7 +586,22 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			e.printStackTrace();
 		}
 	}
-
+	@Event(value={R.id.ib_search})
+	private void showseachClick(View view){
+		rl_search.setVisibility(View.VISIBLE);
+		ll_house.setVisibility(View.VISIBLE);
+		ib_search.setVisibility(View.GONE);
+		rl_zai.setVisibility(View.GONE);
+		isSearch=true;
+	}
+	@Event(value={R.id.tv_cancel})
+	private void seachitClick(View view){
+		isSearch=false;
+		edt_idcard.setText("");
+		rl_search.setVisibility(View.GONE);
+		rl_zai.setVisibility(View.VISIBLE);
+		ib_search.setVisibility(View.VISIBLE);
+	}
 	@Event(value={R.id.btn_seach})
 	private void seachClick(View view){
 		String cardno=edt_content.getText().toString().trim();

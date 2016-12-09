@@ -40,12 +40,23 @@ public class SplashActivity extends BaseActiviy{
 		ti.initConfig(this);
 		Log.i("Phone",ti.getImeiSIM1());
 		if (isNeedDB()) {//判断是否需要导入新的数据库
-			new Thread(new Runnable() {
+			Dialog.showSelectDialog(SplashActivity.this, "户籍地址库更新，请先上传所有待发送数据！", new DialogClickListener() {
 				@Override
-				public void run() {
-					importDB();
+				public void confirm() {
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							importDB();
+						}
+					}).start();
 				}
-			}).start();
+
+				@Override
+				public void cancel() {
+					initalData();
+				}
+			},"已上传全部数据","尚未上传全部数据");
+
 		}else{
 			initalData();
 		}
@@ -63,6 +74,9 @@ public class SplashActivity extends BaseActiviy{
             if (version==null){
                 return true;
             }
+			if (!version.getVersion_current().trim().equals("3")){//20161209日户籍地址库编号
+				return true;
+			}
 			return false;
 		}else{
 			return true;

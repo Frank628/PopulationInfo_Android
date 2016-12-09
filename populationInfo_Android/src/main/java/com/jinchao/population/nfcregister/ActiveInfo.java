@@ -38,6 +38,7 @@ public class ActiveInfo implements Parcelable {
         this.actCode = actCode;
     }
 
+
     public long getStartTime() {
         return startTime;
     }

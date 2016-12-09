@@ -681,6 +681,10 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				Toast.makeText(this, "请输入详细住址",  Toast.LENGTH_SHORT).show();
 				return;
 			}
+			if (!CommonUtils.isAddress(xaddress)) {
+				Toast.makeText(this, "户籍详细地址只能输入汉字、数字、大写字母和-(中横线)以及英文半角小括号和、(中文半角顿号)!",  Toast.LENGTH_SHORT).show();
+				return;
+			}
 		}
 		address=address+xaddress;
 		if (pic==null) {

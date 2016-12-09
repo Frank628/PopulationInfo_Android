@@ -74,7 +74,6 @@
 	        android:textColorHint="@color/title4"
 	        android:hint="请输入房屋编号"
 	        android:textSize="@dimen/micro_size"
-	        android:layout_marginTop="5dp"
 	        android:singleLine="true"
 	        android:paddingLeft="20dp"
 	        android:paddingRight="20dp"
@@ -114,13 +113,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
+        <RelativeLayout
+            android:id="@+id/rl_zai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
         <RadioGroup
             android:id="@+id/rg_zai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone"
+
+            android:layout_toLeftOf="@+id/ib_search"
             >
             <RadioButton
                 android:id="@+id/rb_zaizhu"
@@ -145,31 +149,74 @@
                 android:layout_weight="1"
                 />
         </RadioGroup>
-    <ListView 
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#e2e2e2"
-        android:dividerHeight="1dp"
-        ></ListView>
+            <ImageButton
+                android:id="@+id/ib_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_search"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp">
+                <EditText
+                    android:id="@+id/edt_idcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/search_bg2"
+                    android:textColor="@color/title2"
+                    android:textColorHint="@color/title4"
+                    android:hint="请输入身份证号"
+                    android:textSize="@dimen/micro_size"
+                    android:singleLine="true"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:imeOptions="actionSearch"
+                    android:layout_toLeftOf="@+id/tv_cancel"
+                    android:layout_marginRight="12dp"
+                    android:layout_centerVertical="true"
+                    />
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="取消"
+                    android:textSize="18sp"
+                    android:textColor="@color/theme_color"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#e2e2e2"
+            android:dividerHeight="1dp"
+            />
         </LinearLayout>
         <ScrollView
             android:id="@+id/sv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone">
-    <TextView 
-        android:id="@+id/tv_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f5f5f5"
-        android:textColor="@color/title2"
-        android:textSize="@dimen/small_middle_size"
-        android:lineSpacingExtra="15dp"
-        android:gravity="top|left"
-        android:padding="15dp"
-
-        />
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f5f5f5"
+            android:textColor="@color/title2"
+            android:textSize="@dimen/small_middle_size"
+            android:lineSpacingExtra="15dp"
+            android:gravity="top|left"
+            android:padding="15dp"
+            />
         </ScrollView>
     </RelativeLayout>
     </LinearLayout>

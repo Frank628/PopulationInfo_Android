@@ -4,10 +4,6 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-v21\\abc_btn_colored_material.xml"
     },
     {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_share.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_share.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\crop__selectable_background.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.soundcloud.android\\android-crop\\1.0.1\\res\\drawable-v21\\crop__selectable_background.xml"
     },
@@ -16,20 +12,8 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_gallery.xml"
     },
     {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_slideshow.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_slideshow.xml"
-    },
-    {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-v21\\abc_btn_colored_material.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-v21\\abc_edit_text_material.xml"
-    },
-    {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_slideshow.xml",
@@ -40,20 +24,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_send.xml"
     },
     {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\crop__selectable_background.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.soundcloud.android\\android-crop\\1.0.1\\res\\drawable-v21\\crop__selectable_background.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_camera_gray.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_camera_gray.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_camera.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_camera.xml"
-    },
-    {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_gallery.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_gallery.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_share.xml",
@@ -64,27 +40,7 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     },
     {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable-v21\\abc_edit_text_material.xml"
-    },
-    {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_camera_gray.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_camera_gray.xml"
-    },
-    {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_camera.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_camera.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_manage.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_manage.xml"
-    },
-    {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_send.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_send.xml"
-    },
-    {
-        "merged": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_menu_manage.xml",
-        "source": "E:\\workspaceas\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable-v21\\ic_menu_manage.xml"
     }
 ]
