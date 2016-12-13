@@ -11,7 +11,13 @@ public class RealHouseBean {
 		public String houseId="";
 		public String oldScode="";
 		public String scode="";
-		
+
+		public RealHouseOne(String houseAdress, String houseId, String oldScode, String scode) {
+			this.houseAdress = houseAdress;
+			this.houseId = houseId;
+			this.oldScode = oldScode;
+			this.scode = scode;
+		}
 	}
 
 	

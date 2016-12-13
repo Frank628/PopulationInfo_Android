@@ -19,5 +19,15 @@ public class RenyuanInHouseBean {
 		public String shihao="";
 		public String sname="";
 		public String write_time="";
+
+		public RenyuanInhouseOne(String write_time, String house_addr, String house_code, String idcard, String resdients_status, String shihao, String sname) {
+			this.write_time = write_time;
+			this.house_addr = house_addr;
+			this.house_code = house_code;
+			this.idcard = idcard;
+			this.resdients_status = resdients_status;
+			this.shihao = shihao;
+			this.sname = sname;
+		}
 	}
 }

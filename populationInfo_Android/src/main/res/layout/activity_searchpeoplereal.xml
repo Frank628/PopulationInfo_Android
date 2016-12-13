@@ -91,7 +91,7 @@
             android:layout_centerVertical="true"
             />
     </RelativeLayout>
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
@@ -187,7 +187,41 @@
                 android:padding="15dp"
                 />
         </ScrollView>
-    </FrameLayout>
+        <LinearLayout
+            android:id="@+id/ll_operation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/title2"
+                android:textSize="17sp"
+                android:text="加入"/>
+            <Button
+                android:id="@+id/btn_delay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/button_textcolor"
+                android:textSize="17sp"
+                android:enabled="false"
+                android:text="延期"/>
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/button_textcolor"
+                android:textSize="17sp"
+                android:enabled="false"
+                android:text="注销"/>
+        </LinearLayout>
+    </RelativeLayout>
     </LinearLayout>
     <in.srain.cube.views.ptr.PtrClassicFrameLayout
         android:id="@+id/rotate_header_list_view_frame"

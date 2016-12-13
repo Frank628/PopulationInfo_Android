@@ -1,17 +1,24 @@
 package com.jinchao.population.realpopulation;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -19,6 +26,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jinchao.population.entity.DeleteRealPeopleBean;
+import com.jinchao.population.view.DialogLoading;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.caihua.cloud.common.entity.PersonInfo;
 import com.caihua.cloud.common.link.LinkFactory;
 import com.caihua.cloud.common.reader.IDReader;
@@ -30,22 +40,35 @@ import com.jinchao.population.base.BaseReaderActiviy;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.NearbyHouseBean;
 import com.jinchao.population.entity.RealPeopleSearchBean;
 import com.jinchao.population.entity.RealPeopleinHouseBean;
 import com.jinchao.population.entity.SortbyRoomCodeClass;
 import com.jinchao.population.entity.SortbyTimeClass;
 import com.jinchao.population.entity.SortbyzaizhuClass;
+import com.jinchao.population.mainmenu.HandleIDActivity;
 import com.jinchao.population.mainmenu.SearchPeopleActivity;
+import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.CommonUtils;
+import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.DialogShowPic;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.LoadMoreListView;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -57,6 +80,8 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -89,10 +114,19 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
     @ViewInject(R.id.rg)private RadioGroup rg_sort;
     @ViewInject(R.id.edt_content) private EditText edt_content;
     @ViewInject(R.id.ll_search) private LinearLayout ll_search;
+    @ViewInject(R.id.ll_operation) private LinearLayout ll_operation;
+    @ViewInject(R.id.btn_add) private Button btn_add;
+    @ViewInject(R.id.btn_delay) private Button btn_delay;
+    @ViewInject(R.id.btn_logout) private Button btn_logout;
     @ViewInject(R.id.loadmorelv) private LoadMoreListView loadmorelv;
     @ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
     private CommonAdapter<RealPeopleinHouseBean.RealPeopleinHouseOne> adapter;
     private List<RealPeopleinHouseBean.RealPeopleinHouseOne> listreal=new ArrayList<RealPeopleinHouseBean.RealPeopleinHouseOne>();
+    private People peoplereadcard;//读卡读取的人员信息
+    private People peoplefromadd;//加入后返回的人员信息
+    private RelativeLayout layout;
+    private PopupWindow popdelete;
+    private RadioGroup rg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +171,7 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
         rg_search.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                ll_operation.setVisibility(View.GONE);
                 switch (checkedId) {
                     case R.id.rb_fangwu:
                         ll_search.setVisibility(View.VISIBLE);
@@ -247,6 +282,12 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
             showError(msg);
         }else{
             edt_content.setText(user.getIdNumber().trim());
+            BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length).compress(Bitmap.CompressFormat.JPEG, 60, stream);
+            byte[] b = stream.toByteArray();
+            String picture = new String(Base64Coder.encodeLines(b));
+            peoplereadcard= new People(user.getName(), user.getIdNumber(), user.getNation(), user.getSex(), user.getBirthday(), user.getAddress(),picture,user.getIdNumber().trim().substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),"");
         }
         isReading = false;
 
@@ -514,13 +555,32 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
     }
     private void requestYanZheng(String idcard){
         showProcessDialog("数据加载中，请稍等...");
+        if(peoplereadcard!=null){
+            if (!peoplereadcard.getCardno().trim().equals(idcard)){
+                peoplereadcard=null;
+            }
+        }
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Log.d("quePeople", result);
                 tv_content.setText(XmlUtils.parseXML(result));
+                if (XmlUtils.parseXMLhasthisPeople(result)) {
+                    ll_operation.setVisibility(View.VISIBLE);
+                    btn_add.setEnabled(true);
+                    btn_delay.setEnabled(false);
+                    btn_logout.setEnabled(false);
+                    if (peoplereadcard==null){//如果不是读卡，是输入身份证搜索
+                        peoplereadcard=XmlUtils.parseXMLtoPeople(result);
+                    }else{
+                        People p=XmlUtils.parseXMLtoPeople(result);
+                        peoplereadcard.setHomecode(p.getHomecode());
+                        peoplereadcard.setResidentAddress(p.getResidentAddress());
+                        peoplereadcard.setPhone(p.getPhone());
+                    }
 
+                }
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
@@ -534,5 +594,155 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
             }
         });
     }
+    @Event(value={R.id.btn_add})
+    private void addClick(View view){
+        Intent intent = new Intent(SearchPeopleRealActivity.this,HandleIDActivity.class);
+        intent.putExtra("people",peoplereadcard );
+        intent.putExtra(Constants.Where_from,2);
+        intent.putExtra("isHandle", true);
+        startActivityForResult(intent,1);
+    }
+    @Event(value={R.id.btn_delay})
+    private void yanqi(View view){
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date =sDateFormat.format(new java.util.Date());
+        People people=new People(peoplefromadd.name, peoplefromadd.cardno, peoplefromadd.cardno.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
+                MyInfomationManager.getUserName(SearchPeopleRealActivity.this), "1", peoplefromadd.homecode, peoplefromadd.ResidentAddress, peoplefromadd.Roomcode,
+                MyInfomationManager.getSQNAME(SearchPeopleRealActivity.this),date);
+        DbUtils dbUtils = DeviceUtils.getDbUtils(this);
+        List<People> list=new ArrayList<People>();
+        try {
+            list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", peoplefromadd.cardno));
+            if (list!=null) {
+                if (list.size()>0) {
+                    dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", peoplefromadd.cardno));
+                }
+            }
+            dbUtils.save(people);
+            Toast.makeText(this, "延期成功~", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "延期失败~", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+    @Event(value={R.id.btn_logout})
+    private void zhuxiao(View view){
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date =sDateFormat.format(new java.util.Date());
+        People people=new People(peoplefromadd.name, date, peoplefromadd.cardno, "注销", CommonUtils.GenerateGUID(), "2",
+                MyInfomationManager.getUserName(SearchPeopleRealActivity.this), peoplereadcard.homecode,peoplereadcard.ResidentAddress);
+        DbUtils dbUtils =DeviceUtils.getDbUtils(this);
+        List<People> list=new ArrayList<People>();
+        try {
+            list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", peoplereadcard.cardno));
+            if (list!=null) {
+                if (list.size()>0) {
+                    dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", peoplereadcard.cardno));
+                }
+            }
+            dbUtils.save(people);
+            Toast.makeText(this, "注销成功~", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "注销失败~", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode ==RESULT_OK) {
+            switch (requestCode) {
+                case 1:
+                    if (data != null) {
+                        peoplefromadd=(People) data.getSerializableExtra("people");
+                        if (peoplefromadd!=null){
+                            XmlUtils.createXml(peoplefromadd,SearchPeopleRealActivity.this);
+                            String str = FileUtils.getStringFromFile(new File(Constants.DB_PATH + peoplefromadd.uuid + ".xml"));
+                            save(peoplefromadd);
+                            upload2(str,peoplefromadd);
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    private void save(final People people){
+        RequestParams params=new RequestParams(Constants.URL+"superOper.aspx");
+        params.addBodyParameter("type", "save_ck_population_parent");
+        params.addBodyParameter("proc", "sp_save_ck_population_parent");
+        params.addBodyParameter("name", people.name);
+        params.addBodyParameter("idcard", people.cardno);
+        params.addBodyParameter("sex", people.sex);
+        params.addBodyParameter("house_id", people.realId);//realhouse变更为houseid
+        params.addBodyParameter("hk_num", "");
+        params.addBodyParameter("relation", "不详");
+        params.addBodyParameter("status", "1");
+        params.addBodyParameter("coll_id", "11");
+        params.addBodyParameter("hjdz", people.address);
+        params.addBodyParameter("pcs", MyInfomationManager.getSQNAME(SearchPeopleRealActivity.this));
+        params.addBodyParameter("roomCode", people.Roomcode);
+        params.addBodyParameter("parent_idcard","");
+        x.http().post(params, new Callback.CommonCallback<String>(){
+            @Override
+            public void onSuccess(String result) {
+                System.out.println(result);
+                if (result.trim().equals("<result>0</result>")) {
+//                    Toast.makeText(getActivity(), "添加成功",Toast.LENGTH_SHORT).show();
+                }else{
+//                    Toast.makeText(getActivity(), "添加失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                save(people);
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+    private void upload2(String str,final People people){
+        showProcessDialog("数据上传中...");
+        com.lidroid.xutils.http.RequestParams params =new com.lidroid.xutils.http.RequestParams();
+        params.addBodyParameter("ActionType", people.actiontype);
+        params.addBodyParameter("CollID", MyInfomationManager.getUserName(SearchPeopleRealActivity.this));
+        params.addBodyParameter("IdCard", people.cardno);
+        params.addBodyParameter("XmlFileName", people.uuid);
+        params.addBodyParameter("XmlFileNameExt", ".xml");
+        params.addBodyParameter("XmlBody", str);
+        HttpUtils http=new HttpUtils();
+        http.configRequestRetryCount(0);
+        http.send(HttpMethod.POST, "http://222.92.144.66:90/IDcollect/Import.aspx",params, new RequestCallBack<String>() {
+            @Override
+            public void onFailure(HttpException arg0, String arg1) {
+                Log.d("upload", arg1+"faile");
+                hideProcessDialog();
+            }
+            @Override
+            public void onSuccess(ResponseInfo<String> arg0) {
+                hideProcessDialog();
+                String result=arg0.result.replaceAll("<(.|\n)*?>", "").trim();
+                result=result.replaceAll("Import", "");
+                if (result.trim().equals("-1")) {
+                    Log.d("upload", result);
+                    Toast.makeText(SearchPeopleRealActivity.this,"上传失败！",Toast.LENGTH_SHORT).show();
+                }else{
+                    btn_delay.setEnabled(true);
+                    btn_logout.setEnabled(true);
+                    btn_add.setEnabled(false);
+                    FileUtils.deleteFile(Constants.DB_PATH+people.uuid+".xml");
+                    Toast.makeText(SearchPeopleRealActivity.this,"上传成功！",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 
 }

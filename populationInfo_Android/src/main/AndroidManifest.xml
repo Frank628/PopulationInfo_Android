@@ -86,6 +86,8 @@
         <activity android:name="com.jinchao.population.mainmenu.ReshootActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.UpLoadActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
     	<activity android:name="com.jinchao.population.mainmenu.SearchPeopleDetailActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.MaturityWarningActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.MaturityPeopleActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.realpopulation.SingleRealPopulationActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
     	<activity android:name="com.jinchao.population.realpopulation.AddChildActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.activity.AboutActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>

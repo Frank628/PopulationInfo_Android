@@ -96,7 +96,11 @@ public class LoadMoreListView extends ListView implements OnScrollListener{
 		mFootLayout = (LinearLayout) footView.findViewById(R.id.ll_footlayout);
 		addFooterView(footView,null,false);
 	}
-	
+	private void addNetErrorFootView(){
+		footView = (LinearLayout) mInflater.inflate(R.layout.listview_footer, null);
+		mFootLayout = (LinearLayout) footView.findViewById(R.id.ll_footlayout);
+		addFooterView(footView,null,false);
+	}
 	public void setTotalNum(int totalNum) {
 		this.totalNum = totalNum;
 		this.isLoading = false;

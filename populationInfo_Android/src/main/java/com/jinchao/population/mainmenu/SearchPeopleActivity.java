@@ -1,14 +1,15 @@
 package com.jinchao.population.mainmenu;
-import java.io.IOException;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import com.jinchao.population.utils.CommonUtils;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+
 import org.xutils.x;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -16,16 +17,12 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -65,26 +62,25 @@ import com.jinchao.population.entity.NearbyHouseBean;
 import com.jinchao.population.entity.RenYuanXinXiBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.entity.YanZhengBean;
+import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonIdcard;
-import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.ResultBeanAndList;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.utils.XmlUtils;
-import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.DialogShowPic;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.LoadMoreListView;
 import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
 import de.greenrobot.event.EventBus;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -98,6 +94,10 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 //	@ViewInject(R.id.btn_readcard) private Button btn_readcard;
 	@ViewInject(R.id.tv_content) private TextView tv_content;
 	@ViewInject(R.id.ll_search) private LinearLayout ll_search;
+	@ViewInject(R.id.ll_operation) private LinearLayout ll_operation;
+	@ViewInject(R.id.btn_add) private Button btn_add;
+	@ViewInject(R.id.btn_delay) private Button btn_delay;
+	@ViewInject(R.id.btn_logout) private Button btn_logout;
 	@ViewInject(R.id.rg_zai) private RadioGroup rg_zai;
 	@ViewInject(R.id.rl_zai) private RelativeLayout rl_zai;
 	@ViewInject(R.id.rl_search) private RelativeLayout rl_search;
@@ -115,9 +115,10 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	public static final String TAG="IDCARD_DEVICE";
 	private RenyuanInHouseBean renyuanInHouseBean;
 	private boolean IsHouseID=true;
-	private DialogLoading dialogLoading;
 	private ResultBeanAndList<RenYuanXinXiBean> renYuanXinXilist;
 	private boolean isZaizhu=true,isSearch=false;
+	private People peoplereadcard;//读卡读取的人员信息
+	private People peoplefromadd;//加入后返回的人员信息
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -162,9 +163,11 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		rg_search.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				ll_operation.setVisibility(View.GONE);
 				switch (checkedId) {
 				case R.id.rb_fangwu:
 					ll_search.setVisibility(View.VISIBLE);
+					ll_operation.setVisibility(View.GONE);
 					edt_content.setHint("请输入房屋编号");
 //					btn_readcard.setEnabled(false);
 					IsHouseID=true;
@@ -222,7 +225,6 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		});
 		MyApplication.myApplication.locationService.start();
 //		btn_readcard.setEnabled(false);
-		dialogLoading=new DialogLoading(this, "数据加载中...",true);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -295,6 +297,12 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			 showError(msg);
 		 }else{
 			 edt_content.setText(user.getIdNumber().trim());
+			 BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
+			 ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			 BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length).compress(Bitmap.CompressFormat.JPEG, 60, stream);
+			 byte[] b = stream.toByteArray();
+			 String picture = new String(Base64Coder.encodeLines(b));
+			peoplereadcard= new People(user.getName(), user.getIdNumber(), user.getNation(), user.getSex(), user.getBirthday(), user.getAddress(),picture,user.getIdNumber().trim().substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),"");
 		 }
 		 isReading = false;
 
@@ -309,8 +317,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 
 
 	private void getRequest(String str){
-		dialogLoading=new DialogLoading(SearchPeopleActivity.this, "数据加载中...", true);
-		dialogLoading.show();
+		showProcessDialog("数据加载中...");;
 		RequestParams params=new RequestParams(Constants.URL+"quePeople.aspx");
 		if (IsHouseID) {
 			isZaizhu=true;
@@ -326,7 +333,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		x.http().get(params, new Callback.CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
-				dialogLoading.dismiss();
+				hideProcessDialog();
 				try {
 					if (IsHouseID) {
 						try {
@@ -354,7 +361,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			}
 			@Override
 			public void onError(Throwable ex, boolean isOnCallback) {
-				dialogLoading.dismiss();
+				hideProcessDialog();
 			}
 			@Override
 			public void onCancelled(CancelledException cex) {}
@@ -363,24 +370,43 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		});
 	}
     private void requestYanZheng(String idcard){
-        dialogLoading.show();
+        showProcessDialog("数据加载中...");
+		if(peoplereadcard!=null){
+			if (!peoplereadcard.getCardno().trim().equals(idcard)){
+				peoplereadcard=null;
+			}
+		}
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Log.d("quePeople", result);
                 tv_content.setText(XmlUtils.parseXML(result));
+				if (XmlUtils.parseXMLhasthisPeople(result)) {
+					ll_operation.setVisibility(View.VISIBLE);
+					btn_add.setEnabled(true);
+					btn_delay.setEnabled(false);
+					btn_logout.setEnabled(false);
+					if (peoplereadcard==null){//如果不是读卡，是输入身份证搜索
+						peoplereadcard=XmlUtils.parseXMLtoPeople(result);
+					}else{
+						People p=XmlUtils.parseXMLtoPeople(result);
+						peoplereadcard.setHomecode(p.getHomecode());
+						peoplereadcard.setResidentAddress(p.getResidentAddress());
+						peoplereadcard.setPhone(p.getPhone());
+					}
 
+				}
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                dialogLoading.dismiss();
+				hideProcessDialog();
             }
             @Override
             public void onCancelled(CancelledException cex) {}
             @Override
             public void onFinished() {
-                dialogLoading.dismiss();
+                hideProcessDialog();
             }
         });
     }
@@ -635,7 +661,80 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		}
 
 	}
-	
+	@Event(value={R.id.btn_add})
+	private void addClick(View view){
+		Intent intent = new Intent(SearchPeopleActivity.this,HandleIDActivity.class);
+		intent.putExtra("people",peoplereadcard );
+		intent.putExtra(Constants.Where_from,1);
+		intent.putExtra("isHandle", true);
+		startActivityForResult(intent,1);
+	}
+	@Event(value={R.id.btn_delay})
+	private void yanqi(View view){
+		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String date =sDateFormat.format(new java.util.Date());
+		People people=new People(peoplefromadd.name, peoplefromadd.cardno, peoplefromadd.cardno.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
+				MyInfomationManager.getUserName(SearchPeopleActivity.this), "1", peoplefromadd.homecode, peoplefromadd.ResidentAddress, peoplefromadd.Roomcode,
+				MyInfomationManager.getSQNAME(SearchPeopleActivity.this),date);
+		DbUtils dbUtils =DeviceUtils.getDbUtils(this);
+		List<People> list=new ArrayList<People>();
+		try {
+			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", peoplefromadd.cardno));
+			if (list!=null) {
+				if (list.size()>0) {
+					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", peoplefromadd.cardno));
+				}
+			}
+			dbUtils.save(people);
+			Toast.makeText(this, "延期成功~", Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			Toast.makeText(this, "延期失败~", Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+		}
+	}
+	@Event(value={R.id.btn_logout})
+	private void zhuxiao(View view){
+		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String date =sDateFormat.format(new java.util.Date());
+		People people=new People(peoplefromadd.name, date, peoplefromadd.cardno, "注销", CommonUtils.GenerateGUID(), "2",
+				MyInfomationManager.getUserName(SearchPeopleActivity.this), peoplereadcard.homecode,peoplereadcard.ResidentAddress);
+		DbUtils dbUtils =DeviceUtils.getDbUtils(this);
+		List<People> list=new ArrayList<People>();
+		try {
+			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", peoplereadcard.cardno));
+			if (list!=null) {
+				if (list.size()>0) {
+					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", peoplereadcard.cardno));
+				}
+			}
+			dbUtils.save(people);
+			Toast.makeText(this, "注销成功~", Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			Toast.makeText(this, "注销失败~", Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+		}
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode ==RESULT_OK) {
+			switch (requestCode) {
+				case 1:
+					if (data != null) {
+						peoplefromadd=(People) data.getSerializableExtra("people");
+						if (peoplefromadd!=null){
+							XmlUtils.createXml(peoplefromadd,SearchPeopleActivity.this);
+							String str = FileUtils.getStringFromFile(new File(Constants.DB_PATH + peoplefromadd.uuid + ".xml"));
+							upload2(str,peoplefromadd);
+						}
+					}
+					break;
+
+				default:
+					break;
+			}
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	public static boolean isBigerthanElevenandSmallthanTwelve(String day) {  
 		String[] s=day.split("-");
 		String dayf=s[0]+"-"+(s[1].length()==1?("0"+s[1]):s[1])+"-"+(s[2].length()==1?("0"+s[2]):s[2]);
@@ -698,5 +797,39 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		});
 
 	}
-
+	private void upload2(String str,final People people){
+		showProcessDialog("数据上传中...");
+		com.lidroid.xutils.http.RequestParams params =new com.lidroid.xutils.http.RequestParams();
+		params.addBodyParameter("ActionType", people.actiontype);
+		params.addBodyParameter("CollID", MyInfomationManager.getUserName(SearchPeopleActivity.this));
+		params.addBodyParameter("IdCard", people.cardno);
+		params.addBodyParameter("XmlFileName", people.uuid);
+		params.addBodyParameter("XmlFileNameExt", ".xml");
+		params.addBodyParameter("XmlBody", str);
+		HttpUtils http=new HttpUtils();
+		http.configRequestRetryCount(0);
+		http.send(HttpMethod.POST, "http://222.92.144.66:90/IDcollect/Import.aspx",params, new RequestCallBack<String>() {
+			@Override
+			public void onFailure(HttpException arg0, String arg1) {
+				Log.d("upload", arg1+"faile");
+				hideProcessDialog();
+			}
+			@Override
+			public void onSuccess(ResponseInfo<String> arg0) {
+				hideProcessDialog();
+				String result=arg0.result.replaceAll("<(.|\n)*?>", "").trim();
+				result=result.replaceAll("Import", "");
+				if (result.trim().equals("-1")) {
+					Log.d("upload", result);
+					Toast.makeText(SearchPeopleActivity.this,"上传失败！",Toast.LENGTH_SHORT).show();
+				}else{
+					btn_delay.setEnabled(true);
+					btn_logout.setEnabled(true);
+					btn_add.setEnabled(false);
+					FileUtils.deleteFile(Constants.DB_PATH+people.uuid+".xml");
+					Toast.makeText(SearchPeopleActivity.this,"上传成功！",Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+	}
 }

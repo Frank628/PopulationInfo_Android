@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView 
+    xmlns:android="http://schemas.android.com/apk/res/android"  
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"  
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@android:color/white" 
+    app:cardCornerRadius="5dp"  
+    app:cardElevation="5dp"
+    app:contentPadding="5dp"
+    >
+    <RelativeLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/tv_bianhao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/micro_size"
+            android:textColor="@color/theme_color"
+            android:gravity="center"
+            android:drawableLeft="@drawable/icon_bianhao"
+            android:drawablePadding="5dp"
+            android:layout_margin="5dp"
+            />
+
+        <TextView 
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_size"
+            android:textColor="@color/title2"
+            android:gravity="left|center_vertical"
+            android:layout_marginLeft="12dp"
+            android:drawableLeft="@drawable/icon_fangwu"
+            android:drawablePadding="5dp"
+            android:layout_below="@+id/tv_bianhao"
+            android:layout_margin="5dp"
+            />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

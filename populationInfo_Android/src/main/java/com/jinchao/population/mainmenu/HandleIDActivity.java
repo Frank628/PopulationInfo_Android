@@ -3,6 +3,7 @@ package com.jinchao.population.mainmenu;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -165,6 +166,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private People people,people2;
 	private Calendar c;
 	private boolean isHandleID;
+	private int wherefrom=0;//0默认，1来自外来人口的人员信息查询的加入，2来自实有人口的加入，
 	private PopHouse popHouse;
     String pic="";
 	private String height="",wenhua="",hunyin="",zhengzhi="",fangwubiaohao="",
@@ -182,6 +184,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		new InitData().execute();
 		final NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
 		isHandleID = getIntent().getBooleanExtra("isHandle", false);
+		wherefrom=getIntent().getIntExtra(Constants.Where_from,0);
 		navigationLayout.setCenterText("暂住信息"+(isHandleID?"登记":"变更"));
 		people=(People) getIntent().getSerializableExtra("people");
 		realHouseOne=(RealHouseOne) getIntent().getSerializableExtra("house");
@@ -346,6 +349,16 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			edt_dizhi.setText(renyuanInhouseOne.house_addr.trim());
 			fangwubiaohao=renyuanInhouseOne.house_code.trim();
 			zanzhudizhi=renyuanInhouseOne.house_addr.trim();
+		}
+		if (wherefrom!=0){
+			edt_bianhao.setText(people.homecode.trim());
+			edt_dizhi.setText(people.ResidentAddress.trim());
+			fangwubiaohao=people.homecode.trim();
+			zanzhudizhi=people.ResidentAddress.trim();
+			edt_dianhua.setText(people.getPhone());
+			edt_fuwuchusuo.setText(people.getSeviceAddress());
+			edt_stature.setText(people.getHeight());
+			rb_banzhengfou.setChecked(true);
 		}
 	}
 	private void save(){
@@ -665,6 +678,13 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				});
 				popBianzheng.showAtLocation(findViewById(R.id.root), Gravity.CENTER, 0, 0);
 			}else{
+				if (wherefrom!=0){
+					Intent intent =new Intent();
+					intent.putExtra("people", (Serializable)people2);
+					setResult(RESULT_OK, intent);
+					HandleIDActivity.this.finish();
+					return;
+				}
 				try {
 					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", people2.cardno));
 					dbUtils.save(people2);
