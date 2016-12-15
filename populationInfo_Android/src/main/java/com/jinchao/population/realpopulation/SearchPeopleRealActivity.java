@@ -567,10 +567,10 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
                 Log.d("quePeople", result);
                 tv_content.setText(XmlUtils.parseXML(result));
                 if (XmlUtils.parseXMLhasthisPeople(result)) {
-                    ll_operation.setVisibility(View.VISIBLE);
-                    btn_add.setEnabled(true);
-                    btn_delay.setEnabled(false);
-                    btn_logout.setEnabled(false);
+//                    ll_operation.setVisibility(View.VISIBLE);
+//                    btn_add.setEnabled(true);
+//                    btn_delay.setEnabled(false);
+//                    btn_logout.setEnabled(false);
                     if (peoplereadcard==null){//如果不是读卡，是输入身份证搜索
                         peoplereadcard=XmlUtils.parseXMLtoPeople(result);
                     }else{

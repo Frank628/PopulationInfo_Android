@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
@@ -45,17 +46,19 @@ public class MaturityPeopleActivity extends BaseActiviy{
     @ViewInject(R.id.loadmorelv) private LoadMoreListView loadmorelv;
     @ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
     private MaturityListBean.MatureHouseOne matureHouseOne;
+    private boolean  isfromreal=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
-        navigationLayout.setCenterText("到期人员所在房屋");
+        navigationLayout.setCenterText("到期人员");
         navigationLayout.setLeftTextOnClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        isfromreal=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
         matureHouseOne=(MaturityListBean.MatureHouseOne)getIntent().getSerializableExtra("list");
         mPtrFrame.setLastUpdateTimeRelateObject(this);
         mPtrFrame.setPtrHandler(new PtrHandler() {
@@ -126,11 +129,16 @@ public class MaturityPeopleActivity extends BaseActiviy{
                 loadmorelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        MaturityListBean.MaturePeopleOne item=(MaturityListBean.MaturePeopleOne)((ListView)parent).getItemAtPosition(position);
-                        Intent intent =new Intent(MaturityPeopleActivity.this, SearchPeopleDetailActivity.class);
-                        RenyuanInHouseBean.RenyuanInhouseOne renyuanInHouseone=new RenyuanInHouseBean.RenyuanInhouseOne(item.write_time, item.house_addr, item.house_code, item.idcard, item.resdients_status, item.shihao, item.sname);
-                        intent.putExtra("renyuan", renyuanInHouseone);
-                        startActivity(intent);
+                        if (isfromreal){
+                            Toast.makeText(MaturityPeopleActivity.this,"实有人口暂时只可查看,不可操作！",Toast.LENGTH_SHORT).show();
+                        }else{
+                            MaturityListBean.MaturePeopleOne item=(MaturityListBean.MaturePeopleOne)((ListView)parent).getItemAtPosition(position);
+                            Intent intent =new Intent(MaturityPeopleActivity.this, SearchPeopleDetailActivity.class);
+                            RenyuanInHouseBean.RenyuanInhouseOne renyuanInHouseone=new RenyuanInHouseBean.RenyuanInhouseOne(item.write_time, item.house_addr, item.house_code, item.idcard, item.resdients_status, item.shihao, item.sname);
+                            intent.putExtra("renyuan", renyuanInHouseone);
+                            startActivity(intent);
+                        }
+
                     }
                 });
 

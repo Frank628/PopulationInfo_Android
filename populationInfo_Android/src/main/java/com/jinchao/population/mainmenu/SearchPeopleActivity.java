@@ -93,6 +93,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	@ViewInject(R.id.edt_content) private EditText edt_content;
 //	@ViewInject(R.id.btn_readcard) private Button btn_readcard;
 	@ViewInject(R.id.tv_content) private TextView tv_content;
+	@ViewInject(R.id.tv_nopeople) private TextView tv_nopeople;
 	@ViewInject(R.id.ll_search) private LinearLayout ll_search;
 	@ViewInject(R.id.ll_operation) private LinearLayout ll_operation;
 	@ViewInject(R.id.btn_add) private Button btn_add;
@@ -383,10 +384,10 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
                 Log.d("quePeople", result);
                 tv_content.setText(XmlUtils.parseXML(result));
 				if (XmlUtils.parseXMLhasthisPeople(result)) {
-					ll_operation.setVisibility(View.VISIBLE);
-					btn_add.setEnabled(true);
-					btn_delay.setEnabled(false);
-					btn_logout.setEnabled(false);
+//					ll_operation.setVisibility(View.VISIBLE);
+//					btn_add.setEnabled(true);
+//					btn_delay.setEnabled(false);
+//					btn_logout.setEnabled(false);
 					if (peoplereadcard==null){//如果不是读卡，是输入身份证搜索
 						peoplereadcard=XmlUtils.parseXMLtoPeople(result);
 					}else{
@@ -440,13 +441,23 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 				rl_zai.setVisibility(View.VISIBLE);
 				ib_search.setVisibility(View.VISIBLE);
 			}
+			tv_nopeople.setVisibility(View.GONE);
+			lv.setVisibility(View.VISIBLE);
 			List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();
 			list.clear();
 			if(isSearch&&(!TextUtils.isEmpty(edt_idcard.getText().toString().trim()))){
 				for (int i = 0; i <renyuanInHouseBean.data.peoplelist.size(); i++) {
 					if (renyuanInHouseBean.data.peoplelist.get(i).idcard.trim().contains(edt_idcard.getText().toString().trim())){
-						list.add(renyuanInHouseBean.data.peoplelist.get(i));
+						if(renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("在住")){
+							list.add(renyuanInHouseBean.data.peoplelist.get(i));
+						}
+
 					}
+				}
+				if (list.size()==0){
+					tv_nopeople.setVisibility(View.VISIBLE);
+					lv.setVisibility(View.GONE);
+					tv_nopeople.setText("该房屋无此人");
 				}
 			}else {
 				rl_search.setVisibility(View.GONE);

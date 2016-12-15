@@ -340,6 +340,10 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\loading_view.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\loading_view.xml"
+    },
+    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.1.1\\res\\layout\\design_navigation_item_separator.xml"
     },

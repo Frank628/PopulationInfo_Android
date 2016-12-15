@@ -95,6 +95,7 @@ public class AlienFragment extends BaseFragment {
     @Event(value={R.id.iv_warning})
     private void warningClick(View view){
         Intent intent =new Intent(getActivity(), MaturityWarningActivity.class);
+
         startActivity(intent);
     }
     @Event(value={R.id.iv_feedback})

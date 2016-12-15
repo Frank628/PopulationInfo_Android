@@ -20,6 +20,10 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\anim\\modal_in.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\anim\\modal_in.xml"
+    },
+    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\anim\\abc_popup_exit.xml"
     },
@@ -70,6 +74,10 @@
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\anim\\design_snackbar_out.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.1.1\\res\\anim\\design_snackbar_out.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\anim\\modal_out.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\anim\\modal_out.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",

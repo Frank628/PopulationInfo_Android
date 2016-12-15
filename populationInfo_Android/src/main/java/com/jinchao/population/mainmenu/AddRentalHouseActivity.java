@@ -149,7 +149,6 @@ public class AddRentalHouseActivity extends BaseActiviy{
 		params.addBodyParameter("user_name", MyInfomationManager.getUserName(AddRentalHouseActivity.this));
 		params.addBodyParameter("house_code", bianhao);
 		params.addBodyParameter("house_addr", fangwuaddress);
-
 		params.addBodyParameter("house_pname", name);
 		params.addBodyParameter("house_ptel", dianhua);
 		params.addBodyParameter("house_pidcard", cardno);

@@ -3,6 +3,7 @@ package com.jinchao.population.mainmenu;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.BadgeView;
 import com.jinchao.population.widget.LoadMoreListView;
+import com.jinchao.population.widget.emptyview.HHEmptyView;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -43,6 +45,10 @@ import in.srain.cube.views.ptr.PtrHandler;
 public class MaturityWarningActivity extends BaseActiviy{
     @ViewInject(R.id.loadmorelv) private LoadMoreListView loadmorelv;
     @ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
+    @ViewInject(R.id.empty_view) private HHEmptyView empty_view;
+    private boolean  isfromreal=false;
+    CommonAdapter<MaturityListBean.MatureHouseOne> adapter;
+    private List<MaturityListBean.MatureHouseOne> HouseList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +60,16 @@ public class MaturityWarningActivity extends BaseActiviy{
                 onBackPressed();
             }
         });
+        isfromreal=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
+        empty_view.setLoadingModel(HHEmptyView.MODEL_ALERT);
+        empty_view.bindView(mPtrFrame);
+        empty_view.setOnBtnClickListener(new HHEmptyView.OnBtnClickListener() {
+            @Override
+            public void onBtnClick() {
+                GetMaturityWarning();
+            }
+        });
+        GetMaturityWarning();
         mPtrFrame.setLastUpdateTimeRelateObject(this);
         mPtrFrame.setPtrHandler(new PtrHandler() {
             @Override
@@ -75,34 +91,74 @@ public class MaturityWarningActivity extends BaseActiviy{
         mPtrFrame.setPullToRefresh(false);
         // default is true
         mPtrFrame.setKeepHeaderWhenRefresh(true);
-
         loadmorelv.setOnLoadMoreListener(new LoadMoreListView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
 
             }
         });
-        mPtrFrame.postDelayed(new Runnable() {
+//        mPtrFrame.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mPtrFrame.autoRefresh();
+//            }
+//        }, 100);
+        adapter =new CommonAdapter<MaturityListBean.MatureHouseOne>(MaturityWarningActivity.this,HouseList,R.layout.item_maturehouse) {
             @Override
-            public void run() {
-                mPtrFrame.autoRefresh();
+            public void convert(ViewHolder helper, MaturityListBean.MatureHouseOne item, int position) {
+                helper.setText(R.id.tv_bianhao,item.house_code);
+                helper.setText(R.id.tv_address,item.house_addr);
+                BadgeView badgeView=new BadgeView(MaturityWarningActivity.this);
+                badgeView.setTargetView(helper.getView(R.id.rl_root));
+                badgeView.setTextSize(14);
+                badgeView.setBackground(9,Color.parseColor("#8a8a8a"));
+                badgeView.setBadgeCount(item.peoplelist.size());
             }
-        }, 100);
+        };
+
+        loadmorelv.setAdapter(adapter);
+        loadmorelv.setNodata("暂无数据！", true, new LoadMoreListView.OnGoClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetMaturityWarning();
+            }
+        });
+        loadmorelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MaturityListBean.MatureHouseOne aa=  (MaturityListBean.MatureHouseOne)((ListView)parent).getItemAtPosition(position);
+//                            Toast.makeText(MaturityWarningActivity.this,aa.house_addr,Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(MaturityWarningActivity.this,MaturityPeopleActivity.class);
+                intent.putExtra(Constants.IS_FROM_REALPOPULATION,isfromreal);
+                intent.putExtra("list",aa);
+                startActivity(intent);
+            }
+        });
     }
     private void GetMaturityWarning() {
-        RequestParams params = new RequestParams(Constants.URL + "HousePosition.aspx");
+        empty_view.loading();
+        RequestParams params = new RequestParams(Constants.URL + "syrkHouse.aspx");
+        if (isfromreal){
+            params = new RequestParams(Constants.URL + "syrkHouse.aspx");
+        }else{
+            params = new RequestParams(Constants.URL + "HousePosition.aspx");
+        }
         params.addBodyParameter("type", "get_people");
         params.addBodyParameter("user_id", MyInfomationManager.getUserName(MaturityWarningActivity.this));
-
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-//                System.out.println(result);
+                empty_view.setVisibility(View.GONE);
+                empty_view.success();
                 processData(result);
+                Log.i("result",result);
+                Log.e("MATURR","onSuccess");
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("MATURR",ex.getMessage());
+                GetMaturityWarning();
             }
 
             @Override
@@ -112,6 +168,7 @@ public class MaturityWarningActivity extends BaseActiviy{
 
             @Override
             public void onFinished() {
+
                 mPtrFrame.refreshComplete();
             }
         });
@@ -121,34 +178,14 @@ public class MaturityWarningActivity extends BaseActiviy{
             MaturityListBean maturityListBean= GsonTools.changeGsonToBean(json,MaturityListBean.class);
             if (maturityListBean.data.houselist!=null){
                 if (maturityListBean.data.houselist.size()!=0){
-                    loadmorelv.setTotalNum(maturityListBean.data.houselist.size());
-                    CommonAdapter<MaturityListBean.MatureHouseOne> adapter =new CommonAdapter<MaturityListBean.MatureHouseOne>(MaturityWarningActivity.this,maturityListBean.data.houselist,R.layout.item_maturehouse) {
-                        @Override
-                        public void convert(ViewHolder helper, MaturityListBean.MatureHouseOne item, int position) {
-                            helper.setText(R.id.tv_bianhao,item.house_code);
-                            helper.setText(R.id.tv_address,item.house_addr);
-                            BadgeView badgeView=new BadgeView(MaturityWarningActivity.this);
-                            badgeView.setTargetView(helper.getView(R.id.rl_root));
-                            badgeView.setTextSize(14);
-                            badgeView.setBackground(9,Color.parseColor("#8a8a8a"));
-                            badgeView.setBadgeCount(item.peoplelist.size());
-                        }
-                    };
-
-                    loadmorelv.setAdapter(adapter);
-                    loadmorelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            MaturityListBean.MatureHouseOne aa=  (MaturityListBean.MatureHouseOne)((ListView)parent).getItemAtPosition(position);
-//                            Toast.makeText(MaturityWarningActivity.this,aa.house_addr,Toast.LENGTH_LONG).show();
-                            Intent intent=new Intent(MaturityWarningActivity.this,MaturityPeopleActivity.class);
-                            intent.putExtra("list",aa);
-                            startActivity(intent);
-                        }
-                    });
+                    HouseList.clear();
+                    HouseList.addAll(maturityListBean.data.houselist);
+                    adapter.notifyDataSetChanged();
                 }else{
-
+                    loadmorelv.setTotalNum(0);
                 }
+            }else{
+                loadmorelv.setTotalNum(0);
             }
         } catch (Exception e) {
             e.printStackTrace();
