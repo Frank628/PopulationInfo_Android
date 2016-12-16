@@ -108,11 +108,7 @@ public class MaturityWarningActivity extends BaseActiviy{
             public void convert(ViewHolder helper, MaturityListBean.MatureHouseOne item, int position) {
                 helper.setText(R.id.tv_bianhao,item.house_code);
                 helper.setText(R.id.tv_address,item.house_addr);
-                BadgeView badgeView=new BadgeView(MaturityWarningActivity.this);
-                badgeView.setTargetView(helper.getView(R.id.rl_root));
-                badgeView.setTextSize(14);
-                badgeView.setBackground(9,Color.parseColor("#8a8a8a"));
-                badgeView.setBadgeCount(item.peoplelist.size());
+                helper.setText(R.id.tv_count,item.peoplelist.size()+"");
             }
         };
 

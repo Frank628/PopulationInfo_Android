@@ -721,9 +721,13 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			startActivity(intent);
 			RegisterActivity.this.finish();
 		}else{
+
 			Intent intent =new Intent(this, ZanZhuActivity.class);//isReplace?"1":(isFirstGenerationIDCard?"1":"2")
 			People p1=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim());
 			p1.setIstakephoto(istakephoto);
+			if (p1.cardno.trim().substring(0, 4).equals("3205")||p1.address.trim().contains("苏州")||p1.address.trim().contains("昆山")||p1.address.trim().contains("吴江")||p1.address.trim().contains("张家港")||p1.address.trim().contains("太仓")||p1.address.trim().contains("常熟")) {
+				Toast.makeText(RegisterActivity.this,"户籍在苏州大市的人员无法办理居住证！",Toast.LENGTH_SHORT);
+			}
 			intent.putExtra("people", p1);
 			startActivity(intent);
 		}

@@ -192,7 +192,7 @@ public class ValidateEidtText extends EditText {
                         setCompoundDrawablesWithIntrinsicBounds(
                                 null, null, drawableRight_Error, null);
                         setTextColor(textErrorColor);
-                        setError("室号为4位数字！",null);
+                        setError("室号由4位数字或字母组成！",null);
                     }else{
                         setTextColor(textColor);
                         setCompoundDrawablesWithIntrinsicBounds(

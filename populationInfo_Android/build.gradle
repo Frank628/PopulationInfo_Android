@@ -16,7 +16,6 @@ android {
             debug {
                 storeFile file("C:\\Users\\OfferJiShu01\\.android\\debug.keystore")
             }
-
         }
 
     }
