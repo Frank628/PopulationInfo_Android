@@ -107,7 +107,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.rb_banzhengfou)private RadioButton rb_banzhengfou;
 	@ViewInject(R.id.rl_canbaoshijian)private RelativeLayout rl_canbaoshijian;
 	@ViewInject(R.id.rl_shifoubanzheng)private RelativeLayout rl_shifoubanzheng;
-
 	@ViewInject(R.id.tv_canbaoshijian)private TextView tv_canbaoshijian;
 	@ViewInject(R.id.tv_xianyunnianyue)private TextView tv_xianyunnianyue;
 	@ViewInject(R.id.tv_degree)private TextView tv_degree;

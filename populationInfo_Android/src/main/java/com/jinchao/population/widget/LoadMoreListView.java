@@ -140,7 +140,6 @@ public class LoadMoreListView extends ListView implements OnScrollListener{
 	public interface OnGoClickListener {
 		public void onClick(View v);
 	}
-	
 	public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
 		this.mOnLoadMoreListener = mOnLoadMoreListener;
 	}
