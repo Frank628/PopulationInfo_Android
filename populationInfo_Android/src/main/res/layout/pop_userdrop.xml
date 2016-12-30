@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/drop_down_user"
+    android:layout_height="match_parent">
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:divider="#e2e2e2"
+        android:dividerHeight="0.5dp"
+        android:layout_height="wrap_content"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#e2e2e2"/>
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="最近的5条历史记录~"
+        android:textSize="15sp"
+        android:textColor="@color/title3"/>
+</LinearLayout>

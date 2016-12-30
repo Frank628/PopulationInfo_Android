@@ -131,8 +131,6 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 							edt_address.setText(wushi_huji);
 						}
 					},"保留","去除");
-
-
 				}
 		});
 	}
@@ -781,10 +779,5 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
                 }
             }
         }
-
     }
-
-
-
-
 }

@@ -49,7 +49,7 @@ public class FacePop extends PopupWindow {
         this.setFocusable(false);
         this.setOutsideTouchable(false);
         this.update();
-        ColorDrawable dw = new ColorDrawable(0000000000);
+        ColorDrawable dw = new ColorDrawable(000000);
         this.setBackgroundDrawable(dw);
     }
     private void initView(View v,final Activity context,Bitmap apath,String bpath){

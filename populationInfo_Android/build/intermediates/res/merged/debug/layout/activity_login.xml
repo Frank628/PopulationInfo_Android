@@ -68,7 +68,7 @@
         	android:orientation="vertical"
         	android:visibility="gone"
     	    >
-	    <EditText 
+	    <com.jinchao.population.widget.DrawableClickEditText
 	        android:id="@+id/edt_user2"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
@@ -81,6 +81,8 @@
 	        android:layout_marginLeft="15dp"
 		    android:layout_marginRight="15dp"
 		    android:layout_marginTop="20dp"
+			android:singleLine="true"
+			android:drawableRight="@drawable/icon_down"
 		    android:layout_gravity="center_horizontal"
 	        />
 	    <EditText 
@@ -97,6 +99,7 @@
 	        android:layout_marginLeft="15dp"
 		    android:layout_marginRight="15dp"
 		    android:layout_marginTop="15dp"
+			android:singleLine="true"
 		    android:layout_gravity="center_horizontal"
 	        />
 	    </LinearLayout>

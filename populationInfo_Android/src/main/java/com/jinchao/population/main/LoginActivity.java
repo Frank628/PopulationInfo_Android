@@ -10,11 +10,14 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -25,9 +28,11 @@ import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.dbentity.UserHistory;
 import com.jinchao.population.entity.UserBean;
 import com.jinchao.population.entity.UserBean.AccountOne;
 import com.jinchao.population.utils.CommonUtils;
+import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
@@ -35,9 +40,11 @@ import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.PopupUser;
 import com.jinchao.population.view.PopupUser.OnEnsureClickListener;
-
-
-
+import com.jinchao.population.view.UserDropDownPop;
+import com.jinchao.population.widget.DrawableClickEditText;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.exception.DbException;
 
 
 @ContentView(R.layout.activity_login)
@@ -49,7 +56,7 @@ public class LoginActivity extends BaseActiviy{
 	@ViewInject(R.id.edt_password)
 	private EditText edt_password;
 	@ViewInject(R.id.edt_user2)
-	private EditText edt_user2;
+	private DrawableClickEditText edt_user2;
 	@ViewInject(R.id.edt_password2)
 	private EditText edt_password2;
 	@ViewInject(R.id.ll_default)
@@ -66,6 +73,8 @@ public class LoginActivity extends BaseActiviy{
 	private String password="";
 	private String username="";
 	String users="";
+	UserDropDownPop userDropDownPop;
+	DbUtils dbUtils;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,6 +92,21 @@ public class LoginActivity extends BaseActiviy{
 			edt_user.setOnClickListener(null);
 		}
 		tv_version.setText("版本号：V"+CommonUtils.getVersionName(LoginActivity.this));
+		dbUtils= DeviceUtils.getDbUtils(this);
+		userDropDownPop=new UserDropDownPop(LoginActivity.this,new UserDropDownPop.OnItemClickListener() {
+			@Override
+			public void onClick(String username) {
+				edt_user2.setText(username);
+				edt_password2.setText("123456");
+				userDropDownPop.dismiss();
+			}
+		});
+		edt_user2.setDrawableRightListener(new DrawableClickEditText.DrawableRightListener() {
+			@Override
+			public void onDrawableRightClick(View view) {
+				userDropDownPop.showPopupWindow(edt_user2);
+			}
+		});
         if(!CommonUtils.isNotificationEnabled(this)){
             Dialog.showRadioDialog(this, "请在该手机“权限管理”应用中将（人口信息采集仪）的“通知”权限打开！否则将无法正常接收提示！", new Dialog.DialogClickListener() {
                 @Override
@@ -153,6 +177,14 @@ public class LoginActivity extends BaseActiviy{
 								MyInfomationManager.setUserID(LoginActivity.this, userBean.data.get(i).account.get(j).userId);
 								MyInfomationManager.setSQID(LoginActivity.this, userBean.data.get(i).account.get(j).sqId);
 								MyInfomationManager.setSQNAME(LoginActivity.this, userBean.data.get(i).account.get(j).sqName);
+								try {
+									UserHistory userHistory=dbUtils.findFirst(Selector.from(UserHistory.class).where("user_name","=",username));
+									if (userHistory==null) {
+										dbUtils.save(new UserHistory(username, userBean.data.get(i).account.get(j).userId, userBean.data.get(i).account.get(j).sqName, userBean.data.get(i).account.get(j).sqId, userBean.data.get(i).pcsName, userBean.data.get(i).pcsId));
+									}
+								} catch (DbException e) {
+									e.printStackTrace();
+								}
 								List<String> list =new ArrayList<String>();
 								List<AccountOne> listacount=new ArrayList<UserBean.AccountOne>();
 								for (int k = 0; k < userBean.data.get(i).account.size(); k++) {
@@ -195,6 +227,7 @@ public class LoginActivity extends BaseActiviy{
 			ll_default.setVisibility(View.VISIBLE);
 			ll_toggle.setVisibility(View.GONE);
 			btn_toggle.setText("切换用户");
+			userDropDownPop.dismiss();
 			isToggle=false;
 		}else{
 			ll_default.setVisibility(View.GONE);
@@ -203,8 +236,6 @@ public class LoginActivity extends BaseActiviy{
 			btn_toggle.setText("取消切换");
 			isToggle=true;
 		}
-		
-		
 	}
 
 }
