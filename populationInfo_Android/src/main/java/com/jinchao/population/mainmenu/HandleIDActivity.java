@@ -17,7 +17,7 @@ import org.xutils.view.annotation.ViewInject;
 import com.jinchao.population.base.BaseHandleIDActivity;
 import com.jinchao.population.dbentity.HouseJLX;
 import com.jinchao.population.dbentity.JLX;
-import com.jinchao.population.entity.HouseAddressOldBean;
+import com.jinchao.population.dbentity.HouseAddressOldBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
@@ -42,7 +42,6 @@ import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -70,13 +69,10 @@ import com.jinchao.population.view.StringWheel;
 import com.jinchao.population.widget.MonPickerDialog;
 import com.jinchao.population.widget.RightButtonCheckBox;
 import com.jinchao.population.widget.ValidateEidtText;
-import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
 import com.soundcloud.android.crop.Crop;
-
-import de.greenrobot.event.EventBus;
 
 
 @ContentView(R.layout.activity_handleid)

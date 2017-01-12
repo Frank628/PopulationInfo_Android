@@ -1,43 +1,40 @@
 package com.jinchao.population.main;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.UserHistory;
+import com.jinchao.population.dbentity.UserPKDataBase;
 import com.jinchao.population.entity.UserBean;
 import com.jinchao.population.entity.UserBean.AccountOne;
 import com.jinchao.population.utils.CommonUtils;
+import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.FileUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.view.Dialog;
-import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.PopupUser;
 import com.jinchao.population.view.PopupUser.OnEnsureClickListener;
 import com.jinchao.population.view.UserDropDownPop;
@@ -49,7 +46,6 @@ import com.lidroid.xutils.exception.DbException;
 
 @ContentView(R.layout.activity_login)
 public class LoginActivity extends BaseActiviy{
-	
 	private PopupUser popupUser;
 	@ViewInject(R.id.edt_user)
 	private EditText edt_user;
@@ -113,7 +109,6 @@ public class LoginActivity extends BaseActiviy{
                 public void confirm() {
 
                 }
-
                 @Override
                 public void cancel() {
 
@@ -155,7 +150,6 @@ public class LoginActivity extends BaseActiviy{
 			@Override
 			public void run() {
 				try {
-
 					UserBean userBean =GsonTools.changeGsonToBean(users, UserBean.class);
 					for (int i = 0; i < userBean.data.size(); i++) {
 						for (int j = 0; j <userBean.data.get(i).account.size(); j++) {
@@ -179,9 +173,24 @@ public class LoginActivity extends BaseActiviy{
 								MyInfomationManager.setSQNAME(LoginActivity.this, userBean.data.get(i).account.get(j).sqName);
 								try {
 									UserHistory userHistory=dbUtils.findFirst(Selector.from(UserHistory.class).where("user_name","=",username));
-									if (userHistory==null) {
-										dbUtils.save(new UserHistory(username, userBean.data.get(i).account.get(j).userId, userBean.data.get(i).account.get(j).sqName, userBean.data.get(i).account.get(j).sqId, userBean.data.get(i).pcsName, userBean.data.get(i).pcsId));
+									List<UserHistory> listbytime =null;
+									if(dbUtils.tableIsExist(UserHistory.class)) {
+										listbytime = dbUtils.findAll(Selector.from(UserHistory.class).orderBy("time", true));
+										if (listbytime.size()==5){
+											dbUtils.deleteById(UserHistory.class,listbytime.get(4).getId());
+											UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",listbytime.get(4).getSq_name()));
+											if(userPKDataBase_d!=null){
+												userPKDataBase_d.setIs_used("0");
+												dbUtils.saveOrUpdate(userPKDataBase_d);
+											}
+										}
 									}
+									SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+									String time =sDateFormat.format(new Date(System.currentTimeMillis()));
+									if (userHistory==null) {
+										dbUtils.save(new UserHistory(username, userBean.data.get(i).account.get(j).userId, userBean.data.get(i).account.get(j).sqName, userBean.data.get(i).account.get(j).sqId, userBean.data.get(i).pcsName, userBean.data.get(i).pcsId,time));
+									}
+									((MyApplication)getApplication()).setDataBaseTableNo(DatabaseUtil.getSQ_DataBase_No(LoginActivity.this));
 								} catch (DbException e) {
 									e.printStackTrace();
 								}
@@ -212,7 +221,6 @@ public class LoginActivity extends BaseActiviy{
 					e.printStackTrace();
 				}
 			}
-
 			private void loginSuccess() {
 				Intent intent =new Intent(LoginActivity.this, MainActivity.class);
 				startActivity(intent);
@@ -222,19 +230,19 @@ public class LoginActivity extends BaseActiviy{
 	}
 	
 	@Event(value={R.id.btn_toggle})
-	private void toggleUserClick(View view){
+	private void toggleUserClick(View view) {
 		if (isToggle) {
 			ll_default.setVisibility(View.VISIBLE);
 			ll_toggle.setVisibility(View.GONE);
 			btn_toggle.setText("切换用户");
 			userDropDownPop.dismiss();
-			isToggle=false;
-		}else{
+			isToggle = false;
+		} else {
 			ll_default.setVisibility(View.GONE);
 			ll_toggle.setVisibility(View.VISIBLE);
 			edt_user2.requestFocus();
 			btn_toggle.setText("取消切换");
-			isToggle=true;
+			isToggle = true;
 		}
 	}
 

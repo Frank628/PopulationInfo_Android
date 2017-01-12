@@ -516,6 +516,10 @@ public class XmlUtils {
 				serializer.startTag(null, "collect_datetime");
 				serializer.text(people.collect_datetime);
 				serializer.endTag(null, "collect_datetime");
+
+				serializer.startTag(null, "sbsbh");
+				serializer.text( CommonUtils.getIMEI(context));
+				serializer.endTag(null, "sbsbh");
 			}else if(people.module.equals("补")){
 				serializer.startTag(null, "module");// 开始标签
 				serializer.text(people.module);// 文本内容

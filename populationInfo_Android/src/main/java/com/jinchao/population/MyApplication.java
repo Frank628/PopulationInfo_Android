@@ -10,6 +10,11 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.mapapi.SDKInitializer;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.dbentity.JLX;
+import com.jinchao.population.dbentity.JLX2;
+import com.jinchao.population.dbentity.JLX3;
+import com.jinchao.population.dbentity.JLX4;
+import com.jinchao.population.dbentity.JLX5;
 import com.jinchao.population.entity.UserBean;
 import com.jinchao.population.location.LocationService;
 import com.jinchao.population.location.MyLocation;
@@ -35,6 +40,7 @@ public class MyApplication extends Application{
 	public  LocationService locationService;
 	public MyLocation myLocation=new MyLocation();
     public boolean isSureDengji=false;
+	public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -51,13 +57,19 @@ public class MyApplication extends Application{
 		locationService.setLocationOption(locationService.getDefaultLocationClientOption());
 	}
 
+	/**
+	 * 设置当前登录账号使用的哪个数据库
+	 * @param No
+     */
+	public void setDataBaseTableNo(int No){
+		database_tableNo=No;
+	}
 	private void getUSER(){
 		RequestParams params=new RequestParams(Constants.URL+"InitLoad.aspx");
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
 				try {
-					Log.i("user-re",result);
 					SharePrefUtil.saveString(getApplicationContext(), Constants.USER_DB, result.trim());
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -103,6 +115,6 @@ public class MyApplication extends Application{
 			}
 		}
 	};
-	
+
 }
      

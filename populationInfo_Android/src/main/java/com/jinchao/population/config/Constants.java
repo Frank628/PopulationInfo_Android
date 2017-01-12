@@ -72,5 +72,7 @@ public class Constants {
 	public static final String IS_FROM_REALPOPULATION="IS_FROM_REALPOPULATION";//是否来自实有人口
 
 	public static final String Where_from="Where_from";
+
+
 }
                           

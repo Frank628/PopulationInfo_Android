@@ -24,6 +24,7 @@ import com.jinchao.population.dbentity.UserHistory;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
 import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 
 import org.xutils.image.ImageOptions;
@@ -65,7 +66,7 @@ public class UserDropDownPop extends PopupWindow {
         tv_content= (TextView) v.findViewById(R.id.tv_bottom);
         dbUtils=DeviceUtils.getDbUtils(context);
         try {
-            list =dbUtils.findAll(UserHistory.class);
+            list =dbUtils.findAll(Selector.from(UserHistory.class).orderBy("time",true));
             if (list==null){
                 tv_content.setText("暂无历史记录~");
                 list=new ArrayList<>();

@@ -6,10 +6,7 @@
 		 9.1 办证，变更号码身高校验，门牌号默认修改，是否领证默认是
 		 9.2 增量下载超时问题，实有人口增加延期，身高限制，户籍地址填写。
 		 9.3 实有人口总是跳变更
-		 9.4修改实有人口，非本房屋人员卡进入 不可操作。删除改注销
-		 9.5
-		 9.6
-		 9.9
+		 9.4 修改实有人口，非本房屋人员卡进入 不可操作。删除改注销
 	 -->
  	<supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="false" android:resizeable="true" android:smallScreens="true" />
     <uses-feature android:name="android.hardware.usb.host" />
@@ -26,17 +23,17 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/> 
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-feature android:name="android.hardware.camera"  android:required="true"/>
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.GET_TASKS"/>
@@ -67,7 +64,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
         <activity android:name="com.jinchao.population.main.LoginActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.jinchao.population.main.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>

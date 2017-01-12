@@ -7,9 +7,7 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,20 +19,14 @@ import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
-import com.jinchao.population.dbentity.HouseOperation;
-import com.jinchao.population.dbentity.People;
-import com.jinchao.population.entity.HouseAddressOldBean;
+import com.jinchao.population.dbentity.HouseAddressOldBean;
 import com.jinchao.population.entity.RealHouseInfo;
-import com.jinchao.population.entity.ZaiZhuPeopleBean;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.view.NavigationLayout;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
-
-import java.text.SimpleDateFormat;
 
 @ContentView(R.layout.activity_searchrentalhouse)
 public class SearchRentalHouseActivity extends BaseActiviy{

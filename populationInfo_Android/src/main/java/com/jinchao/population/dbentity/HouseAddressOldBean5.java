@@ -1,38 +1,38 @@
-package com.jinchao.population.entity;
+package com.jinchao.population.dbentity;
 
 import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Id;
 import com.lidroid.xutils.db.annotation.Table;
 
-@Table(name="Houseaddressold")
-public class HouseAddressOldBean {
+@Table(name="Houseaddressold4")
+public class HouseAddressOldBean5 {
 	@Id
 	public String id="";
-	
+
 	@Column(column="shequ_id")
 	public String shequ_id="";
-	
+
 	@Column(column="user_id")
 	public String user_id="";
-	
+
 	@Column(column="scode")
 	public String scode="";
 
 	@Column(column="address")
 	public String address="";
-	
+
 	@Column(column="hrs_pname")
 	public String hrs_pname="";
-	
+
 	@Column(column="telphone")
 	public String telphone="";
-	
+
 	@Column(column="idcard")
 	public String idcard="";
-	
+
 	@Column(column="source_id")
 	public String source_id="";
-	
+
 	@Column(column="udt")
 	public String udt="";
 
@@ -116,9 +116,9 @@ public class HouseAddressOldBean {
 		this.udt = udt;
 	}
 
-	public HouseAddressOldBean(String id, String shequ_id, String user_id,
-			String scode, String address, String hrs_pname, String telphone,
-			String idcard, String source_id, String udt) {
+	public HouseAddressOldBean5(String id, String shequ_id, String user_id,
+								String scode, String address, String hrs_pname, String telphone,
+								String idcard, String source_id, String udt) {
 		super();
 		this.id = id;
 		this.shequ_id = shequ_id;
@@ -132,7 +132,7 @@ public class HouseAddressOldBean {
 		this.udt = udt;
 	}
 
-	public HouseAddressOldBean() {
+	public HouseAddressOldBean5() {
 		super();
 	}
 

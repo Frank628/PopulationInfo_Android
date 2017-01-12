@@ -34,6 +34,8 @@ public class UserHistory {
 	@Column(column="pcs_id")
 	public String pcs_id;
 
+	@Column(column="time")
+	public String time;
 	public String getPcs_id() {
 		return pcs_id;
 	}
@@ -90,14 +92,23 @@ public class UserHistory {
 		this.pcs_name = pcs_name;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	public UserHistory() {}
 
-	public UserHistory(String user_name, String user_id, String sq_name, String sq_id, String pcs_name, String pcs_id) {
+	public UserHistory(String user_name, String user_id, String sq_name, String sq_id, String pcs_name, String pcs_id,String time) {
 		this.user_name = user_name;
 		this.user_id = user_id;
 		this.sq_name = sq_name;
 		this.sq_id = sq_id;
 		this.pcs_name = pcs_name;
 		this.pcs_id = pcs_id;
+		this.time=time;
 	}
 }
