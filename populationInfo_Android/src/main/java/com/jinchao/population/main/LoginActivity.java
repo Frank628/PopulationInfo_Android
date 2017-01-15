@@ -171,24 +171,30 @@ public class LoginActivity extends BaseActiviy{
 								MyInfomationManager.setUserID(LoginActivity.this, userBean.data.get(i).account.get(j).userId);
 								MyInfomationManager.setSQID(LoginActivity.this, userBean.data.get(i).account.get(j).sqId);
 								MyInfomationManager.setSQNAME(LoginActivity.this, userBean.data.get(i).account.get(j).sqName);
+                                SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                String time =sDateFormat.format(new Date(System.currentTimeMillis()));
 								try {
 									UserHistory userHistory=dbUtils.findFirst(Selector.from(UserHistory.class).where("user_name","=",username));
 									List<UserHistory> listbytime =null;
 									if(dbUtils.tableIsExist(UserHistory.class)) {
 										listbytime = dbUtils.findAll(Selector.from(UserHistory.class).orderBy("time", true));
-										if (listbytime.size()==5){
-											dbUtils.deleteById(UserHistory.class,listbytime.get(4).getId());
-											UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",listbytime.get(4).getSq_name()));
-											if(userPKDataBase_d!=null){
-												userPKDataBase_d.setIs_used("0");
-												dbUtils.saveOrUpdate(userPKDataBase_d);
-											}
-										}
-									}
-									SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-									String time =sDateFormat.format(new Date(System.currentTimeMillis()));
-									if (userHistory==null) {
-										dbUtils.save(new UserHistory(username, userBean.data.get(i).account.get(j).userId, userBean.data.get(i).account.get(j).sqName, userBean.data.get(i).account.get(j).sqId, userBean.data.get(i).pcsName, userBean.data.get(i).pcsId,time));
+                                        if (userHistory!=null){
+                                            userHistory.setTime(time);
+                                            dbUtils.update(userHistory,"time");
+                                        }else{
+                                            if (listbytime.size()==5){
+                                                dbUtils.deleteById(UserHistory.class,listbytime.get(4).getId());
+                                                UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",listbytime.get(4).getSq_name()));
+                                                if(userPKDataBase_d!=null){
+                                                    userPKDataBase_d.setIs_used("1");
+                                                    dbUtils.saveOrUpdate(userPKDataBase_d);
+                                                }
+                                            }
+                                            if (userHistory==null) {
+                                                dbUtils.save(new UserHistory(username, userBean.data.get(i).account.get(j).userId, userBean.data.get(i).account.get(j).sqName, userBean.data.get(i).account.get(j).sqId, userBean.data.get(i).pcsName, userBean.data.get(i).pcsId,time));
+                                            }
+                                        }
+
 									}
 									((MyApplication)getApplication()).setDataBaseTableNo(DatabaseUtil.getSQ_DataBase_No(LoginActivity.this));
 								} catch (DbException e) {

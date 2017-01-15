@@ -358,7 +358,7 @@
                 style="@style/handle_id_left_text_style"
                 android:text="地址补充"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_addition"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -372,7 +372,12 @@
                 android:inputType="text"
                 android:maxLength="25"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="normal"
                 />
         </RelativeLayout>
         <View
@@ -472,7 +477,7 @@
                 app:rc_textColor="@color/title1"
                 />
 
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_fuwuchusuo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -484,9 +489,14 @@
                 android:textColorHint="@color/title4"
                 android:background="@color/white"
                 android:inputType="text"
-                android:singleLine="true"
                 android:maxLength="25"
-                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="normal"
                 />
         </RelativeLayout>
         <View
@@ -513,7 +523,7 @@
                 app:rc_textColor="@color/title1"
                 />
 
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_danweidizhi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -527,7 +537,12 @@
                 android:inputType="text"
                 android:maxLength="25"
                 android:singleLine="true"
-                android:paddingRight="10dp"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="normal"
                 />
         </RelativeLayout>
         <View

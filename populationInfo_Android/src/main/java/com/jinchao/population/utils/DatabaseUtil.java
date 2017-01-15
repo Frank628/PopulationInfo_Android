@@ -135,10 +135,15 @@ public class DatabaseUtil {
         DbUtils dbUtils =DeviceUtils.getDbUtils(context);
         try {
             UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=", MyInfomationManager.getSQNAME(context)));
-            if (userPKDataBase!=null)
-                 no=userPKDataBase.getDatabase_name();
-            else
-                 no=0;
+            if (userPKDataBase!=null){
+                userPKDataBase.setIs_used("0");
+                dbUtils.update(userPKDataBase,"is_used");
+                no=userPKDataBase.getDatabase_name();
+            }else{
+                no=0;
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

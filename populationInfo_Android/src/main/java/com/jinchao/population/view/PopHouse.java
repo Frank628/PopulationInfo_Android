@@ -20,14 +20,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.R;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.dbentity.HouseAddress;
+import com.jinchao.population.dbentity.HouseAddress2;
+import com.jinchao.population.dbentity.HouseAddress3;
+import com.jinchao.population.dbentity.HouseAddress4;
+import com.jinchao.population.dbentity.HouseAddress5;
+import com.jinchao.population.dbentity.HouseAddressOldBean2;
+import com.jinchao.population.dbentity.HouseAddressOldBean3;
+import com.jinchao.population.dbentity.HouseAddressOldBean4;
+import com.jinchao.population.dbentity.HouseAddressOldBean5;
 import com.jinchao.population.dbentity.HouseJLX;
 import com.jinchao.population.dbentity.JLX;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
 import com.jinchao.population.entity.UserBean.AccountOne;
+import com.jinchao.population.mainmenu.AddRentalHouseActivity;
+import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.view.Dialog.DialogClickListener;
 import com.jinchao.population.widget.wheel.OnWheelChangedListener;
@@ -41,6 +52,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.R.id.list;
 
 public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnClickListener{
 	public OnHouseEnsureClickListener onEnsureClickListener;
@@ -57,8 +70,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 	private ListView lv;
 	private EditText edt_content;
 	private DbUtils dbUtils;
-	private CommonAdapter<HouseAddressOldBean> adapter;
-	private HouseAddress list_er;
+    private int database_tableNo=5;
 	private LinearLayout ll_bottom;
 	private TextView tv_up;
 	public interface OnHouseEnsureClickListener{
@@ -73,6 +85,11 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		this.UserId=UserId;
 		this.UserNameMap=UserNameMap;
 		this.UserIdMap=UserIdMap;
+        if (((MyApplication)context.getApplication()).database_tableNo==0){
+            database_tableNo= DatabaseUtil.getNullDB(context);
+        }else{
+            database_tableNo=((MyApplication)context.getApplication()).database_tableNo;
+        }
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mPopView=inflater.inflate(R.layout.pop_house, null);
 		viewfipper = new ViewFlipper(context);
@@ -98,12 +115,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		this.update();
 		this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		dbUtils=DeviceUtils.getDbUtils(context);
-		try {
-			list_er=dbUtils.findFirst(HouseAddress.class);
 
-		} catch (DbException e) {
-			e.printStackTrace();
-		}
 		PCSView.setViewAdapter(new ArrayWheelAdapter<String>(context1, PSCName));
 		PCSView.addChangingListener(PopHouse.this);
 		USERView.addChangingListener(PopHouse.this);
@@ -122,33 +134,186 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 			public void afterTextChanged(Editable s) {
 				lv.setAdapter(null);
 				String content =edt_content.getText().toString().trim();
-				List<HouseAddressOldBean> list=new ArrayList<HouseAddressOldBean>();
 				if (content.length()>=1) {
 					try {
-						list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode", "like", "%"+content+"%"));
-						if (list==null) {
-							Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
-							return;
-						}
-						if (list.size()==0) {
-							list=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("address", "like", "%"+content+"%"));
-							if (list.size()==0) {
-								Dialog.showRadioDialog(context, "查无此房屋！！！", new DialogClickListener() {
-									@Override
-									public void confirm() {}
-									@Override
-									public void cancel() {}
-								});
-							}
-						}
-							adapter = new CommonAdapter<HouseAddressOldBean>(context1,list,R.layout.item_text) {
-								@Override
-								public void convert(ViewHolder helper,HouseAddressOldBean item, int position) {
-									helper.setText(R.id.tv_content, item.address);
-									helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
-								}
-							};
-							lv.setAdapter(adapter);	
+                        switch (database_tableNo){
+                            case 1:
+                                List<HouseAddressOldBean> list1=new ArrayList<HouseAddressOldBean>();
+                                list1=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode", "like", "%"+content+"%"));
+                                if (list1==null) {
+                                    Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                if (list1.size()==0) {
+                                    list1=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("address", "like", "%"+content+"%"));
+                                    if (list1.size()==0) {
+                                        Dialog.showRadioDialog(context, "查无此房屋！！！", new DialogClickListener() {
+                                            @Override
+                                            public void confirm() {}
+                                            @Override
+                                            public void cancel() {}
+                                        });
+                                    }
+                                }
+                                CommonAdapter<HouseAddressOldBean>  adapter = new CommonAdapter<HouseAddressOldBean>(context1,list1,R.layout.item_text) {
+                                    @Override
+                                    public void convert(ViewHolder helper,HouseAddressOldBean item, int position) {
+                                        helper.setText(R.id.tv_content, item.address);
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
+                                };
+                                lv.setAdapter(adapter);
+                                lv.setOnItemClickListener(new OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                                        HouseAddressOldBean houseAddress =(HouseAddressOldBean) ((ListView)parent).getItemAtPosition(position);
+                                        onEnsureClickListener.OnHouseEnSureClick(houseAddress.scode, houseAddress.address);
+                                        PopHouse.this.dismiss();
+                                    }
+                                });
+                                break;
+                            case 2:
+                                List<HouseAddressOldBean2> list2=new ArrayList<HouseAddressOldBean2>();
+                                list2=dbUtils.findAll(Selector.from(HouseAddressOldBean2.class).where("scode", "like", "%"+content+"%"));
+                                if (list2==null) {
+                                    Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                if (list2.size()==0) {
+                                    list2=dbUtils.findAll(Selector.from(HouseAddressOldBean2.class).where("address", "like", "%"+content+"%"));
+                                    if (list2.size()==0) {
+                                        Dialog.showRadioDialog(context, "查无此房屋！！！", new DialogClickListener() {
+                                            @Override
+                                            public void confirm() {}
+                                            @Override
+                                            public void cancel() {}
+                                        });
+                                    }
+                                }
+                                CommonAdapter<HouseAddressOldBean2>  adapter2 = new CommonAdapter<HouseAddressOldBean2>(context1,list2,R.layout.item_text) {
+                                    @Override
+                                    public void convert(ViewHolder helper,HouseAddressOldBean2 item, int position) {
+                                        helper.setText(R.id.tv_content, item.address);
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
+                                };
+                                lv.setAdapter(adapter2);
+                                lv.setOnItemClickListener(new OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                                        HouseAddressOldBean2 houseAddress =(HouseAddressOldBean2) ((ListView)parent).getItemAtPosition(position);
+                                        onEnsureClickListener.OnHouseEnSureClick(houseAddress.scode, houseAddress.address);
+                                        PopHouse.this.dismiss();
+                                    }
+                                });
+                                break;
+                            case 3:
+                                List<HouseAddressOldBean3> list3=new ArrayList<HouseAddressOldBean3>();
+                                list3=dbUtils.findAll(Selector.from(HouseAddressOldBean3.class).where("scode", "like", "%"+content+"%"));
+                                if (list3==null) {
+                                    Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                if (list3.size()==0) {
+                                    list3=dbUtils.findAll(Selector.from(HouseAddressOldBean3.class).where("address", "like", "%"+content+"%"));
+                                    if (list3.size()==0) {
+                                        Dialog.showRadioDialog(context, "查无此房屋！！！", new DialogClickListener() {
+                                            @Override
+                                            public void confirm() {}
+                                            @Override
+                                            public void cancel() {}
+                                        });
+                                    }
+                                }
+                                CommonAdapter<HouseAddressOldBean3>  adapter3 = new CommonAdapter<HouseAddressOldBean3>(context1,list3,R.layout.item_text) {
+                                    @Override
+                                    public void convert(ViewHolder helper,HouseAddressOldBean3 item, int position) {
+                                        helper.setText(R.id.tv_content, item.address);
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
+                                };
+                                lv.setAdapter(adapter3);
+                                lv.setOnItemClickListener(new OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                                        HouseAddressOldBean3 houseAddress =(HouseAddressOldBean3) ((ListView)parent).getItemAtPosition(position);
+                                        onEnsureClickListener.OnHouseEnSureClick(houseAddress.scode, houseAddress.address);
+                                        PopHouse.this.dismiss();
+                                    }
+                                });
+                                break;
+                            case 4:
+                                List<HouseAddressOldBean4> list4=new ArrayList<HouseAddressOldBean4>();
+                                list4=dbUtils.findAll(Selector.from(HouseAddressOldBean4.class).where("scode", "like", "%"+content+"%"));
+                                if (list4==null) {
+                                    Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                if (list4.size()==0) {
+                                    list4=dbUtils.findAll(Selector.from(HouseAddressOldBean4.class).where("address", "like", "%"+content+"%"));
+                                    if (list4.size()==0) {
+                                        Dialog.showRadioDialog(context, "查无此房屋！！！", new DialogClickListener() {
+                                            @Override
+                                            public void confirm() {}
+                                            @Override
+                                            public void cancel() {}
+                                        });
+                                    }
+                                }
+                                CommonAdapter<HouseAddressOldBean4>  adapter4 = new CommonAdapter<HouseAddressOldBean4>(context1,list4,R.layout.item_text) {
+                                    @Override
+                                    public void convert(ViewHolder helper,HouseAddressOldBean4 item, int position) {
+                                        helper.setText(R.id.tv_content, item.address);
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
+                                };
+                                lv.setAdapter(adapter4);
+                                lv.setOnItemClickListener(new OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                                        HouseAddressOldBean4 houseAddress =(HouseAddressOldBean4) ((ListView)parent).getItemAtPosition(position);
+                                        onEnsureClickListener.OnHouseEnSureClick(houseAddress.scode, houseAddress.address);
+                                        PopHouse.this.dismiss();
+                                    }
+                                });
+                                break;
+                            case 5:
+                                List<HouseAddressOldBean5> list5=new ArrayList<HouseAddressOldBean5>();
+                                list5=dbUtils.findAll(Selector.from(HouseAddressOldBean5.class).where("scode", "like", "%"+content+"%"));
+                                if (list5==null) {
+                                    Toast.makeText(context1, "未下载地址库,请先下载全库地址~", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                if (list5.size()==0) {
+                                    list5=dbUtils.findAll(Selector.from(HouseAddressOldBean5.class).where("address", "like", "%"+content+"%"));
+                                    if (list5.size()==0) {
+                                        Dialog.showRadioDialog(context, "查无此房屋！！！", new DialogClickListener() {
+                                            @Override
+                                            public void confirm() {}
+                                            @Override
+                                            public void cancel() {}
+                                        });
+                                    }
+                                }
+                                CommonAdapter<HouseAddressOldBean5>  adapter5 = new CommonAdapter<HouseAddressOldBean5>(context1,list5,R.layout.item_text) {
+                                    @Override
+                                    public void convert(ViewHolder helper,HouseAddressOldBean5 item, int position) {
+                                        helper.setText(R.id.tv_content, item.address);
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
+                                };
+                                lv.setAdapter(adapter5);
+                                lv.setOnItemClickListener(new OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                                        HouseAddressOldBean5 houseAddress =(HouseAddressOldBean5) ((ListView)parent).getItemAtPosition(position);
+                                        onEnsureClickListener.OnHouseEnSureClick(houseAddress.scode, houseAddress.address);
+                                        PopHouse.this.dismiss();
+                                    }
+                                });
+                                break;
+                        }
+
 						
 					} catch (DbException e) {
 						e.printStackTrace();
@@ -176,14 +341,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 				ll_bottom.setVisibility(View.VISIBLE);
 			}
 		});
-		lv.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				HouseAddressOldBean houseAddress =(HouseAddressOldBean) ((ListView)parent).getItemAtPosition(position);
-				onEnsureClickListener.OnHouseEnSureClick(houseAddress.scode, houseAddress.address);
-				PopHouse.this.dismiss();
-			}
-		});
+
 
 	}
 
@@ -255,12 +413,60 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_ensure:
-			if (list_er==null){
-				Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
-				return;
-			}
-			onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName.trim());
-			this.dismiss();
+            try {
+                switch (database_tableNo){
+                    case 1:
+                        HouseAddress list_er=dbUtils.findFirst(HouseAddress.class);
+                        if (list_er==null){
+                            Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName.trim());
+                        this.dismiss();
+                        break;
+                    case 2:
+                        HouseAddress2 list_er2=dbUtils.findFirst(HouseAddress2.class);
+                        if (list_er2==null){
+                            Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName.trim());
+                        this.dismiss();
+                        break;
+                    case 3:
+                        HouseAddress3 list_er3=dbUtils.findFirst(HouseAddress3.class);
+                        if (list_er3==null){
+                            Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName.trim());
+                        this.dismiss();
+                        break;
+                    case 4:
+                        HouseAddress4 list_er4=dbUtils.findFirst(HouseAddress4.class);
+                        if (list_er4==null){
+                            Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName.trim());
+                        this.dismiss();
+                        break;
+                    case 5:
+                        HouseAddress5 list_er5=dbUtils.findFirst(HouseAddress5.class);
+                        if (list_er5==null){
+                            Toast.makeText(context1,"无二级关联地址，请直接搜索房屋编号或地址",Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        onEnsureClickListener.OnHouseEnSureClick(mCurrentUserId, mCurrentPcs+mCurrentUserName.trim());
+                        this.dismiss();
+                        break;
+                }
+
+
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+
 			break;
 		case R.id.btn_cancle:
 			this.dismiss();

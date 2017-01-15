@@ -15,12 +15,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
+import com.jinchao.population.dbentity.HouseAddressOldBean2;
+import com.jinchao.population.dbentity.HouseAddressOldBean3;
+import com.jinchao.population.dbentity.HouseAddressOldBean4;
+import com.jinchao.population.dbentity.HouseAddressOldBean5;
 import com.jinchao.population.entity.RealHouseInfo;
+import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.view.NavigationLayout;
@@ -33,8 +39,9 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 	@ViewInject(R.id.edt_content)EditText edt_content;
 	@ViewInject(R.id.tv_content)TextView tv_content;
 	@ViewInject(R.id.btn_unregist)Button btn_unregist;
-	HouseAddressOldBean houseAddressOldBean;
+
 	private DbUtils dbUtils;
+    public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +54,11 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 			}
 		});
 		dbUtils=DeviceUtils.getDbUtils(this);
+        if (((MyApplication)getApplication()).database_tableNo==0){
+            database_tableNo= DatabaseUtil.getNullDB(this);
+        }else{
+            database_tableNo=((MyApplication)getApplication()).database_tableNo;
+        }
 	}
 //	@Event(value={R.id.btn_unregist})
 //	private void unregisthouseClick(View view){
@@ -66,14 +78,59 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 		}
 
 		try {
-			houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "=", code));
-			if (houseAddressOldBean!=null) {
-				tv_content.setText(houseAddressOldBean.toString());
-				btn_unregist.setVisibility(View.VISIBLE);
+            switch (database_tableNo){
+                case 1:
+                    HouseAddressOldBean houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "=", code));
+                    if (houseAddressOldBean!=null) {
+                        tv_content.setText(houseAddressOldBean.toString());
+                        btn_unregist.setVisibility(View.VISIBLE);
 //
-			}else{
-				tv_content.setText("查无此房屋");
-			}
+                    }else{
+                        tv_content.setText("查无此房屋");
+                    }
+                    break;
+                case 2:
+                    HouseAddressOldBean2 houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "=", code));
+                    if (houseAddressOldBean2!=null) {
+                        tv_content.setText(houseAddressOldBean2.toString());
+                        btn_unregist.setVisibility(View.VISIBLE);
+//
+                    }else{
+                        tv_content.setText("查无此房屋");
+                    }
+                    break;
+                case 3:
+                    HouseAddressOldBean3 houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "=", code));
+                    if (houseAddressOldBean3!=null) {
+                        tv_content.setText(houseAddressOldBean3.toString());
+                        btn_unregist.setVisibility(View.VISIBLE);
+//
+                    }else{
+                        tv_content.setText("查无此房屋");
+                    }
+                    break;
+                case 4:
+                    HouseAddressOldBean4 houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "=", code));
+                    if (houseAddressOldBean4!=null) {
+                        tv_content.setText(houseAddressOldBean4.toString());
+                        btn_unregist.setVisibility(View.VISIBLE);
+//
+                    }else{
+                        tv_content.setText("查无此房屋");
+                    }
+                    break;
+                case 5:
+                    HouseAddressOldBean5 houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "=", code));
+                    if (houseAddressOldBean5!=null) {
+                        tv_content.setText(houseAddressOldBean5.toString());
+                        btn_unregist.setVisibility(View.VISIBLE);
+//
+                    }else{
+                        tv_content.setText("查无此房屋");
+                    }
+                    break;
+            }
+
 		} catch (DbException e) {
 			e.printStackTrace();
 		}

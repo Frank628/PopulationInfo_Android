@@ -5,9 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -42,6 +46,7 @@ import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseReaderActiviy;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.Nation;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.RealHouseBean.RealHouseOne;
@@ -50,6 +55,7 @@ import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.Dialog.DialogClickListener;
 import com.jinchao.population.view.FacePop;
@@ -699,7 +705,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 					}else{
 						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
 						intent.putExtra("people",oPeople);
-						startActivity(intent);
+                        isSuZhouRen(oPeople.cardno,intent);
 					}
 				}
 
@@ -723,13 +729,36 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			Intent intent =new Intent(this, ZanZhuActivity.class);//isReplace?"1":(isFirstGenerationIDCard?"1":"2")
 			People p1=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim());
 			p1.setIstakephoto(istakephoto);
-			if (p1.cardno.trim().substring(0, 4).equals("3205")||p1.address.trim().contains("苏州")||p1.address.trim().contains("昆山")||p1.address.trim().contains("吴江")||p1.address.trim().contains("张家港")||p1.address.trim().contains("太仓")||p1.address.trim().contains("常熟")) {
-				Toast.makeText(RegisterActivity.this,"户籍在苏州大市的人员无法办理居住证！",Toast.LENGTH_SHORT);
-			}
-			intent.putExtra("people", p1);
-			startActivity(intent);
+
+            intent.putExtra("people", p1);
+            isSuZhouRen(p1.cardno,intent);
+
 		}
 	}
+    private void isSuZhouRen(String idcard,final Intent intent){
+        showProcessDialog("正在验证是否为常口，请稍等···");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_isck&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                if (result.trim().contains("苏州")||result.contains("昆山")||result.contains("吴江")||result.contains("张家港")||result.contains("太仓")||result.contains("常熟")) {
+                    Toast.makeText(RegisterActivity.this,"户籍在苏州大市的人员无法办理居住证！",Toast.LENGTH_SHORT).show();
+                }else{
+                    RegisterActivity.this.startActivity(intent);
+                }
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                hideProcessDialog();
+            }
+        });
+    }
 	private class MyCompareAsyncTask extends CompareAsyncTask {
 		public MyCompareAsyncTask(byte[] imgA, byte[] imgB) {
 			super(imgA, imgB);

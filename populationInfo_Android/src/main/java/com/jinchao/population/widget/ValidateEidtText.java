@@ -259,6 +259,18 @@ public class ValidateEidtText extends EditText {
                                 null, null, drawableRight_Right, null);
                     }
                     break;
+                case 12://非单引号字符
+                    if (!CommonUtils.isNormal(getText().toString().trim())){
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, drawableRight_Error, null);
+                        setTextColor(textErrorColor);
+                        setError("提示:不可包含单引号'",null);
+                    }else{
+                        setTextColor(textColor);
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, drawableRight_Right, null);
+                    }
+                    break;
                 default:
                     break;
             }

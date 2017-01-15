@@ -475,6 +475,149 @@ public class XmlUtils {
 		}
 		return str;
 	}
+    public static  String parseBanZhengSheQuXML(String xml){
+        String str="";
+        xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document d = db.parse(CommonUtils.writeTxtToFile(xml, Constants.DB_PATH,"xml.xml"));
+            Node n = d.getChildNodes().item(0);
+            NodeList nl = n.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node n2 = nl.item(i);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    if (n2.getNodeName().equals("ResultSet")) {
+                        String huji1="",huji2="",zanzhu1="",zanzhu2="",name="",dianhua="",danweidizhi="",caijiren="",mocicaijishijian="",shifoulingzheng="",shequ="",currentstatus="";
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                NodeList nl3 = n3.getChildNodes();
+                                for (int k = 0; k < nl3.getLength(); k++) {
+                                    Node n4 = nl3.item(k);
+                                    if (n4.getNodeType() == Node.ELEMENT_NODE) {
+//                                        if("姓名".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            name= "姓名:"+n4.getTextContent() + "\n";
+//                                        }
+//                                        if("个人联系电话".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            dianhua= "联系电话:"+n4.getTextContent() + "\n";
+//                                        }
+//                                        if("户籍地址名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            huji1= "户籍地址:"+n4.getTextContent();
+//                                        }
+//                                        if("居住证申请时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            shifoulingzheng =  "是否办证:"+(n4.getTextContent().equals("")?"否":"是") + "\n";
+//                                        }
+//                                        if("户籍地址详址".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            huji2 =  n4.getTextContent() + "\n";
+//                                        }
+//                                        if("名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            zanzhu1 = "暂住地址:"+ n4.getTextContent();
+//                                        }
+//                                        if("门牌号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            zanzhu2 = n4.getTextContent() + "\n";
+//                                        }
+//                                        if("更新时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            mocicaijishijian =  "末次采集时间:"+n4.getTextContent() + "\n";
+//                                        }
+//                                        if("设备识别号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            caijiren ="采集人:"+n4.getTextContent() + "\n";
+//                                        }
+//                                        if("服务处所".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            danweidizhi ="工作单位:"+n4.getTextContent() + "\n";
+//                                        }
+                                        if("社区".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											shequ ="初次办证社区:"+n4.getTextContent();
+//                                            shequ ="初次办证社区:" + "\n";
+                                        }
+//                                        if("注销日期".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+//                                            currentstatus ="当前状态:"+(n4.getTextContent().trim().equals("")?"在住":"搬离")+ "\n";
+//                                        }
+//										str=str+n4.getAttributes().getNamedItem("name").getNodeValue()+":"+n4.getTextContent()+"\n";
+                                    }
+                                }
+                            }
+                        }
+                        str=shequ;
+                    }else if(n2.getNodeName().equals("AppType")){
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+//                                str=str+n3.getTextContent();
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("msg")){
+                        str=str+n2.getTextContent();
+                    }
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+    public static  String parseChangKouXML(String xml){
+        String str="";
+        xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document d = db.parse(CommonUtils.writeTxtToFile(xml, Constants.DB_PATH,"xml.xml"));
+            Node n = d.getChildNodes().item(0);
+            NodeList nl = n.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node n2 = nl.item(i);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    if (n2.getNodeName().equals("ResultSet")) {
+                        String huji="";
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                NodeList nl3 = n3.getChildNodes();
+                                for (int k = 0; k < nl3.getLength(); k++) {
+                                    Node n4 = nl3.item(k);
+                                    if (n4.getNodeType() == Node.ELEMENT_NODE) {
+//
+                                        if("SSQX".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            huji =n4.getTextContent();
+                                        }
+//
+                                    }
+                                }
+                            }
+                        }
+                        str=huji;
+                    }else if(n2.getNodeName().equals("AppType")){
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+//                                str=str+n3.getTextContent();
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("msg")){
+                        str=str+n2.getTextContent();
+                    }
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
 	public static void createXml(People people,Activity context) {
 		XmlSerializer serializer = Xml.newSerializer();// xml文件生成器
 		File file = new File(Constants.DB_PATH,people.uuid+".xml");

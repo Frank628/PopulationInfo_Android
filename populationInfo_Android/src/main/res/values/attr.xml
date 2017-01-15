@@ -39,6 +39,7 @@
             <enum name="health_card" value="9"></enum>
             <enum name="house_code" value="10"></enum>
             <enum name="address" value="11"></enum>
+            <enum name="normal" value="12"></enum>
         </attr>
     </declare-styleable>
 

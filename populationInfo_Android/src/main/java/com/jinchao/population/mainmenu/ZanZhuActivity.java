@@ -93,15 +93,14 @@ public class ZanZhuActivity extends BaseActiviy{
 //			public void onFinished() {}
 //		});
 //	}
-private void requestYanZheng(String idcard){
+private void requestYanZheng(final String idcard){
     dialogLoading.show();
     RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
     x.http().post(params, new Callback.CommonCallback<String>() {
         @Override
         public void onSuccess(String result) {
             Log.d("quePeople", result);
-           tv_content.setText(XmlUtils.parseXML(result));
-
+            requestBanzhengSHEQU(idcard,XmlUtils.parseXML(result));
         }
         @Override
         public void onError(Throwable ex, boolean isOnCallback) {
@@ -115,6 +114,28 @@ private void requestYanZheng(String idcard){
         }
     });
 }
+    private void requestBanzhengSHEQU(String idcard,final String str){
+        dialogLoading.show();
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_jzzStatus&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("quePeople", result);
+                tv_content.setText(str.replace("初次办证社区:",XmlUtils.parseBanZhengSheQuXML(result)));
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                dialogLoading.dismiss();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                dialogLoading.dismiss();
+            }
+        });
+    }
 	private void handleID(boolean isHandle) {
 		Intent intent = new Intent(ZanZhuActivity.this,HandleIDActivity.class);
 		intent.putExtra("people", people);

@@ -27,7 +27,7 @@ public class UserPKDataBase {
 	@Column(column="update_time")
 	public String update_time;
 
-	@Column(column="is_used")
+	@Column(column="is_used")//0在用，1可以删除
 	public String is_used;
 
 	public UserPKDataBase() {}

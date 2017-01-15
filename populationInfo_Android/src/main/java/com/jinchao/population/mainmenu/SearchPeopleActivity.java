@@ -370,7 +370,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			public void onFinished() {}
 		});
 	}
-    private void requestYanZheng(String idcard){
+    private void requestYanZheng(final String idcard){
         showProcessDialog("数据加载中...");
 		if(peoplereadcard!=null){
 			if (!peoplereadcard.getCardno().trim().equals(idcard)){
@@ -382,7 +382,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
             @Override
             public void onSuccess(String result) {
                 Log.d("quePeople", result);
-                tv_content.setText(XmlUtils.parseXML(result));
+                requestBanzhengSHEQU(idcard,XmlUtils.parseXML(result));
 				if (XmlUtils.parseXMLhasthisPeople(result)) {
 //					ll_operation.setVisibility(View.VISIBLE);
 //					btn_add.setEnabled(true);
@@ -408,6 +408,27 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
             @Override
             public void onFinished() {
                 hideProcessDialog();
+            }
+        });
+    }
+    private void requestBanzhengSHEQU(String idcard,final String str){
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_jzzStatus&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("quePeople", result);
+                tv_content.setText(str.replace("初次办证社区:",XmlUtils.parseBanZhengSheQuXML(result)));
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+
             }
         });
     }

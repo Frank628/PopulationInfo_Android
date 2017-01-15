@@ -129,6 +129,11 @@ public class CommonUtils {
 		Matcher m = p.matcher(str);
 		return m.matches();
 	}
+    public static boolean isNormal(String str){//所有输入框非单引号
+        Pattern p = Pattern.compile("^[^']+$");
+        Matcher m = p.matcher(str);
+        return m.matches();
+    }
 	public static boolean isFangwuBianHao(String str){
 			Pattern p = Pattern.compile("[A-Za-z0-9]{6}");
 			Matcher m = p.matcher(str);

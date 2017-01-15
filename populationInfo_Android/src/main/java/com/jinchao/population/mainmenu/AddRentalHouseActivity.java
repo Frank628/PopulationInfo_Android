@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Common;
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
@@ -32,6 +33,7 @@ import com.jinchao.population.entity.HouseRegistBean;
 import com.jinchao.population.entity.YanZhengBean;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.CommonUtils;
+import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.ResultBeanAndList;
 import com.jinchao.population.utils.XmlUtils;
@@ -86,7 +88,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				DbUtils dbUtils=DeviceUtils.getDbUtils(AddRentalHouseActivity.this);
 				List<HouseAddress> list=new ArrayList<HouseAddress>();
 				try {
-					list = dbUtils.findAll(Selector.from(HouseAddress.class).where("id","=",fangwubianhao));
+					list = dbUtils.findAll(Selector.from(DatabaseUtil.getTable_HouseAddress(((MyApplication)getApplication()).database_tableNo,AddRentalHouseActivity.this)).where("id","=",fangwubianhao));
 				} catch (DbException e) {
 					e.printStackTrace();
 				}
