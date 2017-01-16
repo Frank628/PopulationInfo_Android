@@ -7,11 +7,14 @@ import java.util.List;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -101,6 +104,7 @@ public class LoginActivity extends BaseActiviy{
 			@Override
 			public void onDrawableRightClick(View view) {
 				userDropDownPop.showPopupWindow(edt_user2);
+				hideKeyBord(edt_user2);
 			}
 		});
         if(!CommonUtils.isNotificationEnabled(this)){
@@ -119,6 +123,7 @@ public class LoginActivity extends BaseActiviy{
 	@Event(value=R.id.edt_user)
 	private void showPopClick(View view){
 		popupUser.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+
 	}
 	@Event(value=R.id.btn_login)
 	private void loginClick(View view){
@@ -195,6 +200,8 @@ public class LoginActivity extends BaseActiviy{
                                             }
                                         }
 
+									}else{
+											dbUtils.save(new UserHistory(username, userBean.data.get(i).account.get(j).userId, userBean.data.get(i).account.get(j).sqName, userBean.data.get(i).account.get(j).sqId, userBean.data.get(i).pcsName, userBean.data.get(i).pcsId,time));
 									}
 									((MyApplication)getApplication()).setDataBaseTableNo(DatabaseUtil.getSQ_DataBase_No(LoginActivity.this));
 								} catch (DbException e) {
@@ -251,5 +258,8 @@ public class LoginActivity extends BaseActiviy{
 			isToggle = true;
 		}
 	}
-
+	private void hideKeyBord(View view){
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+	}
 }

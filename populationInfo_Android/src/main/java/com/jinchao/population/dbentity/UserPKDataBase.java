@@ -32,11 +32,12 @@ public class UserPKDataBase {
 
 	public UserPKDataBase() {}
 
-	public UserPKDataBase(String sq_name, int database_name, String time, String is_used) {
+	public UserPKDataBase(String sq_name, int database_name, String create_time, String is_used,String update_time) {
 		this.sq_name = sq_name;
 		this.database_name = database_name;
 		this.create_time = create_time;
 		this.is_used = is_used;
+		this.update_time=update_time;
 	}
 	public UserPKDataBase(String sq_name, int database_name, String time) {
 		this.sq_name = sq_name;

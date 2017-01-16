@@ -4,7 +4,7 @@ import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Id;
 import com.lidroid.xutils.db.annotation.Table;
 
-@Table(name="Houseaddressold4")
+@Table(name="Houseaddressold5")
 public class HouseAddressOldBean5 {
 	@Id
 	public String id="";

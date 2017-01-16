@@ -66,6 +66,8 @@ import com.jinchao.population.view.DialogLoading;
 import com.jinchao.population.view.NavigationLayout;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.exception.DbException;
+
 @ContentView(R.layout.activity_registrentalhouse)
 public class RegistRentalHouseActivity extends BaseActiviy{
 	
@@ -109,6 +111,8 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 					switch (database_tableNo){
 						case 1:
 							if (listzen.size()==0){
+								tv_data.setVisibility(View.INVISIBLE);
+							}else{
 								tv_data.setVisibility(View.VISIBLE);
 							}
 							CommonAdapter<HouseAddress> adapter =new CommonAdapter<HouseAddress>(RegistRentalHouseActivity.this,listzen,R.layout.item_houseaddress) {
@@ -120,6 +124,8 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							lv.setAdapter(adapter);
 						case 2:
 							if (listzen2.size()==0){
+								tv_data.setVisibility(View.INVISIBLE);
+							}else{
 								tv_data.setVisibility(View.VISIBLE);
 							}
 							CommonAdapter<HouseAddress2> adapter2 =new CommonAdapter<HouseAddress2>(RegistRentalHouseActivity.this,listzen2,R.layout.item_houseaddress) {
@@ -132,6 +138,8 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							break;
 						case 3:
 							if (listzen3.size()==0){
+								tv_data.setVisibility(View.INVISIBLE);
+							}else{
 								tv_data.setVisibility(View.VISIBLE);
 							}
 							CommonAdapter<HouseAddress3> adapter3 =new CommonAdapter<HouseAddress3>(RegistRentalHouseActivity.this,listzen3,R.layout.item_houseaddress) {
@@ -144,6 +152,8 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							break;
 						case 4:
 							if (listzen4.size()==0){
+								tv_data.setVisibility(View.INVISIBLE);
+							}else{
 								tv_data.setVisibility(View.VISIBLE);
 							}
 							CommonAdapter<HouseAddress4> adapter4 =new CommonAdapter<HouseAddress4>(RegistRentalHouseActivity.this,listzen4,R.layout.item_houseaddress) {
@@ -156,6 +166,8 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							break;
 						case 5:
 							if (listzen4.size()==0){
+								tv_data.setVisibility(View.INVISIBLE);
+							}else{
 								tv_data.setVisibility(View.VISIBLE);
 							}
 							CommonAdapter<HouseAddress5> adapter5 =new CommonAdapter<HouseAddress5>(RegistRentalHouseActivity.this,listzen5,R.layout.item_houseaddress) {
@@ -450,7 +462,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							userPKDataBase.setUpdate_time(date);
 							dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
 						}else{
-							dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0"));
+							dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
 						}
 						isQuanKuOk=true;
 						Message msg=new Message();
@@ -478,6 +490,15 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 				dialogLoading.setName("正在加载合成地址...");
 			}
 		});
+		String lastudttime="2011-01-01 12:00:00";
+		try {
+			UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
+			if (userPKDataBase!=null){
+				lastudttime=userPKDataBase.getUpdate_time();
+			}
+		} catch (DbException e) {
+			e.printStackTrace();
+		}
 		RequestParams params;
 		if (Is_RealPopulation){
 			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
@@ -486,7 +507,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		}
 		params.addBodyParameter("type", "get");
 		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
-		params.addBodyParameter("last_udt",SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"));
+		params.addBodyParameter("last_udt",lastudttime);
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
@@ -558,7 +579,15 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 				dialogLoading.setName("正在加载分段地址...");
 			}
 		});
-		Log.d("last_udt", SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"));
+		String lastudttime="2011-01-01 12:00:00";
+		try {
+			UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
+			if (userPKDataBase!=null){
+				lastudttime=userPKDataBase.getUpdate_time();
+			}
+		} catch (DbException e) {
+			e.printStackTrace();
+		}
 		RequestParams params;
 		if (Is_RealPopulation){
 			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
@@ -569,7 +598,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		}
 
 		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
-		params.addBodyParameter("last_udt",SharePrefUtil.getString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, "2011-01-01 12:00:00"));
+		params.addBodyParameter("last_udt",lastudttime);
 		x.http().post(params, new Callback.CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
@@ -690,9 +719,17 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 								}
 							}
 						}
+
 						SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");       
-						String date =sDateFormat.format(new Date(System.currentTimeMillis())); 
-						SharePrefUtil.saveString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, date);
+						String date =sDateFormat.format(new Date(System.currentTimeMillis()));
+						UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
+						if (userPKDataBase!=null){
+							userPKDataBase.setIs_used("0");
+							userPKDataBase.setUpdate_time(date);
+							dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
+						}else{
+							dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
+						}
 						Message msg=new Message();
 						msg.what=1;
 						handler.sendMessage(msg);
