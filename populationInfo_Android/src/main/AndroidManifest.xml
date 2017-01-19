@@ -69,6 +69,7 @@
         <activity android:name="com.jinchao.population.main.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.AlienPopulationActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.RegisterActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.SearchTwoWayActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.ZanZhuActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.HandleIDActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.RegistRentalHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>

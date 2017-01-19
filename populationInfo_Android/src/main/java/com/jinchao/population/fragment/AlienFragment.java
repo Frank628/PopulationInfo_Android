@@ -19,6 +19,7 @@ import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.mainmenu.ReshootActivity;
 import com.jinchao.population.mainmenu.SearchPeopleActivity;
 import com.jinchao.population.mainmenu.SearchRentalHouseActivity;
+import com.jinchao.population.mainmenu.SearchTwoWayActivity;
 import com.jinchao.population.mainmenu.SysActivity;
 import com.jinchao.population.realpopulation.SearchPeopleRealActivity;
 import com.jinchao.population.utils.GsonTools;
@@ -64,7 +65,7 @@ public class AlienFragment extends BaseFragment {
 
     @Event(value={R.id.iv_register})
     private void onRegistClick(View view){
-        Intent intent =new Intent(getActivity(), RegisterActivity.class);
+        Intent intent =new Intent(getActivity(), SearchTwoWayActivity.class);
         startActivity(intent);
     }
     @Event(value={R.id.iv_rentalhouseregist})
