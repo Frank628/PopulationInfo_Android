@@ -105,7 +105,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	private boolean isreal=false,isReplace=false;
 	private RealHouseOne realHouseOne ;//实有人口传参
 	private FacePop facePop;
-
+	private boolean  isfromotherway=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -117,7 +117,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				onBackPressed();
 			}
 		});
-
+		isfromotherway=getIntent().getBooleanExtra("fromotherway",false);
         dbUtils =DeviceUtils.getDbUtils(RegisterActivity.this);
 		idReader.setListener(this);
 		isreal =getIntent().getBooleanExtra("isreal", false);
@@ -139,6 +139,21 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 					},"保留","去除");
 				}
 		});
+		People people=(People) getIntent().getSerializableExtra("people");
+		String idcard=getIntent().getStringExtra("idcard");
+		if(people!=null){
+			edt_idcard.setText(idcard);
+			edt_name.setText(people.getName());
+			edt_sex.setText(people.getSex());
+			edt_birth.setText(people.getBirthday());
+			edt_address.setText(people.getAddress());
+			edt_region.setText(people.getPeople());
+		}else {
+			if (isfromotherway){
+
+				edt_idcard.setText(idcard);
+			}
+		}
 	}
 	private void setListener(){
 		 edt_idcard.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -171,6 +186,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	                }
 	            }
 		 });
+
 	}
 	 private void getIDInfo(String idcardNO) {
          edt_birth.setText(idcardNO.substring(6, 14));

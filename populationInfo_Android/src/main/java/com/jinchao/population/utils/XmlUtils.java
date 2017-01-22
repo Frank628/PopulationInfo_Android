@@ -475,6 +475,58 @@ public class XmlUtils {
 		}
 		return str;
 	}
+	public static  boolean parseXMLIsBanzheng(String xml){
+		boolean str=false;
+		xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document d = db.parse(CommonUtils.writeTxtToFile(xml, Constants.DB_PATH,"xml.xml"));
+			Node n = d.getChildNodes().item(0);
+			NodeList nl = n.getChildNodes();
+			for (int i = 0; i < nl.getLength(); i++) {
+				Node n2 = nl.item(i);
+				if (n2.getNodeType() == Node.ELEMENT_NODE) {
+					if (n2.getNodeName().equals("ResultSet")) {
+						NodeList nl2 = n2.getChildNodes();
+						for (int j = 0; j < nl2.getLength(); j++) {
+							Node n3 = nl2.item(j);
+							if (n3.getNodeType() == Node.ELEMENT_NODE) {
+								NodeList nl3 = n3.getChildNodes();
+								for (int k = 0; k < nl3.getLength(); k++) {
+									Node n4 = nl3.item(k);
+									if (n4.getNodeType() == Node.ELEMENT_NODE) {
+
+										if("居住证申请时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											str=n4.getTextContent().equals("")?false:true;
+										}
+
+									}
+								}
+							}
+						}
+					}else if(n2.getNodeName().equals("AppType")){
+						NodeList nl2 = n2.getChildNodes();
+						for (int j = 0; j < nl2.getLength(); j++) {
+							Node n3 = nl2.item(j);
+							if (n3.getNodeType() == Node.ELEMENT_NODE) {
+//                                str=str+n3.getTextContent();
+							}
+						}
+					}else if(n2.getNodeName().equals("msg")){
+					}
+				}
+			}
+
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return str;
+	}
     public static  String parseBanZhengSheQuXML(String xml){
         String str="";
         xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");

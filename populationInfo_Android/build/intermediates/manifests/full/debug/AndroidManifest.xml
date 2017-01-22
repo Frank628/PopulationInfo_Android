@@ -106,7 +106,11 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateUnspecified|adjustPan" />
         <activity
-            android:name="com.jinchao.population.mainmenu.SearchTwoWayActivity"
+            android:name="com.jinchao.population.alienPeople.SearchTwoWayActivity"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateUnspecified|adjustPan" />
+        <activity
+            android:name="com.jinchao.population.alienPeople.IDCardResultActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateUnspecified|adjustPan" />
         <activity

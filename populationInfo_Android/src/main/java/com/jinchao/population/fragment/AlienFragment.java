@@ -3,7 +3,6 @@ package com.jinchao.population.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,17 +10,14 @@ import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
-import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.MaturityListBean;
 import com.jinchao.population.mainmenu.MaturityWarningActivity;
 import com.jinchao.population.mainmenu.RegistRentalHouseActivity;
-import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.mainmenu.ReshootActivity;
 import com.jinchao.population.mainmenu.SearchPeopleActivity;
 import com.jinchao.population.mainmenu.SearchRentalHouseActivity;
-import com.jinchao.population.mainmenu.SearchTwoWayActivity;
+import com.jinchao.population.alienPeople.SearchTwoWayActivity;
 import com.jinchao.population.mainmenu.SysActivity;
-import com.jinchao.population.realpopulation.SearchPeopleRealActivity;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.widget.BadgeView;
 

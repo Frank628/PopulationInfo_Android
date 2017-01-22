@@ -7,6 +7,7 @@
         android:id="@+id/navgation_top"
         layout="@layout/navigation_layout"
         />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +30,21 @@
                     android:textSize="20sp"
                     android:textColor="@color/black_drak"
                     android:text="按身份证查询"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/login_bg"
+                android:layout_margin="25dp"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/icon_idcard_left"/>
                 <com.jinchao.population.widget.ValidateEidtText
+                    android:id="@+id/edt_idcard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -37,7 +52,7 @@
                     android:textColor="@color/title2"
                     android:hint="请读卡或输入身份证"
                     android:textColorHint="@color/title3"
-                    android:background="@drawable/login_bg"
+                    android:background="@color/transaction"
                     android:maxLength="18"
                     android:singleLine="true"
                     android:inputType="text"
@@ -47,20 +62,25 @@
                     app:vd_textRightColor="@color/title2"
                     app:vd_drawable_right_right="@drawable/icon_gou"
                     app:vd_drawable_right_error="@drawable/icon_gantan"
-                    android:layout_margin="25dp"
+
                     android:padding="6dp"
                     app:vd_validate_type="id_card"/>
+                </LinearLayout>
                     <Button
+                        android:id="@+id/btn_idcard_search"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:textSize="16sp"
                         android:textColor="@color/title1"
-                        android:text="查询"/>
+                        android:text="查        询"/>
             </LinearLayout>
         </RelativeLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E1E1E1"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -79,7 +99,21 @@
                     android:textSize="20sp"
                     android:textColor="@color/black_drak"
                     android:text="按房屋编号查询"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/login_bg"
+                    android:layout_margin="25dp"
+                    android:gravity="center_vertical">
+                 <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="5dp"
+                     android:layout_marginRight="5dp"
+                     android:src="@drawable/icon_house_left"/>
                 <com.jinchao.population.widget.ValidateEidtText
+                    android:id="@+id/edt_housecode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -87,7 +121,7 @@
                     android:textColor="@color/title2"
                     android:hint="请输入房屋编号"
                     android:textColorHint="@color/title3"
-                    android:background="@drawable/login_bg"
+                    android:background="@color/transaction"
                     android:maxLength="6"
                     android:singleLine="true"
                     android:inputType="text"
@@ -97,17 +131,18 @@
                     app:vd_textRightColor="@color/title2"
                     app:vd_drawable_right_right="@drawable/icon_gou"
                     app:vd_drawable_right_error="@drawable/icon_gantan"
-                    android:layout_margin="25dp"
                     android:padding="6dp"
                     app:vd_validate_type="id_card"/>
+                </LinearLayout>
                 <Button
+                    android:id="@+id/btn_house_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:textSize="16sp"
                     android:textColor="@color/title1"
-                    android:text="查询"/>
+                    android:text="查        询"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
