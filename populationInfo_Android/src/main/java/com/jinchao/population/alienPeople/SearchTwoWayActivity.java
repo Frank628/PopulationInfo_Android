@@ -15,14 +15,21 @@ import com.caihua.cloud.common.reader.IDReader;
 import com.jinchao.population.MyApplication;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseReaderActiviy;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
+import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.ValidateEidtText;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
 import java.io.ByteArrayOutputStream;
 
 /**
@@ -33,6 +40,7 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
     @ViewInject(R.id.edt_idcard) ValidateEidtText edt_idcard;
     @ViewInject(R.id.edt_housecode) ValidateEidtText edt_housecode;
     People people=null;
+    Bitmap bmp=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +130,7 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
             showError(msg);
         }else{
             edt_idcard.setText(user.getIdNumber());
-            Bitmap bmp =  BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
+            bmp =  BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bmp.compress(Bitmap.CompressFormat.JPEG, 60, stream);
             byte[] b = stream.toByteArray();
@@ -161,13 +169,15 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
                     isSecondCard=2;
                 }else{
                     people=null;
+                    bmp=null;
                     isSecondCard=1;
                 }
                 Intent intent=new Intent(this,IDCardResultActivity.class);
                 intent.putExtra("idcard",idcardNO);
                 intent.putExtra("isSecond",isSecondCard);
                 intent.putExtra("people",people);
-                startActivity(intent);
+                intent.putExtra("pic",bmp);
+                isSuZhouRen(idcardNO,intent);
             } else {
                 Toast.makeText(SearchTwoWayActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
             }
@@ -177,5 +187,28 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
         }
 
     }
+    private void isSuZhouRen(String idcard,final Intent intent){
+        showProcessDialog("正在验证常口，请稍等···");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_isck&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                if (result.trim().contains("苏州")||result.contains("昆山")||result.contains("吴江")||result.contains("张家港")||result.contains("太仓")||result.contains("常熟")) {
+                    Toast.makeText(SearchTwoWayActivity.this,"户籍在苏州大市的人员无法办理居住证！",Toast.LENGTH_SHORT).show();
+                }else{
+                    SearchTwoWayActivity.this.startActivity(intent);
+                }
 
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                hideProcessDialog();
+            }
+        });
+    }
 }

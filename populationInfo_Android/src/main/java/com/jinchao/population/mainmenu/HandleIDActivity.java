@@ -615,7 +615,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					return;
 				}
 			}
-			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
+			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date =sDateFormat.format(new java.util.Date());
 			SharePrefUtil.saveString(HandleIDActivity.this, "realroomcode", shihao);
 			if (rc_bianhao.isChecked())
@@ -795,7 +795,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				}
 			}
 			SharePrefUtil.saveString(HandleIDActivity.this, "realroomcode", shihao);
-			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
+			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date =sDateFormat.format(new java.util.Date());
 			if (!TextUtils.isEmpty(chepaihao)) {
 				if (!CommonUtils.isCarNo(chepaihao)) {

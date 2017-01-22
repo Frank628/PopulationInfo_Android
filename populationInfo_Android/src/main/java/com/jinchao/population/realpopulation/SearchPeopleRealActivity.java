@@ -625,7 +625,7 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
     }
     @Event(value={R.id.btn_delay})
     private void yanqi(View view){
-        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date =sDateFormat.format(new java.util.Date());
         People people=new People(peoplefromadd.name, peoplefromadd.cardno, peoplefromadd.cardno.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
                 MyInfomationManager.getUserName(SearchPeopleRealActivity.this), "1", peoplefromadd.homecode, peoplefromadd.ResidentAddress, peoplefromadd.Roomcode,
@@ -648,7 +648,7 @@ public class SearchPeopleRealActivity extends BaseReaderActiviy implements  IDRe
     }
     @Event(value={R.id.btn_logout})
     private void zhuxiao(View view){
-        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date =sDateFormat.format(new java.util.Date());
         People people=new People(peoplefromadd.name, date, peoplefromadd.cardno, "注销", CommonUtils.GenerateGUID(), "2",
                 MyInfomationManager.getUserName(SearchPeopleRealActivity.this), peoplereadcard.homecode,peoplereadcard.ResidentAddress);

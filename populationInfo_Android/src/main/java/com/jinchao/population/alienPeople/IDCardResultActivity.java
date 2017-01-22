@@ -6,14 +6,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.dbentity.People;
 import com.jinchao.population.mainmenu.RegisterActivity;
+import com.jinchao.population.mainmenu.SearchPeopleActivity;
+import com.jinchao.population.utils.CommonUtils;
+import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.NavigationLayout;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -22,6 +31,10 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by OfferJiShu01 on 2017/1/22.
  */
@@ -29,6 +42,7 @@ import org.xutils.x;
 public class IDCardResultActivity extends BaseActiviy{
     @ViewInject(R.id.tv_content)TextView tv_content;
     @ViewInject(R.id.bottom)LinearLayout bottom;
+    People peoplefromXml;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +65,7 @@ public class IDCardResultActivity extends BaseActiviy{
             @Override
             public void onSuccess(String result) {
                 requestBanzhengSHEQU(idcard, XmlUtils.parseXML(result));
+                peoplefromXml=XmlUtils.parseXMLtoPeople(result);
                 if (XmlUtils.parseXMLIsBanzheng(result)){
                     bottom.setVisibility(View.VISIBLE);
                 }else {
@@ -60,10 +75,13 @@ public class IDCardResultActivity extends BaseActiviy{
                         public void confirm() {
                             Intent intent=new Intent(IDCardResultActivity.this, RegisterActivity.class);
                             intent.putExtra("fromotherway",true);
+                            intent.putExtra("isHandle",true);
                             intent.putExtra("idcard",getIntent().getStringExtra("idcard"));
                             intent.putExtra("isSecond",getIntent().getIntExtra("isSecond",0));
                             intent.putExtra("people",getIntent().getSerializableExtra("people"));
+                            intent.putExtra("pic",getIntent().getParcelableExtra("pic"));
                             startActivity(intent);
+                            IDCardResultActivity.this.finish();
                         }
 
                         @Override
@@ -110,6 +128,30 @@ public class IDCardResultActivity extends BaseActiviy{
         intent.putExtra("idcard",getIntent().getStringExtra("idcard"));
         intent.putExtra("isSecond",getIntent().getIntExtra("isSecond",0));
         intent.putExtra("people",getIntent().getSerializableExtra("people"));
+        intent.putExtra("pic",getIntent().getParcelableExtra("pic"));
         startActivity(intent);
+        IDCardResultActivity.this.finish();
+    }
+    @Event(value={R.id.btn_unregist})
+    private void zhuxiao(View view){
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date =sDateFormat.format(new java.util.Date());
+        People people=new People(peoplefromXml.name, date, peoplefromXml.cardno, "注销", CommonUtils.GenerateGUID(), "2",
+                MyInfomationManager.getUserName(IDCardResultActivity.this), peoplefromXml.homecode,peoplefromXml.ResidentAddress);
+        DbUtils dbUtils = DeviceUtils.getDbUtils(this);
+        List<People> list=new ArrayList<People>();
+        try {
+            list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", peoplefromXml.cardno));
+            if (list!=null) {
+                if (list.size()>0) {
+                    dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", peoplefromXml.cardno));
+                }
+            }
+            dbUtils.save(people);
+            Toast.makeText(this, "注销成功~", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "注销失败~", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 }

@@ -184,7 +184,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 //					if (realHouseInfo.data.peoplelist==null){
 //						try {
 //							dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
-//							SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//							SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //							String date =sDateFormat.format(new java.util.Date());
 //							dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
 //							Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();
@@ -206,7 +206,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 //									if (i==(realHouseInfo.data.peoplelist.size()-1)){
 //										try {
 //											dbUtils.delete(HouseOperation.class, WhereBuilder.b("house_code", "=", house_code));
-//											SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//											SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //											String date =sDateFormat.format(new java.util.Date());
 //											dbUtils.save(new HouseOperation(house_code,address,date,"注销",MyInfomationManager.getUserName(SearchRentalHouseActivity.this)));
 //											Toast.makeText(SearchRentalHouseActivity.this,"注销成功!",Toast.LENGTH_SHORT).show();

@@ -89,6 +89,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	@ViewInject(R.id.edt_xaddress)private ValidateEidtText edt_xaddress;
 	@ViewInject(R.id.compare)private ImageButton compare;
 	@ViewInject(R.id.replace)private ImageButton replace;
+    @ViewInject(R.id.ib_firstgencard)private ImageButton ib_firstgencard;
 	@ViewInject(R.id.iv_pic)private ImageView iv_pic;
 	@ViewInject(R.id.edt_formername)private ValidateEidtText edt_formername;
 	private Bitmap bmp;
@@ -148,10 +149,39 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			edt_birth.setText(people.getBirthday());
 			edt_address.setText(people.getAddress());
 			edt_region.setText(people.getPeople());
+            pic=people.getPicture();
+            bmp= getIntent().getParcelableExtra("pic");
+            iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            iv_pic.setImageBitmap(bmp);
 		}else {
 			if (isfromotherway){
-
+                istakephoto="0";
+                isFirstGenerationIDCard=true;
+                resetFirstGenerationIDCardText();
 				edt_idcard.setText(idcard);
+                try {
+                    String idcardNO = edt_idcard.getText().toString().trim();
+                    if (CommonIdcard.validateCard(idcardNO)) {
+                        if (idcardNO.length() == 15) {
+                            idcardNO = CommonIdcard.conver15CardTo18(idcardNO);
+                            edt_idcard.setText(idcardNO);
+                            Toast.makeText(RegisterActivity.this, "15位转18位证件号成功",Toast.LENGTH_SHORT).show();
+                            getIDInfo(idcardNO);
+                        } else if (idcardNO.length() == 17) {
+                            idcardNO = CommonIdcard.conver17CardTo18(idcardNO);
+                            edt_idcard.setText(idcardNO);
+                            Toast.makeText(RegisterActivity.this, "17位转18位证件号成功", Toast.LENGTH_SHORT).show();
+                            getIDInfo(idcardNO);
+                        } else {
+                            getIDInfo(idcardNO);
+                        }
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 			}
 		}
 	}
@@ -712,6 +742,14 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			Dialog.showSelectDialog(RegisterActivity.this, "未拍照，请拍照?", new DialogClickListener() {
 				@Override
 				public void confirm() {
+                    if (isfromotherway){//如果是从人员信息验证界面进入的
+                            Intent intent = new Intent(RegisterActivity.this,HandleIDActivity.class);
+                            intent.putExtra("people", oPeople);
+                            intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
+                            startActivity(intent);
+                            RegisterActivity.this.finish();
+                        return;
+                    }
 					if (isreal) {
 						Intent intent =new Intent(RegisterActivity.this, SingleRealPopulationActivity.class);
 						intent.putExtra("people", oPeople );
@@ -721,7 +759,8 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 					}else{
 						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
 						intent.putExtra("people",oPeople);
-                        isSuZhouRen(oPeople.cardno,intent);
+                        RegisterActivity.this.startActivity(intent);
+
 					}
 				}
 
@@ -732,6 +771,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			});
 			return;
 		}
+
 		if (isreal) {
 			Intent intent =new Intent(this, SingleRealPopulationActivity.class);
 			People p1=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this));
@@ -741,40 +781,23 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			startActivity(intent);
 			RegisterActivity.this.finish();
 		}else{
-
+            if (isfromotherway){//如果是从人员信息验证界面进入的
+                Intent intent = new Intent(RegisterActivity.this,HandleIDActivity.class);
+                intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim()));
+                intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
+                startActivity(intent);
+                RegisterActivity.this.finish();
+                return;
+            }
 			Intent intent =new Intent(this, ZanZhuActivity.class);//isReplace?"1":(isFirstGenerationIDCard?"1":"2")
 			People p1=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim());
 			p1.setIstakephoto(istakephoto);
-
             intent.putExtra("people", p1);
-            isSuZhouRen(p1.cardno,intent);
+            RegisterActivity.this.startActivity(intent);
 
 		}
 	}
-    private void isSuZhouRen(String idcard,final Intent intent){
-        showProcessDialog("正在验证是否为常口，请稍等···");
-        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_isck&idcard="+idcard);
-        x.http().post(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                if (result.trim().contains("苏州")||result.contains("昆山")||result.contains("吴江")||result.contains("张家港")||result.contains("太仓")||result.contains("常熟")) {
-                    Toast.makeText(RegisterActivity.this,"户籍在苏州大市的人员无法办理居住证！",Toast.LENGTH_SHORT).show();
-                }else{
-                    RegisterActivity.this.startActivity(intent);
-                }
 
-            }
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-            }
-            @Override
-            public void onCancelled(CancelledException cex) {}
-            @Override
-            public void onFinished() {
-                hideProcessDialog();
-            }
-        });
-    }
 	private class MyCompareAsyncTask extends CompareAsyncTask {
 		public MyCompareAsyncTask(byte[] imgA, byte[] imgB) {
 			super(imgA, imgB);

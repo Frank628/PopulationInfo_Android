@@ -161,7 +161,7 @@ public class AddChildActivity extends BaseActiviy{
 			@Override
 			public void onSuccess(String result) {
 				if (result.trim().equals("<result>0</result>")) {
-					SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
+					SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String date =sDateFormat.format(new java.util.Date());
 					EventBus.getDefault().post(new RealPeopleinHouseOne(date, "", "", "", "", name, MyInfomationManager.getSQNAME(AddChildActivity.this), roomcode, "不详", sex, childname, 1));
 					AddChildActivity.this.finish();

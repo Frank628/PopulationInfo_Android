@@ -338,7 +338,7 @@ public class SingleRealPopulationActivity extends BaseActiviy{
 									new OnSheetItemClickListener() {
 										@Override
 										public void onClick(int which) {
-												SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+												SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 												String date =sDateFormat.format(new java.util.Date());
 												Intent intent = new Intent(SingleRealPopulationActivity.this,HandleIDActivity.class);
 												intent.putExtra("people", new People(realPeopleinHouseOne.sname, realPeopleinHouseOne.idcard, realPeopleinHouseOne.idcard.trim().substring(0,6), "变更", CommonUtils.GenerateGUID(), "1", "1",
@@ -490,7 +490,7 @@ public class SingleRealPopulationActivity extends BaseActiviy{
 						if (realPeopleinHouseOne.idcard.trim().substring(0, 4).equals("3205")||realPeopleinHouseOne.house_addr.trim().contains("苏州")||realPeopleinHouseOne.house_addr.trim().contains("昆山")||realPeopleinHouseOne.house_addr.trim().contains("吴江")||realPeopleinHouseOne.house_addr.trim().contains("张家港")||realPeopleinHouseOne.house_addr.trim().contains("太仓")||realPeopleinHouseOne.house_addr.trim().contains("常熟")) {
 							Toast.makeText(SingleRealPopulationActivity.this, "注销成功~", Toast.LENGTH_SHORT).show();
 						}else{
-							SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
+							SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 							String date =sDateFormat.format(new java.util.Date()); 
 							People people=new People(realPeopleinHouseOne.sname, date, realPeopleinHouseOne.idcard, "注销", CommonUtils.GenerateGUID(), "2", 
 									MyInfomationManager.getUserName(SingleRealPopulationActivity.this), realHouseOne.scode,realHouseOne.houseAdress);
@@ -585,7 +585,7 @@ public class SingleRealPopulationActivity extends BaseActiviy{
 					Toast.makeText(SingleRealPopulationActivity.this, "添加成功",Toast.LENGTH_SHORT).show();
 					canJianRu=false;
 					btn_jiaru.setEnabled(false);
-					SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
+					SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String date =sDateFormat.format(new java.util.Date());
 					isfirstadd=true;
 					listreal.add(0,new RealPeopleinHouseOne(date, "", "", "", "", people.cardno, "", SharePrefUtil.getString(SingleRealPopulationActivity.this, "realroomcode", ""), "不详", people.sex, people.name, 1));

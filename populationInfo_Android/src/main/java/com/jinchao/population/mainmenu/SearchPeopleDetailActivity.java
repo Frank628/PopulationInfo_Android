@@ -69,7 +69,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	
 	@Event(value={R.id.btn_yanqi})
 	private void yanqi(View view){
-		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
+		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date =sDateFormat.format(new java.util.Date());
 		People people=new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
 				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), "1", renYuanXinXiBean.house_code, renYuanXinXiBean.house_addr, renYuanXinXiBean.shihao,
@@ -118,7 +118,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 //						inputMgr.hideSoftInputFromWindow( room_code_dialog.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 //					}
 //				}).show();
-		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date =sDateFormat.format(new java.util.Date());
 		Intent intent = new Intent(SearchPeopleDetailActivity.this,HandleIDActivity.class);
 		intent.putExtra("people", new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.trim().substring(0,6), "变更", CommonUtils.GenerateGUID(), "1", "1",
@@ -133,7 +133,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	}
 //	private void bianGeng(String roominnercode){
 //
-//		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		String date =sDateFormat.format(new java.util.Date());
 //		People people=new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
 //				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), "1", renYuanXinXiBean.house_code, renYuanXinXiBean.house_addr, roominnercode,
