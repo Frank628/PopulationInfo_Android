@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="变更"
-            android:background="#e51c23"
+            android:background="@color/orange"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_weight="1"/>
@@ -43,8 +43,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="注销"
-            android:background="#e2e2e2"
-            android:textColor="@color/title2"
+            android:background="#e51c23"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_weight="1"/>
     </LinearLayout>

@@ -99,13 +99,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	@ViewInject(R.id.btn_add) private Button btn_add;
 	@ViewInject(R.id.btn_delay) private Button btn_delay;
 	@ViewInject(R.id.btn_logout) private Button btn_logout;
-	@ViewInject(R.id.rg_zai) private RadioGroup rg_zai;
-	@ViewInject(R.id.rl_zai) private RelativeLayout rl_zai;
 	@ViewInject(R.id.rl_search) private RelativeLayout rl_search;
 	@ViewInject(R.id.edt_idcard) private EditText edt_idcard;
-	@ViewInject(R.id.ib_search) private ImageButton ib_search;
-	@ViewInject(R.id.rb_banli) private RadioButton rb_banli;
-	@ViewInject(R.id.rb_zaizhu) private RadioButton rb_zaizhu;
 	@ViewInject(R.id.rb_fangwu) private RadioButton rb_fangwu;
 	@ViewInject(R.id.lv) private ListView lv;
 	@ViewInject(R.id.btn_seach) private TextView btn_seach;
@@ -207,23 +202,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 				}
 			}
 		});
-		rg_zai.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				switch (checkedId) {
-				case R.id.rb_zaizhu:
-					isZaizhu=true;
-					processData(renyuanInHouseBean);
-					break;
-				case R.id.rb_banli:
-					isZaizhu=false;
-					processData(renyuanInHouseBean);
-					break;
-				default:
-					break;
-				}
-			}
-		});
+
 		MyApplication.myApplication.locationService.start();
 //		btn_readcard.setEnabled(false);
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -321,9 +300,7 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 		showProcessDialog("数据加载中...");;
 		RequestParams params=new RequestParams(Constants.URL+"quePeople.aspx");
 		if (IsHouseID) {
-			isZaizhu=true;
-			rb_zaizhu.setChecked(true);
-			params=new RequestParams(Constants.URL+"HousePosition.aspx?type=get_houseinfor&user_id="+MyInfomationManager.getUserName(this)+"&house_code="+str);
+			params=new RequestParams(Constants.URL+"GdPeople.aspx?type=peopleList&sqdm="+MyInfomationManager.getSQCODE(SearchPeopleActivity.this)+"&scode="+str);
 //			params.addBodyParameter("type", "get_houseinfo");
 //			params.addBodyParameter("user_id",MyInfomationManager.getUserName(this));
 //			params.addBodyParameter("house_code", str);
@@ -355,7 +332,6 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 					}
 					
 				} catch (Exception e) {
-					rl_zai.setVisibility(View.GONE);
 					lv.setAdapter(null);
 					e.printStackTrace();
 				}
@@ -447,32 +423,25 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			if (renyuanInHouseBean.data.house_exist.equals("0")){
 				sv_content.setVisibility(View.VISIBLE);
 				ll_house.setVisibility(View.GONE);
-				tv_content.setText("此房屋编号不存在！");
+				tv_content.setText("无人居住房屋或无此房屋编号！");
 				return;
 			}
 			if (renyuanInHouseBean.data.people_exist.equals("0")){
 				sv_content.setVisibility(View.VISIBLE);
 				ll_house.setVisibility(View.GONE);
-				tv_content.setText("此房屋没有采集过人！");
+				tv_content.setText("无人居住房屋或无此房屋编号！");
 				return;
 			}
 			ll_house.setVisibility(View.VISIBLE);
 			sv_content.setVisibility(View.GONE);
-			if (!isSearch){
-				rl_zai.setVisibility(View.VISIBLE);
-				ib_search.setVisibility(View.VISIBLE);
-			}
 			tv_nopeople.setVisibility(View.GONE);
 			lv.setVisibility(View.VISIBLE);
 			List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();
 			list.clear();
-			if(isSearch&&(!TextUtils.isEmpty(edt_idcard.getText().toString().trim()))){
+			if(!TextUtils.isEmpty(edt_idcard.getText().toString().trim())){
 				for (int i = 0; i <renyuanInHouseBean.data.peoplelist.size(); i++) {
 					if (renyuanInHouseBean.data.peoplelist.get(i).idcard.trim().contains(edt_idcard.getText().toString().trim())){
-						if(renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("在住")){
 							list.add(renyuanInHouseBean.data.peoplelist.get(i));
-						}
-
 					}
 				}
 				if (list.size()==0){
@@ -482,26 +451,9 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 				}
 			}else {
 				rl_search.setVisibility(View.GONE);
-				if (isZaizhu) {
-					for (int i = 0; i < renyuanInHouseBean.data.peoplelist.size(); i++) {
-						if (renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("在住")) {
-							list.add(renyuanInHouseBean.data.peoplelist.get(i));
-						}
-					}
-					rb_zaizhu.setText("在住(" + list.size() + "人)");
-					rb_banli.setText("搬离(" + (renyuanInHouseBean.data.peoplelist.size() - list.size()) + "人)");
-				} else {
-					for (int i = 0; i < renyuanInHouseBean.data.peoplelist.size(); i++) {
-						if (renyuanInHouseBean.data.peoplelist.get(i).resdients_status.equals("搬离")) {
-							list.add(renyuanInHouseBean.data.peoplelist.get(i));
-						}
-					}
-					rb_banli.setText("搬离(" + list.size() + "人)");
-					rb_zaizhu.setText("在住(" + (renyuanInHouseBean.data.peoplelist.size() - list.size()) + "人)");
-				}
+				list.addAll(renyuanInHouseBean.data.peoplelist);
 				if (rb_fangwu.isChecked()) {
-					rl_zai.setVisibility(View.VISIBLE);
-					ib_search.setVisibility(View.VISIBLE);
+					rl_search.setVisibility(View.VISIBLE);
 				}
 			}
 			CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne> adapter =new CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne>(SearchPeopleActivity.this,list,R.layout.item_renyuan) {
@@ -644,22 +596,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			e.printStackTrace();
 		}
 	}
-	@Event(value={R.id.ib_search})
-	private void showseachClick(View view){
-		rl_search.setVisibility(View.VISIBLE);
-		ll_house.setVisibility(View.VISIBLE);
-		ib_search.setVisibility(View.GONE);
-		rl_zai.setVisibility(View.GONE);
-		isSearch=true;
-	}
-	@Event(value={R.id.tv_cancel})
-	private void seachitClick(View view){
-		isSearch=false;
-		edt_idcard.setText("");
-		rl_search.setVisibility(View.GONE);
-		rl_zai.setVisibility(View.VISIBLE);
-		ib_search.setVisibility(View.VISIBLE);
-	}
+
+
 	@Event(value={R.id.btn_seach})
 	private void seachClick(View view){
 		String cardno=edt_content.getText().toString().trim();

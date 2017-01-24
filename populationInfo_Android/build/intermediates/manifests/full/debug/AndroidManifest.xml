@@ -114,6 +114,10 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateUnspecified|adjustPan" />
         <activity
+            android:name="com.jinchao.population.alienPeople.PeopleListinHouseActivity"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateUnspecified|adjustPan" />
+        <activity
             android:name="com.jinchao.population.mainmenu.ZanZhuActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />

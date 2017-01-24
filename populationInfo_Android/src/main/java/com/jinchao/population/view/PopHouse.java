@@ -90,6 +90,9 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
         }else{
             database_tableNo=((MyApplication)context.getApplication()).database_tableNo;
         }
+        if(PSCName==null)PSCName=new String[]{""};
+        if(USERName==null)USERName=new String[]{""};
+        if(UserId==null)UserId=new String[]{""};
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mPopView=inflater.inflate(R.layout.pop_house, null);
 		viewfipper = new ViewFlipper(context);

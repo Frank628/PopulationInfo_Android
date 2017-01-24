@@ -113,85 +113,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/rl_zai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-        <RadioGroup
-            android:id="@+id/rg_zai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            android:layout_toLeftOf="@+id/ib_search"
-            >
-            <RadioButton
-                android:id="@+id/rb_zaizhu"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="@dimen/micro_size"
-                android:textColor="@color/title2"
-                android:checked="true"
-                android:text="在住"
-                android:layout_weight="1"
-                />
-            <RadioButton
-                android:id="@+id/rb_banli"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:textSize="@dimen/micro_size"
-                android:textColor="@color/title2"
-                android:text="搬离"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="1"
-                />
-        </RadioGroup>
-            <ImageButton
-                android:id="@+id/ib_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/icon_search"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_search"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp">
+                >
                 <EditText
                     android:id="@+id/edt_idcard"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/search_bg2"
-                    android:textColor="@color/title2"
-                    android:textColorHint="@color/title4"
-                    android:hint="请输入身份证号"
-                    android:textSize="@dimen/micro_size"
-                    android:singleLine="true"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:imeOptions="actionSearch"
-                    android:layout_toLeftOf="@+id/tv_cancel"
-                    android:layout_marginRight="12dp"
-                    android:layout_centerVertical="true"
-                    />
-                <TextView
-                    android:id="@+id/tv_cancel"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="取消"
-                    android:textSize="18sp"
-                    android:textColor="@color/theme_color"
-                    android:layout_alignParentRight="true"
-                    />
+                    android:background="@null"
+                    android:hint="请输入身份证"
+                    android:imeOptions="actionSearch"
+                    android:padding="8dp"
+                    android:maxLength="18"
+                    android:singleLine="true"
+                    android:textColorHint="#9DA0A3"
+                    android:drawableLeft="@drawable/icon_search"
+                    android:drawablePadding="5dp"
+                    android:textSize="16sp" />
+
             </RelativeLayout>
             <FrameLayout
                 android:layout_width="match_parent"

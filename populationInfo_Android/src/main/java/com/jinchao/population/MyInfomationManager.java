@@ -43,4 +43,10 @@ public class MyInfomationManager {
 	public static String getSQNAME(Context context){
 		return SharePrefUtil.getString(context, Constants.SQNAME, "");
 	}
+	public static void setSQCODE(Context context,String value){
+		SharePrefUtil.saveString(context, Constants.SQCODE, value);
+	}
+	public static String getSQCODE(Context context){
+		return SharePrefUtil.getString(context, Constants.SQCODE, "");
+	}
 }

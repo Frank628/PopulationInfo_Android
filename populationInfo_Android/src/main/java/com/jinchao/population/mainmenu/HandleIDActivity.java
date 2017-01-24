@@ -15,6 +15,10 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import com.jinchao.population.base.BaseHandleIDActivity;
+import com.jinchao.population.dbentity.HouseAddressOldBean2;
+import com.jinchao.population.dbentity.HouseAddressOldBean3;
+import com.jinchao.population.dbentity.HouseAddressOldBean4;
+import com.jinchao.population.dbentity.HouseAddressOldBean5;
 import com.jinchao.population.dbentity.HouseJLX;
 import com.jinchao.population.dbentity.HouseJLX2;
 import com.jinchao.population.dbentity.HouseJLX3;
@@ -855,16 +859,69 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private void fangwubianhaoClick(View view){
 		hideSoftKeyBord();
 		try {
-			List<HouseAddressOldBean> list=dbUtils.findAll(HouseAddressOldBean.class);
-			if (list==null) {
-				Dialog.showSelectDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
-					@Override
-					public void confirm() {}
-					@Override
-					public void cancel() {}
-				});
-				return;
+			switch (database_tableNo){
+				case 1:
+					List<HouseAddressOldBean> list=dbUtils.findAll(HouseAddressOldBean.class);
+					if (list==null) {
+						Dialog.showRadioDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
+							@Override
+							public void confirm() {}
+							@Override
+							public void cancel() {}
+						});
+						return;
+					}
+					break;
+				case 2:
+					List<HouseAddressOldBean2> list2=dbUtils.findAll(HouseAddressOldBean2.class);
+					if (list2==null) {
+						Dialog.showRadioDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
+							@Override
+							public void confirm() {}
+							@Override
+							public void cancel() {}
+						});
+						return;
+					}
+					break;
+				case 3:
+					List<HouseAddressOldBean3> list3=dbUtils.findAll(HouseAddressOldBean3.class);
+					if (list3==null) {
+						Dialog.showRadioDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
+							@Override
+							public void confirm() {}
+							@Override
+							public void cancel() {}
+						});
+						return;
+					}
+					break;
+				case 4:
+					List<HouseAddressOldBean4> list4=dbUtils.findAll(HouseAddressOldBean4.class);
+					if (list4==null) {
+						Dialog.showRadioDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
+							@Override
+							public void confirm() {}
+							@Override
+							public void cancel() {}
+						});
+						return;
+					}
+					break;
+				case 5:
+					List<HouseAddressOldBean5> list5=dbUtils.findAll(HouseAddressOldBean5.class);
+					if (list5==null) {
+						Dialog.showRadioDialog(HandleIDActivity.this, "未下载地址库,请先下载全库地址~", new DialogClickListener() {
+							@Override
+							public void confirm() {}
+							@Override
+							public void cancel() {}
+						});
+						return;
+					}
+					break;
 			}
+
 		} catch (DbException e) {
 			e.printStackTrace();
 		}

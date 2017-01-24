@@ -53,6 +53,7 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
                 onBackPressed();
             }
         });
+
     }
     @Override
     protected void onNewIntent(Intent intent) {
@@ -187,6 +188,12 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
         }
 
     }
+    @Event(value={R.id.btn_house_search,R.id.edt_housecode})
+    private void onhousesearchClick(View view){
+        edt_idcard.setText("");
+        edt_idcard.clearFocus();
+        SearchFragment.newInstance().show(getSupportFragmentManager(),SearchFragment.TAG);
+    }
     private void isSuZhouRen(String idcard,final Intent intent){
         showProcessDialog("正在验证常口，请稍等···");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_isck&idcard="+idcard);
@@ -194,7 +201,7 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
             @Override
             public void onSuccess(String result) {
                 if (result.trim().contains("苏州")||result.contains("昆山")||result.contains("吴江")||result.contains("张家港")||result.contains("太仓")||result.contains("常熟")) {
-                    Toast.makeText(SearchTwoWayActivity.this,"户籍在苏州大市的人员无法办理居住证！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchTwoWayActivity.this,"此人系本市户籍人员，无需登记！",Toast.LENGTH_SHORT).show();
                 }else{
                     SearchTwoWayActivity.this.startActivity(intent);
                 }
@@ -211,4 +218,5 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
             }
         });
     }
+
 }

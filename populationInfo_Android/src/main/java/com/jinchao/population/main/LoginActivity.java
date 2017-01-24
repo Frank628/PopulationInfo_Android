@@ -159,7 +159,7 @@ public class LoginActivity extends BaseActiviy{
 					for (int i = 0; i < userBean.data.size(); i++) {
 						for (int j = 0; j <userBean.data.get(i).account.size(); j++) {
 							if (username.equals(userBean.data.get(i).account.get(j).userName.trim())) {
-								dismissProgressDialog();
+
 								if (isToggle) {
 									if (!password.equals("123456")) {
 										runOnUiThread(new Runnable() {
@@ -216,6 +216,12 @@ public class LoginActivity extends BaseActiviy{
 									}
 								}
 								SharePrefUtil.saveObj(LoginActivity.this, Constants.Accountlist, listacount);
+								for (int m=0;m<Constants.SQ_NAME_GUANGDA.length;m++){
+									if (Constants.SQ_NAME_GUANGDA[m].contains(userBean.data.get(i).account.get(j).sqName)){
+										MyInfomationManager.setSQCODE(LoginActivity.this,Constants.SQ_CODE_GUANGDA[m]);
+									}
+								}
+								dismissProgressDialog();
 								loginSuccess();
 								return;
 							}
