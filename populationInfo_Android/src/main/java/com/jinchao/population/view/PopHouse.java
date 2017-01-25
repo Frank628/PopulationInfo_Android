@@ -90,9 +90,6 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
         }else{
             database_tableNo=((MyApplication)context.getApplication()).database_tableNo;
         }
-        if(PSCName==null)PSCName=new String[]{""};
-        if(USERName==null)USERName=new String[]{""};
-        if(UserId==null)UserId=new String[]{""};
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mPopView=inflater.inflate(R.layout.pop_house, null);
 		viewfipper = new ViewFlipper(context);
@@ -118,13 +115,16 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 		this.update();
 		this.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		dbUtils=DeviceUtils.getDbUtils(context);
-
-		PCSView.setViewAdapter(new ArrayWheelAdapter<String>(context1, PSCName));
+        if (PSCName!=null){
+            PCSView.setViewAdapter(new ArrayWheelAdapter<String>(context1, PSCName));
+        }
 		PCSView.addChangingListener(PopHouse.this);
 		USERView.addChangingListener(PopHouse.this);
 		PCSView.setVisibleItems(7);
 		USERView.setVisibleItems(7);
-		updateUser();
+        if (PSCName!=null) {
+            updateUser();
+        }
 
 		edt_content.addTextChangedListener(new TextWatcher() {
 			@Override
@@ -348,39 +348,7 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 
 	}
 
-	private void initData(){
-				try {
-					List<JLX> jlxList=dbUtils.findAll(Selector.from(JLX.class));
-					PSCName=new String[jlxList.size()];
-					for (int i = 0; i < jlxList.size(); i++) {
-						PSCName[i]=jlxList.get(i).jlx_name;
-						List<HouseJLX> housejlxList=dbUtils.findAll(Selector.from(HouseJLX.class).where("fk_p","=",jlxList.get(i).id));
-						if (housejlxList.size()!=0) {
-							USERName=new String[housejlxList.size()];
-							UserId=new String[housejlxList.size()];
-							for (int j = 0; j <housejlxList.size(); j++) {
-								USERName[j]=housejlxList.get(j).hosejlx_name;
-								UserId[j]=housejlxList.get(j).id;
-							}
-							UserNameMap.put(jlxList.get(i).jlx_name, USERName);
-							UserIdMap.put(jlxList.get(i).jlx_name, UserId);
-						}else{
-							USERName=new String[]{""};
-							UserId=new String[]{""};
-							UserNameMap.put(jlxList.get(i).jlx_name, USERName);
-							UserIdMap.put(jlxList.get(i).jlx_name, UserId);
-						}
-					}
-					PCSView.setViewAdapter(new ArrayWheelAdapter<String>(context1, PSCName));
-					PCSView.addChangingListener(PopHouse.this);
-					USERView.addChangingListener(PopHouse.this);
-					PCSView.setVisibleItems(7);
-					USERView.setVisibleItems(7);
-					updateUser();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	}
+
 	private void updateUser(){
 		int pcsCurrentPostion =PCSView.getCurrentItem();
 		mCurrentPcs=PSCName[pcsCurrentPostion];

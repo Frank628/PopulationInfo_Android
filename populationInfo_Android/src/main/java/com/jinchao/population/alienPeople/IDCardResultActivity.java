@@ -43,6 +43,7 @@ public class IDCardResultActivity extends BaseActiviy{
     @ViewInject(R.id.tv_content)TextView tv_content;
     @ViewInject(R.id.bottom)LinearLayout bottom;
     People peoplefromXml;
+    String name="",huji1="",huji2="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +67,14 @@ public class IDCardResultActivity extends BaseActiviy{
             public void onSuccess(String result) {
                 requestBanzhengSHEQU(idcard, XmlUtils.parseXML(result));
                 peoplefromXml=XmlUtils.parseXMLtoPeople(result);
+                name=peoplefromXml.getName();
+                huji2=XmlUtils.parseXMLtohuji2(result);
+                huji1=XmlUtils.parseXMLtohuji1(result);
                 if (XmlUtils.parseXMLIsBanzheng(result)){
                     bottom.setVisibility(View.VISIBLE);
                 }else {
                     bottom.setVisibility(View.GONE);
-                    Dialog.showRadioDialog(IDCardResultActivity.this, "此人未办理居住证，立即办理居住证！", new Dialog.DialogClickListener() {
+                    Dialog.showSelectDialog(IDCardResultActivity.this, "此人未登记，立即登记！", new Dialog.DialogClickListener() {
                         @Override
                         public void confirm() {
                             Intent intent=new Intent(IDCardResultActivity.this, RegisterActivity.class);
@@ -80,13 +84,16 @@ public class IDCardResultActivity extends BaseActiviy{
                             intent.putExtra("isSecond",getIntent().getIntExtra("isSecond",0));
                             intent.putExtra("people",getIntent().getSerializableExtra("people"));
                             intent.putExtra("pic",getIntent().getParcelableExtra("pic"));
+                            intent.putExtra("name",name);
+                            intent.putExtra("huji2",huji2);
+                            intent.putExtra("huji1",huji1);
                             startActivity(intent);
                             IDCardResultActivity.this.finish();
                         }
 
                         @Override
                         public void cancel() {
-
+                            IDCardResultActivity.this.finish();
                         }
                     });
                 }
@@ -129,6 +136,9 @@ public class IDCardResultActivity extends BaseActiviy{
         intent.putExtra("isSecond",getIntent().getIntExtra("isSecond",0));
         intent.putExtra("people",getIntent().getSerializableExtra("people"));
         intent.putExtra("pic",getIntent().getParcelableExtra("pic"));
+        intent.putExtra("name",name);
+        intent.putExtra("huji2",huji2);
+        intent.putExtra("huji1",huji1);
         startActivity(intent);
         IDCardResultActivity.this.finish();
     }

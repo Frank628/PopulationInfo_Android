@@ -217,7 +217,7 @@ public class LoginActivity extends BaseActiviy{
 								}
 								SharePrefUtil.saveObj(LoginActivity.this, Constants.Accountlist, listacount);
 								for (int m=0;m<Constants.SQ_NAME_GUANGDA.length;m++){
-									if (Constants.SQ_NAME_GUANGDA[m].contains(userBean.data.get(i).account.get(j).sqName)){
+									if (Constants.SQ_NAME_GUANGDA[m].trim().equals(userBean.data.get(i).account.get(j).sqName.trim())){
 										MyInfomationManager.setSQCODE(LoginActivity.this,Constants.SQ_CODE_GUANGDA[m]);
 									}
 								}

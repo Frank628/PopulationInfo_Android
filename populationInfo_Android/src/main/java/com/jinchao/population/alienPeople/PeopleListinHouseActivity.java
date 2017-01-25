@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.RenyuanInHouseBean;
+import com.jinchao.population.entity.SortbyRoomCodeRenyuanInhouseOneClass;
+import com.jinchao.population.entity.SortbyTimeRenyuanInhouseOneClass;
 import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.mainmenu.SearchPeopleActivity;
 import com.jinchao.population.mainmenu.SearchPeopleDetailActivity;
@@ -45,6 +49,7 @@ import org.xutils.x;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -56,6 +61,8 @@ public class PeopleListinHouseActivity extends BaseActiviy{
     @ViewInject(R.id.lv)ListView lv;
     @ViewInject(R.id.tv_content)TextView tv_content;
     @ViewInject(R.id.edt_idcard)EditText edt_idcard;
+    @ViewInject(R.id.rg_sort)RadioGroup rg_sort;
+    @ViewInject(R.id.rb_roomcode)RadioButton rb_roomcode;
     private RenyuanInHouseBean renyuanInHouseBean;
     People peoplefromXml;
     @Override
@@ -85,6 +92,23 @@ public class PeopleListinHouseActivity extends BaseActiviy{
             public void afterTextChanged(Editable s) {
                 if (renyuanInHouseBean!=null) {
                     processData(renyuanInHouseBean);
+                }
+            }
+        });
+        rg_sort.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rb_roomcode:
+                        if (renyuanInHouseBean!=null) {
+                            processData(renyuanInHouseBean);
+                        }
+                        break;
+                    case R.id.rb_time:
+                        if (renyuanInHouseBean!=null) {
+                            processData(renyuanInHouseBean);
+                        }
+                        break;
                 }
             }
         });
@@ -143,6 +167,11 @@ public class PeopleListinHouseActivity extends BaseActiviy{
         }else{
             tv_content.setVisibility(View.GONE);
             tv_content.setText("");
+        }
+        if (rb_roomcode.isChecked()){
+            Collections.sort(list,new SortbyRoomCodeRenyuanInhouseOneClass());
+        }else{
+            Collections.sort(list,new SortbyTimeRenyuanInhouseOneClass());
         }
         CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne> adapter =new CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne>(PeopleListinHouseActivity.this,list,R.layout.item_renyuan) {
             @Override

@@ -29,6 +29,11 @@ import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddress;
+import com.jinchao.population.dbentity.HouseAddressOldBean;
+import com.jinchao.population.dbentity.HouseAddressOldBean2;
+import com.jinchao.population.dbentity.HouseAddressOldBean3;
+import com.jinchao.population.dbentity.HouseAddressOldBean4;
+import com.jinchao.population.dbentity.HouseAddressOldBean5;
 import com.jinchao.population.entity.HouseRegistBean;
 import com.jinchao.population.entity.YanZhengBean;
 import com.jinchao.population.utils.CommonIdcard;
@@ -59,6 +64,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 	private String sqid="",sqname="",address ="",mph="",jieluxiang="",menpaihao="",fuhao="",
 			louhao="",shihao="",menpaihaodanwei="",fuhaodanwei="",loudanwei="",louhaodanwei="",
 			danyuandanwei="",shihaodanwei="";
+	public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
@@ -69,6 +75,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				onBackPressed();
 			}
 		});
+		database_tableNo=((MyApplication)getApplication()).database_tableNo;
 		navigationLayout.setRightText("保存", new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -86,20 +93,93 @@ public class AddRentalHouseActivity extends BaseActiviy{
 					return;
 				}
 				DbUtils dbUtils=DeviceUtils.getDbUtils(AddRentalHouseActivity.this);
-				List<HouseAddress> list=new ArrayList<HouseAddress>();
-				try {
-					list = dbUtils.findAll(Selector.from(DatabaseUtil.getTable_HouseAddress(((MyApplication)getApplication()).database_tableNo,AddRentalHouseActivity.this)).where("id","=",fangwubianhao));
-				} catch (DbException e) {
-					e.printStackTrace();
+				switch (database_tableNo){
+					case 0:
+						Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+						break;
+					case 1:
+						List<HouseAddressOldBean> list=new ArrayList<HouseAddressOldBean>();
+						try {
+							list = dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 2:
+						List<HouseAddressOldBean2> list2=new ArrayList<HouseAddressOldBean2>();
+						try {
+							list2 = dbUtils.findAll(Selector.from(HouseAddressOldBean2.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list2==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list2.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 3:
+						List<HouseAddressOldBean3> list3=new ArrayList<>();
+						try {
+							list3 = dbUtils.findAll(Selector.from(HouseAddressOldBean3.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list3==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list3.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 4:
+						List<HouseAddressOldBean4> list4=new ArrayList<HouseAddressOldBean4>();
+						try {
+							list4 = dbUtils.findAll(Selector.from(HouseAddressOldBean4.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list4==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list4.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 5:
+						List<HouseAddressOldBean5> list5=new ArrayList<HouseAddressOldBean5>();
+						try {
+							list5 = dbUtils.findAll(Selector.from(HouseAddressOldBean5.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list5==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list5.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
 				}
-				if (list==null) {
-					Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
-					return;
-				}
-				if (list.size()>0) {
-					Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
-					return;
-				}
+
+
 				if (address.equals("")) {
 					Toast.makeText(AddRentalHouseActivity.this, "请点击编辑房屋地址~", Toast.LENGTH_SHORT).show();
 					return;

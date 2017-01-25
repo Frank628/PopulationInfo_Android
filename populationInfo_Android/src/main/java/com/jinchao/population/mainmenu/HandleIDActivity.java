@@ -194,6 +194,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
         }else{
             database_tableNo=((MyApplication)getApplication()).database_tableNo;
         }
+		System.out.println(database_tableNo+"aaaaaaaaa");
 		new InitData().execute();
 		final NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
 		isHandleID = getIntent().getBooleanExtra("isHandle", false);

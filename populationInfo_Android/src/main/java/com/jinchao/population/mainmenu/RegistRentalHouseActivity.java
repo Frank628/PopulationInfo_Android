@@ -96,7 +96,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		});
 		dbUtils = DeviceUtils.getDbUtils(RegistRentalHouseActivity.this);
 		dialogLoading = new DialogLoading(this, "地址下载中...",true);
-//		Is_RealPopulation=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
+		Is_RealPopulation=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
 		if (((MyApplication)getApplication()).database_tableNo==0){
 			database_tableNo= DatabaseUtil.getNullDB(this);
 		}else{
@@ -262,10 +262,11 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	                    int responseCode = httpEx.getCode();
 						Toast.makeText(RegistRentalHouseActivity.this, "responseCode="+responseCode, Toast.LENGTH_SHORT).show();
 	                }else{
-	                	getAllAddressRequest();
+					 	getAllAddressRequest();
 	                	Toast.makeText(RegistRentalHouseActivity.this, "请求超时，正在为您重新下载...",  Toast.LENGTH_SHORT).show();
 	                	dialogLoading.show();
 	                }
+
 			}
 			@Override
 			public void onCancelled(CancelledException cex) {}
@@ -354,6 +355,18 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							});
 						}
 					}
+					SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String date =sDateFormat.format(new Date(System.currentTimeMillis()));
+					UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
+					if (userPKDataBase!=null){
+						userPKDataBase.setIs_used("0");
+						userPKDataBase.setDatabase_name(database_tableNo);
+						userPKDataBase.setUpdate_time(date);
+						dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
+					}else{
+						dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
+					}
+					((MyApplication)getApplication()).setDataBaseTableNo(database_tableNo);
 					getAllAddressRequest();
 				} catch (Exception e) {
 					getAllAddressRequest();
@@ -454,7 +467,6 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 						}
 						SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");       
 						String date =sDateFormat.format(new Date(System.currentTimeMillis())); 
-						SharePrefUtil.saveString(RegistRentalHouseActivity.this, Constants.LOCAL_DB_VERSION, date);
 						UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
 						if (userPKDataBase!=null){
 							userPKDataBase.setIs_used("0");

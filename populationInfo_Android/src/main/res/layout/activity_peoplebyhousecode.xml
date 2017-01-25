@@ -37,6 +37,31 @@
             android:src="@drawable/ic_search_bg_24dp" />
 
     </LinearLayout>
+    <RadioGroup
+        android:id="@+id/rg_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rb_roomcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="@color/orange"
+            android:checked="true"
+            android:gravity="center"
+            android:text="按室号排序"/>
+        <RadioButton
+            android:id="@+id/rb_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="@color/orange"
+            android:gravity="center"
+            android:text="按时间排序"/>
+    </RadioGroup>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

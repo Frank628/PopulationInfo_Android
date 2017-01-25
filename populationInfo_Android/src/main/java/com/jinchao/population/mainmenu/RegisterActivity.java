@@ -151,14 +151,20 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			edt_region.setText(people.getPeople());
             pic=people.getPicture();
             bmp= getIntent().getParcelableExtra("pic");
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+			imgA=stream.toByteArray();
             iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);
             iv_pic.setImageBitmap(bmp);
+			compare.setVisibility(View.VISIBLE);
+			replace.setVisibility(View.VISIBLE);
 		}else {
 			if (isfromotherway){
                 istakephoto="0";
                 isFirstGenerationIDCard=true;
                 resetFirstGenerationIDCardText();
 				edt_idcard.setText(idcard);
+
                 try {
                     String idcardNO = edt_idcard.getText().toString().trim();
                     if (CommonIdcard.validateCard(idcardNO)) {
@@ -178,7 +184,9 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
                     } else {
                         Toast.makeText(RegisterActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();
                     }
-
+					edt_name.setText(getIntent().getStringExtra("name"));
+					edt_address.setText(getIntent().getStringExtra("huji1"));
+					edt_xaddress.setText(getIntent().getStringExtra("huji2"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -525,7 +533,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 
 	}
 	private void showfacepop() {
-		facePop =new FacePop(this, BitmapFactory.decodeByteArray(muser.getPhoto(), 0, muser.getPhoto().length),photofile.getAbsolutePath(), new FacePop.OnCompareClickListener() {
+		facePop =new FacePop(this, bmp,photofile.getAbsolutePath(), new FacePop.OnCompareClickListener() {
 			@Override
 			public void onClick() {
 				if (imgB != null && imgA != null) {

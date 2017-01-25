@@ -3,9 +3,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import com.jinchao.population.entity.SortbyRoomCodeRenyuanInhouseOneClass;
+import com.jinchao.population.entity.SortbyTimeRenyuanInhouseOneClass;
 import com.jinchao.population.utils.CommonUtils;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -108,6 +111,8 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 	@ViewInject(R.id.ll_house) private LinearLayout ll_house;
 	@ViewInject(R.id.rotate_header_list_view_frame) private PtrClassicFrameLayout mPtrFrame;
 	@ViewInject(R.id.sv_content) private ScrollView sv_content;
+	@ViewInject(R.id.rg_sort)RadioGroup rg_sort;
+	@ViewInject(R.id.rb_roomcode)RadioButton rb_roomcode;
 	public static final String TAG="IDCARD_DEVICE";
 	private RenyuanInHouseBean renyuanInHouseBean;
 	private boolean IsHouseID=true;
@@ -231,6 +236,23 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 			@Override
 			public void afterTextChanged(Editable s) {
 				processData(renyuanInHouseBean);
+			}
+		});
+		rg_sort.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				switch (checkedId){
+					case R.id.rb_roomcode:
+						if (renyuanInHouseBean!=null) {
+							processData(renyuanInHouseBean);
+						}
+						break;
+					case R.id.rb_time:
+						if (renyuanInHouseBean!=null) {
+							processData(renyuanInHouseBean);
+						}
+						break;
+				}
 			}
 		});
 	}
@@ -455,6 +477,11 @@ public class SearchPeopleActivity extends BaseReaderActiviy implements  IDReader
 				if (rb_fangwu.isChecked()) {
 					rl_search.setVisibility(View.VISIBLE);
 				}
+			}
+			if (rb_roomcode.isChecked()){
+				Collections.sort(list,new SortbyRoomCodeRenyuanInhouseOneClass());
+			}else{
+				Collections.sort(list,new SortbyTimeRenyuanInhouseOneClass());
 			}
 			CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne> adapter =new CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne>(SearchPeopleActivity.this,list,R.layout.item_renyuan) {
 				@Override
