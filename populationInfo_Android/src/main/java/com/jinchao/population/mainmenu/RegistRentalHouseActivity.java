@@ -33,24 +33,44 @@ import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddress;
+import com.jinchao.population.dbentity.HouseAddress10;
 import com.jinchao.population.dbentity.HouseAddress2;
 import com.jinchao.population.dbentity.HouseAddress3;
 import com.jinchao.population.dbentity.HouseAddress4;
 import com.jinchao.population.dbentity.HouseAddress5;
+import com.jinchao.population.dbentity.HouseAddress6;
+import com.jinchao.population.dbentity.HouseAddress7;
+import com.jinchao.population.dbentity.HouseAddress8;
+import com.jinchao.population.dbentity.HouseAddress9;
+import com.jinchao.population.dbentity.HouseAddressOldBean10;
 import com.jinchao.population.dbentity.HouseAddressOldBean2;
 import com.jinchao.population.dbentity.HouseAddressOldBean3;
 import com.jinchao.population.dbentity.HouseAddressOldBean4;
 import com.jinchao.population.dbentity.HouseAddressOldBean5;
+import com.jinchao.population.dbentity.HouseAddressOldBean6;
+import com.jinchao.population.dbentity.HouseAddressOldBean7;
+import com.jinchao.population.dbentity.HouseAddressOldBean8;
+import com.jinchao.population.dbentity.HouseAddressOldBean9;
 import com.jinchao.population.dbentity.HouseJLX;
+import com.jinchao.population.dbentity.HouseJLX10;
 import com.jinchao.population.dbentity.HouseJLX2;
 import com.jinchao.population.dbentity.HouseJLX3;
 import com.jinchao.population.dbentity.HouseJLX4;
 import com.jinchao.population.dbentity.HouseJLX5;
+import com.jinchao.population.dbentity.HouseJLX6;
+import com.jinchao.population.dbentity.HouseJLX7;
+import com.jinchao.population.dbentity.HouseJLX8;
+import com.jinchao.population.dbentity.HouseJLX9;
 import com.jinchao.population.dbentity.JLX;
+import com.jinchao.population.dbentity.JLX10;
 import com.jinchao.population.dbentity.JLX2;
 import com.jinchao.population.dbentity.JLX3;
 import com.jinchao.population.dbentity.JLX4;
 import com.jinchao.population.dbentity.JLX5;
+import com.jinchao.population.dbentity.JLX6;
+import com.jinchao.population.dbentity.JLX7;
+import com.jinchao.population.dbentity.JLX8;
+import com.jinchao.population.dbentity.JLX9;
 import com.jinchao.population.dbentity.UserPKDataBase;
 import com.jinchao.population.entity.HouseAddressBean;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
@@ -82,6 +102,11 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 	private List<HouseAddress3> listzen3=new ArrayList<>();
 	private List<HouseAddress4> listzen4=new ArrayList<>();
 	private List<HouseAddress5> listzen5=new ArrayList<>();
+	private List<HouseAddress6> listzen6=new ArrayList<>();
+	private List<HouseAddress7> listzen7=new ArrayList<>();
+	private List<HouseAddress8> listzen8=new ArrayList<>();
+	private List<HouseAddress9> listzen9=new ArrayList<>();
+	private List<HouseAddress10> listzen10=new ArrayList<>();
 	public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,9 +136,9 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 					switch (database_tableNo){
 						case 1:
 							if (listzen.size()==0){
-								tv_data.setVisibility(View.INVISIBLE);
-							}else{
 								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
 							}
 							CommonAdapter<HouseAddress> adapter =new CommonAdapter<HouseAddress>(RegistRentalHouseActivity.this,listzen,R.layout.item_houseaddress) {
 								@Override
@@ -124,9 +149,9 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							lv.setAdapter(adapter);
 						case 2:
 							if (listzen2.size()==0){
-								tv_data.setVisibility(View.INVISIBLE);
-							}else{
 								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
 							}
 							CommonAdapter<HouseAddress2> adapter2 =new CommonAdapter<HouseAddress2>(RegistRentalHouseActivity.this,listzen2,R.layout.item_houseaddress) {
 								@Override
@@ -138,9 +163,9 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							break;
 						case 3:
 							if (listzen3.size()==0){
-								tv_data.setVisibility(View.INVISIBLE);
-							}else{
 								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
 							}
 							CommonAdapter<HouseAddress3> adapter3 =new CommonAdapter<HouseAddress3>(RegistRentalHouseActivity.this,listzen3,R.layout.item_houseaddress) {
 								@Override
@@ -152,9 +177,9 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							break;
 						case 4:
 							if (listzen4.size()==0){
-								tv_data.setVisibility(View.INVISIBLE);
-							}else{
 								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
 							}
 							CommonAdapter<HouseAddress4> adapter4 =new CommonAdapter<HouseAddress4>(RegistRentalHouseActivity.this,listzen4,R.layout.item_houseaddress) {
 								@Override
@@ -166,9 +191,9 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							break;
 						case 5:
 							if (listzen4.size()==0){
-								tv_data.setVisibility(View.INVISIBLE);
-							}else{
 								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
 							}
 							CommonAdapter<HouseAddress5> adapter5 =new CommonAdapter<HouseAddress5>(RegistRentalHouseActivity.this,listzen5,R.layout.item_houseaddress) {
 								@Override
@@ -177,6 +202,76 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 								}
 							};
 							lv.setAdapter(adapter5);
+							break;
+						case 6:
+							if (listzen6.size()==0){
+								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
+							}
+							CommonAdapter<HouseAddress6> adapter6 =new CommonAdapter<HouseAddress6>(RegistRentalHouseActivity.this,listzen6,R.layout.item_houseaddress) {
+								@Override
+								public void convert(ViewHolder helper, HouseAddress6 item, int position) {
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+								}
+							};
+							lv.setAdapter(adapter6);
+							break;
+						case 7:
+							if (listzen7.size()==0){
+								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
+							}
+							CommonAdapter<HouseAddress7> adapter7 =new CommonAdapter<HouseAddress7>(RegistRentalHouseActivity.this,listzen7,R.layout.item_houseaddress) {
+								@Override
+								public void convert(ViewHolder helper, HouseAddress7 item, int position) {
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+								}
+							};
+							lv.setAdapter(adapter7);
+							break;
+						case 8:
+							if (listzen8.size()==0){
+								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
+							}
+							CommonAdapter<HouseAddress8> adapter8 =new CommonAdapter<HouseAddress8>(RegistRentalHouseActivity.this,listzen8,R.layout.item_houseaddress) {
+								@Override
+								public void convert(ViewHolder helper, HouseAddress8 item, int position) {
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+								}
+							};
+							lv.setAdapter(adapter8);
+							break;
+						case 9:
+							if (listzen9.size()==0){
+								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
+							}
+							CommonAdapter<HouseAddress9> adapter9 =new CommonAdapter<HouseAddress9>(RegistRentalHouseActivity.this,listzen9,R.layout.item_houseaddress) {
+								@Override
+								public void convert(ViewHolder helper, HouseAddress9 item, int position) {
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+								}
+							};
+							lv.setAdapter(adapter9);
+							break;
+						case 10:
+							if (listzen10.size()==0){
+								tv_data.setVisibility(View.VISIBLE);
+							}else{
+								tv_data.setVisibility(View.INVISIBLE);
+							}
+							CommonAdapter<HouseAddress10> adapter10 =new CommonAdapter<HouseAddress10>(RegistRentalHouseActivity.this,listzen10,R.layout.item_houseaddress) {
+								@Override
+								public void convert(ViewHolder helper, HouseAddress10 item, int position) {
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+								}
+							};
+							lv.setAdapter(adapter10);
 							break;
 					}
 
@@ -341,6 +436,26 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 										HouseAddressOldBean5 houseAddressOldBean5 =new HouseAddressOldBean5(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										dbUtils.save(houseAddressOldBean5);
 										break;
+									case 6:
+										HouseAddressOldBean6 houseAddressOldBean6 =new HouseAddressOldBean6(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										dbUtils.save(houseAddressOldBean6);
+										break;
+									case 7:
+										HouseAddressOldBean7 houseAddressOldBean7 =new HouseAddressOldBean7(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										dbUtils.save(houseAddressOldBean7);
+										break;
+									case 8:
+										HouseAddressOldBean8 houseAddressOldBean8 =new HouseAddressOldBean8(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										dbUtils.save(houseAddressOldBean8);
+										break;
+									case 9:
+										HouseAddressOldBean9 houseAddressOldBean9 =new HouseAddressOldBean9(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										dbUtils.save(houseAddressOldBean9);
+										break;
+									case 10:
+										HouseAddressOldBean10 houseAddressOldBean10 =new HouseAddressOldBean10(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										dbUtils.save(houseAddressOldBean10);
+										break;
 								}
 
 							} catch (Exception e) {
@@ -392,6 +507,21 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 			case 5:
 				listzen5.clear();
 				break;
+			case 6:
+				listzen6.clear();
+				break;
+			case 7:
+				listzen7.clear();
+				break;
+			case 8:
+				listzen8.clear();
+				break;
+			case 9:
+				listzen9.clear();
+				break;
+			case 10:
+				listzen10.clear();
+				break;
 		}
 		new Thread(new Runnable() {
 			@Override
@@ -419,6 +549,21 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 										break;
 									case 5:
 										dbUtils.save(new JLX5(i, houseAddressBean.data.get(i).jlx));
+										break;
+									case 6:
+										dbUtils.save(new JLX6(i, houseAddressBean.data.get(i).jlx));
+										break;
+									case 7:
+										dbUtils.save(new JLX7(i, houseAddressBean.data.get(i).jlx));
+										break;
+									case 8:
+										dbUtils.save(new JLX8(i, houseAddressBean.data.get(i).jlx));
+										break;
+									case 9:
+										dbUtils.save(new JLX9(i, houseAddressBean.data.get(i).jlx));
+										break;
+									case 10:
+										dbUtils.save(new JLX10(i, houseAddressBean.data.get(i).jlx));
 										break;
 								}
 
@@ -457,6 +602,31 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 											listzen5.add(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 											dbUtils.save(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 											dbUtils.save(new HouseJLX5(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 6:
+											listzen6.add(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX6(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 7:
+											listzen7.add(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX7(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 8:
+											listzen8.add(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX8(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 9:
+											listzen9.add(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX9(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 10:
+											listzen10.add(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX10(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
 											break;
 									}
 
@@ -567,6 +737,26 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 									HouseAddressOldBean5 houseAddressOldBean5 =new HouseAddressOldBean5(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 									dbUtils.save(houseAddressOldBean5);
 									break;
+								case 6:
+									HouseAddressOldBean6 houseAddressOldBean6 =new HouseAddressOldBean6(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+									dbUtils.save(houseAddressOldBean6);
+									break;
+								case 7:
+									HouseAddressOldBean7 houseAddressOldBean7 =new HouseAddressOldBean7(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+									dbUtils.save(houseAddressOldBean7);
+									break;
+								case 8:
+									HouseAddressOldBean8 houseAddressOldBean8 =new HouseAddressOldBean8(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+									dbUtils.save(houseAddressOldBean8);
+									break;
+								case 9:
+									HouseAddressOldBean9 houseAddressOldBean9 =new HouseAddressOldBean9(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+									dbUtils.save(houseAddressOldBean9);
+									break;
+								case 10:
+									HouseAddressOldBean10 houseAddressOldBean10 =new HouseAddressOldBean10(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+									dbUtils.save(houseAddressOldBean10);
+									break;
 							}
 							bcount++;
 							RegistRentalHouseActivity.this.runOnUiThread(new Runnable() {
@@ -654,6 +844,21 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 			case 5:
 				listzen5.clear();
 				break;
+			case 6:
+				listzen6.clear();
+				break;
+			case 7:
+				listzen7.clear();
+				break;
+			case 8:
+				listzen8.clear();
+				break;
+			case 9:
+				listzen9.clear();
+				break;
+			case 10:
+				listzen10.clear();
+				break;
 		}
 		new Thread(new Runnable() {
 			@Override
@@ -684,6 +889,21 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 												break;
 											case 5:
 												dbUtils.save(new JLX5(i, houseAddressBean.data.get(i).jlx));
+												break;
+											case 6:
+												dbUtils.save(new JLX6(i, houseAddressBean.data.get(i).jlx));
+												break;
+											case 7:
+												dbUtils.save(new JLX7(i, houseAddressBean.data.get(i).jlx));
+												break;
+											case 8:
+												dbUtils.save(new JLX8(i, houseAddressBean.data.get(i).jlx));
+												break;
+											case 9:
+												dbUtils.save(new JLX9(i, houseAddressBean.data.get(i).jlx));
+												break;
+											case 10:
+												dbUtils.save(new JLX10(i, houseAddressBean.data.get(i).jlx));
 												break;
 										}
 									} catch (Exception e) {
@@ -725,6 +945,31 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 											listzen5.add(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 											dbUtils.save(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 											dbUtils.save(new HouseJLX5(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 6:
+											listzen6.add(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX6(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 7:
+											listzen7.add(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX7(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 8:
+											listzen8.add(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX8(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 9:
+											listzen9.add(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX9(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
+											break;
+										case 10:
+											listzen10.add(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+											dbUtils.save(new HouseJLX10(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
 											break;
 									}
 								} catch (Exception e) {

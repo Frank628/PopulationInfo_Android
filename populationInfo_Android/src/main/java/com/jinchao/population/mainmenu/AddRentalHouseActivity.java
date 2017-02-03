@@ -30,10 +30,15 @@ import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddress;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
+import com.jinchao.population.dbentity.HouseAddressOldBean10;
 import com.jinchao.population.dbentity.HouseAddressOldBean2;
 import com.jinchao.population.dbentity.HouseAddressOldBean3;
 import com.jinchao.population.dbentity.HouseAddressOldBean4;
 import com.jinchao.population.dbentity.HouseAddressOldBean5;
+import com.jinchao.population.dbentity.HouseAddressOldBean6;
+import com.jinchao.population.dbentity.HouseAddressOldBean7;
+import com.jinchao.population.dbentity.HouseAddressOldBean8;
+import com.jinchao.population.dbentity.HouseAddressOldBean9;
 import com.jinchao.population.entity.HouseRegistBean;
 import com.jinchao.population.entity.YanZhengBean;
 import com.jinchao.population.utils.CommonIdcard;
@@ -173,6 +178,86 @@ public class AddRentalHouseActivity extends BaseActiviy{
 							return;
 						}
 						if (list5.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 6:
+						List<HouseAddressOldBean6> list6=new ArrayList<HouseAddressOldBean6>();
+						try {
+							list6 = dbUtils.findAll(Selector.from(HouseAddressOldBean6.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list6==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list6.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 7:
+						List<HouseAddressOldBean7> list7=new ArrayList<HouseAddressOldBean7>();
+						try {
+							list7 = dbUtils.findAll(Selector.from(HouseAddressOldBean7.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list7==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list7.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 8:
+						List<HouseAddressOldBean8> list8=new ArrayList<HouseAddressOldBean8>();
+						try {
+							list8 = dbUtils.findAll(Selector.from(HouseAddressOldBean8.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list8==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list8.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 9:
+						List<HouseAddressOldBean9> list9=new ArrayList<HouseAddressOldBean9>();
+						try {
+							list9 = dbUtils.findAll(Selector.from(HouseAddressOldBean9.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list9==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list9.size()>0) {
+							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						break;
+					case 10:
+						List<HouseAddressOldBean10> list10=new ArrayList<HouseAddressOldBean10>();
+						try {
+							list10 = dbUtils.findAll(Selector.from(HouseAddressOldBean10.class).where("scode","=",fangwubianhao));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+						if (list10==null) {
+							Toast.makeText(AddRentalHouseActivity.this, "未下载地址库，无法校验房屋编号~", Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (list10.size()>0) {
 							Toast.makeText(AddRentalHouseActivity.this, "该房屋编号已存在~", Toast.LENGTH_SHORT).show();
 							return;
 						}

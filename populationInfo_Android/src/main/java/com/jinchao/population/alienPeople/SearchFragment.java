@@ -28,10 +28,15 @@ import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.dbentity.HouseAddress;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
+import com.jinchao.population.dbentity.HouseAddressOldBean10;
 import com.jinchao.population.dbentity.HouseAddressOldBean2;
 import com.jinchao.population.dbentity.HouseAddressOldBean3;
 import com.jinchao.population.dbentity.HouseAddressOldBean4;
 import com.jinchao.population.dbentity.HouseAddressOldBean5;
+import com.jinchao.population.dbentity.HouseAddressOldBean6;
+import com.jinchao.population.dbentity.HouseAddressOldBean7;
+import com.jinchao.population.dbentity.HouseAddressOldBean8;
+import com.jinchao.population.dbentity.HouseAddressOldBean9;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
@@ -272,6 +277,136 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                     Intent intent5 =new Intent(getActivity(),PeopleListinHouseActivity.class);
                                     intent5.putExtra("housecode",houseAddressOldBean5.scode);
                                     getActivity().startActivity(intent5);
+                                    hideAnim();
+                                }
+                            });
+                            break;
+                        case 6:
+                            List<HouseAddressOldBean6> list6=new ArrayList<>();
+                            if (TextUtils.isEmpty(keyword.trim()))
+                                list6=new ArrayList<>();
+                            else
+                                list6=dbUtils.findAll(Selector.from(HouseAddressOldBean6.class).where("scode","like","%"+keyword+"%"));
+                            if (list6==null)list6=new ArrayList<>();
+                            CommonAdapter<HouseAddressOldBean6> adapter6=new CommonAdapter<HouseAddressOldBean6>(getActivity(),list6,R.layout.item_text) {
+                                @Override
+                                public void convert(ViewHolder helper, HouseAddressOldBean6 item, int position) {
+                                    helper.setText(R.id.tv_content, item.address);
+                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                }
+                            };
+                            lv.setAdapter(adapter6);
+                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    HouseAddressOldBean6 houseAddressOldBean6=(HouseAddressOldBean6)((ListView)parent).getItemAtPosition(position);
+                                    Intent intent6 =new Intent(getActivity(),PeopleListinHouseActivity.class);
+                                    intent6.putExtra("housecode",houseAddressOldBean6.scode);
+                                    getActivity().startActivity(intent6);
+                                    hideAnim();
+                                }
+                            });
+                            break;
+                        case 7:
+                            List<HouseAddressOldBean7> list7=new ArrayList<>();
+                            if (TextUtils.isEmpty(keyword.trim()))
+                                list7=new ArrayList<>();
+                            else
+                                list7=dbUtils.findAll(Selector.from(HouseAddressOldBean7.class).where("scode","like","%"+keyword+"%"));
+                            if (list7==null)list7=new ArrayList<>();
+                            CommonAdapter<HouseAddressOldBean7> adapter7=new CommonAdapter<HouseAddressOldBean7>(getActivity(),list7,R.layout.item_text) {
+                                @Override
+                                public void convert(ViewHolder helper, HouseAddressOldBean7 item, int position) {
+                                    helper.setText(R.id.tv_content, item.address);
+                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                }
+                            };
+                            lv.setAdapter(adapter7);
+                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    HouseAddressOldBean7 houseAddressOldBean7=(HouseAddressOldBean7)((ListView)parent).getItemAtPosition(position);
+                                    Intent intent7 =new Intent(getActivity(),PeopleListinHouseActivity.class);
+                                    intent7.putExtra("housecode",houseAddressOldBean7.scode);
+                                    getActivity().startActivity(intent7);
+                                    hideAnim();
+                                }
+                            });
+                            break;
+                        case 8:
+                            List<HouseAddressOldBean8> list8=new ArrayList<>();
+                            if (TextUtils.isEmpty(keyword.trim()))
+                                list8=new ArrayList<>();
+                            else
+                                list8=dbUtils.findAll(Selector.from(HouseAddressOldBean8.class).where("scode","like","%"+keyword+"%"));
+                            if (list8==null)list8=new ArrayList<>();
+                            CommonAdapter<HouseAddressOldBean8> adapter8=new CommonAdapter<HouseAddressOldBean8>(getActivity(),list8,R.layout.item_text) {
+                                @Override
+                                public void convert(ViewHolder helper, HouseAddressOldBean8 item, int position) {
+                                    helper.setText(R.id.tv_content, item.address);
+                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                }
+                            };
+                            lv.setAdapter(adapter8);
+                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    HouseAddressOldBean8 houseAddressOldBean8=(HouseAddressOldBean8)((ListView)parent).getItemAtPosition(position);
+                                    Intent intent8 =new Intent(getActivity(),PeopleListinHouseActivity.class);
+                                    intent8.putExtra("housecode",houseAddressOldBean8.scode);
+                                    getActivity().startActivity(intent8);
+                                    hideAnim();
+                                }
+                            });
+                            break;
+                        case 9:
+                            List<HouseAddressOldBean9> list9=new ArrayList<>();
+                            if (TextUtils.isEmpty(keyword.trim()))
+                                list9=new ArrayList<>();
+                            else
+                                list9=dbUtils.findAll(Selector.from(HouseAddressOldBean9.class).where("scode","like","%"+keyword+"%"));
+                            if (list9==null)list9=new ArrayList<>();
+                            CommonAdapter<HouseAddressOldBean9> adapter9=new CommonAdapter<HouseAddressOldBean9>(getActivity(),list9,R.layout.item_text) {
+                                @Override
+                                public void convert(ViewHolder helper, HouseAddressOldBean9 item, int position) {
+                                    helper.setText(R.id.tv_content, item.address);
+                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                }
+                            };
+                            lv.setAdapter(adapter9);
+                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    HouseAddressOldBean9 houseAddressOldBean9=(HouseAddressOldBean9)((ListView)parent).getItemAtPosition(position);
+                                    Intent intent9 =new Intent(getActivity(),PeopleListinHouseActivity.class);
+                                    intent9.putExtra("housecode",houseAddressOldBean9.scode);
+                                    getActivity().startActivity(intent9);
+                                    hideAnim();
+                                }
+                            });
+                            break;
+                        case 10:
+                            List<HouseAddressOldBean10> list10=new ArrayList<>();
+                            if (TextUtils.isEmpty(keyword.trim()))
+                                list10=new ArrayList<>();
+                            else
+                                list10=dbUtils.findAll(Selector.from(HouseAddressOldBean10.class).where("scode","like","%"+keyword+"%"));
+                            if (list10==null)list10=new ArrayList<>();
+                            CommonAdapter<HouseAddressOldBean10> adapter10=new CommonAdapter<HouseAddressOldBean10>(getActivity(),list10,R.layout.item_text) {
+                                @Override
+                                public void convert(ViewHolder helper, HouseAddressOldBean10 item, int position) {
+                                    helper.setText(R.id.tv_content, item.address);
+                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                }
+                            };
+                            lv.setAdapter(adapter10);
+                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    HouseAddressOldBean10 houseAddressOldBean10=(HouseAddressOldBean10)((ListView)parent).getItemAtPosition(position);
+                                    Intent intent10 =new Intent(getActivity(),PeopleListinHouseActivity.class);
+                                    intent10.putExtra("housecode",houseAddressOldBean10.scode);
+                                    getActivity().startActivity(intent10);
                                     hideAnim();
                                 }
                             });

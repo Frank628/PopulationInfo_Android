@@ -187,9 +187,9 @@ public class LoginActivity extends BaseActiviy{
                                             userHistory.setTime(time);
                                             dbUtils.update(userHistory,"time");
                                         }else{
-                                            if (listbytime.size()==5){
-                                                dbUtils.deleteById(UserHistory.class,listbytime.get(4).getId());
-                                                UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",listbytime.get(4).getSq_name()));
+                                            if (listbytime.size()==10){
+                                                dbUtils.deleteById(UserHistory.class,listbytime.get(9).getId());
+                                                UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",listbytime.get(9).getSq_name()));
                                                 if(userPKDataBase_d!=null){
                                                     userPKDataBase_d.setIs_used("1");
                                                     dbUtils.saveOrUpdate(userPKDataBase_d);
