@@ -30,6 +30,16 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/btn_regist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="办证"
+            android:background="#607d8b"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_weight="1"/>
+        <Button
             android:id="@+id/btn_change"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

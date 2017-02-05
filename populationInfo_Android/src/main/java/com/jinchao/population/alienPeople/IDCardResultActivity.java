@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ import java.util.List;
 public class IDCardResultActivity extends BaseActiviy{
     @ViewInject(R.id.tv_content)TextView tv_content;
     @ViewInject(R.id.bottom)LinearLayout bottom;
+    @ViewInject(R.id.btn_regist)Button btn_regist;
     People peoplefromXml;
     String name="",huji1="",huji2="";
     @Override
@@ -72,6 +74,12 @@ public class IDCardResultActivity extends BaseActiviy{
                 huji1=XmlUtils.parseXMLtohuji1(result);
                 if (XmlUtils.parseXMLIsBanzheng(result)){
                     bottom.setVisibility(View.VISIBLE);
+                    if (XmlUtils.parseXMLIsDengji(result)){
+                        btn_regist.setVisibility(View.GONE);
+                    }else{
+                        btn_regist.setVisibility(View.VISIBLE);
+                    }
+
                 }else {
                     bottom.setVisibility(View.GONE);
                     Dialog.showSelectDialog(IDCardResultActivity.this, "此人未登记，立即登记！", new Dialog.DialogClickListener() {
@@ -127,6 +135,21 @@ public class IDCardResultActivity extends BaseActiviy{
                 dismissProgressDialog();
             }
         });
+    }
+    @Event(value={R.id.btn_regist})
+    private void banzhengClick(View view){
+        Intent intent=new Intent(IDCardResultActivity.this, RegisterActivity.class);
+        intent.putExtra("fromotherway",true);
+        intent.putExtra("isHandle",true);
+        intent.putExtra("idcard",getIntent().getStringExtra("idcard"));
+        intent.putExtra("isSecond",getIntent().getIntExtra("isSecond",0));
+        intent.putExtra("people",getIntent().getSerializableExtra("people"));
+        intent.putExtra("pic",getIntent().getParcelableExtra("pic"));
+        intent.putExtra("name",name);
+        intent.putExtra("huji2",huji2);
+        intent.putExtra("huji1",huji1);
+        startActivity(intent);
+        IDCardResultActivity.this.finish();
     }
     @Event(value={R.id.btn_change})
     private void changeClick(View view){

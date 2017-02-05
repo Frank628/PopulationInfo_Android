@@ -121,7 +121,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		});
 		dbUtils = DeviceUtils.getDbUtils(RegistRentalHouseActivity.this);
 		dialogLoading = new DialogLoading(this, "地址下载中...",true);
-		Is_RealPopulation=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
+//		Is_RealPopulation=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
 		if (((MyApplication)getApplication()).database_tableNo==0){
 			database_tableNo= DatabaseUtil.getNullDB(this);
 		}else{
