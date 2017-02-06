@@ -40,10 +40,20 @@ import com.jinchao.population.R;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
+import com.jinchao.population.dbentity.HouseAddressOldBean10;
+import com.jinchao.population.dbentity.HouseAddressOldBean2;
+import com.jinchao.population.dbentity.HouseAddressOldBean3;
+import com.jinchao.population.dbentity.HouseAddressOldBean4;
+import com.jinchao.population.dbentity.HouseAddressOldBean5;
+import com.jinchao.population.dbentity.HouseAddressOldBean6;
+import com.jinchao.population.dbentity.HouseAddressOldBean7;
+import com.jinchao.population.dbentity.HouseAddressOldBean8;
+import com.jinchao.population.dbentity.HouseAddressOldBean9;
 import com.jinchao.population.main.MainActivity;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonUtils;
+import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.lidroid.xutils.DbUtils;
@@ -86,6 +96,7 @@ public class RegistLocFragment extends BaseFragment{
     public static final int HOUSE_PIC=2001;
     private File tempfile;
     private String houseid="",pic="";
+    private int database_tableNo=0;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -100,6 +111,7 @@ public class RegistLocFragment extends BaseFragment{
         mapView.showScaleControl(false);
         mapView.showZoomControls(false);
         MyApplication.myApplication.locationService.start();
+        database_tableNo=((MyApplication)getActivity().getApplication()).database_tableNo;
         mSearch.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
             @Override
             public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
@@ -165,20 +177,128 @@ public class RegistLocFragment extends BaseFragment{
     @Event(value = {R.id.tv_search})
     private void checkHouseClick(View view){
         DbUtils dbUtils= DeviceUtils.getDbUtils(getActivity());
-        HouseAddressOldBean houseAddressOldBean;
+
         String code =edt_houseid.getText().toString().trim();
         if (code.length()!=6){
             Toast.makeText(getActivity(),"请输入6位数房屋编号！",Toast.LENGTH_SHORT).show();
             return;
         }
         try {
-            houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "=", code));
-            if (houseAddressOldBean!=null) {
-                edt_content.setText(houseAddressOldBean.getAddress());
-                tv_address.setText(houseAddressOldBean.getAddress().trim());
-                houseid=houseAddressOldBean.getId();
-            }else{
-                edt_content.setText("查无此房屋");
+            switch (database_tableNo){
+                case 0:
+
+                    break;
+                case 1:
+                    HouseAddressOldBean houseAddressOldBean;
+                    houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "=", code));
+                    if (houseAddressOldBean!=null) {
+                        edt_content.setText(houseAddressOldBean.getAddress());
+                        tv_address.setText(houseAddressOldBean.getAddress().trim());
+                        houseid=houseAddressOldBean.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 2:
+                    HouseAddressOldBean2 houseAddressOldBean2;
+                    houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "=", code));
+                    if (houseAddressOldBean2!=null) {
+                        edt_content.setText(houseAddressOldBean2.getAddress());
+                        tv_address.setText(houseAddressOldBean2.getAddress().trim());
+                        houseid=houseAddressOldBean2.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 3:
+                    HouseAddressOldBean3 houseAddressOldBean3;
+                    houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "=", code));
+                    if (houseAddressOldBean3!=null) {
+                        edt_content.setText(houseAddressOldBean3.getAddress());
+                        tv_address.setText(houseAddressOldBean3.getAddress().trim());
+                        houseid=houseAddressOldBean3.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 4:
+                    HouseAddressOldBean4 houseAddressOldBean4;
+                    houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "=", code));
+                    if (houseAddressOldBean4!=null) {
+                        edt_content.setText(houseAddressOldBean4.getAddress());
+                        tv_address.setText(houseAddressOldBean4.getAddress().trim());
+                        houseid=houseAddressOldBean4.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 5:
+                    HouseAddressOldBean5 houseAddressOldBean5;
+                    houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "=", code));
+                    if (houseAddressOldBean5!=null) {
+                        edt_content.setText(houseAddressOldBean5.getAddress());
+                        tv_address.setText(houseAddressOldBean5.getAddress().trim());
+                        houseid=houseAddressOldBean5.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 6:
+                    HouseAddressOldBean6 houseAddressOldBean6;
+                    houseAddressOldBean6 = dbUtils.findFirst(Selector.from(HouseAddressOldBean6.class).where("scode", "=", code));
+                    if (houseAddressOldBean6!=null) {
+                        edt_content.setText(houseAddressOldBean6.getAddress());
+                        tv_address.setText(houseAddressOldBean6.getAddress().trim());
+                        houseid=houseAddressOldBean6.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 7:
+                    HouseAddressOldBean7 houseAddressOldBean7;
+                    houseAddressOldBean7 = dbUtils.findFirst(Selector.from(HouseAddressOldBean7.class).where("scode", "=", code));
+                    if (houseAddressOldBean7!=null) {
+                        edt_content.setText(houseAddressOldBean7.getAddress());
+                        tv_address.setText(houseAddressOldBean7.getAddress().trim());
+                        houseid=houseAddressOldBean7.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 8:
+                    HouseAddressOldBean8 houseAddressOldBean8;
+                    houseAddressOldBean8 = dbUtils.findFirst(Selector.from(HouseAddressOldBean8.class).where("scode", "=", code));
+                    if (houseAddressOldBean8!=null) {
+                        edt_content.setText(houseAddressOldBean8.getAddress());
+                        tv_address.setText(houseAddressOldBean8.getAddress().trim());
+                        houseid=houseAddressOldBean8.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 9:
+                    HouseAddressOldBean9 houseAddressOldBean9;
+                    houseAddressOldBean9 = dbUtils.findFirst(Selector.from(HouseAddressOldBean9.class).where("scode", "=", code));
+                    if (houseAddressOldBean9!=null) {
+                        edt_content.setText(houseAddressOldBean9.getAddress());
+                        tv_address.setText(houseAddressOldBean9.getAddress().trim());
+                        houseid=houseAddressOldBean9.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+                case 10:
+                    HouseAddressOldBean10 houseAddressOldBean10;
+                    houseAddressOldBean10 = dbUtils.findFirst(Selector.from(HouseAddressOldBean10.class).where("scode", "=", code));
+                    if (houseAddressOldBean10!=null) {
+                        edt_content.setText(houseAddressOldBean10.getAddress());
+                        tv_address.setText(houseAddressOldBean10.getAddress().trim());
+                        houseid=houseAddressOldBean10.getId();
+                    }else{
+                        edt_content.setText("查无此房屋");
+                    }
+                    break;
+
             }
         } catch (DbException e) {
             e.printStackTrace();
