@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="最近的5条历史记录~"
+        android:text="最近的10条历史记录~"
         android:textSize="15sp"
         android:textColor="@color/title3"/>
 </LinearLayout>

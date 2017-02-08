@@ -17,13 +17,17 @@ import com.jinchao.population.mainmenu.SearchRentalHouseActivity;
 import com.jinchao.population.realpopulation.RealPeopleSearchActivity;
 import com.jinchao.population.realpopulation.SearchPeopleRealActivity;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.widget.BadgeView;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.x;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,7 +80,16 @@ public class RealFragment extends BaseFragment{
     @Override
     public void onStart() {
         super.onStart();
-        GetMaturityWarning();
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String time =sDateFormat.format(new Date(System.currentTimeMillis()));
+        if (SharePrefUtil.getString(getActivity(),Constants.YUJING_TIME_LIMIT,"").equals(time)){
+            List<MaturityListBean.MaturePeopleOne> listpeople=(List<MaturityListBean.MaturePeopleOne>)SharePrefUtil.getObj(getActivity(),Constants.YUJING_LIST);
+            if (listpeople!=null){
+                badgeView.setBadgeCount(listpeople.size());
+            }
+        }else{
+            GetMaturityWarning();
+        }
     }
     private void GetMaturityWarning() {
         RequestParams params = new RequestParams(Constants.URL + "syrkHouse.aspx");
@@ -101,6 +114,10 @@ public class RealFragment extends BaseFragment{
                         }
                     }
                     badgeView.setBadgeCount(listpeople.size());
+                    SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                    String time =sDateFormat.format(new Date(System.currentTimeMillis()));
+                    SharePrefUtil.saveString(getActivity(),Constants.YUJING_TIME_LIMIT,time);
+                    SharePrefUtil.saveObj(getActivity(),Constants.YUJING_LIST,listpeople);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

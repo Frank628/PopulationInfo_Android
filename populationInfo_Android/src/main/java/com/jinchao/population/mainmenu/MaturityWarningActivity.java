@@ -17,6 +17,7 @@ import com.jinchao.population.base.ViewHolder;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.entity.MaturityListBean;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.BadgeView;
 import com.jinchao.population.widget.LoadMoreListView;
@@ -177,6 +178,7 @@ public class MaturityWarningActivity extends BaseActiviy{
                     HouseList.clear();
                     HouseList.addAll(maturityListBean.data.houselist);
                     adapter.notifyDataSetChanged();
+                    SharePrefUtil.saveObj(MaturityWarningActivity.this,Constants.YUJING_LIST,HouseList);
                 }else{
                     loadmorelv.setTotalNum(0);
                 }

@@ -19,6 +19,7 @@ import com.jinchao.population.mainmenu.SearchRentalHouseActivity;
 import com.jinchao.population.alienPeople.SearchTwoWayActivity;
 import com.jinchao.population.mainmenu.SysActivity;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.widget.BadgeView;
 
 import org.xutils.common.Callback;
@@ -27,7 +28,9 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.x;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,7 +58,17 @@ public class AlienFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        GetMaturityWarning();
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String time =sDateFormat.format(new Date(System.currentTimeMillis()));
+        if (SharePrefUtil.getString(getActivity(),Constants.YUJING_TIME_LIMIT,"").equals(time)){
+            List<MaturityListBean.MaturePeopleOne> listpeople=(List<MaturityListBean.MaturePeopleOne>)SharePrefUtil.getObj(getActivity(),Constants.YUJING_LIST);
+            if (listpeople!=null){
+                badgeView.setBadgeCount(listpeople.size());
+            }
+        }else{
+            GetMaturityWarning();
+        }
+
     }
 
 
@@ -100,10 +113,11 @@ public class AlienFragment extends BaseFragment {
         Toast.makeText(getActivity(),"建设中...",Toast.LENGTH_LONG).show();
     }
     private void GetMaturityWarning() {
+
+
         RequestParams params = new RequestParams(Constants.URL + "HousePosition.aspx");
         params.addBodyParameter("type", "get_people");
         params.addBodyParameter("user_id", MyInfomationManager.getUserName(getActivity()));
-
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -122,6 +136,10 @@ public class AlienFragment extends BaseFragment {
                         }
                     }
                     badgeView.setBadgeCount(listpeople.size());
+                    SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                    String time =sDateFormat.format(new Date(System.currentTimeMillis()));
+                    SharePrefUtil.saveString(getActivity(),Constants.YUJING_TIME_LIMIT,time);
+                    SharePrefUtil.saveObj(getActivity(),Constants.YUJING_LIST,listpeople);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

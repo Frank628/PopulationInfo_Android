@@ -20,6 +20,8 @@ public class Constants {
 	public static final String LOCAL_DB_VERSION="LOCAL_DB_VERSION";
 	public static final String USER_DB="USER_DB";
 	public static final String FORMER_ACCOUNT="FORMER_ACCOUNT";
+	public static final String YUJING_TIME_LIMIT="YUJING_TIME_LIMIT";//到期预警接口请求时间
+	public static final String YUJING_LIST="YUJING_LIST";//到期预警数据
 	public static final String[] DEGREE={"高中","本科","大专","中专","研究生","初中","小学","文盲或半文盲"};
 	public static final String[] CHUSHUOLEIXING={"租赁房屋","农村私房","企业内部集宿","社会面集宿","建筑工地","居民家中","购买房屋","新村楼房","临时工棚"};
 	public static final String[] ZANZHUSHIYOU={"内部单位合同工","建筑民工","其他劳务","个体户经商","学习、培训","离休、退休、退职","事由不详","子女投靠父母"};

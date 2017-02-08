@@ -159,7 +159,6 @@ public class LoginActivity extends BaseActiviy{
 					for (int i = 0; i < userBean.data.size(); i++) {
 						for (int j = 0; j <userBean.data.get(i).account.size(); j++) {
 							if (username.equals(userBean.data.get(i).account.get(j).userName.trim())) {
-
 								if (isToggle) {
 									if (!password.equals("123456")) {
 										runOnUiThread(new Runnable() {
@@ -169,6 +168,9 @@ public class LoginActivity extends BaseActiviy{
 										});
 										return;
 									}
+								}
+								if (!MyInfomationManager.getUserName(LoginActivity.this).equals(username)){
+									SharePrefUtil.saveString(LoginActivity.this,Constants.YUJING_TIME_LIMIT,"");
 								}
 								MyInfomationManager.setPCSId(LoginActivity.this, userBean.data.get(i).pcsId);
 								MyInfomationManager.setUserName(LoginActivity.this, username);

@@ -73,7 +73,7 @@ public class UserDropDownPop extends PopupWindow {
             }else if(list.size()==0){
                 tv_content.setText("暂无历史记录~");
             }else{
-                tv_content.setText("只保留最近的5条记录~");
+                tv_content.setText("只保留最近的10条记录~");
             }
             adapter=new CommonAdapter<UserHistory>(context,list,R.layout.item_userhistory) {
                 @Override
