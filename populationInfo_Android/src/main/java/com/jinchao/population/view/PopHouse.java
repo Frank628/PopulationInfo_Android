@@ -514,8 +514,8 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if (hasFocus){
-					tv_up.setVisibility(View.VISIBLE);
-					ll_bottom.setVisibility(View.GONE);
+//					tv_up.setVisibility(View.VISIBLE);
+//					ll_bottom.setVisibility(View.GONE);
 				}else{
 
 				}
@@ -526,8 +526,8 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 			public void onClick(View v) {
 				edt_content.setText("");
 				edt_content.clearFocus();
-				tv_up.setVisibility(View.GONE);
-				ll_bottom.setVisibility(View.VISIBLE);
+//				tv_up.setVisibility(View.GONE);
+//				ll_bottom.setVisibility(View.VISIBLE);
 			}
 		});
 

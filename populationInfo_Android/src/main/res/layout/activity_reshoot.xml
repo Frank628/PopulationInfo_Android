@@ -21,13 +21,14 @@
 		android:src="@drawable/camera_large"
 
         />
-    <RelativeLayout 
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="45dp"
+
+		android:layout_above="@+id/edt_name"
         >
 	    <EditText 
 	        android:id="@+id/edt_content"
@@ -60,4 +61,17 @@
             android:layout_centerVertical="true"
             />
     </RelativeLayout>
+	<EditText
+		android:id="@+id/edt_name"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:textColor="@color/title2"
+		android:textColorHint="@color/title4"
+		android:hint="请输入补拍者姓名"
+		android:textSize="@dimen/small_size"
+		android:layout_marginLeft="12dp"
+		android:layout_marginRight="12dp"
+		android:layout_marginBottom="45dp"
+		android:layout_alignParentBottom="true"
+		/>
 </RelativeLayout>

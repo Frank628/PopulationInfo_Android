@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.PeopleListinHouseActivity;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
@@ -83,13 +84,16 @@ public class SendDataFragment  extends BaseFragment{
                     text.setText(succCount+"/"+list.size()+",共"+list.size()+"条");
                 }
                 for (int i = 0; i < list.size(); i++) {
-
+                    Log.i("uploadpic",list.get(i).module);
                         XmlUtils.createXml(list.get(i),getActivity());
                         String str = FileUtils.getStringFromFile(new File(Constants.DB_PATH + list.get(i).uuid + ".xml"));
                         upload2(str, list.get(i), i);
                         if (list.get(i).isReal.equals("1")) {
 //                        uploadReal(list.get(i).realId);
                             save(list.get(i));
+                    }
+                    if (list.get(i).module.equals("补")){
+                        uploadpic(list.get(i));
                     }
                 }
             }
@@ -163,7 +167,36 @@ public class SendDataFragment  extends BaseFragment{
         dialog.setCancelable(false);
         dialog.show();
     }
+    private void uploadpic(final People people){
+        Log.i("uploadpic","GdPeopleGdPeopleGdPeople");
+        RequestParams params = new RequestParams(Constants.URL + "GdPeople.aspx");
+        params.addBodyParameter("type", "insertPhoto");
+        params.addBodyParameter("idcard", people.cardno);
+        params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(getActivity()));
+        params.addBodyParameter("sname", people.name);
+        params.addBodyParameter("photo", people.picture);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.i("uploadpic",result);
 
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                uploadpic(people);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
     private void upload2(String str,final People people,final int i){
         com.lidroid.xutils.http.RequestParams params =new com.lidroid.xutils.http.RequestParams();
         params.addBodyParameter("ActionType", people.actiontype);

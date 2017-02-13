@@ -30,7 +30,9 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -178,6 +180,9 @@ public class MaturityWarningActivity extends BaseActiviy{
                     HouseList.clear();
                     HouseList.addAll(maturityListBean.data.houselist);
                     adapter.notifyDataSetChanged();
+                    SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                    String time =sDateFormat.format(new Date(System.currentTimeMillis()));
+                    SharePrefUtil.saveString(MaturityWarningActivity.this,Constants.YUJING_TIME_LIMIT,time);
                     SharePrefUtil.saveObj(MaturityWarningActivity.this,Constants.YUJING_LIST,HouseList);
                 }else{
                     loadmorelv.setTotalNum(0);

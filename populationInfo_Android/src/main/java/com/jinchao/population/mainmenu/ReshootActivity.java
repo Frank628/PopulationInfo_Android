@@ -58,6 +58,7 @@ import com.lidroid.xutils.db.sqlite.Selector;
 @ContentView(R.layout.activity_reshoot)
 public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDReaderListener{
 	@ViewInject(R.id.edt_content)EditText edt_content;
+	@ViewInject(R.id.edt_name)EditText edt_name;
 	@ViewInject(R.id.iv_photo)ImageView iv_photo;
 	public static final String TAG="IDCARD_DEVICE";
 
@@ -106,6 +107,10 @@ public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDRea
 					Toast.makeText(ReshootActivity.this, "请拍照后再保存！", Toast.LENGTH_SHORT).show();
 					return;
 				}
+				if (edt_name.getText().toString().trim().equals("")){
+					Toast.makeText(ReshootActivity.this, "请输入补拍者姓名！", Toast.LENGTH_SHORT).show();
+					return;
+				}
 				SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 				String date =sDateFormat.format(new java.util.Date());
 				DbUtils dbUtils =DeviceUtils.getDbUtils(ReshootActivity.this);
@@ -114,10 +119,12 @@ public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDRea
 						if (people!=null) {
 							people.setPicture(pic);
 							people.setCard_type("1");
+							people.setName(edt_name.getText().toString().trim());
 							people.setCollect_datetime(date);
 							dbUtils.update(people);
 						}else{
 							people=new People(date, cardno, pic, "补", CommonUtils.GenerateGUID(), "5", MyInfomationManager.getUserName(ReshootActivity.this));
+							people.setName(edt_name.getText().toString().trim());
 							dbUtils.save(people);	
 						}
 						Toast.makeText(ReshootActivity.this, "保存成功~", Toast.LENGTH_SHORT).show();
@@ -171,6 +178,7 @@ public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDRea
 			 showError(msg);
 		 }else{
 			 edt_content.setText(user.getIdNumber().trim());
+			 edt_name.setText(user.getName().trim());
 		 }
 	 }
 

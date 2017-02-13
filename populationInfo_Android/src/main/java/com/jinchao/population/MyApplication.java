@@ -30,6 +30,7 @@ import com.jinchao.population.view.Dialog.DialogClickListener;
 
 import android.app.Application;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -56,7 +57,6 @@ public class MyApplication extends Application{
 		locationService.registerListener(BDListener);
 		locationService.setLocationOption(locationService.getDefaultLocationClientOption());
 	}
-
 	/**
 	 * 设置当前登录账号使用的哪个数据库
 	 * @param No
@@ -70,7 +70,14 @@ public class MyApplication extends Application{
 			@Override
 			public void onSuccess(String result) {
 				try {
-					SharePrefUtil.saveString(getApplicationContext(), Constants.USER_DB, result.trim());
+					if (!TextUtils.isEmpty(result)){
+						try {
+							UserBean userBean =GsonTools.changeGsonToBean(result, UserBean.class);
+							SharePrefUtil.saveString(getApplicationContext(), Constants.USER_DB, result.trim());
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

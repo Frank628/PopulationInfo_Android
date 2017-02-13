@@ -332,12 +332,14 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		rc_bianhao.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				rc_dizhi.setChecked(b);
 				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_BIANHAO_STR,b);
 			}
 		});
 		rc_dizhi.setOnCheckedChangeListener(new RightButtonCheckBox.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				rc_bianhao.setChecked(b);
 				SharePrefUtil.saveBoolean(HandleIDActivity.this,Constants.IS_ZANZHUDIZHI_STR,b);
 			}
 		});
@@ -502,6 +504,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				return;
 			}
 			if (fangwubiaohao.equals("")) {
+				Toast.makeText(this, "请选择房屋编号~", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			if (zanzhudizhi.equals("")) {
 				Toast.makeText(this, "请选择房屋地址~", Toast.LENGTH_SHORT).show();
 				return;
 			}
@@ -726,6 +732,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			}
 		}else{
 			if (fangwubiaohao.equals("")) {
+				Toast.makeText(this, "请选择房屋编号~", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			if (zanzhudizhi.equals("")) {
 				Toast.makeText(this, "请选择房屋地址~", Toast.LENGTH_SHORT).show();
 				return;
 			}

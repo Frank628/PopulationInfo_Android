@@ -94,6 +94,9 @@ public class UpLoadActivity extends BaseActiviy{
 //                        uploadReal(list.get(i).realId);
                         save(list.get(i));
                     }
+					if (list.get(i).module.equals("补")){
+						uploadpic(list.get(i));
+					}
                 }
 			}
 		});
@@ -156,7 +159,35 @@ public class UpLoadActivity extends BaseActiviy{
 		dialog.setCancelable(false);
 		dialog.show();
 	}
+	private void uploadpic(final People people){
+		RequestParams params = new RequestParams(Constants.URL + "GdPeople.aspx");
+		params.addBodyParameter("type", "insertPhoto");
+		params.addBodyParameter("idcard", people.cardno);
+		params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(UpLoadActivity.this));
+		params.addBodyParameter("sname", people.name);
+		params.addBodyParameter("photo", people.picture);
+		x.http().post(params, new Callback.CommonCallback<String>() {
+			@Override
+			public void onSuccess(String result) {
+//                System.out.println(result);
 
+			}
+
+			@Override
+			public void onError(Throwable ex, boolean isOnCallback) {
+				uploadpic(people);
+			}
+
+			@Override
+			public void onCancelled(CancelledException cex) {
+
+			}
+
+			@Override
+			public void onFinished() {
+			}
+		});
+	}
 	private void upload2(String str,final People people,final int i){
 		com.lidroid.xutils.http.RequestParams params =new com.lidroid.xutils.http.RequestParams();
 		params.addBodyParameter("ActionType", people.actiontype);

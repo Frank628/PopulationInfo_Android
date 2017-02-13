@@ -66,7 +66,7 @@ public class AlienFragment extends BaseFragment {
                 badgeView.setBadgeCount(listpeople.size());
             }
         }else{
-            GetMaturityWarning();
+//            GetMaturityWarning();
         }
 
     }

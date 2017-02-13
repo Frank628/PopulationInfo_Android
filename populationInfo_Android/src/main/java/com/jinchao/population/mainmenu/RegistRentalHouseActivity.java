@@ -119,7 +119,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		});
 		dbUtils = DeviceUtils.getDbUtils(RegistRentalHouseActivity.this);
 		dialogLoading = new DialogLoading(this, "地址下载中...",true);
-//		Is_RealPopulation=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
+		Is_RealPopulation=getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false);
 		if (((MyApplication)getApplication()).database_tableNo==0){
 			database_tableNo= DatabaseUtil.getNullDB(this);
 		}else{
@@ -629,7 +629,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 //											dbUtils.save(new HouseJLX(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
 //											break;
 //										case 2:
-//											listzen2.add(new HouseAddress2(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
+ //											listzen2.add(new HouseAddress2(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 //											dbUtils.save(new HouseAddress2(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
 //											dbUtils.save(new HouseJLX2(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
 //											break;

@@ -791,8 +791,10 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		}else{
             if (isfromotherway){//如果是从人员信息验证界面进入的
                 Intent intent = new Intent(RegisterActivity.this,HandleIDActivity.class);
-                intent.putExtra("people", new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim()));
-                intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
+				People p2=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim());
+				p2.setIstakephoto(istakephoto);
+                intent.putExtra("people",p2);
+				intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
                 startActivity(intent);
                 RegisterActivity.this.finish();
                 return;

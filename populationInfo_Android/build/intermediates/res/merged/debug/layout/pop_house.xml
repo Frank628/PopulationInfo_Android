@@ -59,6 +59,7 @@
         android:layout_height="wrap_content"
         android:background="#f5f5f5"
         android:padding="10dp"
+		android:visibility="gone"
         >
         <TextView 
             android:id="@+id/btn_cancle"
@@ -94,6 +95,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#f5f5f5"
+		android:visibility="gone"
         >
     <com.jinchao.population.widget.wheel.WheelView
         android:id="@+id/wv_1"

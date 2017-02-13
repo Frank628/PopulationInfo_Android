@@ -88,7 +88,7 @@ public class RealFragment extends BaseFragment{
                 badgeView.setBadgeCount(listpeople.size());
             }
         }else{
-            GetMaturityWarning();
+//            GetMaturityWarning();
         }
     }
     private void GetMaturityWarning() {

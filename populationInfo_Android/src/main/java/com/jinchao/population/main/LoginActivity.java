@@ -164,6 +164,7 @@ public class LoginActivity extends BaseActiviy{
 										runOnUiThread(new Runnable() {
 											public void run() {
 												Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+												dismissProgressDialog();
 											}
 										});
 										return;
@@ -238,7 +239,9 @@ public class LoginActivity extends BaseActiviy{
 							}
 						}
 					}
+					dismissProgressDialog();
 				} catch (Exception e) {
+					dismissProgressDialog();
 					e.printStackTrace();
 				}
 			}
