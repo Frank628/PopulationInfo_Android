@@ -74,7 +74,7 @@ public class SplashActivity extends BaseActiviy{
             if (version==null){
                 return true;
             }
-			if (!version.getVersion_current().trim().equals("3")){//20161209日户籍地址库编号
+			if (!version.getVersion_current().trim().equals("4")){//20170220日户籍地址库编号
 				return true;
 			}
 			return false;

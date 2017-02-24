@@ -59,7 +59,7 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		String fuhao=edt_fuhao.getText().toString().trim();
 		String louhao=edt_louhao.getText().toString().trim();
 		String shihao=edt_shihao.getText().toString().trim();
-		
+
 		String menpaihaodanwei=tv_menpaihaodanwei.getText().toString().trim().equals("请选择")?"":tv_menpaihaodanwei.getText().toString().trim();
 		String fuhaodanwei=tv_fuhaodanwei.getText().toString().trim().equals("请选择")?"":tv_fuhaodanwei.getText().toString().trim();
 		String loudanwei=tv_lou.getText().toString().trim().equals("请选择")?"":tv_lou.getText().toString().trim();
@@ -69,6 +69,12 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		if (jieluxiang.equals("")) {
 			Toast.makeText(this, "请选择街路巷~", Toast.LENGTH_SHORT).show();
 			return;
+		}
+		if (!TextUtils.isEmpty(menpaihao)){
+			if (TextUtils.isEmpty(menpaihaodanwei)){
+				Toast.makeText(this, "请选择门牌号单位~", Toast.LENGTH_SHORT).show();
+				return;
+			}
 		}
 		String menpaiTT="";
 		String fuhaoTT="";
