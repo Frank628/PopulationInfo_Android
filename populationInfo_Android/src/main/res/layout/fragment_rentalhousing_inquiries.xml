@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/bgColor"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+        <com.jinchao.population.widget.ValidateEidtText
+            android:id="@+id/edt_content"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:maxLength="6"
+            android:inputType="text"
+            android:layout_toLeftOf="@+id/btn_search"
+            android:background="@drawable/login_bg"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="-10dp"
+            android:hint="请输入房屋编号"/>
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:background="#dc353b"
+            android:layout_alignParentRight="true"
+            android:text="查询"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_bg"
+            android:padding="12dp"
+            android:textColor="@color/title2"/>
+        <TextView
+            android:id="@+id/tv_noresult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableTop="@drawable/icon_noresult"
+            android:text="无此房屋编号！"
+            android:textSize="16sp"
+            android:textColor="#bfbfbf"
+            android:visibility="gone"
+            android:drawablePadding="10dp"/>
+    </RelativeLayout>
+
+</LinearLayout>

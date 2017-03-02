@@ -9,9 +9,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.WindowManager;
 
-public class BaseActiviy extends Activity implements NetWorkManager.NetConnectChangeListener{
+public class BaseActiviy extends FragmentActivity implements NetWorkManager.NetConnectChangeListener{
 	public ProgressDialog progressDialog;
 	
 	@Override

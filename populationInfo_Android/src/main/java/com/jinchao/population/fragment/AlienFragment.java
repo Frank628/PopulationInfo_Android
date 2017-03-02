@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.HouseOperationActivity;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.entity.MaturityListBean;
@@ -90,6 +91,7 @@ public class AlienFragment extends BaseFragment {
     @Event(value={R.id.iv_rentalhousecheck})
     private void rentalhousecheckClick(View view){
         Intent intent =new Intent(getActivity(), SearchRentalHouseActivity.class);
+//        Intent intent =new Intent(getActivity(), HouseOperationActivity.class);
         startActivity(intent);
     }
     @Event(value={R.id.iv_photo})

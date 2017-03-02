@@ -118,6 +118,12 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateUnspecified|adjustPan" />
         <activity
+            android:name="com.jinchao.population.alienPeople.HouseOperationActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/StyledIndicators2"
+            android:windowSoftInputMode="stateUnspecified|adjustPan" />
+        <activity
             android:name="com.jinchao.population.mainmenu.ZanZhuActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan" />
