@@ -173,6 +173,20 @@ public class LoginActivity extends BaseActiviy{
 								if (!MyInfomationManager.getUserName(LoginActivity.this).equals(username)){
 									SharePrefUtil.saveString(LoginActivity.this,Constants.YUJING_TIME_LIMIT,"");
 								}
+                                if (!MyInfomationManager.getUserName(LoginActivity.this).equals(username)){
+                                    SharePrefUtil.saveBoolean(LoginActivity.this,Constants.IS_BIANHAO_STR,false);
+                                    SharePrefUtil.saveBoolean(LoginActivity.this,Constants.IS_ZANZHUDIZHI_STR,false);
+                                    SharePrefUtil.saveBoolean(LoginActivity.this,Constants.IS_SHIHAO_STR,false);
+                                    SharePrefUtil.saveBoolean(LoginActivity.this,Constants.IS_CHUSUOLEIXING_STR,false);
+                                    SharePrefUtil.saveBoolean(LoginActivity.this,Constants.IS_FUWUCHUSUO_STR,false);
+                                    SharePrefUtil.saveBoolean(LoginActivity.this,Constants.IS_DANWEIDIZHI_STR,false);
+                                    SharePrefUtil.saveString(LoginActivity.this,Constants.BIANHAO_STR,"");
+                                    SharePrefUtil.saveString(LoginActivity.this,Constants.ZANZHUDIZHI_STR,"");
+                                    SharePrefUtil.saveString(LoginActivity.this,Constants.SHIHAO_STR,"");
+                                    SharePrefUtil.saveString(LoginActivity.this,Constants.CHUSUOLEIXING_STR,"");
+                                    SharePrefUtil.saveString(LoginActivity.this,Constants.FUWUCHUSUO_STR,"");
+                                    SharePrefUtil.saveString(LoginActivity.this,Constants.DANWEIDIZHI_STR,"");
+                                }
 								MyInfomationManager.setPCSId(LoginActivity.this, userBean.data.get(i).pcsId);
 								MyInfomationManager.setUserName(LoginActivity.this, username);
 								MyInfomationManager.setPassWord(LoginActivity.this, password);

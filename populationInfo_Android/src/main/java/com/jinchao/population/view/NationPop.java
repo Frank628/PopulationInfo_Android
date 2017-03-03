@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -42,6 +43,7 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 	private Activity mContext;
 	private View mMenuView;
 	private ViewFlipper viewfipper;
+    private LinearLayout loading;
 	private TextView submit,cancel;
 	private DbUtils dbUtils;
 	private OnEnsureClickListener onEnsureClickListener;
@@ -63,6 +65,8 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 		mProvince=(WheelView) mMenuView.findViewById(R.id.wv_1);
 		mCity=(WheelView) mMenuView.findViewById(R.id.wv_2);
 		mArea=(WheelView) mMenuView.findViewById(R.id.wv_3);
+        loading=(LinearLayout) mMenuView.findViewById(R.id.loading);
+        loading.setVisibility(View.VISIBLE);
 		mProvince.addChangingListener(this);
 		mCity.addChangingListener(this);
 		mArea.addChangingListener(this);
@@ -87,9 +91,10 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 					
 					@Override
 					public void run() {
+                        loading.setVisibility(View.GONE);
 						mProvince.setViewAdapter(new ArrayWheelAdapter<String>(mContext, ProvinceDatesArr));
 						updateCity(mContext);
-						
+
 					}
 				});
 			}
@@ -225,8 +230,12 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 			}else if(CurrentArea.equals("")){
                 CurrentID=ProvinceDatesArr[newValue];
             }else{
-				CurrentArea=AreaDatasMap.get(CurrentCity)[newValue];
-				CurrentID=IDDatasMap.get(CurrentCity)[newValue];
+                if(AreaDatasMap!=null) {
+                    if (AreaDatasMap.get(CurrentCity)!=null) {
+                        CurrentArea = AreaDatasMap.get(CurrentCity)[newValue];
+                        CurrentID = IDDatasMap.get(CurrentCity)[newValue];
+                    }
+                }
 			}
 			
 		}
