@@ -90,8 +90,8 @@ public class AlienFragment extends BaseFragment {
     }
     @Event(value={R.id.iv_rentalhousecheck})
     private void rentalhousecheckClick(View view){
-        Intent intent =new Intent(getActivity(), SearchRentalHouseActivity.class);
-//        Intent intent =new Intent(getActivity(), HouseOperationActivity.class);
+//        Intent intent =new Intent(getActivity(), SearchRentalHouseActivity.class);
+        Intent intent =new Intent(getActivity(), HouseOperationActivity.class);
         startActivity(intent);
     }
     @Event(value={R.id.iv_photo})

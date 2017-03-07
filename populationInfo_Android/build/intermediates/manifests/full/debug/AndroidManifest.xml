@@ -207,6 +207,20 @@
             android:name="com.jinchao.population.nfcregister.NFCActiveActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.jinchao.population.alienPeople.housemanagement.NFCReadPeopleInHouseActivity"
+            android:label="显示纯文本NFC标签的内容"
+            android:launchMode="singleTask" >
+            <intent-filter>
+
+                <!-- 指定了NDEF_DISCOVERED -->
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- 指定了纯文本格式 -->
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name="com.jinchao.population.service.DownLoadService"

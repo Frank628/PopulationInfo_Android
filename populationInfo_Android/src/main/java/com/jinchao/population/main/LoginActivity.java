@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.housemanagement.NFCReadPeopleInHouseActivity;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.UserHistory;
@@ -71,12 +72,14 @@ public class LoginActivity extends BaseActiviy{
 	private boolean isToggle=false;//是否（在切换用页）手动输入用户
 	private String password="";
 	private String username="";
+	private boolean IS_NFC_READ=false;
 	String users="";
 	UserDropDownPop userDropDownPop;
 	DbUtils dbUtils;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		IS_NFC_READ=getIntent().getBooleanExtra(Constants.IS_NFC_READER,false);
 		popupUser = new PopupUser(this, new OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(AccountOne accountOne) {
@@ -260,9 +263,16 @@ public class LoginActivity extends BaseActiviy{
 				}
 			}
 			private void loginSuccess() {
-				Intent intent =new Intent(LoginActivity.this, MainActivity.class);
-				startActivity(intent);
-//				LoginActivity.this.finish();
+				if (IS_NFC_READ){
+					Intent intent =new Intent(LoginActivity.this, NFCReadPeopleInHouseActivity.class);
+					intent.putExtra(Constants.IS_NFC_READER,true);
+					startActivity(intent);
+					LoginActivity.this.finish();
+				}else{
+					Intent intent =new Intent(LoginActivity.this, MainActivity.class);
+					startActivity(intent);
+				}
+
 			}
 		}).start();
 	}

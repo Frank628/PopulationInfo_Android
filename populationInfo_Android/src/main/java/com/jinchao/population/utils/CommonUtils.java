@@ -10,6 +10,8 @@ import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -460,5 +462,29 @@ public class CommonUtils {
 		} catch (Exception e) {
 			Log.i("error:", e + "");
 		}
+	}
+	public static boolean isBigerthanElevenandSmallthanTwelve(String day) {
+		String[] s=day.split("-");
+		String dayf=s[0]+"-"+(s[1].length()==1?("0"+s[1]):s[1])+"-"+(s[2].length()==1?("0"+s[2]):s[2]);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date nowDate = null;
+		try {
+			nowDate = df.parse(dayf);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Date newDate12 = new Date(nowDate.getTime() + (long)365 * 24 * 60 * 60 * 1000);
+		Date newDate11 = new Date(nowDate.getTime() + (long)334 * 24 * 60 * 60 * 1000);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String date12 = simpleDateFormat.format(newDate12);
+		String date11 = simpleDateFormat.format(newDate11);
+		int falg12=date12.compareTo(simpleDateFormat.format(new Date()));
+		int falg11=date11.compareTo(simpleDateFormat.format(new Date()));
+		if (falg11<0) {
+			return true;
+		}else{
+			return false;
+		}
+
 	}
 }

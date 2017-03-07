@@ -15,10 +15,9 @@ import com.jinchao.population.adapter.HouseOperationAdapter;
 import com.jinchao.population.alienPeople.housemanagement.NfcTagWriterFragment;
 import com.jinchao.population.alienPeople.housemanagement.RentalHousingDataEditorFragment;
 import com.jinchao.population.alienPeople.housemanagement.RentalHousingDeleteFragment;
-import com.jinchao.population.alienPeople.housemanagement.RentalHousingManagementFragment;
+import com.jinchao.population.alienPeople.housemanagement.RentalHousingInquiriesFragment;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.base.BaseFragment;
-import com.jinchao.population.fragment.SettingFragment;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.viewpagerindicator.TabPageIndicator;
 import com.jinchao.population.widget.viewpagerindicator.UnderlinePageIndicatorEx;
@@ -55,7 +54,7 @@ public class HouseOperationActivity extends BaseActiviy {
         });
         HouseOperationAdapter adapter=new HouseOperationAdapter(getSupportFragmentManager());
         List<Fragment> fragmentList=new ArrayList<>();
-        fragmentList.add(new RentalHousingManagementFragment());
+        fragmentList.add(new RentalHousingInquiriesFragment());
         fragmentList.add(new RentalHousingDataEditorFragment());
         fragmentList.add(new RentalHousingDeleteFragment());
         fragmentList.add(new NfcTagWriterFragment());
@@ -95,7 +94,9 @@ public class HouseOperationActivity extends BaseActiviy {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         List<Fragment> fragmentList=getSupportFragmentManager().getFragments();
+        if (fragmentList==null)return;
         for (int i=0;i<fragmentList.size();i++){
+            if (fragmentList.get(i)==null)return;
             if (fragmentList.get(i).isVisible()) {
                 ((BaseFragment) fragmentList.get(i)).onNewIntent(intent);
             }

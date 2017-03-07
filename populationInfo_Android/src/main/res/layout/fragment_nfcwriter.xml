@@ -30,16 +30,44 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="15dp">
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_write"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_bg"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:textColor="@color/title2"/>
+            <TextView
+                android:id="@+id/tv_noresult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="#bfbfbf"
+                android:drawablePadding="10dp"/>
+        </RelativeLayout>
         <Button
             android:id="@+id/btn_write"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="15dp"
             android:layout_alignParentBottom="true"
-            android:textSize="17sp"
+            android:background="@drawable/btn_nfcwrite_click"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
             android:text="写入NFC标签"/>
     </RelativeLayout>
 </LinearLayout>

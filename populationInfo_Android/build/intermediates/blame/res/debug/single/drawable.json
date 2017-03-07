@@ -8,12 +8,16 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\ab_bg.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\vpi__tab_indicator.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\vpi__tab_indicator.xml"
+    },
+    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\white_click_bg2.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\white_click_bg2.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\vpi__tab_indicator.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\vpi__tab_indicator.xml"
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\nfc_reader.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\nfc_reader.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\stroke_dialog.xml",
@@ -24,12 +28,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\btn_login_click.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\radio_check_left_bg.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\radio_check_left_bg.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\radio_check_left_bg.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\radio_check_left_bg.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_corner_white.xml",
@@ -76,12 +80,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.soundcloud.android\\android-crop\\1.0.1\\res\\drawable\\crop__texture.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\search_bg.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\search_bg.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_rentalhouse_zen.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\btn_rentalhouse_zen.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\search_bg.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\search_bg.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\count_bg.xml",
@@ -92,12 +96,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\take_pic_bg.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\menudialog_center_selector.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\menudialog_center_selector.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\menudialog_center_selector.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\menudialog_center_selector.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
@@ -136,12 +140,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_item_background_holo_dark.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\menudialog_bottom_selector.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\menudialog_bottom_selector.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\warning.xml",
@@ -158,6 +162,10 @@
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\cb_shou.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\cb_shou.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_nfcwrite_pressed.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\btn_nfcwrite_pressed.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\search_bg2.xml",
@@ -240,12 +248,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\stroke_dialog_down_left.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\pop_dengji_bg.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\pop_dengji_bg.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\pop_dengji_bg.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\pop_dengji_bg.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\formal.xml",
@@ -260,12 +268,12 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\vpi__tab_selected_holo.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\design_snackbar_background.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.1.1\\res\\drawable\\design_snackbar_background.xml"
-    },
-    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\mybuttonbackground_pressed.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\mybuttonbackground_pressed.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\design_snackbar_background.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.1.1\\res\\drawable\\design_snackbar_background.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
@@ -284,20 +292,24 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\actionsheet_bottom_selector.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_nfcwrite_click.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\btn_nfcwrite_click.xml"
+    },
+    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_rentalhouse_quan.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\btn_rentalhouse_quan.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\round_add_bg.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\round_add_bg.xml"
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_material.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_ic_clear_material.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\stroke_dialog_down.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\stroke_dialog_down.xml"
     },
     {
-        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_material.xml",
-        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_ic_clear_material.xml"
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\round_add_bg.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\round_add_bg.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
@@ -370,6 +382,10 @@
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\actionsheet_single_selector.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\actionsheet_single_selector.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_nfcwrite_unpressed.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\btn_nfcwrite_unpressed.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",

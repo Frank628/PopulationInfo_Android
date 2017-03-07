@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:wheel="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
@@ -38,26 +39,53 @@
             android:background="@drawable/btn_ensure_bg"
             />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#f5f5f5"
         >
-    <com.jinchao.population.widget.wheel.WheelView
-        android:id="@+id/wv_1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-    <com.jinchao.population.widget.wheel.WheelView
-        android:id="@+id/wv_2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-    <com.jinchao.population.widget.wheel.WheelView
-        android:id="@+id/wv_3"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        <com.jinchao.population.widget.wheel.WheelView
+            android:id="@+id/wv_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <com.jinchao.population.widget.wheel.WheelView
+            android:id="@+id/wv_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <com.jinchao.population.widget.wheel.WheelView
+            android:id="@+id/wv_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 	</LinearLayout>
+        <LinearLayout
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#f5f5f5"
+            android:visibility="gone"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <com.jinchao.population.widget.emptyview.ProgressWheel
+                android:id="@+id/progressWheel"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                wheel:matProg_progressIndeterminate="true"
+                wheel:matProg_linearProgress="true"
+                android:layout_gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/title3"
+                android:text="户籍地址加载中..."/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

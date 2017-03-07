@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/login_bg"
+            android:textSize="16sp"
             android:padding="12dp"
             android:textColor="@color/title2"/>
         <TextView
@@ -47,11 +48,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:drawableTop="@drawable/icon_noresult"
-            android:text="无此房屋编号！"
+            android:drawableTop="@drawable/icon_nfc_read"
+            android:text="请将NFC标签贴近手机背部读取编号\n或输入房屋编号"
             android:textSize="16sp"
+            android:gravity="center"
             android:textColor="#bfbfbf"
-            android:visibility="gone"
             android:drawablePadding="10dp"/>
     </RelativeLayout>
 
