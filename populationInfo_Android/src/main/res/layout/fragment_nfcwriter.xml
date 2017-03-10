@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/bgColor"
     android:layout_height="match_parent">
@@ -34,7 +35,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/btn_write"
+            android:layout_above="@+id/ll_important"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="15dp">
@@ -57,6 +58,35 @@
                 android:textColor="#bfbfbf"
                 android:drawablePadding="10dp"/>
         </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/ll_important"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_write"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/improtant_people_bg"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:background="@drawable/improtant_people_tv_bg"
+                android:text="重点人员："/>
+            <TextView
+                android:id="@+id/tv_important"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/title1"
+                android:gravity="center"
+                android:drawableRight="@drawable/icon_down"
+                android:text="无"/>
+        </LinearLayout>
         <Button
             android:id="@+id/btn_write"
             android:layout_width="match_parent"

@@ -3,13 +3,10 @@ package com.jinchao.population.alienPeople.housemanagement;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -39,6 +36,7 @@ import com.jinchao.population.mainmenu.SearchPeopleDetailActivity;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.nfcutil.NfcOperation;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.emptyview.HHEmptyView;
@@ -53,7 +51,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -73,11 +70,12 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
     @ViewInject(R.id.tv_nopeople) private TextView tv_nopeople;
     @ViewInject(R.id.rb_roomcode)RadioButton rb_roomcode;
     boolean noInit=true;
+    NavigationLayout navigationLayout;
     String code="",json="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
+        navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
         navigationLayout.setCenterText("人员信息");
         navigationLayout.setLeftTextOnClick(new View.OnClickListener() {
             @Override
@@ -162,76 +160,18 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         super.onNewIntent(intent);
         Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         Ndef ndef = Ndef.get(detectedTag);
-        readNfcTag(intent);
-    }
-    /**
-     * 读取NFC标签文本数据
-     */
-    private void readNfcTag(Intent intent) {
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
-            Parcelable[] rawMsgs = intent.getParcelableArrayExtra(
-                    NfcAdapter.EXTRA_NDEF_MESSAGES);
-            NdefMessage msgs[] = null;
-            if (rawMsgs != null) {
-                msgs = new NdefMessage[rawMsgs.length];
-                for (int i = 0; i < rawMsgs.length; i++) {
-                    msgs[i] = (NdefMessage) rawMsgs[i];
-                }
+        NfcOperation.NfcreadNDEF(intent, new NfcOperation.NFCReadCallBackListener() {
+            @Override
+            public void success(String result) {
+                readSuccess(result);
             }
-            try {
-                if (msgs != null) {
-                    NdefRecord record = msgs[0].getRecords()[0];
-                    String textRecord = parseTextRecord(record);
-                    readSuccess(textRecord);
-                }else{
-                    readFail("此标签中无内容");
-                }
-            } catch (Exception e) {
-                readFail("此标签类型不匹配！");
+            @Override
+            public void error(String error) {
+                readFail(error);
             }
-        }else{
-            readFail("无效的NFC卡片类型");
-        }
+        });
     }
 
-    /**
-     * 解析NDEF文本数据，从第三个字节开始，后面的文本数据
-     * @param ndefRecord
-     * @return
-     */
-    public static String parseTextRecord(NdefRecord ndefRecord) {
-        /**
-         * 判断数据是否为NDEF格式
-         */
-        //判断TNF
-        if (ndefRecord.getTnf() != NdefRecord.TNF_WELL_KNOWN) {
-            return null;
-        }
-        //判断可变的长度的类型
-        if (!Arrays.equals(ndefRecord.getType(), NdefRecord.RTD_TEXT)) {
-            return null;
-        }
-        try {
-            //获得字节数组，然后进行分析
-            byte[] payload = ndefRecord.getPayload();
-            //下面开始NDEF文本数据第一个字节，状态字节
-            //判断文本是基于UTF-8还是UTF-16的，取第一个字节"位与"上16进制的80，16进制的80也就是最高位是1，
-            //其他位都是0，所以进行"位与"运算后就会保留最高位
-            String textEncoding = ((payload[0] & 0x80) == 0) ? "UTF-8" : "UTF-16";
-            //3f最高两位是0，第六位是1，所以进行"位与"运算后获得第六位
-            int languageCodeLength = payload[0] & 0x3f;
-            //下面开始NDEF文本数据第二个字节，语言编码
-            //获得语言编码
-            String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-            //下面开始NDEF文本数据后面的字节，解析出文本
-            String textRecord = new String(payload, languageCodeLength + 1,
-                    payload.length - languageCodeLength - 1, textEncoding);
-            return textRecord;
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
-
-        }
-    }
     private void readFail(String error){
         Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
     }
@@ -241,6 +181,12 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
             if (nfcJsonBean.sq.equals(MyInfomationManager.getSQNAME(this))){
                 code=nfcJsonBean.code;
                 getPeopleInhouse(nfcJsonBean.code);
+                navigationLayout.setRightText("", R.drawable.icon_infor, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }else{
                 Dialog.showForceDialog(this, "提示", "当前登录账号不属于‘" + nfcJsonBean.sq + "’,\n请切换账号！", new Dialog.DialogClickListener() {
                     @Override

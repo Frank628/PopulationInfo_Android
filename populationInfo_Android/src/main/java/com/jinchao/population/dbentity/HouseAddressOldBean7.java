@@ -149,7 +149,7 @@ public class HouseAddressOldBean7 {
 				+ udt ;
 	}
 
-	public String toJson(Context context){
+	public String toJson(Context context,String imType){
 		String json="";
 		JSONObject jsonObject=new JSONObject();
 		try {
@@ -159,6 +159,7 @@ public class HouseAddressOldBean7 {
 			jsonObject.put("idcard",idcard);
 			jsonObject.put("phone",telphone);
 			jsonObject.put("udt",udt);
+			jsonObject.put("imp",imType);
 			jsonObject.put("sq", MyInfomationManager.getSQNAME(context));
 			json=jsonObject.toString();
 		} catch (JSONException e) {

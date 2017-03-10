@@ -210,7 +210,8 @@
         <activity
             android:name="com.jinchao.population.alienPeople.housemanagement.NFCReadPeopleInHouseActivity"
             android:label="显示纯文本NFC标签的内容"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorPortrait" >
             <intent-filter>
 
                 <!-- 指定了NDEF_DISCOVERED -->
