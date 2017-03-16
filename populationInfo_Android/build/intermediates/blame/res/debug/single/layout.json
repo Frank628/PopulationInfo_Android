@@ -184,6 +184,10 @@
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_wait.xml"
     },
     {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_re_makeup.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_re_makeup.xml"
+    },
+    {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\wheel_three.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\wheel_three.xml"
     },
@@ -230,6 +234,10 @@
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_search_idcardhousecode.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_search_idcardhousecode.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_residentpermit.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_residentpermit.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_realpopulation.xml",
@@ -470,6 +478,10 @@
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_nfcwriter.xml",
         "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_nfcwriter.xml"
+    },
+    {
+        "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_report_loss.xml",
+        "source": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_report_loss.xml"
     },
     {
         "merged": "E:\\androidstudioworkspace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",

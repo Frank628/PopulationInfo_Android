@@ -5,12 +5,15 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+import android.nfc.tech.MifareUltralight;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import com.jinchao.population.config.Constants;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Locale;
@@ -20,7 +23,17 @@ import java.util.Locale;
  */
 
 public class NfcOperation {
-
+    public final static byte CMD_READ = (byte)0x30;
+    public final static byte CMD_FAST_READ = (byte)0x3A;
+    public final static byte CMD_WRITE = (byte)0xA2;
+    public final static byte CMD_PWD_AUTH = (byte)0x1B;
+    public final static byte PWD_ADDRESS_216 = (byte)0xE5;
+    public final static byte PACK_ADDRESS_216 = (byte)0xE6;
+    public final static byte AUTH0_ADDRESS_216 = (byte)0xE3;
+    public final static byte STATIC_LOCK_BITS_ADDRESS = (byte)0x02;
+    public final static byte[] DEFAULT_PASSWORD = new byte[] {(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF};
+    public final static byte[] DEFINE_PASSWORD = new byte[] {(byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88};
+    public final static byte[] PACK = new byte[] {(byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88};
     public interface NFCWriteCallBackListener{
         void success();
         void error(String error);
@@ -96,6 +109,7 @@ public class NfcOperation {
                 }
             }
         } catch (Exception e) {
+            nfcWrite.error("无法获取NDEF对象");
         }
     }
 
@@ -169,7 +183,65 @@ public class NfcOperation {
         }
     }
 
-    public static void encryptNTAG(){
+    public static void AuthNFCTag(Tag tag,NFCWriteCallBackListener nfcWrite){
+        String error="defaul";
+        MifareUltralight  ultralight= MifareUltralight.get(tag);
+        try {
+            ultralight.connect();
+            try {
+//                byte[] result=ultralight.transceive((new byte[] {
+//                        CMD_PWD_AUTH, // PWD_AUTH
+//                        DEFINE_PASSWORD[0], DEFINE_PASSWORD[1], DEFINE_PASSWORD[2], DEFINE_PASSWORD[3]}));
+
+                byte[] result=ultralight.transceive((new byte[] {
+                        CMD_WRITE, // PWD_AUTH
+                        PWD_ADDRESS_216,
+                        DEFINE_PASSWORD[0], DEFINE_PASSWORD[1], DEFINE_PASSWORD[2], DEFINE_PASSWORD[3]}));
+                byte[] pack_result=ultralight.transceive((new byte[] {
+                        CMD_WRITE, // PWD_AUTH
+                        PACK_ADDRESS_216,
+                        DEFINE_PASSWORD[0], DEFINE_PASSWORD[1], 0, 0}));
+                byte[] response = ultralight.transceive(new byte[] {
+                        (byte) 0x30, // READ
+                        (byte) 38    // page address
+                });
+                if ((response != null) && (response.length >= 16)) {  // read always returns 4 pages
+                    boolean prot = false;  // false = PWD_AUTH for write only, true = PWD_AUTH for read and write
+                    int authlim = 0; // value between 0 and 7
+                    response = ultralight.transceive(new byte[] {
+                            (byte) 0xA2, // WRITE
+                            (byte) 0x2A,   // page address
+                            (byte) ((response[0] & 0x078) | (prot ? 0x080 : 0x000) | (authlim & 0x007)),
+                            response[1], response[2], response[3]  // keep old value for bytes 1-3, you could also simply set them to 0 as they are currently RFU and must always be written as 0 (response[1], response[2], response[3] will contain 0 too as they contain the read RFU value)
+                    });
+                }
+                byte[] response_pageprot = ultralight.transceive(new byte[] {
+                        (byte) 0x30, // READ
+                        (byte) 0x83     // page address
+                });
+                if ((response_pageprot != null) && (response_pageprot.length >= 16)) {  // read always returns 4 pages
+                    boolean prot1 = false;  // false = PWD_AUTH for write only, true = PWD_AUTH for read and write
+                    int auth0 = 0; // first page to be protected, set to a value between 0 and 37 for NTAG212
+                    response_pageprot = ultralight.transceive(new byte[] {
+                            (byte) 0xA2, // WRITE
+                            (byte) 0x83 ,   // page address
+                            response_pageprot[0], // keep old value for byte 0
+                            response_pageprot[1], // keep old value for byte 1
+                            response_pageprot[2], // keep old value for byte 2
+                            (byte) (auth0 & 0x0ff)
+                    });
+                }
+                nfcWrite.error(result.toString()+"aa");
+                ultralight.close();
+            } catch (IOException e) {
+                nfcWrite.error(e.getMessage());
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

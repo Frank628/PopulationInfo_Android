@@ -45,12 +45,14 @@ public class PopImportantPeople extends PopupWindow{
 		mMenuView=inflater.inflate(R.layout.pop_important, null);
 		viewfipper = new ViewFlipper(context);
 		viewfipper.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
-		list.add("精神病患者");
-		list.add("新疆人");
-		list.add("法轮功");
-		list.add("藏独份子");
+		list.add("无");
+		list.add("国保");//国保、治安、刑事、涉毒重点人员、涉疆关注、其他
+		list.add("治安");
+		list.add("刑事");
+		list.add("涉毒重点人员");
 		list.add("犯罪嫌疑人");
-		list.add("吸毒人员");
+		list.add("涉疆关注");
+		list.add("其他");
 		lv =(ListView) mMenuView.findViewById(R.id.lv);
 		lv.setAdapter(new CommonAdapter<String>(context,list,R.layout.item_important) {
 			@Override

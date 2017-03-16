@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:drawableTop="@drawable/icon_nfc_read"
-            android:text="请将NFC标签贴近手机背部读取编号\n或输入房屋编号"
+            android:text="请将门牌贴纸贴近手机背部"
             android:textSize="16sp"
             android:gravity="center"
             android:textColor="#bfbfbf"

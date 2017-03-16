@@ -176,6 +176,7 @@ public class MaturityWarningActivity extends BaseActiviy{
         try {
             MaturityListBean maturityListBean= GsonTools.changeGsonToBean(json,MaturityListBean.class);
             if (maturityListBean.data.houselist!=null){
+                loadmorelv.setTotalNum(maturityListBean.data.houselist.size());
                 if (maturityListBean.data.houselist.size()!=0){
                     HouseList.clear();
                     HouseList.addAll(maturityListBean.data.houselist);

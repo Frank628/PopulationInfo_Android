@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:2:1-127:12
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:2:1-128:12
 	package
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:3:5-37
 		INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml
@@ -166,7 +166,7 @@ ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Andro
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:47:19-54
 application
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:48:5-125:19
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:48:5-126:19
 MERGED from [PopulationInfo_Android:lib_xutils:unspecified] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\lib_xutils\unspecified\AndroidManifest.xml:6:5-20
 MERGED from [PopulationInfo_Android:eventBus:unspecified] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\eventBus\unspecified\AndroidManifest.xml:11:5-12:19
 MERGED from [com.android.support:cardview-v7:24.1.1] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.1\AndroidManifest.xml:22:5-20
@@ -275,245 +275,257 @@ ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Andro
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:74:138-194
 	android:name
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:74:19-94
-activity#com.jinchao.population.alienPeople.HouseOperationActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:9-266
+activity#com.jinchao.population.alienPeople.housemanagement.HouseOperationActivity
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:9-282
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:165-207
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:181-223
 	android:launchMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:92-122
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:108-138
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:208-264
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:224-280
 	android:theme
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:123-163
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:139-179
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:19-91
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:75:19-107
+activity#com.jinchao.population.alienPeople.residentpermit.ResidentPermitManagementActivity
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:9-291
+	android:screenOrientation
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:190-232
+	android:launchMode
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:117-147
+	android:windowSoftInputMode
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:233-289
+	android:theme
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:148-188
+	android:name
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:19-116
 activity#com.jinchao.population.mainmenu.ZanZhuActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:9-165
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:9-165
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:81-123
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:81-123
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:124-163
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:124-163
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:76:19-80
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:19-80
 activity#com.jinchao.population.mainmenu.HandleIDActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:9-184
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:9-184
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:83-125
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:83-125
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:126-182
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:126-182
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:77:19-82
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:19-82
 activity#com.jinchao.population.mainmenu.RegistRentalHouseActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:9-176
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:9-176
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:92-134
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:92-134
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:135-174
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:135-174
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:78:19-91
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:19-91
 activity#com.jinchao.population.mainmenu.AddRentalHouseActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:9-185
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:9-185
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:89-131
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:89-131
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:132-183
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:132-183
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:79:19-88
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:19-88
 activity#com.jinchao.population.mainmenu.EidtHouseAddressActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:9-187
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:9-187
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:91-133
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:91-133
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:134-185
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:134-185
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:80:19-90
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:19-90
 activity#com.jinchao.population.mainmenu.SearchPeopleActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:9-183
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:9-183
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:87-129
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:87-129
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:130-181
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:130-181
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:81:19-86
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:19-86
 activity#com.jinchao.population.realpopulation.SearchPeopleRealActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:9-193
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:9-193
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:97-139
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:97-139
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:140-191
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:140-191
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:82:19-96
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:19-96
 activity#com.jinchao.population.mainmenu.SearchRentalHouseActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:9-188
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:9-188
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:92-134
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:92-134
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:135-186
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:135-186
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:83:19-91
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:19-91
 activity#com.jinchao.population.mainmenu.StatisticsActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:6-178
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:6-178
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:82-124
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:82-124
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:125-176
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:125-176
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:84:16-81
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:16-81
 activity#com.jinchao.population.mainmenu.SysActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:7-172
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:7-172
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:76-118
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:76-118
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:119-170
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:119-170
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:85:17-75
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:17-75
 activity#com.jinchao.population.mainmenu.ReshootActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:9-178
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:9-178
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:82-124
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:82-124
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:125-176
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:125-176
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:86:19-81
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:19-81
 activity#com.jinchao.population.mainmenu.UpLoadActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:9-177
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:9-177
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:81-123
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:81-123
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:124-175
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:124-175
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:87:19-80
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:19-80
 activity#com.jinchao.population.mainmenu.SearchPeopleDetailActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:6-186
-	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:90-132
-	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:133-184
-	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:88:16-89
-activity#com.jinchao.population.mainmenu.MaturityWarningActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:89:9-186
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:89:6-186
 	android:screenOrientation
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:89:90-132
 	android:windowSoftInputMode
 		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:89:133-184
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:89:19-89
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:89:16-89
+activity#com.jinchao.population.mainmenu.MaturityWarningActivity
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:9-186
+	android:screenOrientation
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:90-132
+	android:windowSoftInputMode
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:133-184
+	android:name
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:19-89
 activity#com.jinchao.population.mainmenu.MaturityPeopleActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:9-185
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:9-185
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:89-131
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:89-131
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:132-183
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:132-183
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:90:19-88
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:19-88
 activity#com.jinchao.population.realpopulation.SingleRealPopulationActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:9-197
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:9-197
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:101-143
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:101-143
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:144-195
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:144-195
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:91:19-100
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:19-100
 activity#com.jinchao.population.realpopulation.AddChildActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:6-182
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:6-182
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:86-128
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:86-128
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:129-180
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:129-180
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:92:16-85
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:16-85
 activity#com.jinchao.population.activity.AboutActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:9-176
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:9-176
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:80-122
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:80-122
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:123-174
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:123-174
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:93:19-79
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:19-79
 activity#com.jinchao.population.activity.PersonInHouseActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:9-184
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:9-184
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:88-130
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:88-130
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:131-182
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:131-182
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:94:19-87
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:19-87
 activity#com.jinchao.population.realpopulation.RealPeopleSearchActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:9-193
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:9-193
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:97-139
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:97-139
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:140-191
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:140-191
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:95:19-96
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:19-96
 activity#com.jinchao.population.nfcregister.NFCActiveActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:9-183
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:97:9-183
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:87-129
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:97:87-129
 	android:windowSoftInputMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:130-181
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:97:130-181
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:96:19-86
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:97:19-86
 activity#com.jinchao.population.alienPeople.housemanagement.NFCReadPeopleInHouseActivity
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:97:9-109:20
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:98:9-110:20
 	android:screenOrientation
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:100:15-57
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:101:15-57
 	android:label
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:99:15-44
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:100:15-44
 	android:launchMode
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:101:15-46
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:102:15-46
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:98:15-109
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:99:15-109
 intent-filter#android.intent.category.DEFAULT+android.nfc.action.NDEF_DISCOVERED
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:102:14-108:31
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:103:14-109:31
 action#android.nfc.action.NDEF_DISCOVERED
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:104:19-79
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:105:19-79
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:104:27-76
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:105:27-76
 category#android.intent.category.DEFAULT
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:105:19-78
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:106:19-78
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:105:29-75
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:106:29-75
 data
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:107:19-57
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:108:19-57
 	android:mimeType
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:107:25-54
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:108:25-54
 service#com.jinchao.population.service.DownLoadService
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:110:9-114:19
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:111:9-115:19
 	android:enabled
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:112:13-35
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:113:13-35
 	android:exported
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:113:13-37
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:114:13-37
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:111:13-74
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:112:13-74
 receiver#com.jinchao.population.StartUpReceiver
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:115:9-120:20
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:116:9-121:20
 	android:permission
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:115:73-135
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:116:73-135
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:115:19-72
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:116:19-72
 intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.category.DEFAULT
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:116:13-119:29
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:117:13-120:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:117:17-86
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:118:17-86
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:117:25-76
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:118:25-76
 service#com.baidu.location.f
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:121:9-113
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:122:9-113
 	android:enabled
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:121:54-76
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:122:54-76
 	android:process
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:121:77-102
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:122:77-102
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:121:18-53
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:122:18-53
 meta-data#com.google.android.gms.version
-ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:122:9-124:69
+ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:123:9-125:69
 MERGED from [com.google.android.gms:play-services-basement:8.1.0] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:124:13-66
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:125:13-66
 	android:name
-		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:123:13-58
+		ADDED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:124:13-58
 uses-sdk
 INJECTED from E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:multidex:1.0.1] E:\androidstudioworkspace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\AndroidManifest.xml:18:5-42

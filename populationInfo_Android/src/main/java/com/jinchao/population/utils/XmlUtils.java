@@ -428,7 +428,8 @@ public class XmlUtils {
 			e.printStackTrace();
 		}
 		return str;
-	}public static String parseXMLtohuji1(String xml){
+	}
+	public static String parseXMLtohuji1(String xml){
 		String str="";
 		xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
 		try {

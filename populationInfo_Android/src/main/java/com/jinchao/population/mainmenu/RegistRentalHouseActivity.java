@@ -141,7 +141,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean> adapter =new CommonAdapter<HouseAddressOldBean>(RegistRentalHouseActivity.this,listzen,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter);
@@ -154,7 +154,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean2> adapter2 =new CommonAdapter<HouseAddressOldBean2>(RegistRentalHouseActivity.this,listzen2,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean2 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter2);
@@ -168,7 +168,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean3> adapter3 =new CommonAdapter<HouseAddressOldBean3>(RegistRentalHouseActivity.this,listzen3,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean3 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter3);
@@ -182,7 +182,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean4> adapter4 =new CommonAdapter<HouseAddressOldBean4>(RegistRentalHouseActivity.this,listzen4,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean4 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter4);
@@ -196,7 +196,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean5> adapter5 =new CommonAdapter<HouseAddressOldBean5>(RegistRentalHouseActivity.this,listzen5,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean5 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter5);
@@ -210,7 +210,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean6> adapter6 =new CommonAdapter<HouseAddressOldBean6>(RegistRentalHouseActivity.this,listzen6,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean6 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter6);
@@ -224,7 +224,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean7> adapter7 =new CommonAdapter<HouseAddressOldBean7>(RegistRentalHouseActivity.this,listzen7,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean7 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter7);
@@ -238,7 +238,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean8> adapter8 =new CommonAdapter<HouseAddressOldBean8>(RegistRentalHouseActivity.this,listzen8,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean8 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter8);
@@ -252,7 +252,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean9> adapter9 =new CommonAdapter<HouseAddressOldBean9>(RegistRentalHouseActivity.this,listzen9,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean9 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter9);
@@ -266,7 +266,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							CommonAdapter<HouseAddressOldBean10> adapter10 =new CommonAdapter<HouseAddressOldBean10>(RegistRentalHouseActivity.this,listzen10,R.layout.item_houseaddress) {
 								@Override
 								public void convert(ViewHolder helper, HouseAddressOldBean10 item, int position) {
-									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.id+"  地址："+item.address+"</font>"));
+									helper.setText(R.id.tv_content,Html.fromHtml("<font  color=\'#cfcfcf\'>"+(position+1)+". </font><font color=\'#666666\'>"+"编号："+item.scode+"  地址："+item.address+"</font>"));
 								}
 							};
 							lv.setAdapter(adapter10);

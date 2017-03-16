@@ -72,7 +72,8 @@
         <activity android:name="com.jinchao.population.alienPeople.SearchTwoWayActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
         <activity android:name="com.jinchao.population.alienPeople.IDCardResultActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
         <activity android:name="com.jinchao.population.alienPeople.PeopleListinHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.alienPeople.HouseOperationActivity" android:launchMode="singleTop" android:theme="@style/StyledIndicators2"  android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.housemanagement.HouseOperationActivity" android:launchMode="singleTop" android:theme="@style/StyledIndicators2"  android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.residentpermit.ResidentPermitManagementActivity" android:launchMode="singleTop" android:theme="@style/StyledIndicators2"  android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.ZanZhuActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.HandleIDActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
         <activity android:name="com.jinchao.population.mainmenu.RegistRentalHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>

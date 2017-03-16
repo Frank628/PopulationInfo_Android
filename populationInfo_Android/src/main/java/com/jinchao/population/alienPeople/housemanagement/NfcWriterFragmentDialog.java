@@ -10,6 +10,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
+import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -20,12 +21,14 @@ import android.widget.Toast;
 
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseDialogFragment;
+import com.jinchao.population.ntaglib.Ntag216Reader;
 import com.jinchao.population.utils.nfcutil.NfcOperation;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
@@ -66,10 +69,21 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
             return;
         }
         Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+//        NfcOperation.AuthNFCTag(detectedTag, new NfcOperation.NFCWriteCallBackListener() {
+//            @Override
+//            public void success() {
+//                writeSuccess();
+//            }
+//            @Override
+//            public void error(String error) {
+//                writeError(error);
+//            }
+//        });
         NfcOperation.NfcWriteNDEF(json, detectedTag,new NfcOperation.NFCWriteCallBackListener() {
             @Override
             public void success() {
                 writeSuccess();
+
             }
 
             @Override

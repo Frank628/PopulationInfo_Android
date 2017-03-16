@@ -1,9 +1,11 @@
-package com.jinchao.population.alienPeople;
+package com.jinchao.population.alienPeople.residentpermit;
 
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
+import android.nfc.tech.IsoDep;
+import android.nfc.tech.NfcB;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -29,35 +31,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by OfferJiShu01 on 2017/2/27.
+ * Created by OfferJiShu01 on 2017/3/13.
  */
-@ContentView(R.layout.activity_houseoperation)
-public class HouseOperationActivity extends BaseActiviy {
+@ContentView(R.layout.activity_residentpermit)
+public class ResidentPermitManagementActivity extends BaseActiviy{
     @ViewInject(R.id.message_viewpager) private ViewPager mPager;
     @ViewInject(R.id.tab_indicator) private TabPageIndicator mTabPageIndicator;
     @ViewInject(R.id.underline_indicator) private UnderlinePageIndicatorEx mUnderlinePageIndicator;
-    String[] titles=new String[]{"出租屋\n查  询","出租屋\n资料编辑","出租屋\n删  除","NFC标签\n制  作"};
+    String[] titles=new String[]{"居住证挂失","居住证补办"};
     NfcAdapter nfcAdapter;
     private PendingIntent mPendingIntent;
     public IntentFilter[] nfcIfs;
     public String[][] techLists;
+    HouseOperationAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
-        navigationLayout.setCenterText("出租屋管理");
+        navigationLayout.setCenterText("居住证管理");
         navigationLayout.setLeftTextOnClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        HouseOperationAdapter adapter=new HouseOperationAdapter(getSupportFragmentManager());
+        adapter=new HouseOperationAdapter(getSupportFragmentManager());
         List<Fragment> fragmentList=new ArrayList<>();
-        fragmentList.add(new RentalHousingInquiriesFragment());
-        fragmentList.add(new RentalHousingDataEditorFragment());
-        fragmentList.add(new RentalHousingDeleteFragment());
-        fragmentList.add(new NfcTagWriterFragment());
+        fragmentList.add(new ReportLossOfResidentpermitFragment());
+        fragmentList.add(new MakeUpResidentpermitFragment());
         adapter.setTitleList(titles);
         adapter.setFragmentList(fragmentList);
         mPager.setOffscreenPageLimit(0);
@@ -75,18 +76,16 @@ public class HouseOperationActivity extends BaseActiviy {
             Toast.makeText(this, "NFC没有打开", Toast.LENGTH_SHORT).show();
             return;
         }
-//        mPendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_UPDATE_CURRENT);
-//        nfcIfs = new IntentFilter[] { new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED) };
-//        techLists = new String[][] { new String[] { NfcB.class.getName() }, new String[] { IsoDep.class.getName() } };
-//        nfcAdapter.enableForegroundDispatch(getActivity(), mPendingIntent, nfcIfs, techLists);
-        mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()), 0);
+        mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_UPDATE_CURRENT);
+        nfcIfs = new IntentFilter[] { new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED) };
+        techLists = new String[][] { new String[] { NfcB.class.getName() }, new String[] { IsoDep.class.getName() } };
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (nfcAdapter!=null) {
-            nfcAdapter.enableForegroundDispatch(this, mPendingIntent, null, null);
+            nfcAdapter.enableForegroundDispatch(this, mPendingIntent, nfcIfs, techLists);
         }
     }
 
@@ -95,12 +94,7 @@ public class HouseOperationActivity extends BaseActiviy {
         super.onNewIntent(intent);
         List<Fragment> fragmentList=getSupportFragmentManager().getFragments();
         if (fragmentList==null)return;
-        for (int i=0;i<fragmentList.size();i++){
-            if (fragmentList.get(i)==null)return;
-            if (fragmentList.get(i).isVisible()) {
-                ((BaseFragment) fragmentList.get(i)).onNewIntent(intent);
-            }
-        }
+        adapter.getCurrentFragment().onNewIntent(intent);
     }
 
     @Override

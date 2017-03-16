@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jinchao.population.MyApplication;
+import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseDialogFragment;
 import com.jinchao.population.base.BaseFragment;
@@ -33,6 +34,7 @@ import com.jinchao.population.dbentity.HouseAddressOldBean6;
 import com.jinchao.population.dbentity.HouseAddressOldBean7;
 import com.jinchao.population.dbentity.HouseAddressOldBean8;
 import com.jinchao.population.dbentity.HouseAddressOldBean9;
+import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.view.PopImportantPeople;
@@ -41,10 +43,13 @@ import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -56,18 +61,20 @@ public class NfcTagWriterFragment extends BaseFragment {
     @ViewInject(R.id.tv_content)TextView tv_content;
     @ViewInject(R.id.btn_search)Button btn_search;
     @ViewInject(R.id.edt_content)ValidateEidtText edt_content;
+    @ViewInject(R.id.edt_roomcode)ValidateEidtText edt_roomcode;
     @ViewInject(R.id.tv_noresult)TextView tv_noresult;
     @ViewInject(R.id.tv_important)TextView tv_important;
     @ViewInject(R.id.root)LinearLayout root;
     private DbUtils dbUtils;
-    private String json="",imType="无";
+    NFCJsonBean nfcJsonBean=null;
     public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
     @Override
     public void onStart() {
         super.onStart();
         tv_content.setText("");
         edt_content.setText("");
-        json="";
+        edt_roomcode.setText("");
+        nfcJsonBean=null;
         if (((MyApplication)getActivity().getApplication()).database_tableNo==0){
             database_tableNo= DatabaseUtil.getNullDB(getActivity());
         }else{
@@ -85,12 +92,15 @@ public class NfcTagWriterFragment extends BaseFragment {
         }
 
     }
+    @Event(value ={ R.id.edt_roomcode})
+    private void selectRoomCode(View view){
+
+    }
     @Event(value ={ R.id.tv_important})
     private void selectImportantPeople(View view){
         PopImportantPeople popImportantPeople=new PopImportantPeople(getActivity(), new PopImportantPeople.OnbEnsureClickListener() {
             @Override
             public void onEnsureClick(String type) {
-                imType=type;
                 tv_important.setText(type);
             }
         });
@@ -98,12 +108,12 @@ public class NfcTagWriterFragment extends BaseFragment {
     }
     @Event(value ={ R.id.btn_write})
     private void writetoNFCTag(View view){
-        if (TextUtils.isEmpty(json)){
+        if (nfcJsonBean==null){
             Toast.makeText(getActivity(),"请先查询房屋信息，再写入！",Toast.LENGTH_SHORT).show();
             return;
         }
         FragmentTransaction ft=getChildFragmentManager().beginTransaction();
-        NfcWriterFragmentDialog nfcWriterFragmentDialog=NfcWriterFragmentDialog.newInstance(json);
+        NfcWriterFragmentDialog nfcWriterFragmentDialog=NfcWriterFragmentDialog.newInstance(toJson(nfcJsonBean));
         nfcWriterFragmentDialog.show(getChildFragmentManager(),"NFC_WRITE");
     }
     @Event(value = {R.id.btn_search})
@@ -122,7 +132,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 1:
                     HouseAddressOldBean houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "like", code));
                     if (houseAddressOldBean!=null) {
-                        SearchhasHouse(houseAddressOldBean.toString(),houseAddressOldBean.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean.toString(),houseAddressOldBean.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -130,7 +140,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 2:
                     HouseAddressOldBean2 houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "like", code));
                     if (houseAddressOldBean2!=null) {
-                        SearchhasHouse(houseAddressOldBean2.toString(),houseAddressOldBean2.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean2.toString(),houseAddressOldBean2.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -138,7 +148,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 3:
                     HouseAddressOldBean3 houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "like", code));
                     if (houseAddressOldBean3!=null) {
-                        SearchhasHouse(houseAddressOldBean3.toString(),houseAddressOldBean3.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean3.toString(),houseAddressOldBean3.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -146,7 +156,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 4:
                     HouseAddressOldBean4 houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "like", code));
                     if (houseAddressOldBean4!=null) {
-                        SearchhasHouse(houseAddressOldBean4.toString(),houseAddressOldBean4.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean4.toString(),houseAddressOldBean4.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -154,7 +164,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 5:
                     HouseAddressOldBean5 houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "like", code));
                     if (houseAddressOldBean5!=null) {
-                        SearchhasHouse(houseAddressOldBean5.toString(),houseAddressOldBean5.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean5.toString(),houseAddressOldBean5.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -162,7 +172,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 6:
                     HouseAddressOldBean6 houseAddressOldBean6 = dbUtils.findFirst(Selector.from(HouseAddressOldBean6.class).where("scode", "like", code));
                     if (houseAddressOldBean6!=null) {
-                        SearchhasHouse(houseAddressOldBean6.toString(),houseAddressOldBean6.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean6.toString(),houseAddressOldBean6.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -170,7 +180,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 7:
                     HouseAddressOldBean7 houseAddressOldBean7 = dbUtils.findFirst(Selector.from(HouseAddressOldBean7.class).where("scode", "like", code));
                     if (houseAddressOldBean7!=null) {
-                        SearchhasHouse(houseAddressOldBean7.toString(),houseAddressOldBean7.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean7.toString(),houseAddressOldBean7.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -178,7 +188,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 8:
                     HouseAddressOldBean8 houseAddressOldBean8 = dbUtils.findFirst(Selector.from(HouseAddressOldBean8.class).where("scode", "like", code));
                     if (houseAddressOldBean8!=null) {
-                        SearchhasHouse(houseAddressOldBean8.toString(),houseAddressOldBean8.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean8.toString(),houseAddressOldBean8.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -186,7 +196,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 9:
                     HouseAddressOldBean9 houseAddressOldBean9 = dbUtils.findFirst(Selector.from(HouseAddressOldBean9.class).where("scode", "like", code));
                     if (houseAddressOldBean9!=null) {
-                        SearchhasHouse(houseAddressOldBean9.toString(),houseAddressOldBean9.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean9.toString(),houseAddressOldBean9.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -194,7 +204,7 @@ public class NfcTagWriterFragment extends BaseFragment {
                 case 10:
                     HouseAddressOldBean10 houseAddressOldBean10 = dbUtils.findFirst(Selector.from(HouseAddressOldBean10.class).where("scode", "like", code));
                     if (houseAddressOldBean10!=null) {
-                        SearchhasHouse(houseAddressOldBean10.toString(),houseAddressOldBean10.toJson(getActivity(),imType));
+                        SearchhasHouse(houseAddressOldBean10.toString(),houseAddressOldBean10.toNFCJsonBean());
                     }else{
                         SearchNoHouse();
                     }
@@ -213,19 +223,44 @@ public class NfcTagWriterFragment extends BaseFragment {
 
     }
     private void clearResult(){
+        nfcJsonBean=null;
         tv_important.setText("无");
-        imType="无";
+        edt_roomcode.setText("");
     }
     private void SearchNoHouse(){
-        json="";
         tv_content.setText("");
+        edt_roomcode.setText("");
+        nfcJsonBean=null;
         tv_noresult.setVisibility(View.VISIBLE);
         tv_noresult.setCompoundDrawablesWithIntrinsicBounds(null, getActivity().getResources().getDrawable(R.drawable.icon_noresult),null,null);
         tv_noresult.setText("无此房屋编号！");
     }
-    private void SearchhasHouse(String str,String json){
-        this.json=json;
+    private void SearchhasHouse(String str,NFCJsonBean nfcJsonBean){
+        this.nfcJsonBean=nfcJsonBean;
         tv_noresult.setVisibility(View.GONE);
         tv_content.setText(str);
+    }
+
+    public String toJson(NFCJsonBean nfcJsonBean){
+        String json="";
+        JSONObject jsonObject=new JSONObject();
+        SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date =sDateFormat.format(new java.util.Date());
+        try {
+            jsonObject.put("code",nfcJsonBean.code);
+            jsonObject.put("add",nfcJsonBean.add);
+            jsonObject.put("name",nfcJsonBean.name);
+            jsonObject.put("idcard",nfcJsonBean.idcard);
+            jsonObject.put("phone",nfcJsonBean.phone);
+            jsonObject.put("udt",nfcJsonBean.udt);
+            jsonObject.put("imp",tv_important.getText().toString().trim());
+            jsonObject.put("room",edt_roomcode.getText().toString().trim());
+            jsonObject.put("ntime",date);
+            jsonObject.put("sq", MyInfomationManager.getSQNAME(getActivity()));
+            json=jsonObject.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 }

@@ -203,6 +203,7 @@ public class RentalHousingInquiriesFragment extends BaseFragment{
         try {
             NFCJsonBean nfcJsonBean= GsonTools.changeGsonToBean(json,NFCJsonBean.class);
             edt_content.setText(nfcJsonBean.code);
+            edt_content.setSelection(nfcJsonBean.code.length());
             tv_noresult.setVisibility(View.GONE);
             tv_content.setText(nfcJsonBean.toString());
         } catch (Exception e) {

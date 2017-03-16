@@ -3,12 +3,15 @@ package com.jinchao.population.dbentity;
 import android.content.Context;
 
 import com.jinchao.population.MyInfomationManager;
+import com.jinchao.population.entity.NFCJsonBean;
 import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Id;
 import com.lidroid.xutils.db.annotation.Table;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 
 @Table(name="Houseaddressold")
 public class HouseAddressOldBean {
@@ -148,23 +151,8 @@ public class HouseAddressOldBean {
 				+ "\n房东身份证号：  " + idcard + "\n房东电话：  " + telphone + "\n采集时间：  "
 				+ udt ;
 	}
-	public String toJson(Context context,String imType){
-		String json="";
-		JSONObject jsonObject=new JSONObject();
-		try {
-			jsonObject.put("code",scode);
-			jsonObject.put("add",address);
-			jsonObject.put("name",hrs_pname);
-			jsonObject.put("idcard",idcard);
-			jsonObject.put("phone",telphone);
-			jsonObject.put("udt",udt);
-			jsonObject.put("imp",imType);
-			jsonObject.put("sq", MyInfomationManager.getSQNAME(context));
-			json=jsonObject.toString();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return json;
+	public NFCJsonBean toNFCJsonBean(){
+		return new NFCJsonBean(scode,hrs_pname,idcard,address,telphone,udt);
 	}
 	
 }
