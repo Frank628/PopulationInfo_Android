@@ -7,6 +7,7 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseFragment;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
 import com.jinchao.population.dbentity.HouseAddressOldBean10;
 import com.jinchao.population.dbentity.HouseAddressOldBean2;
@@ -30,7 +32,9 @@ import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.XMLParserUtil;
 import com.jinchao.population.utils.nfcutil.NfcOperation;
+import com.jinchao.population.view.Dialog;
 import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -38,9 +42,12 @@ import com.lidroid.xutils.exception.DbException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.text.SimpleDateFormat;
 
@@ -221,5 +228,78 @@ public class RentalHousingDeleteFragment extends BaseFragment{
         tv_noresult.setVisibility(View.GONE);
         tv_content.setText(str);
     }
+    @Event(value = {R.id.btn_unregist})
+    private void submit(View view){
+        String scode=edt_content.getText().toString().trim();
+        if (TextUtils.isEmpty(scode)){
+            Toast.makeText(getActivity(),"请先输入房屋编号查询！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        deleteHouseInfo(scode);
+    }
+    private void deleteHouseInfo(final String scode){
+        showProcessDialog("数据提交中...");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
+        params.addBodyParameter("type","cancel");
+        params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(getActivity()));
+        params.addBodyParameter("scode",scode);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("rr",result);
+                XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
+                    @Override
+                    public void success(String result) {
+                        deleteHouseInfoLocal(scode);
+                        Toast.makeText(getActivity(),"注销成功",Toast.LENGTH_SHORT).show();
+                        hideProcessDialog();
+                    }
+                    @Override
+                    public void fail(String error) {
+                        Dialog.showForceDialog(getActivity(),"提示",error, new Dialog.DialogClickListener() {
+                            @Override
+                            public void confirm() {
 
+                            }
+
+                            @Override
+                            public void cancel() {
+
+                            }
+                        });
+                    }
+                });
+
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(getActivity(),"数据提交失败，请稍后重试",Toast.LENGTH_SHORT).show();
+                hideProcessDialog();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() { hideProcessDialog();}
+        });
+    }
+    private void deleteHouseInfoLocal( String scode){
+        RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
+        params.addBodyParameter("type","update");
+        params.addBodyParameter("user_id", MyInfomationManager.getUserID(getActivity()));
+        params.addBodyParameter("scode",scode);
+
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() { }
+        });
+    }
 }

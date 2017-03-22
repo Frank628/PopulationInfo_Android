@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PopulationInfo_Android.iml" filepath="$PROJECT_DIR$/PopulationInfo_Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ViewPagerIndicator/ViewPagerIndicator.iml" filepath="$PROJECT_DIR$/ViewPagerIndicator/ViewPagerIndicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/eventBus/eventBus.iml" filepath="$PROJECT_DIR$/eventBus/eventBus.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_xutils/lib_xutils.iml" filepath="$PROJECT_DIR$/lib_xutils/lib_xutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/populationInfo_Android/populationInfo_Android.iml" filepath="$PROJECT_DIR$/populationInfo_Android/populationInfo_Android.iml" />

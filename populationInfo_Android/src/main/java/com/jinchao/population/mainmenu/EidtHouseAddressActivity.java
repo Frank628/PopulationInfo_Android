@@ -21,6 +21,8 @@ import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.view.PopJLX;
 import com.jinchao.population.view.PopJLX.OnJLXListClickListener;
 import com.jinchao.population.view.StringWheel;
+import com.jinchao.population.widget.ValidateEidtText;
+
 @ContentView(R.layout.activity_edithouseaddress)
 public class EidtHouseAddressActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_menpaihaodanwei)private TextView tv_menpaihaodanwei;

@@ -8,6 +8,7 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.caihua.cloud.common.entity.PersonInfo;
 import com.caihua.cloud.common.link.LinkFactory;
@@ -17,6 +18,7 @@ import com.jinchao.population.R;
 import com.jinchao.population.base.BaseReaderActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
+import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
@@ -39,8 +41,10 @@ import java.io.ByteArrayOutputStream;
 public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.IDReaderListener{
     @ViewInject(R.id.edt_idcard) ValidateEidtText edt_idcard;
     @ViewInject(R.id.edt_housecode) ValidateEidtText edt_housecode;
+    @ViewInject(R.id.ll_bottom)LinearLayout ll_bottom;
     People people=null;
     Bitmap bmp=null;
+    private NFCJsonBean nfcJsonBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +57,12 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
                 onBackPressed();
             }
         });
-
+        if (getIntent().getBooleanExtra("IS_SHOW_BOTTOM",true)){
+            ll_bottom.setVisibility(View.VISIBLE);
+        }else{
+            ll_bottom.setVisibility(View.GONE);
+            nfcJsonBean=(NFCJsonBean) getIntent().getSerializableExtra(Constants.NFCJSONBEAN);
+        }
     }
     @Override
     protected void onNewIntent(Intent intent) {
@@ -178,6 +187,7 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
                 intent.putExtra("isSecond",isSecondCard);
                 intent.putExtra("people",people);
                 intent.putExtra("pic",bmp);
+                intent.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                 isSuZhouRen(idcardNO,intent);
             } else {
                 Toast.makeText(SearchTwoWayActivity.this, "请先输入合法的身份证号", Toast.LENGTH_SHORT).show();

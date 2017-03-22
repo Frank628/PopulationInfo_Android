@@ -6,6 +6,7 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jinchao.population.MyApplication;
+import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseFragment;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
 import com.jinchao.population.dbentity.HouseAddressOldBean10;
 import com.jinchao.population.dbentity.HouseAddressOldBean2;
@@ -29,15 +32,21 @@ import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.XMLParserUtil;
 import com.jinchao.population.utils.nfcutil.NfcOperation;
+import com.jinchao.population.view.Dialog;
+import com.jinchao.population.widget.LoadingView;
 import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 /**
  * Created by OfferJiShu01 on 2017/2/28.
@@ -227,5 +236,84 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
         edt_name.setText(nfcJsonBean.name);
         edt_sfz.setText(nfcJsonBean.idcard);
         edt_phone.setText(nfcJsonBean.phone);
+    }
+    @Event(value = {R.id.btn_submit})
+    private void submit(View view){
+        String scode=edt_content.getText().toString().trim();
+        String name=edt_name.getText().toString().trim();
+        String idcard=edt_sfz.getText().toString().trim();
+        String phone=edt_phone.getText().toString().trim();
+        if (TextUtils.isEmpty(scode)){
+            Toast.makeText(getActivity(),"请先输入房屋编号查询！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        editHouseInfo(scode,name,idcard,phone);
+    }
+    private void editHouseInfo(final String scode, final String name, final String idcard, final String phone){
+        showProcessDialog("数据提交中...");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
+        params.addBodyParameter("type","update");
+        params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(getActivity()));
+        params.addBodyParameter("scode",scode);
+        params.addBodyParameter("fzxm",name);
+        params.addBodyParameter("fzsfz",idcard);
+        params.addBodyParameter("fzdh",phone);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("rr",result);
+                XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
+                    @Override
+                    public void success(String result) {
+                        editHouseInfoLocal(scode,name,idcard,phone);
+                        Toast.makeText(getActivity(),"修改成功",Toast.LENGTH_SHORT).show();
+                        hideProcessDialog();
+                    }
+
+                    @Override
+                    public void fail(String error) {
+                        Dialog.showForceDialog(getActivity(),"提示",error, new Dialog.DialogClickListener() {
+                            @Override
+                            public void confirm() {
+                            }
+                            @Override
+                            public void cancel() {
+                            }
+                        });
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(getActivity(),"数据提交失败，请稍后重试",Toast.LENGTH_SHORT).show();
+                hideProcessDialog();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() { hideProcessDialog();}
+        });
+    }
+    private void editHouseInfoLocal( String scode, String name,String idcard,String phone){
+        RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
+        params.addBodyParameter("type","update");
+        params.addBodyParameter("user_id", MyInfomationManager.getUserID(getActivity()));
+        params.addBodyParameter("scode",scode);
+        params.addBodyParameter("fzxm",name);
+        params.addBodyParameter("fzsfz",idcard);
+        params.addBodyParameter("fzdh",phone);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("dd",result);
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() { }
+        });
     }
 }

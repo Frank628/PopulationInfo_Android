@@ -73,7 +73,9 @@ public class MyApplication extends Application{
 					if (!TextUtils.isEmpty(result)){
 						try {
 							UserBean userBean =GsonTools.changeGsonToBean(result, UserBean.class);
-							SharePrefUtil.saveString(getApplicationContext(), Constants.USER_DB, result.trim());
+							if (userBean.data.size()>0) {
+								SharePrefUtil.saveString(getApplicationContext(), Constants.USER_DB, result.trim());
+							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

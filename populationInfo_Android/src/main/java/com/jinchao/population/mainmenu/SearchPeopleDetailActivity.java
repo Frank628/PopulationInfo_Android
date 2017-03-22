@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.RealHouseBean;
 import com.jinchao.population.entity.RenYuanXinXiBean;
@@ -92,32 +93,6 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	}
 	@Event(value={R.id.btn_tongwu})
 	private void tongwubiangeng(View view){
-//		LayoutInflater factory = LayoutInflater.from(SearchPeopleDetailActivity.this);
-//		final View view_dialog= factory.inflate(R.layout.dialog_tongwu, null);
-//		final EditText room_code_dialog=(EditText)view_dialog.findViewById(R.id.edt_roomcode);
-//		room_code_dialog.setText(renYuanXinXiBean.shihao);
-//		new AlertDialog.Builder(this)
-//				.setView(view_dialog)
-//
-//				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialogInterface, int i) {
-//						if (room_code_dialog.getText().toString().trim().length()!=4){
-//							Toast.makeText(SearchPeopleDetailActivity.this,"请输入四位数的室号！",Toast.LENGTH_SHORT).show();
-//							return;
-//						}
-//						InputMethodManager inputMgr = (InputMethodManager) SearchPeopleDetailActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-//						inputMgr.hideSoftInputFromWindow( room_code_dialog.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-//						bianGeng(room_code_dialog.getText().toString().trim());
-//					}
-//				})
-//				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialogInterface, int i) {
-//						InputMethodManager inputMgr = (InputMethodManager) SearchPeopleDetailActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-//						inputMgr.hideSoftInputFromWindow( room_code_dialog.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-//					}
-//				}).show();
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date =sDateFormat.format(new java.util.Date());
 		Intent intent = new Intent(SearchPeopleDetailActivity.this,HandleIDActivity.class);
@@ -126,34 +101,11 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 				MyInfomationManager.getSQNAME(SearchPeopleDetailActivity.this),date));
 		intent.putExtra("isHandle", false);
 		if (renYuanXinXiBean!=null) {
-			intent.putExtra("renYuanXinXiBean", renYuanXinXiBean);
+			intent.putExtra(Constants.HOUSE_INFOR,renYuanXinXiBean);
 		}
 		startActivity(intent);
-
 	}
-//	private void bianGeng(String roominnercode){
-//
-//		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		String date =sDateFormat.format(new java.util.Date());
-//		People people=new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
-//				MyInfomationManager.getUserName(SearchPeopleDetailActivity.this), "1", renYuanXinXiBean.house_code, renYuanXinXiBean.house_addr, roominnercode,
-//				MyInfomationManager.getSQNAME(SearchPeopleDetailActivity.this),date);
-//		DbUtils dbUtils =DeviceUtils.getDbUtils(this);
-//		List<People> list=new ArrayList<People>();
-//		try {
-//			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", renYuanXinXiBean.idcard));
-//			if (list!=null) {
-//				if (list.size()>0) {
-//					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.idcard));
-//				}
-//			}
-//			dbUtils.save(people);
-//			Toast.makeText(this, "变更成功~", Toast.LENGTH_SHORT).show();
-//		} catch (Exception e) {
-//			Toast.makeText(this, "变更失败~", Toast.LENGTH_SHORT).show();
-//			e.printStackTrace();
-//		}
-//	}
+
 	@Event(value={R.id.btn_zhuxiao})
 	private void zhuxiao(View view){
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       

@@ -76,6 +76,8 @@ public class Constants {
 	public static final String IS_FROM_REALPOPULATION="IS_FROM_REALPOPULATION";//是否来自实有人口
 	public static final String IS_NFC_READER="IS_NFC_READER";//是否是从NFC读取页面跳转来
 	public static final String Where_from="Where_from";
+	public static final String NFCJSONBEAN="NFCJSONBEAN";
+	public static final String HOUSE_INFOR="HOUSE_INFOR";
 	public static final String[] SQ_NAME_GUANGDA={
 			"NULL               "
 			,"NULL               "

@@ -88,7 +88,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
                     HouseAddressOldBean houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "=", code));
                     if (houseAddressOldBean!=null) {
                         tv_content.setText(houseAddressOldBean.toString());
-                        btn_unregist.setVisibility(View.VISIBLE);
+//                        btn_unregist.setVisibility(View.VISIBLE);
 //
                     }else{
                         tv_content.setText("查无此房屋");
@@ -98,7 +98,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
                     HouseAddressOldBean2 houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "=", code));
                     if (houseAddressOldBean2!=null) {
                         tv_content.setText(houseAddressOldBean2.toString());
-                        btn_unregist.setVisibility(View.VISIBLE);
+//                        btn_unregist.setVisibility(View.VISIBLE);
 //
                     }else{
                         tv_content.setText("查无此房屋");
@@ -108,7 +108,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
                     HouseAddressOldBean3 houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "=", code));
                     if (houseAddressOldBean3!=null) {
                         tv_content.setText(houseAddressOldBean3.toString());
-                        btn_unregist.setVisibility(View.VISIBLE);
+//                        btn_unregist.setVisibility(View.VISIBLE);
 //
                     }else{
                         tv_content.setText("查无此房屋");
@@ -118,7 +118,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
                     HouseAddressOldBean4 houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "=", code));
                     if (houseAddressOldBean4!=null) {
                         tv_content.setText(houseAddressOldBean4.toString());
-                        btn_unregist.setVisibility(View.VISIBLE);
+//                        btn_unregist.setVisibility(View.VISIBLE);
 //
                     }else{
                         tv_content.setText("查无此房屋");
@@ -128,7 +128,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
                     HouseAddressOldBean5 houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "=", code));
                     if (houseAddressOldBean5!=null) {
                         tv_content.setText(houseAddressOldBean5.toString());
-                        btn_unregist.setVisibility(View.VISIBLE);
+//                        btn_unregist.setVisibility(View.VISIBLE);
 //
                     }else{
                         tv_content.setText("查无此房屋");
@@ -138,7 +138,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 					HouseAddressOldBean6 houseAddressOldBean6 = dbUtils.findFirst(Selector.from(HouseAddressOldBean6.class).where("scode", "=", code));
 					if (houseAddressOldBean6!=null) {
 						tv_content.setText(houseAddressOldBean6.toString());
-						btn_unregist.setVisibility(View.VISIBLE);
+//						btn_unregist.setVisibility(View.VISIBLE);
 //
 					}else{
 						tv_content.setText("查无此房屋");
@@ -148,7 +148,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 					HouseAddressOldBean7 houseAddressOldBean7 = dbUtils.findFirst(Selector.from(HouseAddressOldBean7.class).where("scode", "=", code));
 					if (houseAddressOldBean7!=null) {
 						tv_content.setText(houseAddressOldBean7.toString());
-						btn_unregist.setVisibility(View.VISIBLE);
+//						btn_unregist.setVisibility(View.VISIBLE);
 //
 					}else{
 						tv_content.setText("查无此房屋");
@@ -158,7 +158,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 					HouseAddressOldBean8 houseAddressOldBean8 = dbUtils.findFirst(Selector.from(HouseAddressOldBean8.class).where("scode", "=", code));
 					if (houseAddressOldBean8!=null) {
 						tv_content.setText(houseAddressOldBean8.toString());
-						btn_unregist.setVisibility(View.VISIBLE);
+//						btn_unregist.setVisibility(View.VISIBLE);
 //
 					}else{
 						tv_content.setText("查无此房屋");
@@ -168,7 +168,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 					HouseAddressOldBean9 houseAddressOldBean9 = dbUtils.findFirst(Selector.from(HouseAddressOldBean9.class).where("scode", "=", code));
 					if (houseAddressOldBean9!=null) {
 						tv_content.setText(houseAddressOldBean9.toString());
-						btn_unregist.setVisibility(View.VISIBLE);
+//						btn_unregist.setVisibility(View.VISIBLE);
 //
 					}else{
 						tv_content.setText("查无此房屋");
@@ -178,7 +178,7 @@ public class SearchRentalHouseActivity extends BaseActiviy{
 					HouseAddressOldBean10 houseAddressOldBean10 = dbUtils.findFirst(Selector.from(HouseAddressOldBean10.class).where("scode", "=", code));
 					if (houseAddressOldBean10!=null) {
 						tv_content.setText(houseAddressOldBean10.toString());
-						btn_unregist.setVisibility(View.VISIBLE);
+//						btn_unregist.setVisibility(View.VISIBLE);
 //
 					}else{
 						tv_content.setText("查无此房屋");

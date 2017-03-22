@@ -26,7 +26,7 @@ public class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return x.view().inject(this,inflater,container);
     }
-    protected void showProcessDialog(String msg) {
+    public void showProcessDialog(String msg) {
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage(msg);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);// 设置进度条的形式为圆形转动的进度条
@@ -34,7 +34,7 @@ public class BaseFragment extends Fragment {
         dialog.setCanceledOnTouchOutside(false);// 设置在点击Dialog外是否取消Dialog进度条
         dialog.show();
     }
-    protected void hideProcessDialog() {
+    public void hideProcessDialog() {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
             dialog = null;

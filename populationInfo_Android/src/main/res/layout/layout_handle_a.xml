@@ -234,7 +234,7 @@
                 app:rc_textSize="@dimen/small_size"
                 app:rc_textColor="@color/title1"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_bianhao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -275,7 +275,7 @@
                 app:rc_textColor="@color/title1"
                 />
 
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_dizhi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1106,7 +1106,7 @@
                     style="@style/handle_id_left_text_style"
                     android:text="子女个数"
                     />
-                <EditText
+                <com.jinchao.population.widget.ValidateEidtText
                     android:id="@+id/edt_zinvgeshu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1391,7 +1391,7 @@
                 style="@style/handle_id_left_text_style"
                 android:text="租金"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_zujin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1461,7 +1461,7 @@
                 style="@style/handle_id_left_text_style"
                 android:text="QQ"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_qq"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1497,7 +1497,7 @@
                 style="@style/handle_id_left_text_style"
                 android:text="MAC地址"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_mac"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1533,7 +1533,7 @@
                 style="@style/handle_id_left_text_style"
                 android:text="手机品牌/型号"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_shoujixinghao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -1568,7 +1568,7 @@
                 style="@style/handle_id_left_text_style"
                 android:text="手机串号"
                 />
-            <EditText
+            <com.jinchao.population.widget.ValidateEidtText
                 android:id="@+id/edt_shoujichuanhao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

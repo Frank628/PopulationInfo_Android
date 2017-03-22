@@ -5,10 +5,11 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="D:\Android\Android Studio\gradle\gradle-2.14.1" />
+        <option name="gradleHome" value="D:/Program Files (x86)/Android/Android Studio/gradle/gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/ViewPagerIndicator" />
             <option value="$PROJECT_DIR$/eventBus" />
             <option value="$PROJECT_DIR$/lib_xutils" />
             <option value="$PROJECT_DIR$/populationInfo_Android" />

@@ -174,33 +174,21 @@ public class PeopleListinHouseActivity extends BaseActiviy{
             Collections.sort(list,new SortbyTimeRenyuanInhouseOneClass());
         }
         CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne> adapter =new CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne>(PeopleListinHouseActivity.this,list,R.layout.item_renyuan) {
-            @Override
-            public void convert(ViewHolder helper, RenyuanInHouseBean.RenyuanInhouseOne item, int position) {
-                helper.setText(R.id.tv_name,"姓名: "+ item.sname);
-                DbUtils dbUtils =DeviceUtils.getDbUtils(PeopleListinHouseActivity.this);
-                People people = null;
-                try {
-                    people=dbUtils.findFirst(Selector.from(People.class).where("cardno", "=", item.idcard.trim()));
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
-                if (people!=null){
-                    if (people.module.equals("变更")) {
-                        helper.setText(R.id.tv_status, "【延期】");
-                    }else if (people.module.equals("注销")) {
-                        helper.setText(R.id.tv_status, "【注销】");
-                    }else{
-                        String[] split = item.write_time.split("\\s+");
-                        if (split.length>1) {
-                            if (isBigerthanElevenandSmallthanTwelve(split[0])) {
-                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"?】");
-                            }else{
-                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
-                            }
-                        }else{
-                            helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
-                        }
-                    }
+        @Override
+        public void convert(ViewHolder helper, RenyuanInHouseBean.RenyuanInhouseOne item, int position) {
+            helper.setText(R.id.tv_name,"姓名: "+ item.sname);
+            DbUtils dbUtils =DeviceUtils.getDbUtils(PeopleListinHouseActivity.this);
+            People people = null;
+            try {
+                people=dbUtils.findFirst(Selector.from(People.class).where("cardno", "=", item.idcard.trim()));
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+            if (people!=null){
+                if (people.module.equals("变更")) {
+                    helper.setText(R.id.tv_status, "【延期】");
+                }else if (people.module.equals("注销")) {
+                    helper.setText(R.id.tv_status, "【注销】");
                 }else{
                     String[] split = item.write_time.split("\\s+");
                     if (split.length>1) {
@@ -213,22 +201,34 @@ public class PeopleListinHouseActivity extends BaseActiviy{
                         helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
                     }
                 }
-                helper.setText(R.id.tv_shihao, "室号: "+item.shihao);
-                helper.setText(R.id.tv_time, item.write_time);
+            }else{
+                String[] split = item.write_time.split("\\s+");
+                if (split.length>1) {
+                    if (isBigerthanElevenandSmallthanTwelve(split[0])) {
+                        helper.setText(R.id.tv_status, "【"+item.resdients_status+"?】");
+                    }else{
+                        helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
+                    }
+                }else{
+                    helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
+                }
             }
-        };
+            helper.setText(R.id.tv_shihao, "室号: "+item.shihao);
+            helper.setText(R.id.tv_time, item.write_time);
+        }
+    };
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                RenyuanInHouseBean.RenyuanInhouseOne renyuanInHouseone=(RenyuanInHouseBean.RenyuanInhouseOne) ((ListView)parent).getItemAtPosition(position);
-                Intent intent =new Intent(PeopleListinHouseActivity.this, SearchPeopleDetailActivity.class);
-                intent.putExtra("renyuan", renyuanInHouseone);
-                startActivity(intent);
-            }
-        });
-    }
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view,
+        int position, long id) {
+            RenyuanInHouseBean.RenyuanInhouseOne renyuanInHouseone=(RenyuanInHouseBean.RenyuanInhouseOne) ((ListView)parent).getItemAtPosition(position);
+            Intent intent =new Intent(PeopleListinHouseActivity.this, SearchPeopleDetailActivity.class);
+            intent.putExtra("renyuan", renyuanInHouseone);
+            startActivity(intent);
+        }
+    });
+}
     public static boolean isBigerthanElevenandSmallthanTwelve(String day) {
         String[] s=day.split("-");
         String dayf=s[0]+"-"+(s[1].length()==1?("0"+s[1]):s[1])+"-"+(s[2].length()==1?("0"+s[2]):s[2]);

@@ -20,6 +20,6 @@ public class UserBean {
 		public String sqName="";
 		public String userId="";
 		public String userName="";
-		
+		public String sqdm="";
 	}
 }

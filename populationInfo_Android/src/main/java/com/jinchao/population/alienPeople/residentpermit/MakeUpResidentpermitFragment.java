@@ -109,7 +109,6 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
                 }
                 return;
             }
-            ((MyApplication)getActivity().getApplication()).setIsSureDengji(false);
             idReader.setLink(link);
             showcard("");
             showProcessDialog("正在读卡中，请稍后");

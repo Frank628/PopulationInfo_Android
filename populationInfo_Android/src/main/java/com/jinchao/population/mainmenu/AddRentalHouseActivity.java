@@ -273,6 +273,10 @@ public class AddRentalHouseActivity extends BaseActiviy{
 					Toast.makeText(AddRentalHouseActivity.this, "请输入房东姓名~", Toast.LENGTH_SHORT).show();
 					return;
 				}
+				if (CommonUtils.isContainSp(fangdongxingming)){
+					Toast.makeText(AddRentalHouseActivity.this, "房东姓名不可包含单引号和&符号", Toast.LENGTH_SHORT).show();
+					return;
+				}
 				if (CommonIdcard.validateCard(cardno)) {
 					if (cardno.length() == 15) {
 						cardno = CommonIdcard.conver15CardTo18(cardno);

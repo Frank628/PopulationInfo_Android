@@ -29,7 +29,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.nfc.NdefRecord;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -112,7 +114,14 @@ public class CommonUtils {
 	public static Bitmap base64ToBitmap(String base64Data) {  
 	    byte[] bytes = Base64.decode(base64Data, Base64.DEFAULT);  
 	    return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);  
-	} 
+	}
+	public static boolean isContainSp(String str){
+		if (str.contains("'")||str.contains("&")) {
+			return true;
+		} else{
+			return false;
+		}
+	}
 	public static boolean isEmpty(String str){
 		if (str==null) {
 			return true;
@@ -127,7 +136,7 @@ public class CommonUtils {
 		return uuid.toString(); 
 	}
 	public static boolean isAddress(String str){
-		Pattern p = Pattern.compile("^([\\u4e00-\\u9fa5]|[A-Z0-9]|[-]|[\\(]|[\\)]|[、])+$");
+		Pattern p = Pattern.compile("^([\\u4e00-\\u9fa5]|[A-Z0-9]|[-]|[\\(]|[\\)]|[、]|[＃])+$");
 		Matcher m = p.matcher(str);
 		return m.matches();
 	}
@@ -167,6 +176,8 @@ public class CommonUtils {
 				length=length+1;
 			}
 		}
+		if(isContainSp(str))
+			return false;
 		if (length>18)
 			return false;
 		else
@@ -182,6 +193,8 @@ public class CommonUtils {
 				length=length+1;
 			}
 		}
+		if(isContainSp(str))
+			return false;
 		if (length>10)
 			return false;
 		else
@@ -376,7 +389,8 @@ public class CommonUtils {
     /**
      * 用来判断是否开启通知权限
      * */
-    public static boolean isNotificationEnabled(Context context){
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+	public static boolean isNotificationEnabled(Context context){
 
         AppOpsManager mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
         ApplicationInfo appInfo = context.getApplicationInfo();

@@ -196,6 +196,7 @@ public class LoginActivity extends BaseActiviy{
 								MyInfomationManager.setUserID(LoginActivity.this, userBean.data.get(i).account.get(j).userId);
 								MyInfomationManager.setSQID(LoginActivity.this, userBean.data.get(i).account.get(j).sqId);
 								MyInfomationManager.setSQNAME(LoginActivity.this, userBean.data.get(i).account.get(j).sqName);
+								MyInfomationManager.setSQCODE(LoginActivity.this, userBean.data.get(i).account.get(j).sqdm);
                                 SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                 String time =sDateFormat.format(new Date(System.currentTimeMillis()));
 								try {
@@ -236,11 +237,6 @@ public class LoginActivity extends BaseActiviy{
 									}
 								}
 								SharePrefUtil.saveObj(LoginActivity.this, Constants.Accountlist, listacount);
-								for (int m=0;m<Constants.SQ_NAME_GUANGDA.length;m++){
-									if (Constants.SQ_NAME_GUANGDA[m].trim().equals(userBean.data.get(i).account.get(j).sqName.trim())){
-										MyInfomationManager.setSQCODE(LoginActivity.this,Constants.SQ_CODE_GUANGDA[m]);
-									}
-								}
 								dismissProgressDialog();
 								loginSuccess();
 								return;

@@ -127,17 +127,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		nationPop = new NationPop(RegisterActivity.this, new OnEnsureClickListener() {
 				@Override
 				public void OnEnSureClick(String nationid,final String huji,final String wushi_huji) {
-					Dialog.showSelectDialog(RegisterActivity.this, "保留/去除中间的“市”！", new DialogClickListener() {
-						@Override
-						public void confirm() {
-							edt_address.setText(huji);
-						}
-
-						@Override
-						public void cancel() {
-							edt_address.setText(wushi_huji);
-						}
-					},"保留","去除");
+					edt_address.setText(huji);
 				}
 		});
 		People people=(People) getIntent().getSerializableExtra("people");
@@ -740,7 +730,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				return;
 			}
 			if (!CommonUtils.isAddress(xaddress)) {
-				Toast.makeText(this, "户籍详细地址只能输入汉字、数字、大写字母和-(中横线)以及英文半角小括号和、(中文半角顿号)!",  Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "户籍详细地址只能输入汉字、数字、大写字母和-(中横线)以及英文半角小括号和、(中文半角顿号)!和中文全角＃",  Toast.LENGTH_SHORT).show();
 				return;
 			}
 		}
@@ -752,6 +742,9 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				public void confirm() {
                     if (isfromotherway){//如果是从人员信息验证界面进入的
                             Intent intent = new Intent(RegisterActivity.this,HandleIDActivity.class);
+							if(!getIntent().getBooleanExtra("isHandle",false)){
+								oPeople.setPicture(null);
+							}
                             intent.putExtra("people", oPeople);
                             intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
                             startActivity(intent);
@@ -795,6 +788,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				p2.setIstakephoto(istakephoto);
                 intent.putExtra("people",p2);
 				intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
+				intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
                 startActivity(intent);
                 RegisterActivity.this.finish();
                 return;

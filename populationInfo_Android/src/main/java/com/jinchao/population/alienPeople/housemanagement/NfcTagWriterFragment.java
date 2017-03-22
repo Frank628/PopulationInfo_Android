@@ -94,7 +94,18 @@ public class NfcTagWriterFragment extends BaseFragment {
     }
     @Event(value ={ R.id.edt_roomcode})
     private void selectRoomCode(View view){
-
+        String scode=edt_content.getText().toString().trim();
+        if (TextUtils.isEmpty(scode)){
+            Toast.makeText(getActivity(),"请先输入房屋编号并查询",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        SelectRoomPopWindow selectRoomPopWindow=new SelectRoomPopWindow(getActivity(), scode, new SelectRoomPopWindow.OnEnsureClickListener() {
+            @Override
+            public void OnEnSureClick(String str) {
+                edt_roomcode.setText(str);
+            }
+        });
+        selectRoomPopWindow.showAtLocation(root,Gravity.NO_GRAVITY,0,0);
     }
     @Event(value ={ R.id.tv_important})
     private void selectImportantPeople(View view){

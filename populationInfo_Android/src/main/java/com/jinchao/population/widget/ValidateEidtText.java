@@ -22,9 +22,9 @@ import com.jinchao.population.utils.CommonUtils;
  * Created by OfferJiShu01 on 2016/11/9.
  */
 
-public class ValidateEidtText extends EditText {
+public class ValidateEidtText extends android.support.v7.widget.AppCompatEditText {
 
-    int textColor, textErrorColor;
+    int textColor=Color.BLACK, textErrorColor;
     Drawable drawableLeft_Right=null,drawableLeft_Error=null,drawableRight_Right=null,drawableRight_Error=null,drawable_empty=null;
     int current_validate_type=-1;
     public ValidateEidtText(Context context) {
@@ -97,6 +97,20 @@ public class ValidateEidtText extends EditText {
                 return;
             }
             switch (current_validate_type){
+                case -1://默认不可输入'&
+                    if (CommonUtils.isContainSp(getText().toString())){
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, drawableRight_Error, null);
+                        setTextColor(textErrorColor);
+                        setError("不可输入单引号'和&符号",null);
+//                        String s=getText().toString().replace("'","").replace("&","");
+//                        setText(s);
+                    }else{
+                        setTextColor(textColor);
+                        setCompoundDrawablesWithIntrinsicBounds(
+                                null, null, null, null);
+                    }
+                    break;
                 case 0://手机
                     if (!CommonUtils.isGuangdaTel(getText().toString().trim())){
                         setCompoundDrawablesWithIntrinsicBounds(
@@ -216,7 +230,7 @@ public class ValidateEidtText extends EditText {
                         setCompoundDrawablesWithIntrinsicBounds(
                                 null, null, drawableRight_Error, null);
                         setTextColor(textErrorColor);
-                        setError("社保卡18个字符或9个汉字！",null);
+                        setError("社保卡18个字符或9个汉字,不可包含单引号和&！",null);
                     }else{
                         setTextColor(textColor);
                         setCompoundDrawablesWithIntrinsicBounds(
@@ -228,7 +242,7 @@ public class ValidateEidtText extends EditText {
                         setCompoundDrawablesWithIntrinsicBounds(
                                 null, null, drawableRight_Error, null);
                         setTextColor(textErrorColor);
-                        setError("健康证10个字符或5个汉字！",null);
+                        setError("健康证10个字符或5个汉字,不可包含单引号和&！",null);
                     }else{
                         setTextColor(textColor);
                         setCompoundDrawablesWithIntrinsicBounds(
@@ -252,7 +266,7 @@ public class ValidateEidtText extends EditText {
                         setCompoundDrawablesWithIntrinsicBounds(
                                 null, null, drawableRight_Error, null);
                         setTextColor(textErrorColor);
-                        setError("提示:户籍详细地址只能输入汉字、数字、大写字母和-(中横线)以及英文半角小括号和、(中文半角顿号)!",null);
+                        setError("提示:户籍详细地址只能输入汉字、数字、大写字母和-(中横线)以及英文半角小括号和、(中文半角顿号)!和中文全角＃",null);
                     }else{
                         setTextColor(textColor);
                         setCompoundDrawablesWithIntrinsicBounds(

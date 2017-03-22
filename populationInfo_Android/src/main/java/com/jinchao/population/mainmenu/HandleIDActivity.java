@@ -45,6 +45,7 @@ import com.jinchao.population.dbentity.JLX6;
 import com.jinchao.population.dbentity.JLX7;
 import com.jinchao.population.dbentity.JLX8;
 import com.jinchao.population.dbentity.JLX9;
+import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
@@ -69,7 +70,6 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -113,11 +113,11 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.edt_danweidizhi)private ValidateEidtText edt_danweidizhi;
 	@ViewInject(R.id.edt_dianhua)private ValidateEidtText edt_dianhua;
 	@ViewInject(R.id.edt_chepaihao)private ValidateEidtText edt_chepaihao;
-	@ViewInject(R.id.edt_zujin)private EditText edt_zujin;
-	@ViewInject(R.id.edt_qq)private EditText edt_qq;
-	@ViewInject(R.id.edt_mac)private EditText edt_mac;
-	@ViewInject(R.id.edt_shoujixinghao)private EditText edt_shoujixinghao;
-	@ViewInject(R.id.edt_shoujichuanhao)private EditText edt_shoujichuanhao;
+	@ViewInject(R.id.edt_zujin)private ValidateEidtText edt_zujin;
+	@ViewInject(R.id.edt_qq)private ValidateEidtText edt_qq;
+	@ViewInject(R.id.edt_mac)private ValidateEidtText edt_mac;
+	@ViewInject(R.id.edt_shoujixinghao)private ValidateEidtText edt_shoujixinghao;
+	@ViewInject(R.id.edt_shoujichuanhao)private ValidateEidtText edt_shoujichuanhao;
 	@ViewInject(R.id.rg_hunyin)private RadioGroup rg_hunyin;
 	@ViewInject(R.id.rg_zhengzhi)private RadioGroup rg_zhengzhi;
 	@ViewInject(R.id.rg_iscanbao)private RadioGroup rg_iscanbao;
@@ -141,10 +141,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.tv_fangdongguanxi)private TextView tv_fangdongguanxi;
 	@ViewInject(R.id.tv_jieyucuoshi)private TextView tv_jieyucuoshi;
 	@ViewInject(R.id.tv_jiaotonggongju)private TextView tv_jiaotonggongju;
-	@ViewInject(R.id.edt_zinvgeshu)private EditText edt_zinvgeshu;
+	@ViewInject(R.id.edt_zinvgeshu)private ValidateEidtText edt_zinvgeshu;
 	@ViewInject(R.id.ll_hunhou)private LinearLayout ll_hunhou;
-	@ViewInject(R.id.edt_bianhao)private EditText edt_bianhao;
-	@ViewInject(R.id.edt_dizhi)private EditText edt_dizhi;
+	@ViewInject(R.id.edt_bianhao)private ValidateEidtText edt_bianhao;
+	@ViewInject(R.id.edt_dizhi)private ValidateEidtText edt_dizhi;
 	@ViewInject(R.id.rc_bianhao)private RightButtonCheckBox rc_bianhao;
 	@ViewInject(R.id.rc_dizhi)private RightButtonCheckBox rc_dizhi;
 	@ViewInject(R.id.rc_shihao)private RightButtonCheckBox rc_shihao;
@@ -152,7 +152,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.rc_fuwuchusuo)private RightButtonCheckBox rc_fuwuchusuo;
 	@ViewInject(R.id.rc_danweidizhi)private RightButtonCheckBox rc_danweidizhi;
 //新增A类
-	@ViewInject(R.id.edt_fzxm)private EditText edt_fzxm;
+	@ViewInject(R.id.edt_fzxm)private ValidateEidtText edt_fzxm;
 	@ViewInject(R.id.rb_shiyimiao)private RadioButton rb_shiyimiao;
 	@ViewInject(R.id.tv_djrq)private TextView tv_djrq;
 	@ViewInject(R.id.tv_cbqk)private TextView tv_cbqk;
@@ -173,13 +173,13 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.edt_fzsfz)private ValidateEidtText edt_fzsfz;
 	@ViewInject(R.id.edt_dwlxdh)private ValidateEidtText edt_dwlxdh;
 	@ViewInject(R.id.edt_zwmc)private ValidateEidtText edt_zwmc;
-	@ViewInject(R.id.edt_sbbh)private EditText edt_sbbh;
-	@ViewInject(R.id.edt_jkzbh)private EditText edt_jkzbh;
-	@ViewInject(R.id.edt_dwfzr)private EditText edt_dwfzr;
-	@ViewInject(R.id.edt_hyzmbh)private EditText edt_hyzmbh;
-	@ViewInject(R.id.edt_yfjzzh)private EditText edt_yfjzzh;
-	@ViewInject(R.id.edt_fwkh)private EditText edt_fwkh;
-	@ViewInject(R.id.edt_beizhu2)private EditText edt_beizhu2;
+	@ViewInject(R.id.edt_sbbh)private ValidateEidtText edt_sbbh;
+	@ViewInject(R.id.edt_jkzbh)private ValidateEidtText edt_jkzbh;
+	@ViewInject(R.id.edt_dwfzr)private ValidateEidtText edt_dwfzr;
+	@ViewInject(R.id.edt_hyzmbh)private ValidateEidtText edt_hyzmbh;
+	@ViewInject(R.id.edt_yfjzzh)private ValidateEidtText edt_yfjzzh;
+	@ViewInject(R.id.edt_fwkh)private ValidateEidtText edt_fwkh;
+	@ViewInject(R.id.edt_beizhu2)private ValidateEidtText edt_beizhu2;
 
 	@ViewInject(R.id.tv_ldhtqj)private TextView tv_ldhtqj;
 	@ViewInject(R.id.tv_hyzmzl)private TextView tv_hyzmzl;
@@ -217,7 +217,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		navigationLayout.setCenterText("暂住信息"+(isHandleID?"登记":"变更"));
 		people=(People) getIntent().getSerializableExtra("people");
 		realHouseOne=(RealHouseOne) getIntent().getSerializableExtra("house");
-		renyuanInhouseOne =(RenyuanInHouseBean.RenyuanInhouseOne) getIntent().getSerializableExtra("renYuanXinXiBean");
+		renyuanInhouseOne =(RenyuanInHouseBean.RenyuanInhouseOne) getIntent().getSerializableExtra(Constants.HOUSE_INFOR);
 		navigationLayout.setLeftTextOnClick(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -389,6 +389,18 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			edt_fuwuchusuo.setText(people.getSeviceAddress());
 			edt_stature.setText(people.getHeight());
 			rb_banzhengfou.setChecked(true);
+		}
+		if (isHandleID){//直接从nfc读取标签信息进入办证的
+			if(getIntent().getSerializableExtra(Constants.NFCJSONBEAN)!=null){
+				NFCJsonBean nfcJsonBean=(NFCJsonBean) getIntent().getSerializableExtra(Constants.NFCJSONBEAN);
+				edt_bianhao.setText(nfcJsonBean.code);
+				fangwubiaohao=nfcJsonBean.code;
+				edt_dizhi.setText(nfcJsonBean.add);
+				zanzhudizhi=nfcJsonBean.add;
+				edt_shihao.setText(nfcJsonBean.room);
+				shihao=nfcJsonBean.room;
+			}
+
 		}
 	}
 	private void save(){
@@ -580,7 +592,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				if (!CommonUtils.isCarNo(chepaihao)) {
 					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
 					return;
-				}	
+				}
 			}
 
 			if (!TextUtils.isEmpty(MSN)){
@@ -656,10 +668,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				SharePrefUtil.saveString(HandleIDActivity.this, Constants.FUWUCHUSUO_STR, fuwuchusuo);
 			if (rc_danweidizhi.isChecked())
 				SharePrefUtil.saveString(HandleIDActivity.this, Constants.DANWEIDIZHI_STR, danweidizhi);
-			people2=new People(people.name, people.cardno, people.people, people.sex, people.birthday, people.address, people.picture, people.hjdxz, 
+			people2=new People(people.name, people.cardno, people.people, people.sex, people.birthday, people.address, people.picture, people.hjdxz,
 					isHandleID?"登记":"变更", CommonUtils.GenerateGUID(), isHandleID?"0":"1", people.card_type, people.user_id, "1", height, wenhua, hunyin, zhengzhi,
 					fangwubiaohao, zanzhudizhi,shihao , chusuoleixing, zanzhushiyou, fuwuchusuo, danweidizhi, chanyeleixing, shifoucanbao, canbaoshijian, dianhua, fubingyi,
-					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
+					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju,
 					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,MSN,Email,czwxz,lsrq,djrq,fzxm,fzdh,fzsfz,dwlxdh,zymc,ldhtqj,sbbh,
 					jyrq,jkzbh,dwfzr,sfjy,hyzmzl,hyzmbh,jqjzym,hyqfrq,jhrq,yfjzzh,fwkh,bycsrq,czqx1,czqx2,
 					zjdq,beizhu2 ,cbqk,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
@@ -831,7 +843,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				if (!CommonUtils.isCarNo(chepaihao)) {
 					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
 					return;
-				}	
+				}
 			}
 			if (realHouseOne!=null||renyuanInhouseOne!=null) {
 				if (shihao.length()!=4) {
@@ -858,7 +870,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			people2=new People(people.name, people.cardno, people.people, people.sex, people.birthday, people.address, people.picture, people.hjdxz,
 					isHandleID?"登记":"变更", CommonUtils.GenerateGUID(), isHandleID?"0":"1", people.card_type, people.user_id, "1", height, wenhua, hunyin, zhengzhi,
 					fangwubiaohao, zanzhudizhi,shihao , chusuoleixing, zanzhushiyou, fuwuchusuo, danweidizhi, chanyeleixing, shifoucanbao, canbaoshijian, dianhua, fubingyi,
-					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju, 
+					juzhuleibie, juzhufangshi, fangdongguanxi, fuqitongxing, shengyuzhuangkuang, zinvgeshu, jieyucuoshi, xianyunnianyue, shifoulingzheng, jiaotonggongju,
 					chepaihao, zujin, qq, macaddress, jieyucuoshi, people.sq_name, "", "", "", shoujixinghao, shoujichuanhao, beiyong1,date,getIntent().getBooleanExtra("isAdd",false)?"":"1",people.realId,MSN,Email,czwxz,lsrq,djrq,fzxm,fzdh,fzsfz,dwlxdh,zymc,ldhtqj,sbbh,
 					jyrq,jkzbh,dwfzr,sfjy,hyzmzl,hyzmbh,jqjzym,hyqfrq,jhrq,yfjzzh,fwkh,bycsrq,czqx1,czqx2,
 					zjdq,beizhu2 ,cbqk,xdr1,xdxm1,xdxb1,xdrq1,xdsfz1,
@@ -878,7 +890,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				Toast.makeText(HandleIDActivity.this, "数据库需更新,请先发送所有待发送数据再重试！", Toast.LENGTH_LONG).show();
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 	@Event(value={R.id.edt_bianhao,R.id.edt_dizhi})
@@ -1173,8 +1185,8 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		switch (ll_member.getChildCount()){
 			case 0://子女1
 				memberView1=member;
-//				memberGuanxi1=(EditText) member.findViewById(R.id.edt_guanxi);
-				memberName1=(EditText) member.findViewById(R.id.edt_name);
+//				memberGuanxi1=(ValidateEidtText) member.findViewById(R.id.edt_guanxi);
+				memberName1=(ValidateEidtText) member.findViewById(R.id.edt_name);
 				memberBirth1=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex1=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz1=(ValidateEidtText) member.findViewById(R.id.edt_idcard);
@@ -1218,8 +1230,8 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 1://子女2
 				memberView2=member;
-//				memberGuanxi2=(EditText) member.findViewById(R.id.edt_guanxi);
-				memberName2=(EditText) member.findViewById(R.id.edt_name);
+//				memberGuanxi2=(ValidateEidtText) member.findViewById(R.id.edt_guanxi);
+				memberName2=(ValidateEidtText) member.findViewById(R.id.edt_name);
 				memberBirth2=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex2=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz2=(ValidateEidtText) member.findViewById(R.id.edt_idcard);
@@ -1250,7 +1262,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 2://子女3
 				memberView3=member;
-				memberName3=(EditText) member.findViewById(R.id.edt_name);
+				memberName3=(ValidateEidtText) member.findViewById(R.id.edt_name);
 				memberBirth3=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex3=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz3=(ValidateEidtText) member.findViewById(R.id.edt_idcard);
@@ -1280,7 +1292,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				break;
 			case 3://子女4
 				memberView4=member;
-				memberName4=(EditText) member.findViewById(R.id.edt_name);
+				memberName4=(ValidateEidtText) member.findViewById(R.id.edt_name);
 				memberBirth4=(TextView) member.findViewById(R.id.tv_birth);
 				memberSex4=(RadioButton)member.findViewById(R.id.rb_male);
 				memberSfz4=(ValidateEidtText) member.findViewById(R.id.edt_idcard);
@@ -1326,7 +1338,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			case 0://子女1
 				relationView1=guanxi;
 				memberGuanxi1=(TextView) guanxi.findViewById(R.id.tv_guanxi);
-				zinvName1=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvName1=(ValidateEidtText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth1=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex1=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz1=(ValidateEidtText) guanxi.findViewById(R.id.edt_idcard);
@@ -1371,7 +1383,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			case 1://子女2
 				relationView2=guanxi;
 				memberGuanxi2=(TextView) guanxi.findViewById(R.id.tv_guanxi);
-				zinvName2=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvName2=(ValidateEidtText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth2=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex2=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz2=(ValidateEidtText) guanxi.findViewById(R.id.edt_idcard);
@@ -1417,7 +1429,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			case 2://子女3
 				relationView3=guanxi;
 				memberGuanxi3=(TextView) guanxi.findViewById(R.id.tv_guanxi);
-				zinvName3=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvName3=(ValidateEidtText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth3=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex3=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz3=(ValidateEidtText) guanxi.findViewById(R.id.edt_idcard);
@@ -1463,7 +1475,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			case 3://子女4
 				relationView4=guanxi;
 				memberGuanxi4=(TextView) guanxi.findViewById(R.id.tv_guanxi);
-				zinvName4=(EditText) guanxi.findViewById(R.id.edt_name);
+				zinvName4=(ValidateEidtText) guanxi.findViewById(R.id.edt_name);
 				zinvBirth4=(TextView) guanxi.findViewById(R.id.tv_birth);
 				zinvSex4=(RadioButton)guanxi.findViewById(R.id.rb_male);
 				zinvSfz4=(ValidateEidtText) guanxi.findViewById(R.id.edt_idcard);

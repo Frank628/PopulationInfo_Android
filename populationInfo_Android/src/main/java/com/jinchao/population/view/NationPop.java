@@ -176,11 +176,13 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 					for (int j = 0; j < citieslist.size(); j++) {
 						CityDatasArr[j]=citieslist.get(j).getCity_name();
 						List<Area> areaslist= dbUtils.findAll(Selector.from(Area.class).where("fk_c", "=", citieslist.get(j).getId()));
-						AreaDatasArr=new String[areaslist.size()];
-						IDDatasArr = new String[areaslist.size()];
+						AreaDatasArr=new String[areaslist.size()+1];
+						IDDatasArr = new String[areaslist.size()+1];
+						AreaDatasArr[0]="";
+						IDDatasArr[0]=citieslist.get(j).getId()+"";
 						for (int k = 0; k < areaslist.size(); k++) {
-							AreaDatasArr[k]=areaslist.get(k).getArea_name();
-							IDDatasArr[k]=areaslist.get(k).getId()+"";
+							AreaDatasArr[k+1]=areaslist.get(k).getArea_name();
+							IDDatasArr[k+1]=areaslist.get(k).getId()+"";
 						}
                         if(areaslist.size()!=0){
                             AreaDatasMap.put(citieslist.get(j).getCity_name(), AreaDatasArr);
@@ -191,11 +193,13 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 				}else{
 					CityDatasArr=new String[]{""};
 					List<Area> areaslist= dbUtils.findAll(Selector.from(Area.class).where("fk_c", "=", provincelist.get(i).getId()));
-					AreaDatasArr=new String[areaslist.size()];
-					IDDatasArr=new String[areaslist.size()];
+					AreaDatasArr=new String[areaslist.size()+1];
+					IDDatasArr=new String[areaslist.size()+1];
+					AreaDatasArr[0]="";
+					IDDatasArr[0]=provincelist.get(i).getId()+"";
 					for (int j = 0; j < areaslist.size(); j++) {
-						AreaDatasArr[j]=areaslist.get(j).getArea_name();
-						IDDatasArr[j]=areaslist.get(j).getId()+"";
+						AreaDatasArr[j+1]=areaslist.get(j).getArea_name();
+						IDDatasArr[j+1]=areaslist.get(j).getId()+"";
 					}
                     if (areaslist.size()!=0){
                         AreaDatasMap.put(provincelist.get(i).getProvince_name(), AreaDatasArr);
