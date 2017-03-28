@@ -214,6 +214,10 @@
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
+            android:name="com.jinchao.population.alienPeople.registchangelogoff.PeoplesInHouseActivity"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name="com.jinchao.population.alienPeople.housemanagement.NFCReadPeopleInHouseActivity"
             android:label="显示纯文本NFC标签的内容"
             android:launchMode="singleTask"

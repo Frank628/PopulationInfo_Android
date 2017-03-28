@@ -24,8 +24,10 @@ import android.widget.Toast;
 
 import com.jinchao.population.MyApplication;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.registchangelogoff.PeoplesInHouseActivity;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.HouseAddress;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
 import com.jinchao.population.dbentity.HouseAddressOldBean10;
@@ -37,6 +39,7 @@ import com.jinchao.population.dbentity.HouseAddressOldBean6;
 import com.jinchao.population.dbentity.HouseAddressOldBean7;
 import com.jinchao.population.dbentity.HouseAddressOldBean8;
 import com.jinchao.population.dbentity.HouseAddressOldBean9;
+import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
@@ -170,8 +173,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean houseAddressOldBean=(HouseAddressOldBean)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent.putExtra("housecode",houseAddressOldBean.scode);
+                                    Intent intent =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean.scode, houseAddressOldBean.idcard, houseAddressOldBean.idcard, houseAddressOldBean.address, "", "");
+                                    intent.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent);
                                     hideAnim();
                                 }
@@ -196,8 +200,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean2 houseAddressOldBean2=(HouseAddressOldBean2)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent2 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent2.putExtra("housecode",houseAddressOldBean2.scode);
+                                    Intent intent2 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean2.scode, houseAddressOldBean2.idcard, houseAddressOldBean2.idcard, houseAddressOldBean2.address, "", "");
+                                    intent2.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent2);
                                     hideAnim();
                                 }
@@ -222,8 +227,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean3 houseAddressOldBean3=(HouseAddressOldBean3)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent3 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent3.putExtra("housecode",houseAddressOldBean3.scode);
+                                    Intent intent3 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean3.scode, houseAddressOldBean3.idcard, houseAddressOldBean3.idcard, houseAddressOldBean3.address, "", "");
+                                    intent3.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent3);
                                     hideAnim();
                                 }
@@ -248,8 +254,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean4 houseAddressOldBean4=(HouseAddressOldBean4)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent4 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent4.putExtra("housecode",houseAddressOldBean4.scode);
+                                    Intent intent4 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean4.scode, houseAddressOldBean4.idcard, houseAddressOldBean4.idcard, houseAddressOldBean4.address, "", "");
+                                    intent4.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent4);
                                     hideAnim();
                                 }
@@ -274,8 +281,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean5 houseAddressOldBean5=(HouseAddressOldBean5)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent5 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent5.putExtra("housecode",houseAddressOldBean5.scode);
+                                    Intent intent5 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean5.scode, houseAddressOldBean5.idcard, houseAddressOldBean5.idcard, houseAddressOldBean5.address, "", "");
+                                    intent5.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent5);
                                     hideAnim();
                                 }
@@ -300,8 +308,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean6 houseAddressOldBean6=(HouseAddressOldBean6)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent6 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent6.putExtra("housecode",houseAddressOldBean6.scode);
+                                    Intent intent6 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean6.scode, houseAddressOldBean6.idcard, houseAddressOldBean6.idcard, houseAddressOldBean6.address, "", "");
+                                    intent6.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent6);
                                     hideAnim();
                                 }
@@ -326,8 +335,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean7 houseAddressOldBean7=(HouseAddressOldBean7)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent7 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent7.putExtra("housecode",houseAddressOldBean7.scode);
+                                    Intent intent7 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean7.scode, houseAddressOldBean7.idcard, houseAddressOldBean7.idcard, houseAddressOldBean7.address, "", "");
+                                    intent7.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent7);
                                     hideAnim();
                                 }
@@ -352,8 +362,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean8 houseAddressOldBean8=(HouseAddressOldBean8)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent8 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent8.putExtra("housecode",houseAddressOldBean8.scode);
+                                    Intent intent8 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean8.scode, houseAddressOldBean8.idcard, houseAddressOldBean8.idcard, houseAddressOldBean8.address, "", "");
+                                    intent8.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent8);
                                     hideAnim();
                                 }
@@ -378,8 +389,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean9 houseAddressOldBean9=(HouseAddressOldBean9)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent9 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent9.putExtra("housecode",houseAddressOldBean9.scode);
+                                    Intent intent9 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean9.scode, houseAddressOldBean9.idcard, houseAddressOldBean9.idcard, houseAddressOldBean9.address, "", "");
+                                    intent9.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent9);
                                     hideAnim();
                                 }
@@ -404,8 +416,9 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     HouseAddressOldBean10 houseAddressOldBean10=(HouseAddressOldBean10)((ListView)parent).getItemAtPosition(position);
-                                    Intent intent10 =new Intent(getActivity(),PeopleListinHouseActivity.class);
-                                    intent10.putExtra("housecode",houseAddressOldBean10.scode);
+                                    Intent intent10 =new Intent(getActivity(),PeoplesInHouseActivity.class);
+                                    NFCJsonBean nfcJsonBean=new NFCJsonBean(houseAddressOldBean10.scode, houseAddressOldBean10.idcard, houseAddressOldBean10.idcard, houseAddressOldBean10.address, "", "");
+                                    intent10.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                                     getActivity().startActivity(intent10);
                                     hideAnim();
                                 }

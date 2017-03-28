@@ -47,4 +47,5 @@ dependencies {
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile files('libs/JunyiCloudLib_pro_V2.4.3.jar')
     compile project(':ViewPagerIndicator')
+    compile files('libs/nxpnfcliblite.jar')
 }

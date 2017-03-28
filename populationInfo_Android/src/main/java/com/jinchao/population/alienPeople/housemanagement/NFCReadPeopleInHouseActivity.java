@@ -211,7 +211,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
             @Override
             public void onSuccess(String result) {
                 List<String> rooms=XMLParserUtil.parseXMLtoRooms(result);
-                rooms.add(0,"历史人员");
+                rooms.add(0,"搬离人员");
                 rooms.add(0,"全部");
                 NfcPopIndicatorAdapter adapter=new NfcPopIndicatorAdapter(getSupportFragmentManager());
                 adapter.initAdpater(NFCReadPeopleInHouseActivity.this,nfcJsonBean,rooms);

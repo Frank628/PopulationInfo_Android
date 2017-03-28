@@ -685,7 +685,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			if (rb_banzhengshi.isChecked()) {
 				PopBianzheng popBianzheng = new PopBianzheng(HandleIDActivity.this, new OnbEnsureClickListener() {
 					@Override
-					public void onEnsureClick(String juzhu, String lingqu, String shenq) {
+					public void onEnsureClick(String juzhu, String lingqu, String shenq,String shijiancode,String leibiecode) {
 						people2.setJuZhuShiJian(juzhu);
 						people2.setLingQuFangShi(lingqu);
 						people2.setShenQingLeiBie(shenq);

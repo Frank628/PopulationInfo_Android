@@ -265,6 +265,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                 XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
                     @Override
                     public void success(String result) {
+                        updateHouseTable(scode,idcard,name,phone);
                         editHouseInfoLocal(scode,name,idcard,phone);
                         Toast.makeText(getActivity(),"修改成功",Toast.LENGTH_SHORT).show();
                         hideProcessDialog();
@@ -316,4 +317,107 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
             public void onFinished() { }
         });
     }
+
+
+    private void updateHouseTable(String code,String idcard,String name,String phone){
+        try {
+            dbUtils= DeviceUtils.getDbUtils(getActivity());
+            switch (database_tableNo){
+                case 1:
+                    HouseAddressOldBean houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "like", code));
+                    if (houseAddressOldBean!=null) {
+                        houseAddressOldBean.setIdcard(idcard);
+                        houseAddressOldBean.setHrs_pname(name);
+                        houseAddressOldBean.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean);
+                    }
+                    break;
+                case 2:
+                    HouseAddressOldBean2 houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "like", code));
+                    if (houseAddressOldBean2!=null) {
+                        houseAddressOldBean2.setIdcard(idcard);
+                        houseAddressOldBean2.setHrs_pname(name);
+                        houseAddressOldBean2.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean2);
+                    }
+                    break;
+                case 3:
+                    HouseAddressOldBean3 houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "like", code));
+                    if (houseAddressOldBean3!=null) {
+                        houseAddressOldBean3.setIdcard(idcard);
+                        houseAddressOldBean3.setHrs_pname(name);
+                        houseAddressOldBean3.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean3);
+                    }
+                    break;
+                case 4:
+                    HouseAddressOldBean4 houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "like", code));
+                    if (houseAddressOldBean4!=null) {
+                        houseAddressOldBean4.setIdcard(idcard);
+                        houseAddressOldBean4.setHrs_pname(name);
+                        houseAddressOldBean4.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean4);
+                    }
+                    break;
+                case 5:
+                    HouseAddressOldBean5 houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "like", code));
+                    if (houseAddressOldBean5!=null) {
+                        houseAddressOldBean5.setIdcard(idcard);
+                        houseAddressOldBean5.setHrs_pname(name);
+                        houseAddressOldBean5.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean5);
+                    }
+                    break;
+                case 6:
+                    HouseAddressOldBean6 houseAddressOldBean6 = dbUtils.findFirst(Selector.from(HouseAddressOldBean6.class).where("scode", "like", code));
+                    if (houseAddressOldBean6!=null) {
+                        houseAddressOldBean6.setIdcard(idcard);
+                        houseAddressOldBean6.setHrs_pname(name);
+                        houseAddressOldBean6.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean6);
+                    }
+                    break;
+                case 7:
+                    HouseAddressOldBean7 houseAddressOldBean7 = dbUtils.findFirst(Selector.from(HouseAddressOldBean7.class).where("scode", "like", code));
+                    if (houseAddressOldBean7!=null) {
+                        houseAddressOldBean7.setIdcard(idcard);
+                        houseAddressOldBean7.setHrs_pname(name);
+                        houseAddressOldBean7.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean7);
+                    }
+                    break;
+                case 8:
+                    HouseAddressOldBean8 houseAddressOldBean8 = dbUtils.findFirst(Selector.from(HouseAddressOldBean8.class).where("scode", "like", code));
+                    if (houseAddressOldBean8!=null) {
+                        houseAddressOldBean8.setIdcard(idcard);
+                        houseAddressOldBean8.setHrs_pname(name);
+                        houseAddressOldBean8.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean8);
+                    }
+                    break;
+                case 9:
+                    HouseAddressOldBean9 houseAddressOldBean9 = dbUtils.findFirst(Selector.from(HouseAddressOldBean9.class).where("scode", "like", code));
+                    if (houseAddressOldBean9!=null) {
+                        houseAddressOldBean9.setIdcard(idcard);
+                        houseAddressOldBean9.setHrs_pname(name);
+                        houseAddressOldBean9.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean9);
+                    }
+                    break;
+                case 10:
+                    HouseAddressOldBean10 houseAddressOldBean10 = dbUtils.findFirst(Selector.from(HouseAddressOldBean10.class).where("scode", "like", code));
+                    if (houseAddressOldBean10!=null) {
+                        houseAddressOldBean10.setIdcard(idcard);
+                        houseAddressOldBean10.setHrs_pname(name);
+                        houseAddressOldBean10.setTelphone(phone);
+                        dbUtils.saveOrUpdate(houseAddressOldBean10);
+                    }
+                    break;
+            }
+
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

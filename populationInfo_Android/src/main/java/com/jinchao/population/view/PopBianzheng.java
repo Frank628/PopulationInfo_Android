@@ -29,13 +29,13 @@ import android.widget.ViewFlipper;
 public class PopBianzheng extends PopupWindow implements OnClickListener,OnWheelChangedListener{
 	
 	private WheelView mWheelView1,mWheelView2,mWheelView3;
-	private String CurrentJUZHUSHIJIAN,CurrentLINGQUFANGSHI,CurrentSHENGQINGLEIBIE;
+	private String CurrentJUZHUSHIJIAN,CurrentLINGQUFANGSHI,CurrentSHENGQINGLEIBIE,CurrentJUZHUSHIJIANcode,CurrentSHENGQINGLEIBIEcode;
 	private View mMenuView;
 	private ViewFlipper viewfipper;
 	private TextView submit,cancel;
 	private OnbEnsureClickListener onEnsureClickListener;
 	public  interface OnbEnsureClickListener{
-		void onEnsureClick(String juzhu,String lingqu,String shenq);
+		void onEnsureClick(String juzhu,String lingqu,String shenq,String shijiancode,String leibiecode);
 	}
 	private String[] str;
 	public PopBianzheng(Activity context,OnbEnsureClickListener onEnsureClickListener) {
@@ -58,6 +58,8 @@ public class PopBianzheng extends PopupWindow implements OnClickListener,OnWheel
 		CurrentJUZHUSHIJIAN=Constants.JUZHUSHIJIAN[0];
 		CurrentLINGQUFANGSHI=Constants.LINGQUFANGSHI[0];
 		CurrentSHENGQINGLEIBIE=Constants.SHENGQINGLEIBIE[0];
+		CurrentJUZHUSHIJIANcode=Constants.JUZHUSHIJIAN_CODE[0];
+		CurrentSHENGQINGLEIBIEcode=Constants.SHENGQINGLEIBIE_C0DE[0];
 		mWheelView1.addChangingListener(this);
 		mWheelView1.setVisibleItems(7);
 		mWheelView2.addChangingListener(this);
@@ -85,13 +87,13 @@ public class PopBianzheng extends PopupWindow implements OnClickListener,OnWheel
 		{
 				CurrentJUZHUSHIJIAN= Constants.JUZHUSHIJIAN[newValue];
 		}
-		if (wheel == mWheelView1)
+		if (wheel == mWheelView2)
 		{
-				CurrentJUZHUSHIJIAN= Constants.JUZHUSHIJIAN[newValue];
+				CurrentLINGQUFANGSHI= Constants.LINGQUFANGSHI[newValue];
 		}
-		if (wheel == mWheelView1)
+		if (wheel == mWheelView3)
 		{
-				CurrentJUZHUSHIJIAN= Constants.JUZHUSHIJIAN[newValue];
+				CurrentSHENGQINGLEIBIE= Constants.SHENGQINGLEIBIE[newValue];
 		}
 	}
 
@@ -99,7 +101,7 @@ public class PopBianzheng extends PopupWindow implements OnClickListener,OnWheel
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_ensure:
-            onEnsureClickListener.onEnsureClick(CurrentJUZHUSHIJIAN,CurrentLINGQUFANGSHI,CurrentSHENGQINGLEIBIE);
+            onEnsureClickListener.onEnsureClick(CurrentJUZHUSHIJIAN,CurrentLINGQUFANGSHI,CurrentSHENGQINGLEIBIE,CurrentJUZHUSHIJIANcode,CurrentSHENGQINGLEIBIEcode);
             this.dismiss();
 			break;
 		case R.id.btn_cancle:

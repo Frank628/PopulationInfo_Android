@@ -21,8 +21,18 @@ import android.widget.Toast;
 
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseDialogFragment;
+import com.jinchao.population.config.Constants;
 import com.jinchao.population.ntaglib.Ntag216Reader;
+import com.jinchao.population.utils.nfcutil.NfcNfcAOperation;
 import com.jinchao.population.utils.nfcutil.NfcOperation;
+import com.jinchao.population.utils.nfcutil.NfcUtralightOperation;
+import com.nxp.nfclib.Interface.NxpNfcLib;
+import com.nxp.nfclib.classic.MFClassic;
+
+import com.nxp.nfclib.utils.NxpLogUtils;
+import com.nxp.nfcliblite.Interface.Inxpnfcliblitecallback;
+import com.nxp.nfcliblite.Interface.NxpNfcLibLite;
+
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -41,6 +51,7 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
     @ViewInject(R.id.tv_state)TextView tv_state;
     @ViewInject(R.id.tv_notice)TextView tv_notice;
     private String json="";
+    NxpNfcLibLite nxpNfcLib;
     public static NfcWriterFragmentDialog newInstance(String json){
         NfcWriterFragmentDialog nfcWriterFragmentDialog=new NfcWriterFragmentDialog();
         Bundle bundle = new Bundle();
@@ -48,7 +59,6 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
         nfcWriterFragmentDialog.setArguments(bundle);
         return nfcWriterFragmentDialog;
     }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -59,8 +69,14 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, 0);
         json=getArguments().getString("json")==null?"":getArguments().getString("json");
-    }
+        nxpNfcLib = NxpNfcLibLite.getInstance();
+        try {
+            nxpNfcLib.registerActivity(getActivity());
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
+    }
     @Override
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -68,8 +84,30 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
             Toast.makeText(getActivity(),"此信息已写入成功，请返回选择其他房屋！",Toast.LENGTH_SHORT).show();
             return;
         }
-        Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-//        NfcOperation.AuthNFCTag(detectedTag, new NfcOperation.NFCWriteCallBackListener() {
+        NfcUtralightOperation.writeNDEFwithPassword(nxpNfcLib, intent, Constants.PASSWORD, json, new NfcOperation.NFCWriteCallBackListener() {
+            @Override
+            public void success(String serial_number) {
+                writeSuccess();
+            }
+            @Override
+            public void error(String error) {
+                writeError(error);
+            }
+        });
+//        Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+//        NfcNfcAOperation.setPasswordForNtag216(detectedTag, Constants.PASSWORD, new NfcNfcAOperation.OnSetPasswordCallBack() {
+//            @Override
+//            public void success() {
+//                writeSuccess();
+//            }
+//
+//            @Override
+//            public void error(String error) {
+//                writeError(error);
+//            }
+//        });
+//
+//        NfcOperation.NfcWriteNDEF(json, detectedTag,new NfcOperation.NFCWriteCallBackListener() {
 //            @Override
 //            public void success() {
 //                writeSuccess();
@@ -79,18 +117,6 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
 //                writeError(error);
 //            }
 //        });
-        NfcOperation.NfcWriteNDEF(json, detectedTag,new NfcOperation.NFCWriteCallBackListener() {
-            @Override
-            public void success() {
-                writeSuccess();
-
-            }
-
-            @Override
-            public void error(String error) {
-                writeError(error);
-            }
-        });
 
     }
     @Event(value = R.id.tv_state)

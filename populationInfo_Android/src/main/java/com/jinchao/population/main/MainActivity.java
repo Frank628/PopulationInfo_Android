@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(final MenuItem item) {
         // Handle navigation view item clicks here.
         tv_right.setVisibility(View.GONE);
         int id = item.getItemId();
@@ -141,9 +141,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             currentFragment=new AlienFragment();
             changeFragment(currentFragment);
         } else if (id == R.id.nav_shi) {
-            title.setText("实有人口采集");
-            currentFragment=new RealFragment();
+            Dialog.showForceDialog(this,"提示","实有人口已全部转至外来人口中，请使用外来人口采集", new Dialog.DialogClickListener() {
+                @Override
+                public void confirm() {
+//                    navigationView.setCheckedItem(R.id.nav_alien);
+                }
+
+                @Override
+                public void cancel() {
+
+                }
+            });
+            title.setText("外来人口信息采集");
+            currentFragment=new AlienFragment();
             changeFragment(currentFragment);
+//            title.setText("实有人口采集");
+//            currentFragment=new RealFragment();
+//            changeFragment(currentFragment);
         } else if (id == R.id.nav_xunluo) {
             title.setText("巡逻盘查");
             currentFragment=new XunLuoFragment();

@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.caihua.cloud.common.entity.PersonInfo;
@@ -19,9 +21,12 @@ import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.utils.CommonIdcard;
+import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GlobalPref;
 import com.jinchao.population.utils.XMLParserUtil;
 import com.jinchao.population.view.Dialog;
+import com.jinchao.population.view.PopBianzheng;
 import com.jinchao.population.widget.ValidateEidtText;
 
 import org.xutils.common.Callback;
@@ -39,6 +44,7 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
     public IDReader idReader;
     public Link link = null;
     @ViewInject(R.id.edt_idcard)ValidateEidtText edt_idcard;
+    @ViewInject(R.id.root)LinearLayout root;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -117,12 +123,24 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
     }
     @Event(value = R.id.btn_remakeup)
     private void reportloss(View view){
-        if (TextUtils.isEmpty(edt_idcard.getText().toString().trim())){
+        hidenSoftKeyBoard(edt_idcard);
+        final String idcard=edt_idcard.getText().toString().trim();
+        if (TextUtils.isEmpty(idcard)){
             Toast.makeText(getActivity(),"请先输入需补办的身份证号！",Toast.LENGTH_SHORT).show();
             return;
         }
-        showProcessDialog("正在注销...");
-        reportLossofResidentPermit(edt_idcard.getText().toString().trim());
+        if (!CommonIdcard.validateCard(idcard)){
+            Toast.makeText(getActivity(),"请先输入合法的身份证号！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        PopBianzheng popBianzheng=new PopBianzheng(getActivity(), new PopBianzheng.OnbEnsureClickListener() {
+            @Override
+            public void onEnsureClick(String juzhu, String lingqu, String shenq,String shijiancode,String leibiecode) {
+                makeupResidentPermit(idcard,leibiecode,shijiancode);
+            }
+        });
+        popBianzheng.showAtLocation(root, Gravity.CENTER, 0, 0);
+
     }
 
     private void showError(String error){
@@ -133,15 +151,18 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
         edt_idcard.setSelection(card.length());
     }
 
-    private void reportLossofResidentPermit(String idcard){
+    private void makeupResidentPermit(String idcard,String sblb,String njsj){
+        showProcessDialog("数据提交中...");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
-        params.addBodyParameter("type","jzzgs");
+        params.addBodyParameter("type","jzzgh");
         params.addBodyParameter("idcard",idcard);
         params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(getActivity()));
+        params.addBodyParameter("sblb",sblb);
+        params.addBodyParameter("njsj",njsj);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.d("reportLoss", result);
+                Log.d("jzzgs", result);
                 XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
                     @Override
                     public void success(String result) {

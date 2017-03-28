@@ -3812,7 +3812,7 @@ containing a value of this type.
         public static final int iv_aa=0x7f0b0171;
         public static final int iv_allpopulation=0x7f0b00ce;
         public static final int iv_dianpingche=0x7f0b00d0;
-        public static final int iv_feedback=0x7f0b0162;
+        public static final int iv_feedback=0x7f0b0161;
         public static final int iv_house=0x7f0b0177;
         public static final int iv_outpopulation=0x7f0b00cd;
         public static final int iv_personinfocheck=0x7f0b00a2;
@@ -3828,7 +3828,7 @@ containing a value of this type.
         public static final int iv_search_search=0x7f0b00da;
         public static final int iv_send=0x7f0b00d1;
         public static final int iv_sys=0x7f0b00a6;
-        public static final int iv_warning=0x7f0b0161;
+        public static final int iv_warning=0x7f0b0162;
         public static final int iv_xunluo=0x7f0b00cf;
         public static final int lLayout_content=0x7f0b0284;
         public static final int layout_a=0x7f0b00ba;

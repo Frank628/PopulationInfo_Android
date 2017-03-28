@@ -1,4 +1,6 @@
 package com.jinchao.population.utils;
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -208,10 +210,18 @@ public class CommonIdcard extends StringUtils {
 					}
 				}
 			}
+			Log.e("ee",Integer.parseInt(idCard.trim().substring(6,10))+":"+getCurrentYear());
+			if(Integer.parseInt(idCard.trim().substring(6,10))<1901||Integer.parseInt(idCard.trim().substring(6,10))>Integer.parseInt(getCurrentYear())){
+				bTrue = false;
+			}
 		}
 		return bTrue;
 	}
-	
+	public static String getCurrentYear(){
+		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy");
+		String date =sDateFormat.format(new java.util.Date());
+		return date;
+	}
 	
 	
 	/**
