@@ -81,7 +81,6 @@ public class Constants {
 	public static final String NFCJSONBEAN="NFCJSONBEAN";
 	public static final String HOUSE_INFOR="HOUSE_INFOR";
 
-
-	public static final String PWD_NTAG216="4321";
+	public static final String PWD_NTAG216="PASSWORD";//保证pwd8位
 }
                           

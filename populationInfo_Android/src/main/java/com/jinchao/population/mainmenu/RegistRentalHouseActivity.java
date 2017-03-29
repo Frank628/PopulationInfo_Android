@@ -796,44 +796,84 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							for (int i = 0; i < housexml.list.size(); i++) {
 								switch (database_tableNo) {
 									case 1:
-										HouseAddressOldBean houseAddressOldBean = new HouseAddressOldBean(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean);
+										try {
+											HouseAddressOldBean houseAddressOldBean = new HouseAddressOldBean(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 2:
-										HouseAddressOldBean2 houseAddressOldBean2 = new HouseAddressOldBean2(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean2);
+										try {
+											HouseAddressOldBean2 houseAddressOldBean2 = new HouseAddressOldBean2(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean2);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 3:
-										HouseAddressOldBean3 houseAddressOldBean3 = new HouseAddressOldBean3(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean3);
+										try {
+											HouseAddressOldBean3 houseAddressOldBean3 = new HouseAddressOldBean3(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean3);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 4:
-										HouseAddressOldBean4 houseAddressOldBean4 = new HouseAddressOldBean4(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean4);
+										try {
+											HouseAddressOldBean4 houseAddressOldBean4 = new HouseAddressOldBean4(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean4);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 5:
-										HouseAddressOldBean5 houseAddressOldBean5 = new HouseAddressOldBean5(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean5);
+										try {
+											HouseAddressOldBean5 houseAddressOldBean5 = new HouseAddressOldBean5(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean5);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 6:
-										HouseAddressOldBean6 houseAddressOldBean6 = new HouseAddressOldBean6(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean6);
+										try {
+											HouseAddressOldBean6 houseAddressOldBean6 = new HouseAddressOldBean6(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean6);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 7:
-										HouseAddressOldBean7 houseAddressOldBean7 = new HouseAddressOldBean7(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean7);
+										try {
+											HouseAddressOldBean7 houseAddressOldBean7 = new HouseAddressOldBean7(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean7);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 8:
-										HouseAddressOldBean8 houseAddressOldBean8 = new HouseAddressOldBean8(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean8);
+										try {
+											HouseAddressOldBean8 houseAddressOldBean8 = new HouseAddressOldBean8(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean8);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 9:
-										HouseAddressOldBean9 houseAddressOldBean9 = new HouseAddressOldBean9(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean9);
+										try {
+											HouseAddressOldBean9 houseAddressOldBean9 = new HouseAddressOldBean9(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean9);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 									case 10:
-										HouseAddressOldBean10 houseAddressOldBean10 = new HouseAddressOldBean10(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-										dbUtils.save(houseAddressOldBean10);
+										try {
+											HouseAddressOldBean10 houseAddressOldBean10 = new HouseAddressOldBean10(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+											dbUtils.save(houseAddressOldBean10);
+										} catch (DbException e) {
+											e.printStackTrace();
+										}
 										break;
 								}
 								bcount++;

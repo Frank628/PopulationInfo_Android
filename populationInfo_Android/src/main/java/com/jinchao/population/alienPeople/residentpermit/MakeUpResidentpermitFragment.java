@@ -21,10 +21,12 @@ import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.entity.SQBean;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GlobalPref;
 import com.jinchao.population.utils.XMLParserUtil;
+import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.PopBianzheng;
 import com.jinchao.population.widget.ValidateEidtText;
@@ -133,13 +135,7 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
             Toast.makeText(getActivity(),"请先输入合法的身份证号！",Toast.LENGTH_SHORT).show();
             return;
         }
-        PopBianzheng popBianzheng=new PopBianzheng(getActivity(), new PopBianzheng.OnbEnsureClickListener() {
-            @Override
-            public void onEnsureClick(String juzhu, String lingqu, String shenq,String shijiancode,String leibiecode) {
-                makeupResidentPermit(idcard,leibiecode,shijiancode);
-            }
-        });
-        popBianzheng.showAtLocation(root, Gravity.CENTER, 0, 0);
+        requestYanZheng(idcard);
 
     }
 
@@ -163,10 +159,11 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
             @Override
             public void onSuccess(String result) {
                 Log.d("jzzgs", result);
+                hideProcessDialog();
                 XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
                     @Override
                     public void success(String result) {
-                        Toast.makeText(getActivity(),result,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"补证成功",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -189,5 +186,48 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
             public void onFinished() {hideProcessDialog();}
         });
     }
+    private void requestYanZheng(final String idcard){
+        showProcessDialog("正在查询该人员所在社区...");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                hideProcessDialog();
+                SQBean code= XmlUtils.parseXMLshequCode(result);
+                if (!TextUtils.isEmpty(code.getSqcode())){
+                    if (code.getSqcode().equals(MyInfomationManager.getSQCODE(getActivity()))){
+                        PopBianzheng popBianzheng=new PopBianzheng(getActivity(), new PopBianzheng.OnbEnsureClickListener() {
+                            @Override
+                            public void onEnsureClick(String juzhu, String lingqu, String shenq,String shijiancode,String leibiecode) {
+                                makeupResidentPermit(idcard,leibiecode,shijiancode);
+                            }
+                        });
+                        popBianzheng.showAtLocation(root, Gravity.CENTER, 0, 0);
+                    }else{
+                        Dialog.showForceDialog(getActivity(),"提示","请到所在社区‘"+code.getSqname()+"’进行挂失！", new Dialog.DialogClickListener() {
+                            @Override
+                            public void confirm() {
+                            }
 
+                            @Override
+                            public void cancel() {
+                            }
+                        });
+                    }
+                }else{
+                    Toast.makeText(getActivity(),"人员所在社区查询失败！",Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                hideProcessDialog();
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                hideProcessDialog();
+            }
+        });
+    }
 }

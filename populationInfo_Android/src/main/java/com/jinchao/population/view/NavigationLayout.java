@@ -3,18 +3,15 @@ package com.jinchao.population.view;
 
 import com.jinchao.population.R;
 
-import android.R.integer;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NavigationLayout extends RelativeLayout{
-	private TextView tv_left,tv_right,tv_center;
-
+	private TextView tv_left,tv_right;
+	private TextView tv_center;
 	public NavigationLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}

@@ -22,14 +22,13 @@
         android:drawablePadding="8dp"
         android:background="@drawable/transaction_click_bg"
         />
-	<TextView 
+	<TextView
         android:id="@+id/tv_center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="@color/white"
         android:textSize="@dimen/small_size"
-        android:typeface="monospace"
         />
 	<TextView 
         android:id="@+id/tv_right"

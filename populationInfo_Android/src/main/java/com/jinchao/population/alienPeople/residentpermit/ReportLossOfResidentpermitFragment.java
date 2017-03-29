@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.caihua.cloud.common.entity.PersonInfo;
@@ -17,12 +19,16 @@ import com.caihua.cloud.common.reader.IDReader;
 import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.IDCardResultActivity;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.entity.SQBean;
+import com.jinchao.population.mainmenu.RegisterActivity;
 import com.jinchao.population.utils.GlobalPref;
 import com.jinchao.population.utils.XMLParserUtil;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.Dialog;
+import com.jinchao.population.view.PopBianzheng;
 import com.jinchao.population.widget.ValidateEidtText;
 
 import org.xutils.common.Callback;
@@ -40,6 +46,7 @@ public class ReportLossOfResidentpermitFragment extends BaseFragment{
     public IDReader idReader;
     public Link link = null;
     @ViewInject(R.id.edt_idcard)ValidateEidtText edt_idcard;
+    @ViewInject(R.id.root)LinearLayout root;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -118,12 +125,13 @@ public class ReportLossOfResidentpermitFragment extends BaseFragment{
     }
     @Event(value = R.id.btn_reportloss)
     private void reportloss(View view){
-        if (TextUtils.isEmpty(edt_idcard.getText().toString().trim())){
+        String idcard=edt_idcard.getText().toString().trim();
+        if (TextUtils.isEmpty(idcard)){
             Toast.makeText(getActivity(),"请先输入需注销的身份证号！",Toast.LENGTH_SHORT).show();
             return;
         }
-        showProcessDialog("正在注销...");
-        reportLossofResidentPermit(edt_idcard.getText().toString().trim());
+        requestYanZheng(idcard);
+
     }
 
     private void showError(String error){
@@ -134,7 +142,8 @@ public class ReportLossOfResidentpermitFragment extends BaseFragment{
         edt_idcard.setSelection(card.length());
     }
 
-    private void reportLossofResidentPermit(String idcard){
+    private void reportLossofResidentPermit(final String idcard){
+        showProcessDialog("正在注销...");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
         params.addBodyParameter("type","jzzgs");
         params.addBodyParameter("idcard",idcard);
@@ -143,10 +152,27 @@ public class ReportLossOfResidentpermitFragment extends BaseFragment{
             @Override
             public void onSuccess(String result) {
                 Log.d("reportLoss", result);
+                hideProcessDialog();
                 XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
                     @Override
                     public void success(String result) {
-                        Toast.makeText(getActivity(),result,Toast.LENGTH_SHORT).show();
+                        Dialog.showSelectDialog(getActivity(),"挂失成功！\n是否需要立即补证！", new Dialog.DialogClickListener() {
+                            @Override
+                            public void confirm() {
+                                PopBianzheng popBianzheng=new PopBianzheng(getActivity(), new PopBianzheng.OnbEnsureClickListener() {
+                                    @Override
+                                    public void onEnsureClick(String juzhu, String lingqu, String shenq,String shijiancode,String leibiecode) {
+                                        makeupResidentPermit(idcard,leibiecode,shijiancode);
+                                    }
+                                });
+                                popBianzheng.showAtLocation(root, Gravity.CENTER, 0, 0);
+                            }
+
+                            @Override
+                            public void cancel() {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -167,6 +193,82 @@ public class ReportLossOfResidentpermitFragment extends BaseFragment{
             public void onCancelled(CancelledException cex) {}
             @Override
             public void onFinished() {hideProcessDialog();}
+        });
+    }
+    private void makeupResidentPermit(String idcard,String sblb,String njsj){
+        showProcessDialog("居住证补办中...");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
+        params.addBodyParameter("type","jzzgh");
+        params.addBodyParameter("idcard",idcard);
+        params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(getActivity()));
+        params.addBodyParameter("sblb",sblb);
+        params.addBodyParameter("njsj",njsj);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("jzzgs", result);
+                hideProcessDialog();
+                XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
+                    @Override
+                    public void success(String result) {
+                        Toast.makeText(getActivity(),"补证成功",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void fail(String error) {
+                        Dialog.showForceDialog(getActivity(), "提示", error, new Dialog.DialogClickListener() {
+                            @Override
+                            public void confirm() {}
+                            @Override
+                            public void cancel() {}
+                        });
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {hideProcessDialog();}
+        });
+    }
+    private void requestYanZheng(final String idcard){
+        showProcessDialog("正在查询该人员所在社区...");
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                hideProcessDialog();
+                SQBean code=XmlUtils.parseXMLshequCode(result);
+                if (!TextUtils.isEmpty(code.getSqcode())){
+                    if (code.getSqcode().equals(MyInfomationManager.getSQCODE(getActivity()))){
+                        reportLossofResidentPermit(idcard);
+                    }else{
+                        Dialog.showForceDialog(getActivity(),"提示","请到所在社区‘"+code.getSqname()+"’进行挂失！", new Dialog.DialogClickListener() {
+                            @Override
+                            public void confirm() {
+                            }
+
+                            @Override
+                            public void cancel() {
+                            }
+                        });
+                    }
+                }else{
+                    Toast.makeText(getActivity(),"人员所在社区查询失败！",Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                hideProcessDialog();
+            }
         });
     }
 }

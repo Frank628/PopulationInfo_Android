@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="#1D1D1D"
-    android:padding="5dp"
+    android:padding="2.5dp"
     android:orientation="vertical" >
 
     <LinearLayout 
@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/index081"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2.5dp"
             />
 
     </LinearLayout>
@@ -35,7 +35,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2.5dp"
         >
         <ImageView 
             android:id="@+id/iv_rentalhouseregist"
@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/index03"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2.5dp"
             />
     </LinearLayout>
     <LinearLayout
@@ -59,7 +59,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2.5dp"
         >
         <ImageView
             android:id="@+id/iv_warning"
@@ -74,7 +74,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/index05"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2.5dp"
             />
 
     </LinearLayout>
@@ -83,7 +83,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2.5dp"
         >
 
         <ImageView 
@@ -99,7 +99,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/index05_"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2.5dp"
             />
     </LinearLayout>
 </LinearLayout>

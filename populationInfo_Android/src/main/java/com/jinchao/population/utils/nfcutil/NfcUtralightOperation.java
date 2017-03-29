@@ -51,7 +51,11 @@ public class NfcUtralightOperation {
     public static void writeNDEFwithPassword(NxpNfcLibLite nxpNfcLib, Intent intent, String password, final String text, final NfcOperation.NFCWriteCallBackListener nfcWriteCallBackListener){
         if (password==null)return;
         if (TextUtils.isEmpty(password))return;
-        final byte[] pwd=new byte[]{password.getBytes()[0],password.getBytes()[1],password.getBytes()[2],password.getBytes()[3]};
+        final byte[] pwd=NfcDecoder.hexToBytes(password);
+        if (pwd.length!=4){
+            nfcWriteCallBackListener.error("密码必须为四位！");
+            return;
+        }
         isNtag21x=false;
         nxpNfcLib.filterIntent(intent, new Inxpnfcliblitecallback() {
             @Override

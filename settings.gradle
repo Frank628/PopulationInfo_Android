@@ -1,3 +1,2 @@
-include ':eventBus', ':ViewPagerIndicator'
-include ':lib_xutils'
+include ':eventBus', ':ViewPagerIndicator', ':xutils3.0'
 include ':populationInfo_Android'

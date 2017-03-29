@@ -167,7 +167,6 @@ ADDED from E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Andro
 		ADDED from E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:47:19-54
 application
 ADDED from E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:48:5-127:19
-MERGED from [PopulationInfo_Android:lib_xutils:unspecified] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\lib_xutils\unspecified\AndroidManifest.xml:6:5-20
 MERGED from [PopulationInfo_Android:eventBus:unspecified] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\eventBus\unspecified\AndroidManifest.xml:11:5-12:19
 MERGED from [com.android.support:cardview-v7:24.1.1] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:24.1.1] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\design\24.1.1\AndroidManifest.xml:22:5-20
@@ -178,6 +177,7 @@ MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] E:\AndroidS
 MERGED from [com.google.android.gms:play-services-basement:8.1.0] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.android.support:support-v4:24.1.1] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\AndroidManifest.xml:25:5-20
 MERGED from [PopulationInfo_Android:ViewPagerIndicator:unspecified] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\ViewPagerIndicator\unspecified\AndroidManifest.xml:11:5-14:19
+MERGED from [org.xutils:xutils3.0:3.3.42] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\org.xutils\xutils3.0\3.3.42\AndroidManifest.xml:12:5-20
 	android:label
 		ADDED from E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\src\main\AndroidManifest.xml:52:9-41
 	android:supportsRtl
@@ -550,6 +550,7 @@ MERGED from [com.google.android.gms:play-services-basement:8.1.0] E:\AndroidStud
 MERGED from [com.android.support:support-v4:24.1.1] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\AndroidManifest.xml:21:5-23:54
 MERGED from [com.soundcloud.android:android-crop:1.0.1] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.soundcloud.android\android-crop\1.0.1\AndroidManifest.xml:6:5-8:41
 MERGED from [PopulationInfo_Android:ViewPagerIndicator:unspecified] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\PopulationInfo_Android\ViewPagerIndicator\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [org.xutils:xutils3.0:3.3.42] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\org.xutils\xutils3.0\3.3.42\AndroidManifest.xml:8:5-10:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:24.1.1] E:\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion

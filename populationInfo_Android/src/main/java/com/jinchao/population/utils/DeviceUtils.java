@@ -15,6 +15,11 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.view.WindowManager;
 
+import org.xutils.DbManager;
+import org.xutils.x;
+
+import java.io.File;
+
 public class DeviceUtils {
 	public static boolean hasSDCard() {
 		return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
@@ -35,6 +40,32 @@ public class DeviceUtils {
 	public static DbUtils getDbUtils(Context context){
 		DbUtils dbUtils=DbUtils.create(context, Constants.DB_PATH, "config_population.db");
 		return dbUtils;
+	}
+	public static DbManager.DaoConfig getDbConfig(){
+		DbManager.DaoConfig daoConfig = new DbManager.DaoConfig()
+				.setDbName("config_population.db")
+				// 不设置dbDir时, 默认存储在app的私有目录.
+				.setDbDir(new File(Constants.DB_PATH)) // "sdcard"的写法并非最佳实践, 这里为了简单, 先这样写了.
+				.setAllowTransaction(true)
+				.setDbVersion(1)
+				.setDbOpenListener(new DbManager.DbOpenListener() {
+					@Override
+					public void onDbOpened(DbManager db) {
+						// 开启WAL, 对写入加速提升巨大
+						db.getDatabase().enableWriteAheadLogging();
+					}
+				})
+				.setDbUpgradeListener(new DbManager.DbUpgradeListener() {
+					@Override
+					public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
+
+					}
+				});
+		return daoConfig;
+
+	}
+	public static DbManager getDbManager(){
+		return x.getDb(getDbConfig());
 	}
     public static int px2dip(Context context, float pxValue) {  
         final float scale = context.getResources().getDisplayMetrics().density;  

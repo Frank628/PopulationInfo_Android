@@ -28,6 +28,7 @@ import com.jinchao.population.dbentity.HouseAddressOldBean6;
 import com.jinchao.population.dbentity.HouseAddressOldBean7;
 import com.jinchao.population.dbentity.HouseAddressOldBean8;
 import com.jinchao.population.dbentity.HouseAddressOldBean9;
+import com.jinchao.population.entity.DeleteRealPeopleBean;
 import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
@@ -38,6 +39,7 @@ import com.jinchao.population.view.Dialog;
 import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
 
 import org.json.JSONException;
@@ -250,12 +252,17 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
                     @Override
                     public void success(String result) {
+//                        deleteHouseInfo(scode);
                         deleteHouseInfoLocal(scode);
                         Toast.makeText(getActivity(),"注销成功",Toast.LENGTH_SHORT).show();
                         hideProcessDialog();
                     }
                     @Override
                     public void fail(String error) {
+                        if ("此出租屋信息不存在！".equals(error)){
+                            deleteHouseInfoLocal(scode);
+                            return;
+                        }
                         Dialog.showForceDialog(getActivity(),"提示",error, new Dialog.DialogClickListener() {
                             @Override
                             public void confirm() {
@@ -285,13 +292,26 @@ public class RentalHousingDeleteFragment extends BaseFragment{
     }
     private void deleteHouseInfoLocal( String scode){
         RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
-        params.addBodyParameter("type","update");
+        params.addBodyParameter("type","housedel");
         params.addBodyParameter("user_id", MyInfomationManager.getUserID(getActivity()));
         params.addBodyParameter("scode",scode);
-
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                Log.e("delete",result);
+                try {
+                    DeleteRealPeopleBean deleteRealPeopleBean=GsonTools.changeGsonToBean(result,DeleteRealPeopleBean.class);
+                    Log.e("delete",deleteRealPeopleBean.data.get(0).success);
+                    if (deleteRealPeopleBean.data.get(0).success.equals("true")){
+                        Toast.makeText(getActivity(),"注销成功",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getActivity(),"注销失败",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(),"注销失败",Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
@@ -301,5 +321,45 @@ public class RentalHousingDeleteFragment extends BaseFragment{
             @Override
             public void onFinished() { }
         });
+    }
+    private void deleteHouseTable(String code){
+        try {
+            dbUtils= DeviceUtils.getDbUtils(getActivity());
+            switch (database_tableNo){
+                case 1:
+                    dbUtils.delete(HouseAddressOldBean.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 2:
+                    dbUtils.delete(HouseAddressOldBean2.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 3:
+                    dbUtils.delete(HouseAddressOldBean3.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 4:
+                    dbUtils.delete(HouseAddressOldBean4.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 5:
+                    dbUtils.delete(HouseAddressOldBean5.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 6:
+                    dbUtils.delete(HouseAddressOldBean6.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 7:
+                    dbUtils.delete(HouseAddressOldBean7.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 8:
+                    dbUtils.delete(HouseAddressOldBean8.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 9:
+                    dbUtils.delete(HouseAddressOldBean9.class, WhereBuilder.b("scode","like",code));
+                    break;
+                case 10:
+                    dbUtils.delete(HouseAddressOldBean10.class, WhereBuilder.b("scode","like",code));
+                    break;
+            }
+
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
     }
 }

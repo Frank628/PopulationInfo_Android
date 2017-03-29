@@ -503,7 +503,6 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
 
                         }
 
-						
 					} catch (DbException e) {
 						e.printStackTrace();
 					}

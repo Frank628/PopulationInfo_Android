@@ -14,6 +14,8 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import com.jinchao.population.alienPeople.SearchFragment;
+import com.jinchao.population.alienPeople.registchangelogoff.SearchPopFragment;
 import com.jinchao.population.base.BaseHandleIDActivity;
 import com.jinchao.population.dbentity.HouseAddressOldBean10;
 import com.jinchao.population.dbentity.HouseAddressOldBean2;
@@ -190,7 +192,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	private Calendar c;
 	private boolean isHandleID;
 	private int wherefrom=0;//0默认，1来自外来人口的人员信息查询的加入，2来自实有人口的加入，
-	private PopHouse popHouse;
     String pic="";
 	private String height="",wenhua="",hunyin="",zhengzhi="",fangwubiaohao="",
 			zanzhudizhi="",shihao="",chusuoleixing="",zanzhushiyou="",fuwuchusuo="",danweidizhi="",
@@ -209,8 +210,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
         }else{
             database_tableNo=((MyApplication)getApplication()).database_tableNo;
         }
-		System.out.println(database_tableNo+"aaaaaaaaa");
-		new InitData().execute();
 		final NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
 		isHandleID = getIntent().getBooleanExtra("isHandle", false);
 		wherefrom=getIntent().getIntExtra(Constants.Where_from,0);
@@ -1023,22 +1022,13 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
-		if (!isHouseAddressInital){
-			showProgressDialog("","房屋二级列表初始化中，请稍后...");
-			return;
-		}
-		if (popHouse==null) {
-			popHouse = new PopHouse(this,PSCName,USERName,UserId,UserNameMap,UserIdMap, new OnHouseEnsureClickListener() {
-				@Override
-				public void OnHouseEnSureClick(String bianhao, String dizhi) {
-					edt_bianhao.setText(bianhao);
-					edt_dizhi.setText(dizhi);
-					fangwubiaohao=bianhao;
-					zanzhudizhi=dizhi;
-				}
-			});
-		}
-		popHouse.showAtLocation(findViewById(R.id.root), Gravity.CENTER_VERTICAL, 0, 0);
+		SearchPopFragment.newInstance().show(getSupportFragmentManager(),SearchFragment.TAG);
+	}
+	public void  selectHouseCallBack(NFCJsonBean nfcJsonBean){
+		edt_bianhao.setText(nfcJsonBean.code);
+		edt_dizhi.setText(nfcJsonBean.add);
+		fangwubiaohao=nfcJsonBean.code;
+		zanzhudizhi=nfcJsonBean.add;
 	}
 	@Event(value={R.id.rl_degree})
 	private void degreeClick(View view){
@@ -1925,264 +1915,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 
 	}
 
-	class InitData extends AsyncTask<String ,Integer ,String> {
-		@Override
-		protected String doInBackground(String... strings) {
-			try {
-                switch (database_tableNo){
-                    case 1:
-                        List<JLX> jlxList=dbUtils.findAll(Selector.from(JLX.class));
-                        PSCName=new String[jlxList.size()];
-                        for (int i = 0; i < jlxList.size(); i++) {
-                            PSCName[i]=jlxList.get(i).jlx_name;
-                            List<HouseJLX> housejlxList=dbUtils.findAll(Selector.from(HouseJLX.class).where("fk_p","=",jlxList.get(i).id));
-                            if (housejlxList.size()!=0) {
-                                USERName=new String[housejlxList.size()];
-                                UserId=new String[housejlxList.size()];
-                                for (int j = 0; j <housejlxList.size(); j++) {
-                                    USERName[j]=housejlxList.get(j).hosejlx_name;
-                                    UserId[j]=housejlxList.get(j).id;
-                                }
-                                UserNameMap.put(jlxList.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList.get(i).jlx_name, UserId);
-                            }else{
-                                USERName=new String[]{""};
-                                UserId=new String[]{""};
-                                UserNameMap.put(jlxList.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList.get(i).jlx_name, UserId);
-                            }
-                        }
-                        break;
-                    case 2:
-                        List<JLX2> jlxList2=dbUtils.findAll(Selector.from(JLX2.class));
-                        PSCName=new String[jlxList2.size()];
-                        for (int i = 0; i < jlxList2.size(); i++) {
-                            PSCName[i]=jlxList2.get(i).jlx_name;
-                            List<HouseJLX2> housejlxList=dbUtils.findAll(Selector.from(HouseJLX2.class).where("fk_p","=",jlxList2.get(i).id));
-                            if (housejlxList.size()!=0) {
-                                USERName=new String[housejlxList.size()];
-                                UserId=new String[housejlxList.size()];
-                                for (int j = 0; j <housejlxList.size(); j++) {
-                                    USERName[j]=housejlxList.get(j).hosejlx_name;
-                                    UserId[j]=housejlxList.get(j).id;
-                                }
-                                UserNameMap.put(jlxList2.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList2.get(i).jlx_name, UserId);
-                            }else{
-                                USERName=new String[]{""};
-                                UserId=new String[]{""};
-                                UserNameMap.put(jlxList2.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList2.get(i).jlx_name, UserId);
-                            }
-                        }
-                        break;
-                    case 3:
-                        List<JLX3> jlxList3=dbUtils.findAll(Selector.from(JLX3.class));
-                        PSCName=new String[jlxList3.size()];
-                        for (int i = 0; i < jlxList3.size(); i++) {
-                            PSCName[i]=jlxList3.get(i).jlx_name;
-                            List<HouseJLX3> housejlxList=dbUtils.findAll(Selector.from(HouseJLX3.class).where("fk_p","=",jlxList3.get(i).id));
-                            if (housejlxList.size()!=0) {
-                                USERName=new String[housejlxList.size()];
-                                UserId=new String[housejlxList.size()];
-                                for (int j = 0; j <housejlxList.size(); j++) {
-                                    USERName[j]=housejlxList.get(j).hosejlx_name;
-                                    UserId[j]=housejlxList.get(j).id;
-                                }
-                                UserNameMap.put(jlxList3.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList3.get(i).jlx_name, UserId);
-                            }else{
-                                USERName=new String[]{""};
-                                UserId=new String[]{""};
-                                UserNameMap.put(jlxList3.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList3.get(i).jlx_name, UserId);
-                            }
-                        }
-                        break;
-                    case 4:
-                        List<JLX4> jlxList4=dbUtils.findAll(Selector.from(JLX4.class));
-                        PSCName=new String[jlxList4.size()];
-                        for (int i = 0; i < jlxList4.size(); i++) {
-                            PSCName[i]=jlxList4.get(i).jlx_name;
-                            List<HouseJLX4> housejlxList=dbUtils.findAll(Selector.from(HouseJLX4.class).where("fk_p","=",jlxList4.get(i).id));
-                            if (housejlxList.size()!=0) {
-                                USERName=new String[housejlxList.size()];
-                                UserId=new String[housejlxList.size()];
-                                for (int j = 0; j <housejlxList.size(); j++) {
-                                    USERName[j]=housejlxList.get(j).hosejlx_name;
-                                    UserId[j]=housejlxList.get(j).id;
-                                }
-                                UserNameMap.put(jlxList4.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList4.get(i).jlx_name, UserId);
-                            }else{
-                                USERName=new String[]{""};
-                                UserId=new String[]{""};
-                                UserNameMap.put(jlxList4.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList4.get(i).jlx_name, UserId);
-                            }
-                        }
-                        break;
-                    case 5:
-                        List<JLX5> jlxList5=dbUtils.findAll(Selector.from(JLX5.class));
-                        PSCName=new String[jlxList5.size()];
-                        for (int i = 0; i < jlxList5.size(); i++) {
-                            PSCName[i]=jlxList5.get(i).jlx_name;
-                            List<HouseJLX5> housejlxList=dbUtils.findAll(Selector.from(HouseJLX5.class).where("fk_p","=",jlxList5.get(i).id));
-                            if (housejlxList.size()!=0) {
-                                USERName=new String[housejlxList.size()];
-                                UserId=new String[housejlxList.size()];
-                                for (int j = 0; j <housejlxList.size(); j++) {
-                                    USERName[j]=housejlxList.get(j).hosejlx_name;
-                                    UserId[j]=housejlxList.get(j).id;
-                                }
-                                UserNameMap.put(jlxList5.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList5.get(i).jlx_name, UserId);
-                            }else{
-                                USERName=new String[]{""};
-                                UserId=new String[]{""};
-                                UserNameMap.put(jlxList5.get(i).jlx_name, USERName);
-                                UserIdMap.put(jlxList5.get(i).jlx_name, UserId);
-                            }
-                        }
-                        break;
-					case 6:
-						List<JLX6> jlxList6=dbUtils.findAll(Selector.from(JLX6.class));
-						PSCName=new String[jlxList6.size()];
-						for (int i = 0; i < jlxList6.size(); i++) {
-							PSCName[i]=jlxList6.get(i).jlx_name;
-							List<HouseJLX6> housejlxList=dbUtils.findAll(Selector.from(HouseJLX6.class).where("fk_p","=",jlxList6.get(i).id));
-							if (housejlxList.size()!=0) {
-								USERName=new String[housejlxList.size()];
-								UserId=new String[housejlxList.size()];
-								for (int j = 0; j <housejlxList.size(); j++) {
-									USERName[j]=housejlxList.get(j).hosejlx_name;
-									UserId[j]=housejlxList.get(j).id;
-								}
-								UserNameMap.put(jlxList6.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList6.get(i).jlx_name, UserId);
-							}else{
-								USERName=new String[]{""};
-								UserId=new String[]{""};
-								UserNameMap.put(jlxList6.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList6.get(i).jlx_name, UserId);
-							}
-						}
-						break;
-					case 7:
-						List<JLX7> jlxList7=dbUtils.findAll(Selector.from(JLX7.class));
-						PSCName=new String[jlxList7.size()];
-						for (int i = 0; i < jlxList7.size(); i++) {
-							PSCName[i]=jlxList7.get(i).jlx_name;
-							List<HouseJLX7> housejlxList=dbUtils.findAll(Selector.from(HouseJLX7.class).where("fk_p","=",jlxList7.get(i).id));
-							if (housejlxList.size()!=0) {
-								USERName=new String[housejlxList.size()];
-								UserId=new String[housejlxList.size()];
-								for (int j = 0; j <housejlxList.size(); j++) {
-									USERName[j]=housejlxList.get(j).hosejlx_name;
-									UserId[j]=housejlxList.get(j).id;
-								}
-								UserNameMap.put(jlxList7.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList7.get(i).jlx_name, UserId);
-							}else{
-								USERName=new String[]{""};
-								UserId=new String[]{""};
-								UserNameMap.put(jlxList7.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList7.get(i).jlx_name, UserId);
-							}
-						}
-						break;
-					case 8:
-						List<JLX8> jlxList8=dbUtils.findAll(Selector.from(JLX8.class));
-						PSCName=new String[jlxList8.size()];
-						for (int i = 0; i < jlxList8.size(); i++) {
-							PSCName[i]=jlxList8.get(i).jlx_name;
-							List<HouseJLX8> housejlxList=dbUtils.findAll(Selector.from(HouseJLX8.class).where("fk_p","=",jlxList8.get(i).id));
-							if (housejlxList.size()!=0) {
-								USERName=new String[housejlxList.size()];
-								UserId=new String[housejlxList.size()];
-								for (int j = 0; j <housejlxList.size(); j++) {
-									USERName[j]=housejlxList.get(j).hosejlx_name;
-									UserId[j]=housejlxList.get(j).id;
-								}
-								UserNameMap.put(jlxList8.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList8.get(i).jlx_name, UserId);
-							}else{
-								USERName=new String[]{""};
-								UserId=new String[]{""};
-								UserNameMap.put(jlxList8.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList8.get(i).jlx_name, UserId);
-							}
-						}
-						break;
-					case 9:
-						List<JLX9> jlxList9=dbUtils.findAll(Selector.from(JLX9.class));
-						PSCName=new String[jlxList9.size()];
-						for (int i = 0; i < jlxList9.size(); i++) {
-							PSCName[i]=jlxList9.get(i).jlx_name;
-							List<HouseJLX9> housejlxList=dbUtils.findAll(Selector.from(HouseJLX9.class).where("fk_p","=",jlxList9.get(i).id));
-							if (housejlxList.size()!=0) {
-								USERName=new String[housejlxList.size()];
-								UserId=new String[housejlxList.size()];
-								for (int j = 0; j <housejlxList.size(); j++) {
-									USERName[j]=housejlxList.get(j).hosejlx_name;
-									UserId[j]=housejlxList.get(j).id;
-								}
-								UserNameMap.put(jlxList9.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList9.get(i).jlx_name, UserId);
-							}else{
-								USERName=new String[]{""};
-								UserId=new String[]{""};
-								UserNameMap.put(jlxList9.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList9.get(i).jlx_name, UserId);
-							}
-						}
-						break;
-					case 10:
-						List<JLX10> jlxList10=dbUtils.findAll(Selector.from(JLX10.class));
-						PSCName=new String[jlxList10.size()];
-						for (int i = 0; i < jlxList10.size(); i++) {
-							PSCName[i]=jlxList10.get(i).jlx_name;
-							List<HouseJLX10> housejlxList=dbUtils.findAll(Selector.from(HouseJLX10.class).where("fk_p","=",jlxList10.get(i).id));
-							if (housejlxList.size()!=0) {
-								USERName=new String[housejlxList.size()];
-								UserId=new String[housejlxList.size()];
-								for (int j = 0; j <housejlxList.size(); j++) {
-									USERName[j]=housejlxList.get(j).hosejlx_name;
-									UserId[j]=housejlxList.get(j).id;
-								}
-								UserNameMap.put(jlxList10.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList10.get(i).jlx_name, UserId);
-							}else{
-								USERName=new String[]{""};
-								UserId=new String[]{""};
-								UserNameMap.put(jlxList10.get(i).jlx_name, USERName);
-								UserIdMap.put(jlxList10.get(i).jlx_name, UserId);
-							}
-						}
-						break;
-                }
 
-
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String s) {
-			super.onPostExecute(s);
-			isHouseAddressInital=true;
-			if (progressDialog!=null){
-				if (progressDialog.isShowing()){
-					progressDialog.dismiss();
-					fangwubianhaoClick(null);
-				}
-				progressDialog.dismiss();
-			}
-		}
-	}
     public void backgroundAlpha(float bgAlpha)
     {
         WindowManager.LayoutParams lp = HandleIDActivity.this.getWindow().getAttributes();

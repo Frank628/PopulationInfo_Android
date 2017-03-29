@@ -8,8 +8,8 @@ android {
         applicationId "com.jinchao.population"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 120
-        versionName "1.2.0"
+        versionCode 121
+        versionName "1.2.1"
         multiDexEnabled true
         signingConfigs {
             // your debug keystore
@@ -31,7 +31,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':lib_xutils')
     compile project(':eventBus')
     compile 'com.google.code.gson:gson:2.2.4'
     compile files('libs/commons-codec-1.3.jar')
@@ -48,4 +47,5 @@ dependencies {
     compile files('libs/JunyiCloudLib_pro_V2.4.3.jar')
     compile project(':ViewPagerIndicator')
     compile files('libs/nxpnfcliblite.jar')
+    compile project(':xutils3.0')
 }

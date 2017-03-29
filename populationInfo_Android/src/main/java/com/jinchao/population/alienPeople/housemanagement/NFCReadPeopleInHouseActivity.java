@@ -3,6 +3,7 @@ package com.jinchao.population.alienPeople.housemanagement;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
@@ -14,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -78,6 +80,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
     private IndicatorViewPager indicatorViewPager;
     @ViewInject(R.id.moretab_indicator) ScrollIndicatorView scrollIndicatorView;
     @ViewInject(R.id.moretab_viewPager)ViewPager viewPager;
+    @ViewInject(R.id.iv_nfc)ImageView iv_nfc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,11 +127,13 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         indicatorViewPager = new IndicatorViewPager(scrollIndicatorView, viewPager);
         scrollIndicatorView.setSplitAuto(true);
         scrollIndicatorView.setPinnedTabView(false);
+        showTouch();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        hideTouch();
         Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         Ndef ndef = Ndef.get(detectedTag);
         NfcOperation.NfcreadNDEF(intent, new NfcOperation.NFCReadCallBackListener() {
@@ -237,4 +242,15 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
             }
         });
     }
+    private void showTouch(){
+        iv_nfc.setVisibility(View.VISIBLE);
+        iv_nfc.setImageResource(R.drawable.nfc_animation);
+        AnimationDrawable animationDrawable =(AnimationDrawable)iv_nfc.getDrawable();
+        animationDrawable.setOneShot(false);
+        animationDrawable.start();
+    }
+    private void hideTouch(){
+        iv_nfc.setVisibility(View.GONE);
+    }
+
 }

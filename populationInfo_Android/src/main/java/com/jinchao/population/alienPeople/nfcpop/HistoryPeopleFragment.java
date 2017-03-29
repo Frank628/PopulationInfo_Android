@@ -53,6 +53,7 @@ public class HistoryPeopleFragment extends LazyFragment {
     private LoadingView loadingView;
     private EditText edt_idcard;
     private String resultJson="";
+    RenyuanInHouseBean renyuanInHouseBean1;
     public static HistoryPeopleFragment newInstance(NFCJsonBean json){
         HistoryPeopleFragment allPeopleFragment=new HistoryPeopleFragment();
         Bundle bundle = new Bundle();
@@ -61,6 +62,13 @@ public class HistoryPeopleFragment extends LazyFragment {
         return allPeopleFragment;
     }
 
+    @Override
+    protected void onResumeLazy() {
+        super.onResumeLazy();
+        if (!TextUtils.isEmpty(resultJson)){
+            processData(resultJson);
+        }
+    }
 
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
@@ -85,9 +93,53 @@ public class HistoryPeopleFragment extends LazyFragment {
                 processData(resultJson);
             }
         });
-        getData(nfcJsonBean);
+        getzaizhuData(nfcJsonBean);
     }
+    private void getzaizhuData(final NFCJsonBean nfcJsonBean){
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
+        params.addBodyParameter("type","peopleList");
+        params.addBodyParameter("sqdm",MyInfomationManager.getSQCODE(getActivity()));
+        params.addBodyParameter("scode",nfcJsonBean.code);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("www",result);
+                processZaizhuData(result);
+            }
 
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                loadingView.reload(new LoadingView.OnReloadClickListener() {
+                    @Override
+                    public void onReload() {
+                        getzaizhuData(nfcJsonBean);
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) { }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+    private void processZaizhuData(String  result){
+        try {
+            renyuanInHouseBean1 = GsonTools.changeGsonToBean(result, RenyuanInHouseBean.class);
+            getData(nfcJsonBean);
+        } catch (Exception e) {
+            loadingView.reload("服务器返回数据有误", new LoadingView.OnReloadClickListener() {
+                @Override
+                public void onReload() {
+                    getzaizhuData(nfcJsonBean);
+                }
+            });
+            e.printStackTrace();
+        }
+    }
     private void getData(final NFCJsonBean nfcJsonBean){
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
         params.addBodyParameter("type","hisPeople");
@@ -98,7 +150,7 @@ public class HistoryPeopleFragment extends LazyFragment {
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                resultJson=XMLParserUtil.parseXMLtoRenYuanInHouse(result,nfcJsonBean.code,nfcJsonBean.add);
+                resultJson=XMLParserUtil.parseXMLtoHistory(result,nfcJsonBean.code,nfcJsonBean.add);
                 Log.e("History",resultJson);
                 processData(resultJson);
             }
@@ -108,7 +160,7 @@ public class HistoryPeopleFragment extends LazyFragment {
                 loadingView.reload(new LoadingView.OnReloadClickListener() {
                     @Override
                     public void onReload() {
-                        getData(nfcJsonBean);
+                        getzaizhuData(nfcJsonBean);
                     }
                 });
             }
@@ -134,22 +186,32 @@ public class HistoryPeopleFragment extends LazyFragment {
                 return;
             }
             List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<>();
+            if (renyuanInHouseBean1.data.peoplelist==null)renyuanInHouseBean1.data.peoplelist=new ArrayList<>();
             String str=edt_idcard.getText().toString().trim();
             for (int i=0;i<renyuanInHouseBean.data.peoplelist.size();i++){
                 if (renyuanInHouseBean.data.peoplelist.get(i).idcard.contains(str)){
                     list.add(renyuanInHouseBean.data.peoplelist.get(i));
                 }
             }
+            for (int i=0;i<list.size();i++){
+                for (int j=0;j<renyuanInHouseBean1.data.peoplelist.size();j++){
+                    if (list.get(i).idcard.equals(renyuanInHouseBean1.data.peoplelist.get(j).idcard)){
+                        list.remove(i);
+                    }
+                }
+            }
             if ((!TextUtils.isEmpty(str))&&list.size()==0){
                 loadingView.empty("没有符合搜索条件的人员~");
+            }else if(TextUtils.isEmpty(str)&&list.size()==0){
+                loadingView.empty("暂无搬离人员！");
             }else{
                 loadingView.loadComplete();
             }
-            Collections.sort(list,new SortbyTimeRenyuanInhouseOneClass());
+//            Collections.sort(list,new SortbyTimeRenyuanInhouseOneClass());
             CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne> adapter =new CommonAdapter<RenyuanInHouseBean.RenyuanInhouseOne>(getActivity(),list,R.layout.item_renyuan) {
                 @Override
                 public void convert(ViewHolder helper, RenyuanInHouseBean.RenyuanInhouseOne item, int position) {
-                    helper.setText(R.id.tv_name,"姓名: "+ item.sname);
+                    helper.setText(R.id.tv_name,"身份证: "+ item.idcard);
                     DbUtils dbUtils = DeviceUtils.getDbUtils(getActivity());
                     People people = null;
                     try {
@@ -163,30 +225,32 @@ public class HistoryPeopleFragment extends LazyFragment {
                         }else if (people.module.equals("注销")) {
                             helper.setText(R.id.tv_status, "【注销】");
                         }else{
-                            String[] split = item.write_time.split("\\s+");
-                            if (split.length>1) {
-                                if (CommonUtils.isBigerthanElevenandSmallthanTwelve(split[0])) {
-                                    helper.setText(R.id.tv_status, "【"+item.resdients_status+"?】");
-                                }else{
-                                    helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
-                                }
-                            }else{
-                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
-                            }
+//                            String[] split = item.write_time.split("\\s+");
+//                            if (split.length>1) {
+//                                if (CommonUtils.isBigerthanElevenandSmallthanTwelve(split[0])) {
+//                                    helper.setText(R.id.tv_status, "【"+item.resdients_status+"?】");
+//                                }else{
+//                                    helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
+//                                }
+//                            }else{
+//                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
+//                            }
+                            helper.setText(R.id.tv_status, "【注销】");
                         }
                     }else{
-                        String[] split = item.write_time.split("\\s+");
-                        if (split.length>1) {
-                            if (CommonUtils.isBigerthanElevenandSmallthanTwelve(split[0])) {
-                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"?】");
-                            }else{
-                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
-                            }
-                        }else{
-                            helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
-                        }
+//                        String[] split = item.write_time.split("\\s+");
+//                        if (split.length>1) {
+//                            if (CommonUtils.isBigerthanElevenandSmallthanTwelve(split[0])) {
+//                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"?】");
+//                            }else{
+//                                helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
+//                            }
+//                        }else{
+//                            helper.setText(R.id.tv_status, "【"+item.resdients_status+"】");
+//                        }
+                        helper.setText(R.id.tv_status, "【注销】");
                     }
-                    helper.setText(R.id.tv_shihao, "室号: "+item.shihao);
+                    helper.setText(R.id.tv_shihao, "室号:未获取 "+item.shihao);
                     helper.setText(R.id.tv_time, item.write_time);
                 }
             };
@@ -198,16 +262,12 @@ public class HistoryPeopleFragment extends LazyFragment {
                     RenyuanInHouseBean.RenyuanInhouseOne renyuanInHouseone=(RenyuanInHouseBean.RenyuanInhouseOne) ((ListView)parent).getItemAtPosition(position);
                     Intent intent =new Intent(getActivity(), SearchPeopleDetailActivity.class);
                     intent.putExtra("renyuan", renyuanInHouseone);
+                    intent.putExtra("isHistory",true);//临时加上等广达改接口
                     startActivity(intent);
                 }
             });
         } catch (Exception e) {
-            loadingView.reload("服务器返回数据有误", new LoadingView.OnReloadClickListener() {
-                @Override
-                public void onReload() {
-                    getData(nfcJsonBean);
-                }
-            });
+            loadingView.empty("暂无搬离人员！");
             e.printStackTrace();
         }
     }

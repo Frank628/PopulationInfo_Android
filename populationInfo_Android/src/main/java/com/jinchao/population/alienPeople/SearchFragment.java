@@ -63,7 +63,7 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
     private ListView lv;
     private int database_tableNo=0;
     DbUtils dbUtils;
-    public static SearchFragment newInstance() {
+    public static SearchFragment newInstance(){
         Bundle bundle = new Bundle();
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.setArguments(bundle);

@@ -72,13 +72,10 @@
             android:visibility="gone"
             android:gravity="center"
             android:orientation="horizontal">
-            <com.jinchao.population.widget.emptyview.ProgressWheel
-                android:id="@+id/progressWheel"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                wheel:matProg_progressIndeterminate="true"
-                wheel:matProg_linearProgress="true"
-                android:layout_gravity="center" />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleLarge"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
+import com.jinchao.population.entity.SQBean;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -547,6 +548,58 @@ public class XmlUtils {
 						}
 					}else if(n2.getNodeName().equals("msg")){
 						str=str+n2.getTextContent();
+					}
+				}
+			}
+
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return str;
+	}
+	public static SQBean parseXMLshequCode(String xml){
+		SQBean str=new SQBean();
+		xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document d = db.parse(CommonUtils.writeTxtToFile(xml, Constants.DB_PATH,"xml.xml"));
+			Node n = d.getChildNodes().item(0);
+			NodeList nl = n.getChildNodes();
+			for (int i = 0; i < nl.getLength(); i++) {
+				Node n2 = nl.item(i);
+				if (n2.getNodeType() == Node.ELEMENT_NODE) {
+					if (n2.getNodeName().equals("ResultSet")) {
+						NodeList nl2 = n2.getChildNodes();
+						for (int j = 0; j < nl2.getLength(); j++) {
+							Node n3 = nl2.item(j);
+							if (n3.getNodeType() == Node.ELEMENT_NODE) {
+								NodeList nl3 = n3.getChildNodes();
+								for (int k = 0; k < nl3.getLength(); k++) {
+									Node n4 = nl3.item(k);
+									if (n4.getNodeType() == Node.ELEMENT_NODE) {
+										if("社区代码".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											str.setSqcode(n4.getTextContent().trim());
+										}
+										if("社区名称".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											str.setSqname(n4.getTextContent().trim());
+										}
+									}
+								}
+							}
+						}
+					}else if(n2.getNodeName().equals("AppType")){
+						NodeList nl2 = n2.getChildNodes();
+						for (int j = 0; j < nl2.getLength(); j++) {
+							Node n3 = nl2.item(j);
+							if (n3.getNodeType() == Node.ELEMENT_NODE) {
+							}
+						}
+					}else if(n2.getNodeName().equals("msg")){
 					}
 				}
 			}

@@ -286,6 +286,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("www",ex.getMessage());
                 Toast.makeText(getActivity(),"数据提交失败，请稍后重试",Toast.LENGTH_SHORT).show();
                 hideProcessDialog();
             }

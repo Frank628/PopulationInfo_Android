@@ -11,8 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ViewPagerIndicator" />
             <option value="$PROJECT_DIR$/eventBus" />
-            <option value="$PROJECT_DIR$/lib_xutils" />
             <option value="$PROJECT_DIR$/populationInfo_Android" />
+            <option value="$PROJECT_DIR$/xutils3.0" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

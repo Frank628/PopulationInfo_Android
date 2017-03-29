@@ -212,6 +212,10 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\menudialog_bottom2_selector.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\nfc_animation.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\nfc_animation.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_bg.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\wheel_bg.xml"
     },
@@ -380,6 +384,10 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\btn_alien_photo.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\round_border_white_selector.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\round_border_white_selector.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\vpi__tab_indicator.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\vpi__tab_indicator.xml"
     },
@@ -390,10 +398,6 @@
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_val.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\wheel_val.xml"
-    },
-    {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\round_border_white_selector.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\drawable\\round_border_white_selector.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",

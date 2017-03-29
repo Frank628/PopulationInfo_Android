@@ -58,6 +58,7 @@ public class NfcNfcAOperation {
                     CMD_READ, // READ
                     PROT_ADDRESS_216  // page address
             });
+
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,32 +83,32 @@ public class NfcNfcAOperation {
                         CMD_READ, // READ
                         PROT_ADDRESS_216  // page address
                 });
-//                if ((response != null) && (response.length >= 16)) {  // read always returns 4 pages
-//                    boolean prot = false;  // false = PWD_AUTH for write only, true = PWD_AUTH for read and write
-//                    int authlim = 0; // value between 0 and 7
-//                    response = nfcA.transceive(new byte[] {
-//                            CMD_WRITE, // WRITE
-//                            PROT_ADDRESS_216,   // page address
-//                            (byte) ((response[0] & 0x078) | (prot ? 0x080 : 0x000) | (authlim & 0x007)),
-//                            response[1], response[2], response[3]  // keep old value for bytes 1-3, you could also simply set them to 0 as they are currently RFU and must always be written as 0 (response[1], response[2], response[3] will contain 0 too as they contain the read RFU value)
-//                    });
-//                }
-//                byte[] response_pageprot = nfcA.transceive(new byte[] {
-//                        CMD_READ, // READ
-//                        PROT2_ADDRESS_216     // page address
-//                });
-//                if ((response_pageprot != null) && (response_pageprot.length >= 16)) {  // read always returns 4 pages
-//                    boolean prot1 = false;  // false = PWD_AUTH for write only, true = PWD_AUTH for read and write
-//                    int auth0 = 0; // first page to be protected, set to a value between 0 and 37 for NTAG212
-//                    response_pageprot = nfcA.transceive(new byte[] {
-//                            CMD_READ, // WRITE
-//                            PROT2_ADDRESS_216 ,   // page address
-//                            response_pageprot[0], // keep old value for byte 0
-//                            response_pageprot[1], // keep old value for byte 1
-//                            response_pageprot[2], // keep old value for byte 2
-//                            (byte) (auth0 & 0x0ff)
-//                    });
-//                }
+                if ((response != null) && (response.length >= 16)) {  // read always returns 4 pages
+                    boolean prot = false;  // false = PWD_AUTH for write only, true = PWD_AUTH for read and write
+                    int authlim = 0; // value between 0 and 7
+                    response = nfcA.transceive(new byte[] {
+                            CMD_WRITE, // WRITE
+                            PROT_ADDRESS_216,   // page address
+                            (byte) ((response[0] & 0x078) | (prot ? 0x080 : 0x000) | (authlim & 0x007)),
+                            response[1], response[2], response[3]  // keep old value for bytes 1-3, you could also simply set them to 0 as they are currently RFU and must always be written as 0 (response[1], response[2], response[3] will contain 0 too as they contain the read RFU value)
+                    });
+                }
+                byte[] response_pageprot = nfcA.transceive(new byte[] {
+                        CMD_READ, // READ
+                        PROT2_ADDRESS_216     // page address
+                });
+                if ((response_pageprot != null) && (response_pageprot.length >= 16)) {  // read always returns 4 pages
+                    boolean prot1 = false;  // false = PWD_AUTH for write only, true = PWD_AUTH for read and write
+                    int auth0 = 0; // first page to be protected, set to a value between 0 and 37 for NTAG212
+                    response_pageprot = nfcA.transceive(new byte[] {
+                            CMD_READ, // WRITE
+                            PROT2_ADDRESS_216 ,   // page address
+                            response_pageprot[0], // keep old value for byte 0
+                            response_pageprot[1], // keep old value for byte 1
+                            response_pageprot[2], // keep old value for byte 2
+                            (byte) (auth0 & 0x0ff)
+                    });
+                }
                 nfcA.close();
                 onSetPasswordCallBack.success();
         } catch (IOException e) {

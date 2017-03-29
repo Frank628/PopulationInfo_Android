@@ -131,8 +131,8 @@
     <orderEntry type="library" exported="" name="commons-lang-2.5" level="project" />
     <orderEntry type="library" exported="" name="BaiduLBS_Android" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-24.1.1" level="project" />
-    <orderEntry type="module" module-name="lib_xutils" exported="" />
     <orderEntry type="module" module-name="eventBus" exported="" />
+    <orderEntry type="module" module-name="xutils3.0" exported="" />
     <orderEntry type="module" module-name="ViewPagerIndicator" exported="" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />

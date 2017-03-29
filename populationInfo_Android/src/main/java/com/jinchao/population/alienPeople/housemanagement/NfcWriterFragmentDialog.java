@@ -4,13 +4,8 @@ package com.jinchao.population.alienPeople.housemanagement;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.nfc.tech.Ndef;
-import android.nfc.tech.NdefFormatable;
-import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -22,25 +17,16 @@ import android.widget.Toast;
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseDialogFragment;
 import com.jinchao.population.config.Constants;
-import com.jinchao.population.ntaglib.Ntag216Reader;
 import com.jinchao.population.utils.nfcutil.NfcNfcAOperation;
 import com.jinchao.population.utils.nfcutil.NfcOperation;
 import com.jinchao.population.utils.nfcutil.NfcUtralightOperation;
-import com.nxp.nfclib.Interface.NxpNfcLib;
-import com.nxp.nfclib.classic.MFClassic;
 
-import com.nxp.nfclib.utils.NxpLogUtils;
-import com.nxp.nfcliblite.Interface.Inxpnfcliblitecallback;
 import com.nxp.nfcliblite.Interface.NxpNfcLibLite;
 
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Locale;
 
 /**
  * Created by OfferJiShu01 on 2017/2/28.
@@ -84,7 +70,7 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
             Toast.makeText(getActivity(),"此信息已写入成功，请返回选择其他房屋！",Toast.LENGTH_SHORT).show();
             return;
         }
-        NfcUtralightOperation.writeNDEFwithPassword(nxpNfcLib, intent, Constants.PASSWORD, json, new NfcOperation.NFCWriteCallBackListener() {
+        NfcUtralightOperation.writeNDEFwithPassword(nxpNfcLib, intent, Constants.PWD_NTAG216, json, new NfcOperation.NFCWriteCallBackListener() {
             @Override
             public void success(String serial_number) {
                 writeSuccess();
@@ -106,7 +92,6 @@ public class NfcWriterFragmentDialog extends BaseDialogFragment {
 //                writeError(error);
 //            }
 //        });
-//
 //        NfcOperation.NfcWriteNDEF(json, detectedTag,new NfcOperation.NFCWriteCallBackListener() {
 //            @Override
 //            public void success() {

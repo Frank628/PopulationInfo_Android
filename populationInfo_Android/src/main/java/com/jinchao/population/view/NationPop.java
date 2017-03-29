@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +18,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.jinchao.population.R;
 import com.jinchao.population.dbentity.Area;
@@ -88,10 +90,10 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 			public void run() {
 				initData(mContext);
 				mContext.runOnUiThread(new Runnable() {
-					
+
 					@Override
 					public void run() {
-                        loading.setVisibility(View.GONE);
+						loading.setVisibility(View.GONE);
 						mProvince.setViewAdapter(new ArrayWheelAdapter<String>(mContext, ProvinceDatesArr));
 						updateCity(mContext);
 
@@ -231,13 +233,13 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 			if(CurrentCity.equals("")){
 				CurrentArea=AreaDatasMap.get(CurrentProvince)[newValue];
 				CurrentID=IDDatasMap.get(CurrentProvince)[newValue];
-			}else if(CurrentArea.equals("")){
-                CurrentID=ProvinceDatesArr[newValue];
-            }else{
+			}else{
                 if(AreaDatasMap!=null) {
                     if (AreaDatasMap.get(CurrentCity)!=null) {
+
                         CurrentArea = AreaDatasMap.get(CurrentCity)[newValue];
-                        CurrentID = IDDatasMap.get(CurrentCity)[newValue];
+						CurrentID = IDDatasMap.get(CurrentCity)[newValue];
+
                     }
                 }
 			}
@@ -249,8 +251,6 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_ensure:
-			Message msg =new Message();
-//           data.putString("name", CurrentProvince+CurrentCity+CurrentArea);
             onEnsureClickListener.OnEnSureClick(CurrentID,CurrentProvince+CurrentCity+CurrentArea,CurrentProvince+CurrentArea);
             this.dismiss();
 			break;

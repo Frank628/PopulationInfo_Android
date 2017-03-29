@@ -4,9 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,12 +20,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.IDCardResultActivity;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
@@ -31,6 +36,7 @@ import com.jinchao.population.entity.RenYuanXinXiBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.NavigationLayout;
 import com.lidroid.xutils.DbUtils;
@@ -46,6 +52,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_bianhao) TextView tv_bianhao;
 	@ViewInject(R.id.tv_address) TextView tv_address;
 	@ViewInject(R.id.tv_time) TextView tv_time;
+	@ViewInject(R.id.btn_zhuxiao)TextView btn_zhuxiao;
 	private RenyuanInHouseBean.RenyuanInhouseOne renYuanXinXiBean;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +66,11 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 			}
 		});
 		renYuanXinXiBean = (RenyuanInHouseBean.RenyuanInhouseOne ) getIntent().getSerializableExtra("renyuan");
+		if (getIntent().getBooleanExtra("isHistory",false)){
+			btn_zhuxiao.setVisibility(View.GONE);
+			requestYanZheng(renYuanXinXiBean.idcard);
+			return;
+		}
 		tv_shihao.setText(renYuanXinXiBean.shihao);
 		tv_card.setText(renYuanXinXiBean.idcard);
 		tv_name.setText(renYuanXinXiBean.sname);
@@ -128,4 +140,39 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 			e.printStackTrace();
 		}
 	}
+
+	private void requestYanZheng(final String idcard){
+		showProgressDialog("","数据加载中...");
+		RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_people&idcard="+idcard);
+		x.http().post(params, new Callback.CommonCallback<String>() {
+			@Override
+			public void onSuccess(String result) {
+				People peoplefromXml=XmlUtils.parseXMLtoPeople(result);
+				processData(peoplefromXml);
+			}
+			@Override
+			public void onError(Throwable ex, boolean isOnCallback) {
+				requestYanZheng(renYuanXinXiBean.idcard);
+			}
+			@Override
+			public void onCancelled(CancelledException cex) {}
+			@Override
+			public void onFinished() {
+				dismissProgressDialog();
+			}
+		});
+	}
+	private void processData(People people){
+		tv_shihao.setText("");
+		tv_card.setText(people.getCardno());
+		tv_name.setText(people.getName());
+		tv_status.setText("注销");
+		tv_bianhao.setText(people.getHomecode());
+		tv_address.setText(people.getResidentAddress());
+		tv_time.setText("");
+		renYuanXinXiBean.house_code=people.getHomecode();
+		renYuanXinXiBean.house_addr=people.getResidentAddress();
+		renYuanXinXiBean.sname=people.getName();
+	}
+
 }

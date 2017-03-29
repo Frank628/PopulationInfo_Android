@@ -10,7 +10,7 @@
 	        android:id="@+id/edt_content"
 	        android:layout_width="match_parent"
 	        android:layout_height="48dp"
-	        android:background="@drawable/search_bg"
+	        android:background="@drawable/login_bg"
 	        android:textColor="@color/title2"
 	        android:textColorHint="@color/title4"
 	        android:hint="请输入房屋地址 或 房屋编号查询"
