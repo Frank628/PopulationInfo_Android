@@ -90,7 +90,7 @@ public class SendDataFragment  extends BaseFragment{
                         upload2(str, list.get(i), i);
                         if (list.get(i).isReal.equals("1")) {
 //                        uploadReal(list.get(i).realId);
-                            save(list.get(i));
+//                            save(list.get(i));
                     }
                     if (list.get(i).module.equals("补")){
                         uploadpic(list.get(i));

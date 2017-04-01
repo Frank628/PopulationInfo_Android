@@ -2,6 +2,7 @@ package com.jinchao.population.mainmenu;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import org.xutils.view.annotation.ContentView;
@@ -54,6 +55,7 @@ import com.jinchao.population.widget.ActionSheetDialog.OnSheetItemClickListener;
 import com.jinchao.population.widget.ActionSheetDialog.SheetItemColor;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
+import com.soundcloud.android.crop.Crop;
 
 @ContentView(R.layout.activity_reshoot)
 public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDReaderListener{
@@ -182,27 +184,36 @@ public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDRea
 		 }
 	 }
 
-	@Event(value={R.id.btn_readcard})
-	private void readcardClick(View view){
 
-	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode ==RESULT_OK) {
 			switch (requestCode) {
 			case IMAGE_REQUEST_CODE:
-				startPhotoZoom(data.getData());
+				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+					Crop.of(Uri.fromFile(new File(DeviceUtils.getPath(ReshootActivity.this,data.getData()))), Uri.fromFile(new File(getCacheDir(), "cropped"))).withAspect(4, 5).withMaxSize(160, 200).start(ReshootActivity.this);
+				}else{
+					Crop.of(data.getData(), Uri.fromFile(new File(getCacheDir(), "cropped"))).withAspect(4, 5).withMaxSize(160, 200).start(ReshootActivity.this);
+				}
 				break;
+
 			case CAMERA_REQUEST_CODE:
+//
 				if (DeviceUtils.hasSDCard()) {
 					File tempFile = new File(Environment.getExternalStorageDirectory()+"/"+ IMAGE_FILE_NAME);
-					startPhotoZoom(Uri.fromFile(tempFile));		
+					Crop.of(Uri.fromFile(tempFile), Uri.fromFile(new File(getCacheDir(), "cropped"))).withAspect(4, 5).withMaxSize(160, 200).start(ReshootActivity.this);
 				}else{
 					Toast.makeText(ReshootActivity.this, "未找到存储卡，无法存储照片！",
 							Toast.LENGTH_LONG).show();
 				}
 				break;
+				case Crop.REQUEST_CROP:
+
+					if (data != null) {
+						getImageToViewFromCrop(data);
+					}
+					break;
 			case RESULT_REQUEST_CODE:
 				if (data != null) {
 					getImageToView(data);
@@ -213,6 +224,26 @@ public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDRea
 			}
 		}
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+	private void getImageToViewFromCrop(Intent data) {
+		Uri mImageCaptureUri = Crop.getOutput(data);
+		Bitmap photo = null;
+		if (mImageCaptureUri != null) {
+			try {
+				photo = MediaStore.Images.Media.getBitmap(ReshootActivity.this.getContentResolver(), mImageCaptureUri);
+				Drawable drawable = new BitmapDrawable(photo);
+
+				ByteArrayOutputStream stream = new ByteArrayOutputStream();
+				photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
+				byte[] b = stream.toByteArray();
+				pic = new String(Base64Coder.encodeLines(b));
+				iv_photo.setScaleType(ImageView.ScaleType.CENTER_CROP);
+				iv_photo.setImageDrawable(drawable);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 	/**
 	 * 裁剪图片方法实现

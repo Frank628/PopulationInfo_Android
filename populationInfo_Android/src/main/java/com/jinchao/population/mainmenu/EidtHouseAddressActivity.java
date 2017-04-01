@@ -25,12 +25,12 @@ import com.jinchao.population.widget.ValidateEidtText;
 
 @ContentView(R.layout.activity_edithouseaddress)
 public class EidtHouseAddressActivity extends BaseActiviy{
-	@ViewInject(R.id.tv_menpaihaodanwei)private TextView tv_menpaihaodanwei;
-	@ViewInject(R.id.tv_fuhaodanwei)private TextView tv_fuhaodanwei;
-	@ViewInject(R.id.tv_lou)private TextView tv_lou;
-	@ViewInject(R.id.tv_zhuanghao)private TextView tv_zhuanghao;
-	@ViewInject(R.id.tv_danyuan)private TextView tv_danyuan;
-	@ViewInject(R.id.tv_shihaodanwei)private TextView tv_shihaodanwei;
+	@ViewInject(R.id.edt_menpaihaodanwei)private EditText edt_menpaihaodanwei;
+	@ViewInject(R.id.edt_fuhaodanwei)private EditText edt_fuhaodanwei;
+	@ViewInject(R.id.edt_lou)private EditText edt_lou;
+	@ViewInject(R.id.edt_zhuanghao)private EditText edt_zhuanghao;
+	@ViewInject(R.id.edt_danyuan)private EditText edt_danyuan;
+	@ViewInject(R.id.edt_shihaodanwei)private EditText edt_shihaodanwei;
 	@ViewInject(R.id.edt_menpaihao)private EditText edt_menpaihao;
 	@ViewInject(R.id.edt_fuhao)private EditText edt_fuhao;
 	@ViewInject(R.id.edt_louhao)private EditText edt_louhao;
@@ -62,12 +62,12 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		String louhao=edt_louhao.getText().toString().trim();
 		String shihao=edt_shihao.getText().toString().trim();
 
-		String menpaihaodanwei=tv_menpaihaodanwei.getText().toString().trim().equals("请选择")?"":tv_menpaihaodanwei.getText().toString().trim();
-		String fuhaodanwei=tv_fuhaodanwei.getText().toString().trim().equals("请选择")?"":tv_fuhaodanwei.getText().toString().trim();
-		String loudanwei=tv_lou.getText().toString().trim().equals("请选择")?"":tv_lou.getText().toString().trim();
-		String louhaodanwei=tv_zhuanghao.getText().toString().trim().equals("请选择")?"":tv_zhuanghao.getText().toString().trim();
-		String danyuandanwei=tv_danyuan.getText().toString().trim().equals("请选择")?"":tv_danyuan.getText().toString().trim();
-		String shihaodanwei=tv_shihaodanwei.getText().toString().trim().equals("请选择")?"":tv_shihaodanwei.getText().toString().trim();
+		String menpaihaodanwei=edt_menpaihaodanwei.getText().toString().trim();
+		String fuhaodanwei=edt_fuhaodanwei.getText().toString().trim();
+		String loudanwei=edt_lou.getText().toString().trim();
+		String louhaodanwei=edt_zhuanghao.getText().toString().trim();
+		String danyuandanwei=edt_danyuan.getText().toString().trim();
+		String shihaodanwei=edt_shihaodanwei.getText().toString().trim();
 		if (jieluxiang.equals("")) {
 			Toast.makeText(this, "请选择街路巷~", Toast.LENGTH_SHORT).show();
 			return;
@@ -153,7 +153,7 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		popJLX.showPopupWindow(findViewById(R.id.root));
 	}
 	
-	@Event(R.id.tv_menpaihaodanwei)
+	@Event(R.id.edt_menpaihaodanwei)
 	private void menpaihaodanweiClick(View view){//门牌号
 		if (getCurrentFocus()!=null) {
 			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -161,12 +161,13 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		stringWheel=new StringWheel(this, Constants.MENPAIHAODANWEI, new OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(String str) {
-				tv_menpaihaodanwei.setText(str);
+				str=str.equals("请选择")?"":str;
+				edt_menpaihaodanwei.setText(str);
 			}
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0); 
 	}
-	@Event(R.id.tv_fuhaodanwei)
+	@Event(R.id.edt_fuhaodanwei)
 	private void fuhaodanweiClick(View view){//副号
 		if (getCurrentFocus()!=null) {
 			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -174,12 +175,13 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		stringWheel=new StringWheel(this, Constants.FUHAODANWEI, new OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(String str) {
-				tv_fuhaodanwei.setText(str);
+				str=str.equals("请选择")?"":str;
+				edt_fuhaodanwei.setText(str);
 			}
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0); 
 	}
-	@Event(R.id.tv_lou)
+	@Event(R.id.edt_lou)
 	private void louClick(View view){//楼幢号
 		if (getCurrentFocus()!=null) {
 			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -187,12 +189,13 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		stringWheel = new StringWheel(this, Constants.LOUDANWEI, new OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(String str) {
-				tv_lou.setText(str);
+				str=str.equals("请选择")?"":str;
+				edt_lou.setText(str);
 			}
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0); 
 	}
-	@Event(R.id.tv_zhuanghao)
+	@Event(R.id.edt_zhuanghao)
 	private void zhuanghaoClick(View view){//楼号
 		if (getCurrentFocus()!=null) {
 			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -200,12 +203,13 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		stringWheel = new StringWheel(this, Constants.ZHUANGHAODANWEI, new OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(String str) {
-				tv_zhuanghao.setText(str);
+				str=str.equals("请选择")?"":str;
+				edt_zhuanghao.setText(str);
 			}
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0); 
 	}
-	@Event(R.id.tv_danyuan)
+	@Event(R.id.edt_danyuan)
 	private void danyuanClick(View view){//单元
 		if (getCurrentFocus()!=null) {
 			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -213,12 +217,13 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		stringWheel = new StringWheel(this, Constants.DANYUAN, new OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(String str) {
-				tv_danyuan.setText(str);
+				str=str.equals("请选择")?"":str;
+				edt_danyuan.setText(str);
 			}
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0); 
 	}
-	@Event(R.id.tv_shihaodanwei)
+	@Event(R.id.edt_shihaodanwei)
 	private void shihaodanweiClick(View view){//室号
 		if (getCurrentFocus()!=null) {
 			((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -226,7 +231,8 @@ public class EidtHouseAddressActivity extends BaseActiviy{
 		stringWheel = new StringWheel(this, Constants.SHIHAODANWEI, new OnEnsureClickListener() {
 			@Override
 			public void OnEnSureClick(String str) {
-				tv_shihaodanwei.setText(str);
+				str=str.equals("请选择")?"":str;
+				edt_shihaodanwei.setText(str);
 			}
 		});
 		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0); 

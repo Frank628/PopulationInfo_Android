@@ -54,5 +54,6 @@
     <string name="crop__pick_error">Aucune image disponible</string>
     <string name="crop__saving">Enregistrement de l\'image…</string>
     <string name="crop__wait">Veuillez patienter…</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Rechercher"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">">999"</string>
 </resources>

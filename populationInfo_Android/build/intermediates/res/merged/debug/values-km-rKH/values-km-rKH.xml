@@ -49,5 +49,6 @@
     <string msgid="2201289642219771610" name="common_google_play_services_updating_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> នឹងមិនដំណើរការទេ បើមិនមានសេវាកម្ម Google Play ដោយសារតែវាកំពុងធ្វើបច្ចុប្បន្នភាព។"</string>
     <string msgid="815008177440683245" name="common_google_play_services_updating_title">"សេវាកម្ម Google Play កំពុងធ្វើបច្ចុប្បន្នភាព"</string>
     <string msgid="411506735369601515" name="common_open_on_phone">"បើក​តាម​ទូរស័ព្ទ"</string>
+    <string msgid="146198913615257606" name="search_menu_title">"ស្វែងរក"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

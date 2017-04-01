@@ -54,5 +54,6 @@
     <string name="crop__pick_error">이미지가 존재하지 않습니다.</string>
     <string name="crop__saving">사진을 저장중입니다…</string>
     <string name="crop__wait">잠시만 기다려주세요…</string>
+    <string msgid="146198913615257606" name="search_menu_title">"검색"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

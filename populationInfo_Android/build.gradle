@@ -48,4 +48,5 @@ dependencies {
     compile project(':ViewPagerIndicator')
     compile files('libs/nxpnfcliblite.jar')
     compile project(':xutils3.0')
+    compile 'com.afollestad.material-dialogs:core:0.9.4.2'
 }

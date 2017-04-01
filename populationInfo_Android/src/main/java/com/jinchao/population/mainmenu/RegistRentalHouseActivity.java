@@ -130,6 +130,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case 1:
+				Log.e("house",database_tableNo+";"+listzen.size());
 				try {
 					switch (database_tableNo){
 						case 1:
@@ -272,7 +273,6 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							lv.setAdapter(adapter10);
 							break;
 					}
-
 					Dialog.showRadioDialog(RegistRentalHouseActivity.this, "地址下载成功!", new DialogClickListener() {
 						@Override
 						public void confirm() {
@@ -324,49 +324,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 		lv.setAdapter(null);//如果当前房屋数据库班版本时间是空的，需重新下载全库
 		getZen2AddressRequest();
 	}
-//	private void getAllAddressRequest(){
-//		runOnUiThread(new Runnable() {
-//			@Override
-//			public void run() {
-//				dialogLoading.setName("正在加载分段地址数据...");
-//			}
-//		});
-//		RequestParams params;
-//		if (Is_RealPopulation){
-//			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
-//			params.addBodyParameter("type", "getsyrkjlx");
-//		}else{
-//			params=new RequestParams(Constants.URL+"HouseAddress.aspx");
-//			params.addBodyParameter("type", "getjlx");
-//		}
-//
-//		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
-//		x.http().post(params, new Callback.CommonCallback<String>() {
-//			@Override
-//			public void onSuccess(String result) {
-//				Log.d("aa", result);
-//				processAllAddress(result);
-//			}
-//			@Override
-//			public void onError(Throwable ex, boolean isOnCallback) {
-//					dialogLoading.dismiss();
-//				 if (ex instanceof HttpException) { // 网络错误
-//	                    HttpException httpEx = (HttpException) ex;
-//	                    int responseCode = httpEx.getCode();
-//						Toast.makeText(RegistRentalHouseActivity.this, "responseCode="+responseCode, Toast.LENGTH_SHORT).show();
-//	                }else{
-//					 	getAllAddressRequest();
-//	                	Toast.makeText(RegistRentalHouseActivity.this, "请求超时，正在为您重新下载...",  Toast.LENGTH_SHORT).show();
-//	                	dialogLoading.show();
-//	                }
-//
-//			}
-//			@Override
-//			public void onCancelled(CancelledException cex) {}
-//			@Override
-//			public void onFinished(){}
-//		});
-//	}
+
 
 	private void getALL2AddressRequest(){
 		isQuanKuOk=false;
@@ -504,7 +462,6 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							RegistRentalHouseActivity.this.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
-//									dialogLoading.setName("已导入"+bcount+"条合成地址，"+count+"条分段地址");
 									dialogLoading.setName("已导入"+bcount+"条合成地址");
 								}
 							});
@@ -535,181 +492,7 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 			}
 		}).start();
 	}
-//	private void processAllAddress(final String result){
-//		switch (database_tableNo){
-//			case 1:
-//				listzen.clear();
-//				break;
-//			case 2:
-//				listzen2.clear();
-//				break;
-//			case 3:
-//				listzen3.clear();
-//				break;
-//			case 4:
-//				listzen4.clear();
-//				break;
-//			case 5:
-//				listzen5.clear();
-//				break;
-//			case 6:
-//				listzen6.clear();
-//				break;
-//			case 7:
-//				listzen7.clear();
-//				break;
-//			case 8:
-//				listzen8.clear();
-//				break;
-//			case 9:
-//				listzen9.clear();
-//				break;
-//			case 10:
-//				listzen10.clear();
-//				break;
-//		}
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				count=0;
-//					try {
-//						HouseAddressBean houseAddressBean =GsonTools.changeGsonToBean(result, HouseAddressBean.class);
-//						dbUtils.dropTable(DatabaseUtil.getTable_JLX(database_tableNo,RegistRentalHouseActivity.this));
-//						dbUtils.dropTable(DatabaseUtil.getTable_HouseJLX(database_tableNo,RegistRentalHouseActivity.this));
-//						dbUtils.dropTable(DatabaseUtil.getTable_HouseAddress(database_tableNo,RegistRentalHouseActivity.this));
-//						for (int i = 0; i < houseAddressBean.data.size(); i++) {
-//							if (!houseAddressBean.data.get(i).jlx.equals("")) {
-//								switch (database_tableNo){
-//									case 1:
-//										dbUtils.save(new JLX(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 2:
-//										dbUtils.save(new JLX2(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 3:
-//										dbUtils.save(new JLX3(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 4:
-//										dbUtils.save(new JLX4(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 5:
-//										dbUtils.save(new JLX5(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 6:
-//										dbUtils.save(new JLX6(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 7:
-//										dbUtils.save(new JLX7(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 8:
-//										dbUtils.save(new JLX8(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 9:
-//										dbUtils.save(new JLX9(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//									case 10:
-//										dbUtils.save(new JLX10(i, houseAddressBean.data.get(i).jlx));
-//										break;
-//								}
-//
-//							}
-//							for (int j = 0; j < houseAddressBean.data.get(i).hourseData.size(); j++) {
-//								count++;
-//								RegistRentalHouseActivity.this.runOnUiThread(new Runnable() {
-//									@Override
-//									public void run() {
-//										dialogLoading.setName("已导入"+bcount+"条合成地址，"+count+"条分段地址");
-//									}
-//								});
-//								try {
-//									switch (database_tableNo){
-//										case 1:
-//											listzen.add(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 2:
- //											listzen2.add(new HouseAddress2(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress2(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX2(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 3:
-//											listzen3.add(new HouseAddress3(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress3(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX3(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 4:
-//											listzen4.add(new HouseAddress4(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress4(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX4(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 5:
-//											listzen5.add(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX5(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 6:
-//											listzen6.add(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX6(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 7:
-//											listzen7.add(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX7(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 8:
-//											listzen8.add(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX8(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 9:
-//											listzen9.add(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX9(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 10:
-//											listzen10.add(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX10(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//									}
-//
-//								} catch (Exception e) {
-//									e.printStackTrace();
-//								}
-//							}
-//						}
-//						SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//						String date =sDateFormat.format(new Date(System.currentTimeMillis()));
-//						UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
-//						if (userPKDataBase!=null){
-//							userPKDataBase.setIs_used("0");
-//							userPKDataBase.setDatabase_name(database_tableNo);
-//							userPKDataBase.setUpdate_time(date);
-//							dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
-//						}else{
-//							dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
-//						}
-//						((MyApplication)getApplication()).setDataBaseTableNo(database_tableNo);
-//						isQuanKuOk=true;
-//						Message msg=new Message();
-//						msg.what=1;
-//						handler.sendMessage(msg);
-//					} catch (Exception e) {
-//						Dialog.showSelectDialog(RegistRentalHouseActivity.this, "下载失败，请重试！", new DialogClickListener() {
-//							@Override
-//							public void confirm() {}
-//
-//							@Override
-//							public void cancel() {}
-//						});
-//						dialogLoading.dismiss();
-//						e.printStackTrace();
-//					}
-//			}
-//		}).start();
-//	}
+
 	private void getZen2AddressRequest(){
 		dialogLoading.show();
 		runOnUiThread(new Runnable() {
@@ -794,96 +577,70 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 					if (housexml!=null) {
 						if (housexml.list != null) {
 							for (int i = 0; i < housexml.list.size(); i++) {
-								switch (database_tableNo) {
-									case 1:
-										try {
+								try {
+									switch (database_tableNo) {
+										case 1:
 											HouseAddressOldBean houseAddressOldBean = new HouseAddressOldBean(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 2:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean);
+											listzen.add(houseAddressOldBean);
+											break;
+										case 2:
 											HouseAddressOldBean2 houseAddressOldBean2 = new HouseAddressOldBean2(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean2);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 3:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean2);
+											listzen2.add(houseAddressOldBean2);
+											break;
+										case 3:
 											HouseAddressOldBean3 houseAddressOldBean3 = new HouseAddressOldBean3(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean3);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 4:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean3);
+											listzen3.add(houseAddressOldBean3);
+											break;
+										case 4:
 											HouseAddressOldBean4 houseAddressOldBean4 = new HouseAddressOldBean4(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean4);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 5:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean4);
+											listzen4.add(houseAddressOldBean4);
+											break;
+										case 5:
 											HouseAddressOldBean5 houseAddressOldBean5 = new HouseAddressOldBean5(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean5);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 6:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean5);
+											listzen5.add(houseAddressOldBean5);
+											break;
+										case 6:
 											HouseAddressOldBean6 houseAddressOldBean6 = new HouseAddressOldBean6(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean6);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 7:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean6);
+											listzen6.add(houseAddressOldBean6);
+											break;
+										case 7:
 											HouseAddressOldBean7 houseAddressOldBean7 = new HouseAddressOldBean7(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean7);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 8:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean7);
+											listzen7.add(houseAddressOldBean7);
+											break;
+										case 8:
 											HouseAddressOldBean8 houseAddressOldBean8 = new HouseAddressOldBean8(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean8);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 9:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean8);
+											listzen8.add(houseAddressOldBean8);
+											break;
+										case 9:
 											HouseAddressOldBean9 houseAddressOldBean9 = new HouseAddressOldBean9(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean9);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-									case 10:
-										try {
+											dbUtils.saveOrUpdate(houseAddressOldBean9);
+											listzen9.add(houseAddressOldBean9);
+											break;
+										case 10:
 											HouseAddressOldBean10 houseAddressOldBean10 = new HouseAddressOldBean10(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
-											dbUtils.save(houseAddressOldBean10);
-										} catch (DbException e) {
-											e.printStackTrace();
-										}
-										break;
-								}
-								bcount++;
-								RegistRentalHouseActivity.this.runOnUiThread(new Runnable() {
-									@Override
-									public void run() {
-//									dialogLoading.setName("已导入"+bcount+"条合成地址，"+count+"条分段地址");
-										dialogLoading.setName("已导入" + bcount + "条合成地址");
+											dbUtils.saveOrUpdate(houseAddressOldBean10);
+											listzen10.add(houseAddressOldBean10);
+											break;
 									}
-								});
+									bcount++;
+									RegistRentalHouseActivity.this.runOnUiThread(new Runnable() {
+										@Override
+										public void run() {
+	//									dialogLoading.setName("已导入"+bcount+"条合成地址，"+count+"条分段地址");
+											dialogLoading.setName("已导入" + bcount + "条合成地址");
+										}
+									});
+								} catch (DbException e) {
+									e.printStackTrace();
+								}
 							}
 						}
 					}
@@ -900,261 +657,12 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 					Message msg=new Message();
 					msg.what=1;
 					handler.sendMessage(msg);
-//					getZenAddressRequest();
 				} catch (Exception e) {
-//					getZenAddressRequest();
 					dialogLoading.dismiss();
 					e.printStackTrace();
 				}
 			}
 		}).start();
 	}
-//	private void getZenAddressRequest(){
-//		runOnUiThread(new Runnable() {
-//			@Override
-//			public void run() {
-//				dialogLoading.setName("正在加载分段地址...");
-//			}
-//		});
-//		String lastudttime="2011-01-01 12:00:00";
-//		try {
-//			UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
-//			if (userPKDataBase!=null){
-//				lastudttime=userPKDataBase.getUpdate_time();
-//			}
-//		} catch (DbException e) {
-//			e.printStackTrace();
-//		}
-//		RequestParams params;
-//		if (Is_RealPopulation){
-//			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
-//			params.addBodyParameter("type", "newsyrkjlx");
-//		}else{
-//			params=new RequestParams(Constants.URL+"HouseAddress.aspx");
-//			params.addBodyParameter("type", "newjlx");
-//		}
-//
-//		params.addBodyParameter("user_id",MyInfomationManager.getUserID(this));
-//		params.addBodyParameter("last_udt",lastudttime);
-//		x.http().post(params, new Callback.CommonCallback<String>() {
-//			@Override
-//			public void onSuccess(String result) {
-//				Log.d("aa", result);
-//				processZenAddress(result);
-//			}
-//			@Override
-//			public void onError(Throwable ex, boolean isOnCallback) {
-//					dialogLoading.dismiss();
-//				 if (ex instanceof HttpException) { // 网络错误
-//	                    HttpException httpEx = (HttpException) ex;
-//	                    int responseCode = httpEx.getCode();
-//						Toast.makeText(RegistRentalHouseActivity.this, "responseCode="+responseCode, Toast.LENGTH_SHORT).show();
-//	                }else{
-//	                	getZenAddressRequest();
-//	                	Toast.makeText(RegistRentalHouseActivity.this, "请求超时，正在为您重新下载...", Toast.LENGTH_SHORT).show();
-//	                	dialogLoading.show();
-//	                }
-//			}
-//			@Override
-//			public void onCancelled(CancelledException cex) {}
-//			@Override
-//			public void onFinished(){}
-//		});
-//	}
-//	private void processZenAddress(final String result){
-//		switch (database_tableNo){
-//			case 1:
-//				listzen.clear();
-//				break;
-//			case 2:
-//				listzen2.clear();
-//				break;
-//			case 3:
-//				listzen3.clear();
-//				break;
-//			case 4:
-//				listzen4.clear();
-//				break;
-//			case 5:
-//				listzen5.clear();
-//				break;
-//			case 6:
-//				listzen6.clear();
-//				break;
-//			case 7:
-//				listzen7.clear();
-//				break;
-//			case 8:
-//				listzen8.clear();
-//				break;
-//			case 9:
-//				listzen9.clear();
-//				break;
-//			case 10:
-//				listzen10.clear();
-//				break;
-//		}
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				count=0;
-//					try {
-//						HouseAddressBean houseAddressBean =GsonTools.changeGsonToBean(result, HouseAddressBean.class);
-////						dbUtils.dropTable(JLX.class);
-////						dbUtils.dropTable(HouseJLX.class);
-////						dbUtils.dropTable(HouseAddress.class);
-//						for (int i = 0; i < houseAddressBean.data.size(); i++) {
-//							if (!houseAddressBean.data.get(i).jlx.equals("")) {
-//								JLX jlx=dbUtils.findFirst(Selector.from(JLX.class).where("jlx_name", "=", houseAddressBean.data.get(i).jlx));
-//								if (jlx==null) {
-//									try {
-//										switch (database_tableNo){
-//											case 1:
-//												dbUtils.save(new JLX(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 2:
-//												dbUtils.save(new JLX2(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 3:
-//												dbUtils.save(new JLX3(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 4:
-//												dbUtils.save(new JLX4(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 5:
-//												dbUtils.save(new JLX5(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 6:
-//												dbUtils.save(new JLX6(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 7:
-//												dbUtils.save(new JLX7(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 8:
-//												dbUtils.save(new JLX8(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 9:
-//												dbUtils.save(new JLX9(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//											case 10:
-//												dbUtils.save(new JLX10(i, houseAddressBean.data.get(i).jlx));
-//												break;
-//										}
-//									} catch (Exception e) {
-//										e.printStackTrace();
-//									}
-//								}
-//							}
-//							for (int j = 0; j < houseAddressBean.data.get(i).hourseData.size(); j++) {
-//								count++;
-//								RegistRentalHouseActivity.this.runOnUiThread(new Runnable() {
-//									@Override
-//									public void run() {
-//										dialogLoading.setName("已导入"+bcount+"条合成地址，"+count+"条分段地址");
-//									}
-//								});
-//								try {
-//									switch (database_tableNo){
-//										case 1:
-//											listzen.add(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 2:
-//											listzen2.add(new HouseAddress2(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress2(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX2(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 3:
-//											listzen3.add(new HouseAddress3(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress3(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX3(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 4:
-//											listzen4.add(new HouseAddress4(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress4(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX4(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 5:
-//											listzen5.add(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress5(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX5(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 6:
-//											listzen6.add(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress6(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX6(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 7:
-//											listzen7.add(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress7(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX7(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 8:
-//											listzen8.add(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress8(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX8(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 9:
-//											listzen9.add(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress9(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX9(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//										case 10:
-//											listzen10.add(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseAddress10(houseAddressBean.data.get(i).hourseData.get(j).scode,houseAddressBean.data.get(i).jlx+houseAddressBean.data.get(i).hourseData.get(j).hrsAdress));
-//											dbUtils.save(new HouseJLX10(houseAddressBean.data.get(i).hourseData.get(j).scode, houseAddressBean.data.get(i).hourseData.get(j).hrsAdress, i));
-//											break;
-//									}
-//								} catch (Exception e) {
-//									e.printStackTrace();
-//								}
-//							}
-//						}
-//
-//						SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//						String date =sDateFormat.format(new Date(System.currentTimeMillis()));
-//						UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
-//						if (userPKDataBase!=null){
-//							userPKDataBase.setIs_used("0");
-//							userPKDataBase.setUpdate_time(date);
-//							dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
-//						}else{
-//							dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
-//						}
-//						Message msg=new Message();
-//						msg.what=1;
-//						handler.sendMessage(msg);
-//					} catch (Exception e) {
-//						dialogLoading.dismiss();
-//						e.printStackTrace();
-//					}
-//			}
-//		}).start();
-//	}
 
-//	@Override
-//	public void onBackPressed() {
-//		if (!isQuanKuOk){
-//			AlertDialog.Builder builder = new AlertDialog.Builder(RegistRentalHouseActivity.this);
-//			builder.setMessage("确认退出吗?");
-//			builder.setTitle("提示");
-//			builder.setPositiveButton("确认", new AlertDialog.OnClickListener() {
-//				@Override
-//				public void onClick(DialogInterface dialog, int which) {
-//					dialog.dismiss();
-//					RegistRentalHouseActivity.this.finish();
-//				}
-//			});
-//			builder.setNegativeButton("取消", new AlertDialog.OnClickListener() {
-//			@Override
-//			public void onClick(DialogInterface dialog, int which) {
-//					dialog.dismiss();
-//				}
-//			});
-//			builder.create().show();
-//		}else{
-//			super.onBackPressed();
-//      }
-//	}
 }

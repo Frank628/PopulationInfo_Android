@@ -19,6 +19,7 @@ import com.jinchao.population.adapter.NfcPopIndicatorAdapter;
 import com.jinchao.population.alienPeople.SearchTwoWayActivity;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.main.LoginActivity;
 import com.jinchao.population.utils.CommonUtils;
@@ -96,7 +97,7 @@ public class PeoplesInHouseActivity extends BaseActiviy{
 
 
     private void getRooms(final NFCJsonBean nfcJsonBean){
-//        showProgressDialog("","正在加载所有室号...");
+        showProgressDialog("","正在加载屋内室号列表...");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
         params.addBodyParameter("type","searchRoom");
         params.addBodyParameter("sqdm",MyInfomationManager.getSQCODE(this));
@@ -104,9 +105,10 @@ public class PeoplesInHouseActivity extends BaseActiviy{
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                dismissProgressDialog();
                 List<String> rooms=XMLParserUtil.parseXMLtoRooms(result);
+                rooms.add(0,"全部在住");
                 rooms.add(0,"搬离人员");
-                rooms.add(0,"全部");
                 NfcPopIndicatorAdapter adapter=new NfcPopIndicatorAdapter(getSupportFragmentManager());
                 adapter.initAdpater(PeoplesInHouseActivity.this,nfcJsonBean,rooms);
                 indicatorViewPager.setAdapter(adapter);
@@ -117,11 +119,12 @@ public class PeoplesInHouseActivity extends BaseActiviy{
                        }
                     }
                 }else{
-                    indicatorViewPager.setCurrentItem(0,true);
+                    indicatorViewPager.setCurrentItem(1,true);
                 }
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(PeoplesInHouseActivity.this,"请求超时！稍后重试...",Toast.LENGTH_LONG).show();
             }
             @Override
             public void onCancelled(CancelledException cex) {}

@@ -207,7 +207,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         }
     }
     private void getRooms(String scode,final NFCJsonBean nfcJsonBean){
-//        showProgressDialog("","正在加载所有室号...");
+        showProgressDialog("","正在加载屋内室号列表...");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
         params.addBodyParameter("type","searchRoom");
         params.addBodyParameter("sqdm",MyInfomationManager.getSQCODE(this));
@@ -215,9 +215,11 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                dismissProgressDialog();
                 List<String> rooms=XMLParserUtil.parseXMLtoRooms(result);
+                rooms.add(0,"全部在住");
                 rooms.add(0,"搬离人员");
-                rooms.add(0,"全部");
+
                 NfcPopIndicatorAdapter adapter=new NfcPopIndicatorAdapter(getSupportFragmentManager());
                 adapter.initAdpater(NFCReadPeopleInHouseActivity.this,nfcJsonBean,rooms);
                 indicatorViewPager.setAdapter(adapter);
@@ -228,7 +230,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
                        }
                     }
                 }else{
-                    indicatorViewPager.setCurrentItem(0,true);
+                    indicatorViewPager.setCurrentItem(1,true);
                 }
             }
             @Override

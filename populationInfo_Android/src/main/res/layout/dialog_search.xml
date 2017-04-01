@@ -35,14 +35,12 @@
                 android:singleLine="true"
                 android:textColorHint="#9DA0A3"
                 android:textSize="14sp" />
-
             <ImageView
                 android:id="@+id/iv_search_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
                 android:src="@drawable/ic_search_bg_24dp" />
-
         </LinearLayout>
 
         <View

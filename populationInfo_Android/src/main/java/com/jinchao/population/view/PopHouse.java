@@ -662,12 +662,9 @@ public class PopHouse extends PopupWindow implements OnWheelChangedListener,OnCl
                         this.dismiss();
                         break;
                 }
-
-
             } catch (DbException e) {
                 e.printStackTrace();
             }
-
 			break;
 		case R.id.btn_cancle:
 			this.dismiss();

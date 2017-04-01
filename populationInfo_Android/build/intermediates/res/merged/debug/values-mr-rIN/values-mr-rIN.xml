@@ -49,5 +49,6 @@
     <string msgid="2201289642219771610" name="common_google_play_services_updating_text">"सध्‍या अद्यतनित होत असलेल्‍या, Google Play सेवांशिवाय <ns1:g id="APP_NAME">%1$s</ns1:g> चालणार नाही."</string>
     <string msgid="815008177440683245" name="common_google_play_services_updating_title">"Google Play सेवा अद्यतनित होत आहेत"</string>
     <string msgid="411506735369601515" name="common_open_on_phone">"फोनवर उघडा"</string>
+    <string msgid="146198913615257606" name="search_menu_title">"शोधा"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

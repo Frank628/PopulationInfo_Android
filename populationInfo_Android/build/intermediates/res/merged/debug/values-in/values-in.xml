@@ -54,5 +54,6 @@
     <string name="crop__pick_error">Tidak ada sumber gambar yang tersedia</string>
     <string name="crop__saving">Menyimpan gambar…</string>
     <string name="crop__wait">Silakan tunggu…</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Telusuri"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

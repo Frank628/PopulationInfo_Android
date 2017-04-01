@@ -145,11 +145,16 @@ public class HouseAddressOldBean2 {
 		super();
 	}
 
+	public HouseAddressOldBean2(String id, String source_id) {
+		this.id = id;
+		this.source_id = source_id;
+	}
+
 	@Override
 	public String toString() {
 		return "房屋地址：  " + address + "\n房东姓名：  " + hrs_pname
 				+ "\n房东身份证号：  " + idcard + "\n房东电话：  " + telphone + "\n采集时间：  "
-				+ udt ;
+				+ udt+"\n房屋状态：  "+ (source_id.equals("8")?"休眠":"在用");
 	}
 
 	public NFCJsonBean toNFCJsonBean(){

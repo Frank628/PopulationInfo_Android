@@ -1,7 +1,7 @@
 [
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header_main.xml",
@@ -9,23 +9,23 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_template_part_time.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\select_dialog_singlechoice_material.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
-    },
-    {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_zanzhuinfo.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_zanzhuinfo.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\pop_canbao.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\pop_canbao.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_zanzhuinfo.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_zanzhuinfo.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\crop__activity_crop.xml",
@@ -34,6 +34,10 @@
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_text.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\item_text.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_stub_titleframe.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_stub_titleframe.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
@@ -76,16 +80,20 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\item_maturepeople.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_rentalhousing_dataeditor.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_rentalhousing_dataeditor.xml"
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_search.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\dialog_search.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_nfcwriter.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_nfcwriter.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_search.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\dialog_search.xml"
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_rentalhousing_dataeditor.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_rentalhousing_dataeditor.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_basic.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_basic.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_userhistory.xml",
@@ -113,7 +121,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_addrentalhouse.xml",
@@ -124,12 +132,16 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_all.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_progress_indeterminate_horizontal.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_progress_indeterminate_horizontal.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\toast_view_actionsheet.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\toast_view_actionsheet.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\device_list_item_layout.xml",
@@ -141,7 +153,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_template_part_chronometer.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_singlerealpopulation.xml",
@@ -150,6 +162,10 @@
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\listview_footer.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\listview_footer.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_progress.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_progress.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\navigation_layout.xml",
@@ -169,7 +185,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_expanded_menu_layout.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\pop_select_room.xml",
@@ -189,7 +205,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\select_dialog_multichoice_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_formal_expire.xml",
@@ -197,15 +213,19 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_list_menu_item_radio.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_list_menu_item_radio.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\pop_userdrop.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\pop_userdrop.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_list_check.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_list_check.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\select_dialog_item_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_searchpeopledetail.xml",
@@ -229,19 +249,27 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_template_media.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_media.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_upload.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_upload.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_basic_check.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_basic_check.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_realpopulation.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_realpopulation.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_listitem.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_listitem.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_idcard_result.xml",
@@ -256,16 +284,32 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_peopleinroom.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_listitem_singlechoice.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_listitem_singlechoice.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_menu_item_layout.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_handleid.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_handleid.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_room.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\item_room.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_input.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_input.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_daifasong.xml",
@@ -277,7 +321,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_screen_simple.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_screen_simple.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_personinhouse.xml",
@@ -288,8 +332,16 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_residentpermit.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_custom.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_custom.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_renyuan.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\item_renyuan.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_progress_indeterminate.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_progress_indeterminate.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\layout_loadingview.xml",
@@ -305,15 +357,11 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_list_menu_item_icon.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_list_menu_item_icon.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_re_makeup.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_re_makeup.xml"
-    },
-    {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_important.xml",
@@ -325,7 +373,11 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_mode_bar.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_stub_titleframe_lesspadding.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_stub_titleframe_lesspadding.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\loading.xml",
@@ -345,7 +397,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_un_active.xml",
@@ -364,16 +416,12 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\pop_banzheng_wheel_three.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_template_big_media.xml"
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_action_bar_up_container.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_search_idcardhousecode.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_search_idcardhousecode.xml"
-    },
-    {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_bar_up_container.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_senddata.xml",
@@ -385,15 +433,15 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_alert_dialog_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_search_view.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_search_view.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_setting.xml",
@@ -410,6 +458,10 @@
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_aboutus.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_aboutus.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_stub_actionbuttons.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_stub_actionbuttons.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_member.xml",
@@ -444,16 +496,20 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_registloc.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_icon_group.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\pop_important.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\pop_important.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_activity_chooser_view.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_dialog_title_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_alienpopulation.xml",
@@ -464,8 +520,20 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_addchild.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_input_check.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_input_check.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_title_material.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_alert_dialog_title_material.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_select_dialog_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media_custom.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_media_custom.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_houseaddress.xml",
@@ -509,23 +577,23 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_screen_content_include.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_screen_content_include.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\cube_ptr_classic_default_header.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\cube_ptr_classic_default_header.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_media_cancel_action.xml"
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_listitem_multichoice.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_listitem_multichoice.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_menu_layout.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_bar_title_item.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_mainmenu.xml",
@@ -545,19 +613,15 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_rentalhousing_inquiries.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_rentalhousing_inquiries.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_media_action.xml"
-    },
-    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_nearby.xml",
@@ -565,11 +629,15 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_screen_toolbar.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_rentalhousing_delete.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_rentalhousing_delete.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_action.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
@@ -589,11 +657,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_list_menu_item_layout.xml"
-    },
-    {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_template_lines.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",
@@ -602,6 +666,10 @@
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.1.1\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_dialog_list.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_dialog_list.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_splash.xml",
@@ -625,7 +693,7 @@
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_trail_user.xml",

@@ -22,13 +22,15 @@
 
         />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-
-		android:layout_above="@+id/edt_name"
+		android:orientation="vertical"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="45dp"
+		android:background="@drawable/login_bg"
         >
 	    <EditText 
 	        android:id="@+id/edt_content"
@@ -39,39 +41,27 @@
 	        android:hint="请输入身份证号或读卡"
 	        android:textSize="@dimen/small_size"
 	        android:singleLine="true"
-	        android:paddingLeft="5dp"
-	        android:paddingRight="5dp"
+	        android:padding="10dp"
 	        android:layout_toLeftOf="@+id/btn_readcard"
 	        android:layout_marginRight="10dp"
 	        android:layout_centerVertical="true"
+			android:background="@null"
 	        />
-	    <Button 
-            android:id="@+id/btn_readcard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="读   卡"
-            android:textSize="@dimen/small_size"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_login_click"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-	<EditText
-		android:id="@+id/edt_name"
-		android:layout_width="match_parent"
-		android:layout_height="50dp"
-		android:textColor="@color/title2"
-		android:textColorHint="@color/title4"
-		android:hint="请输入补拍者姓名"
-		android:textSize="@dimen/small_size"
-		android:layout_marginLeft="12dp"
-		android:layout_marginRight="12dp"
-		android:layout_marginBottom="45dp"
-		android:layout_alignParentBottom="true"
-		/>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#e2e2e2"/>
+		<EditText
+			android:id="@+id/edt_name"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:textColor="@color/title2"
+			android:textColorHint="@color/title4"
+			android:hint="请输入补拍者姓名"
+			android:textSize="@dimen/small_size"
+			android:background="@null"
+			android:padding="10dp"
+			/>
+    </LinearLayout>
+
 </RelativeLayout>

@@ -64,6 +64,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
     @ViewInject(R.id.edt_content)ValidateEidtText edt_content;
     @ViewInject(R.id.tv_noresult)TextView tv_noresult;
     private DbUtils dbUtils;
+    private String house_id;
     public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
     @Override
     public void onStart() {
@@ -112,7 +113,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 1:
                     HouseAddressOldBean houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "like", code));
                     if (houseAddressOldBean!=null) {
-                        SearchhasHouse(houseAddressOldBean.toString());
+                        SearchhasHouse(houseAddressOldBean.toString(),houseAddressOldBean.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -120,7 +121,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 2:
                     HouseAddressOldBean2 houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "like", code));
                     if (houseAddressOldBean2!=null) {
-                        SearchhasHouse(houseAddressOldBean2.toString());
+                        SearchhasHouse(houseAddressOldBean2.toString(),houseAddressOldBean2.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -128,7 +129,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 3:
                     HouseAddressOldBean3 houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "like", code));
                     if (houseAddressOldBean3!=null) {
-                        SearchhasHouse(houseAddressOldBean3.toString());
+                        SearchhasHouse(houseAddressOldBean3.toString(),houseAddressOldBean3.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -136,7 +137,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 4:
                     HouseAddressOldBean4 houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "like", code));
                     if (houseAddressOldBean4!=null) {
-                        SearchhasHouse(houseAddressOldBean4.toString());
+                        SearchhasHouse(houseAddressOldBean4.toString(),houseAddressOldBean4.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -144,7 +145,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 5:
                     HouseAddressOldBean5 houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "like", code));
                     if (houseAddressOldBean5!=null) {
-                        SearchhasHouse(houseAddressOldBean5.toString());
+                        SearchhasHouse(houseAddressOldBean5.toString(),houseAddressOldBean5.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -152,7 +153,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 6:
                     HouseAddressOldBean6 houseAddressOldBean6 = dbUtils.findFirst(Selector.from(HouseAddressOldBean6.class).where("scode", "like", code));
                     if (houseAddressOldBean6!=null) {
-                        SearchhasHouse(houseAddressOldBean6.toString());
+                        SearchhasHouse(houseAddressOldBean6.toString(),houseAddressOldBean6.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -160,7 +161,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 7:
                     HouseAddressOldBean7 houseAddressOldBean7 = dbUtils.findFirst(Selector.from(HouseAddressOldBean7.class).where("scode", "like", code));
                     if (houseAddressOldBean7!=null) {
-                        SearchhasHouse(houseAddressOldBean7.toString());
+                        SearchhasHouse(houseAddressOldBean7.toString(),houseAddressOldBean7.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -168,7 +169,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 8:
                     HouseAddressOldBean8 houseAddressOldBean8 = dbUtils.findFirst(Selector.from(HouseAddressOldBean8.class).where("scode", "like", code));
                     if (houseAddressOldBean8!=null) {
-                        SearchhasHouse(houseAddressOldBean8.toString());
+                        SearchhasHouse(houseAddressOldBean8.toString(),houseAddressOldBean8.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -176,7 +177,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 9:
                     HouseAddressOldBean9 houseAddressOldBean9 = dbUtils.findFirst(Selector.from(HouseAddressOldBean9.class).where("scode", "like", code));
                     if (houseAddressOldBean9!=null) {
-                        SearchhasHouse(houseAddressOldBean9.toString());
+                        SearchhasHouse(houseAddressOldBean9.toString(),houseAddressOldBean9.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -184,7 +185,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 case 10:
                     HouseAddressOldBean10 houseAddressOldBean10 = dbUtils.findFirst(Selector.from(HouseAddressOldBean10.class).where("scode", "like", code));
                     if (houseAddressOldBean10!=null) {
-                        SearchhasHouse(houseAddressOldBean10.toString());
+                        SearchhasHouse(houseAddressOldBean10.toString(),houseAddressOldBean10.id);
                     }else{
                         SearchNoHouse();
                     }
@@ -226,9 +227,10 @@ public class RentalHousingDeleteFragment extends BaseFragment{
         tv_noresult.setCompoundDrawablesWithIntrinsicBounds(null, getActivity().getResources().getDrawable(R.drawable.icon_noresult),null,null);
         tv_noresult.setText("无此房屋编号！");
     }
-    private void SearchhasHouse(String str){
+    private void SearchhasHouse(String str,String id){
         tv_noresult.setVisibility(View.GONE);
         tv_content.setText(str);
+        house_id=id;
     }
     @Event(value = {R.id.btn_unregist})
     private void submit(View view){
@@ -252,7 +254,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                 XMLParserUtil.parseXMLforReportLoss(result, new XMLParserUtil.OnXmlParserListener() {
                     @Override
                     public void success(String result) {
-//                        deleteHouseInfo(scode);
+                        deleteHouseTable(house_id);
                         deleteHouseInfoLocal(scode);
                         Toast.makeText(getActivity(),"注销成功",Toast.LENGTH_SHORT).show();
                         hideProcessDialog();
@@ -303,6 +305,7 @@ public class RentalHousingDeleteFragment extends BaseFragment{
                     DeleteRealPeopleBean deleteRealPeopleBean=GsonTools.changeGsonToBean(result,DeleteRealPeopleBean.class);
                     Log.e("delete",deleteRealPeopleBean.data.get(0).success);
                     if (deleteRealPeopleBean.data.get(0).success.equals("true")){
+                        deleteHouseTable(house_id);
                         Toast.makeText(getActivity(),"注销成功",Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getActivity(),"注销失败",Toast.LENGTH_SHORT).show();
@@ -322,39 +325,39 @@ public class RentalHousingDeleteFragment extends BaseFragment{
             public void onFinished() { }
         });
     }
-    private void deleteHouseTable(String code){
+    private void deleteHouseTable(String house_id){
         try {
             dbUtils= DeviceUtils.getDbUtils(getActivity());
             switch (database_tableNo){
                 case 1:
-                    dbUtils.delete(HouseAddressOldBean.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean(house_id,"8"),"source_id");
                     break;
                 case 2:
-                    dbUtils.delete(HouseAddressOldBean2.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean2(house_id,"8"),"source_id");
                     break;
                 case 3:
-                    dbUtils.delete(HouseAddressOldBean3.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean3(house_id,"8"),"source_id");
                     break;
                 case 4:
-                    dbUtils.delete(HouseAddressOldBean4.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean4(house_id,"8"),"source_id");
                     break;
                 case 5:
-                    dbUtils.delete(HouseAddressOldBean5.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean5(house_id,"8"),"source_id");
                     break;
                 case 6:
-                    dbUtils.delete(HouseAddressOldBean6.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean6(house_id,"8"),"source_id");
                     break;
                 case 7:
-                    dbUtils.delete(HouseAddressOldBean7.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean7(house_id,"8"),"source_id");
                     break;
                 case 8:
-                    dbUtils.delete(HouseAddressOldBean8.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean8(house_id,"8"),"source_id");
                     break;
                 case 9:
-                    dbUtils.delete(HouseAddressOldBean9.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean9(house_id,"8"),"source_id");
                     break;
                 case 10:
-                    dbUtils.delete(HouseAddressOldBean10.class, WhereBuilder.b("scode","like",code));
+                    dbUtils.update(new HouseAddressOldBean10(house_id,"8"),"source_id");
                     break;
             }
 

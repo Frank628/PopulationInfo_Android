@@ -54,5 +54,6 @@
     <string name="crop__pick_error">Нет доступных изображений</string>
     <string name="crop__saving">Изображение сохраняется…</string>
     <string name="crop__wait">Пожалуйста, подождите…</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Поиск"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">">999"</string>
 </resources>

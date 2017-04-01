@@ -2,6 +2,7 @@ package com.jinchao.population.alienPeople;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jinchao.population.MyApplication;
@@ -61,6 +63,7 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
     private EditText etSearchKeyword;
     private ImageView ivSearchSearch;
     private ListView lv;
+    private TextView tv_search_clean;
     private int database_tableNo=0;
     DbUtils dbUtils;
     public static SearchFragment newInstance(){
@@ -110,6 +113,7 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
         ivSearchBack = (ImageView) view.findViewById(R.id.iv_search_back);
         etSearchKeyword = (EditText) view.findViewById(R.id.et_search_keyword);
         ivSearchSearch = (ImageView) view.findViewById(R.id.iv_search_search);
+        tv_search_clean= (TextView) view.findViewById(R.id.tv_search_clean);
         lv=(ListView)view.findViewById(R.id.lv);
         getDialog().setOnKeyListener(this);//键盘按键监听
         etSearchKeyword.addTextChangedListener(new TextWatcherImpl());
@@ -145,10 +149,7 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
         @Override
         public void afterTextChanged(Editable editable) {
             String keyword = editable.toString();
-            if (TextUtils.isEmpty(keyword.trim())) {
-
-            } else {
-
+            if (!TextUtils.isEmpty(keyword.trim())) {
                 try {
                     switch (database_tableNo){
                         case 0:
@@ -156,16 +157,30 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 1:
                             List<HouseAddressOldBean> list1=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list1=new ArrayList<>();
-                            else
-                                list1=dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list1 = new ArrayList<>();
+                            } else {
+                                list1 = dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list1.size() == 0)
+                                    list1 = dbUtils.findAll(Selector.from(HouseAddressOldBean.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list1==null)list1=new ArrayList<>();
+                            if (list1.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean> adapter1=new CommonAdapter<HouseAddressOldBean>(getActivity(),list1,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter1);
@@ -183,16 +198,30 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 2:
                             List<HouseAddressOldBean2> list2=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list2=new ArrayList<>();
-                            else
-                                list2=dbUtils.findAll(Selector.from(HouseAddressOldBean2.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list2 = new ArrayList<>();
+                            } else {
+                                list2 = dbUtils.findAll(Selector.from(HouseAddressOldBean2.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list2.size() == 0)
+                                    list2 = dbUtils.findAll(Selector.from(HouseAddressOldBean2.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list2==null)list2=new ArrayList<>();
+                            if (list2.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean2> adapter2=new CommonAdapter<HouseAddressOldBean2>(getActivity(),list2,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean2 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter2);
@@ -210,16 +239,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 3:
                             List<HouseAddressOldBean3> list3=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list3=new ArrayList<>();
-                            else
-                                list3=dbUtils.findAll(Selector.from(HouseAddressOldBean3.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list3 = new ArrayList<>();
+                            }else {
+                                list3 = dbUtils.findAll(Selector.from(HouseAddressOldBean3.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list3.size() == 0)list3 = dbUtils.findAll(Selector.from(HouseAddressOldBean3.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list3==null)list3=new ArrayList<>();
+                            if (list3.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean3> adapter3=new CommonAdapter<HouseAddressOldBean3>(getActivity(),list3,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean3 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter3);
@@ -237,16 +279,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 4:
                             List<HouseAddressOldBean4> list4=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list4=new ArrayList<>();
-                            else
-                                list4=dbUtils.findAll(Selector.from(HouseAddressOldBean4.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list4 = new ArrayList<>();
+                            }else {
+                                list4 = dbUtils.findAll(Selector.from(HouseAddressOldBean4.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list4.size() == 0)list4 = dbUtils.findAll(Selector.from(HouseAddressOldBean4.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list4==null)list4=new ArrayList<>();
+                            if (list4.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean4> adapter4=new CommonAdapter<HouseAddressOldBean4>(getActivity(),list4,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean4 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter4);
@@ -264,16 +319,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 5:
                             List<HouseAddressOldBean5> list5=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list5=new ArrayList<>();
-                            else
-                                list5=dbUtils.findAll(Selector.from(HouseAddressOldBean5.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list5 = new ArrayList<>();
+                            }else {
+                                list5 = dbUtils.findAll(Selector.from(HouseAddressOldBean5.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list5.size() == 0)list5 = dbUtils.findAll(Selector.from(HouseAddressOldBean5.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list5==null)list5=new ArrayList<>();
+                            if (list5.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean5> adapter5=new CommonAdapter<HouseAddressOldBean5>(getActivity(),list5,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean5 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter5);
@@ -291,16 +359,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 6:
                             List<HouseAddressOldBean6> list6=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list6=new ArrayList<>();
-                            else
-                                list6=dbUtils.findAll(Selector.from(HouseAddressOldBean6.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list6 = new ArrayList<>();
+                            }else {
+                                list6 = dbUtils.findAll(Selector.from(HouseAddressOldBean6.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list6.size() == 0)list6 = dbUtils.findAll(Selector.from(HouseAddressOldBean6.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list6==null)list6=new ArrayList<>();
+                            if (list6.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean6> adapter6=new CommonAdapter<HouseAddressOldBean6>(getActivity(),list6,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean6 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter6);
@@ -318,16 +399,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 7:
                             List<HouseAddressOldBean7> list7=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list7=new ArrayList<>();
-                            else
-                                list7=dbUtils.findAll(Selector.from(HouseAddressOldBean7.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list7 = new ArrayList<>();
+                            }else {
+                                list7 = dbUtils.findAll(Selector.from(HouseAddressOldBean7.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list7.size() == 0)list7 = dbUtils.findAll(Selector.from(HouseAddressOldBean7.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list7==null)list7=new ArrayList<>();
+                            if (list7.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean7> adapter7=new CommonAdapter<HouseAddressOldBean7>(getActivity(),list7,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean7 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter7);
@@ -345,16 +439,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 8:
                             List<HouseAddressOldBean8> list8=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list8=new ArrayList<>();
-                            else
-                                list8=dbUtils.findAll(Selector.from(HouseAddressOldBean8.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list8 = new ArrayList<>();
+                            }else {
+                                list8 = dbUtils.findAll(Selector.from(HouseAddressOldBean8.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list8.size() == 0)list8 = dbUtils.findAll(Selector.from(HouseAddressOldBean8.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list8==null)list8=new ArrayList<>();
+                            if (list8.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean8> adapter8=new CommonAdapter<HouseAddressOldBean8>(getActivity(),list8,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean8 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter8);
@@ -372,16 +479,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 9:
                             List<HouseAddressOldBean9> list9=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list9=new ArrayList<>();
-                            else
-                                list9=dbUtils.findAll(Selector.from(HouseAddressOldBean9.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list9 = new ArrayList<>();
+                            }else {
+                                list9 = dbUtils.findAll(Selector.from(HouseAddressOldBean9.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list9.size() == 0)list9 = dbUtils.findAll(Selector.from(HouseAddressOldBean9.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list9==null)list9=new ArrayList<>();
+                            if (list9.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean9> adapter9=new CommonAdapter<HouseAddressOldBean9>(getActivity(),list9,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean9 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter9);
@@ -399,16 +519,29 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             break;
                         case 10:
                             List<HouseAddressOldBean10> list10=new ArrayList<>();
-                            if (TextUtils.isEmpty(keyword.trim()))
-                                list10=new ArrayList<>();
-                            else
-                                list10=dbUtils.findAll(Selector.from(HouseAddressOldBean10.class).where("scode","like","%"+keyword+"%"));
+                            if (TextUtils.isEmpty(keyword.trim())) {
+                                list10 = new ArrayList<>();
+                            }else {
+                                list10 = dbUtils.findAll(Selector.from(HouseAddressOldBean10.class).where("scode", "like", "%" + keyword + "%"));
+                                if (list10.size() == 0)list10 = dbUtils.findAll(Selector.from(HouseAddressOldBean10.class).where("address", "like", "%" + keyword + "%"));
+                            }
                             if (list10==null)list10=new ArrayList<>();
+                            if (list10.size()==0){
+                                tv_search_clean.setText("无此房屋编号");
+                            }else{
+                                tv_search_clean.setText("自动匹配房屋编号");
+                            }
                             CommonAdapter<HouseAddressOldBean10> adapter10=new CommonAdapter<HouseAddressOldBean10>(getActivity(),list10,R.layout.item_text) {
                                 @Override
                                 public void convert(ViewHolder helper, HouseAddressOldBean10 item, int position) {
                                     helper.setText(R.id.tv_content, item.address);
-                                    helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    if (item.source_id.equals("8")){
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#9c070f"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode+"【休眠】");
+                                    }else{
+                                        ((TextView)helper.getView(R.id.tv_bianhao)).setTextColor(Color.parseColor("#666666"));
+                                        helper.setText(R.id.tv_bianhao,"房屋编号："+ item.scode);
+                                    }
                                 }
                             };
                             lv.setAdapter(adapter10);
@@ -449,10 +582,11 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
         if (TextUtils.isEmpty(searchKey.trim())|| !CommonUtils.isFangwuBianHao(searchKey.trim())) {
             Toast.makeText(getContext(), "请输入6位房屋编号", Toast.LENGTH_SHORT).show();
         } else {
-            Intent intent =new Intent(getActivity(),PeopleListinHouseActivity.class);
-            intent.putExtra("housecode",searchKey);
-            getActivity().startActivity(intent);
-            hideAnim();
+            Toast.makeText(getActivity(),"请直接点击列表中的查询结果！",Toast.LENGTH_SHORT).show();
+//            Intent intent =new Intent(getActivity(),PeopleListinHouseActivity.class);
+//            intent.putExtra("housecode",searchKey);
+//            getActivity().startActivity(intent);
+//            hideAnim();
         }
     }
 }

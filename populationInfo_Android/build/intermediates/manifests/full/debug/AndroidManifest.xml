@@ -66,6 +66,10 @@
         android:name="android.hardware.nfc"
         android:required="true" />
 
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="25.3.0" />
+
     <application
         android:name="com.jinchao.population.MyApplication"
         android:allowBackup="true"

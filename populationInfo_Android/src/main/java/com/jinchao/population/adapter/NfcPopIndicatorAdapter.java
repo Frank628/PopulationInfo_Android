@@ -60,9 +60,9 @@ public class NfcPopIndicatorAdapter extends IndicatorViewPager.IndicatorFragment
 
     @Override
     public Fragment getFragmentForPage(int position) {
-        if (position==0){
+        if (position==1){
             return AllPeopleFragment.newInstance(nfcJsonBean);
-        }else if(position==1){
+        }else if(position==0){
             return HistoryPeopleFragment.newInstance(nfcJsonBean);
         }else {
             return PeopleRoomFragment.newInstance(nfcJsonBean,listRoom.get(position));

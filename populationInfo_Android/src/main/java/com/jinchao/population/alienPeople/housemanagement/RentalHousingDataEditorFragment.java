@@ -330,6 +330,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean.setIdcard(idcard);
                         houseAddressOldBean.setHrs_pname(name);
                         houseAddressOldBean.setTelphone(phone);
+                        houseAddressOldBean.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean);
                     }
                     break;
@@ -339,6 +340,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean2.setIdcard(idcard);
                         houseAddressOldBean2.setHrs_pname(name);
                         houseAddressOldBean2.setTelphone(phone);
+                        houseAddressOldBean2.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean2);
                     }
                     break;
@@ -348,6 +350,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean3.setIdcard(idcard);
                         houseAddressOldBean3.setHrs_pname(name);
                         houseAddressOldBean3.setTelphone(phone);
+                        houseAddressOldBean3.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean3);
                     }
                     break;
@@ -357,6 +360,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean4.setIdcard(idcard);
                         houseAddressOldBean4.setHrs_pname(name);
                         houseAddressOldBean4.setTelphone(phone);
+                        houseAddressOldBean4.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean4);
                     }
                     break;
@@ -366,6 +370,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean5.setIdcard(idcard);
                         houseAddressOldBean5.setHrs_pname(name);
                         houseAddressOldBean5.setTelphone(phone);
+                        houseAddressOldBean5.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean5);
                     }
                     break;
@@ -375,6 +380,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean6.setIdcard(idcard);
                         houseAddressOldBean6.setHrs_pname(name);
                         houseAddressOldBean6.setTelphone(phone);
+                        houseAddressOldBean6.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean6);
                     }
                     break;
@@ -384,6 +390,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean7.setIdcard(idcard);
                         houseAddressOldBean7.setHrs_pname(name);
                         houseAddressOldBean7.setTelphone(phone);
+                        houseAddressOldBean7.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean7);
                     }
                     break;
@@ -393,6 +400,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean8.setIdcard(idcard);
                         houseAddressOldBean8.setHrs_pname(name);
                         houseAddressOldBean8.setTelphone(phone);
+                        houseAddressOldBean8.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean8);
                     }
                     break;
@@ -402,6 +410,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean9.setIdcard(idcard);
                         houseAddressOldBean9.setHrs_pname(name);
                         houseAddressOldBean9.setTelphone(phone);
+                        houseAddressOldBean9.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean9);
                     }
                     break;
@@ -411,6 +420,7 @@ public class RentalHousingDataEditorFragment extends BaseFragment{
                         houseAddressOldBean10.setIdcard(idcard);
                         houseAddressOldBean10.setHrs_pname(name);
                         houseAddressOldBean10.setTelphone(phone);
+                        houseAddressOldBean10.setSource_id("4");
                         dbUtils.saveOrUpdate(houseAddressOldBean10);
                     }
                     break;

@@ -150,7 +150,11 @@ public class CommonUtils {
 			Matcher m = p.matcher(str);
 			return m.matches();
 	}
-
+	public static boolean isRoom(String str){
+		Pattern p = Pattern.compile("[A-Za-z0-9]{4}");
+		Matcher m = p.matcher(str);
+		return m.matches();
+	}
 	public static boolean checkChar(char oneChar){
 		if((oneChar >= '\u4e00' && oneChar <= '\u9fa5')||(oneChar >= '\uf900' && oneChar <='\ufa2d'))
 			return true;

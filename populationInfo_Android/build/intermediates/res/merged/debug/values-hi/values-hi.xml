@@ -49,5 +49,6 @@
     <string msgid="2201289642219771610" name="common_google_play_services_updating_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> उन Google Play सेवाओं के बिना नहीं चलेगा जो वर्तमान में अपडेट हो रही हैं."</string>
     <string msgid="815008177440683245" name="common_google_play_services_updating_title">"Google Play सेवाएं अपडेट हो रही हैं"</string>
     <string msgid="411506735369601515" name="common_open_on_phone">"फ़ोन पर खोलें"</string>
+    <string msgid="146198913615257606" name="search_menu_title">"खोज"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

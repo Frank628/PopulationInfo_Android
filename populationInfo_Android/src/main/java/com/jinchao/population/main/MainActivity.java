@@ -2,9 +2,12 @@ package com.jinchao.population.main;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -27,6 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Common;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
 import com.jinchao.population.SysApplication;
@@ -44,6 +49,7 @@ import com.jinchao.population.service.DownLoadService;
 import com.jinchao.population.utils.CommonHttp;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.HouseTableInit;
 import com.jinchao.population.utils.SharePrefUtil;
 import com.jinchao.population.utils.network.NetWorkManager;
 import com.jinchao.population.view.Dialog;
@@ -56,12 +62,14 @@ import org.xutils.x;
 @ContentView(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private long mExitTime;
+    public ProgressDialog progressDialog;
     @ViewInject(R.id.toolbar) private Toolbar toolbar;
     @ViewInject(R.id.title)private TextView title;
     @ViewInject(R.id.tv_right)public TextView tv_right;
     @ViewInject(R.id.nav_view)NavigationView navigationView;
     @ViewInject(R.id.drawer_layout)DrawerLayout drawer;
     private Fragment currentFragment;
+    MaterialDialog materialDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +122,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 break;
         }
+        if (((MyApplication)getApplication()).database_tableNo==0)return;
+        showProgressDialog("地址库更新中...");
+        HouseTableInit.getInstance(this,((MyApplication)getApplication()).database_tableNo,new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 1:
+                        dismissProgressDialog();
+                        break;
+                }
+            }
+        }).addtionalHouse();
     }
 
     @Override
@@ -366,5 +387,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onFinished() {}
         });
+    }
+    public void showProgressDialog(String toast){
+        progressDialog = ProgressDialog.show(this,"",toast,true,false);
+        progressDialog.setCancelable(true);
+        progressDialog.show();
+    }
+    public void dismissProgressDialog(){
+        if (progressDialog!=null){
+            progressDialog.dismiss();
+        }
     }
 }

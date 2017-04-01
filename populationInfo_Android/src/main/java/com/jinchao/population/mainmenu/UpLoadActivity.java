@@ -92,7 +92,7 @@ public class UpLoadActivity extends BaseActiviy{
                     upload2(str, list.get(i),i);
                     if (list.get(i).isReal.equals("1")){
 //                        uploadReal(list.get(i).realId);
-                        save(list.get(i));
+//                        save(list.get(i));
                     }
 					if (list.get(i).module.equals("补")){
 						uploadpic(list.get(i));
@@ -201,7 +201,7 @@ public class UpLoadActivity extends BaseActiviy{
 		http.send(HttpMethod.POST, "http://222.92.144.66:90/IDcollect/Import.aspx",params, new RequestCallBack<String>() {
 			@Override
 			public void onFailure(HttpException arg0, String arg1) {
-				Log.d("upload", arg1+"faile");
+				Log.d("upload", arg1+"："+arg0.getMessage());
 				failCount++;
 				if ((succCount+failCount)==total) {
 					dialog.dismiss();
@@ -209,8 +209,7 @@ public class UpLoadActivity extends BaseActiviy{
 						Dialog.showSelectDialog(UpLoadActivity.this, "发送失败"+failCount+"条,现在重新发送吗？", new DialogClickListener() {
 							@Override
 							public void confirm() {
-								// TODO Auto-generated method stub
-								
+							// TODO Auto-generated method stub
 							}
 							@Override
 							public void cancel() {}
@@ -220,7 +219,6 @@ public class UpLoadActivity extends BaseActiviy{
 			}
 			@Override
 			public void onSuccess(ResponseInfo<String> arg0) {
-//				Log.d("upload", arg0.result.replaceAll("<(.|\n)*?>", ""));
 				String result=arg0.result.replaceAll("<(.|\n)*?>", "").trim();
 				result=result.replaceAll("Import", "");
 				if (result.trim().equals("-1")) {
@@ -246,7 +244,6 @@ public class UpLoadActivity extends BaseActiviy{
 						Dialog.showSelectDialog(UpLoadActivity.this, "有"+failCount+"条发送失败,现在重新发送吗？", new DialogClickListener() {
 							@Override
 							public void confirm() {
-								// TODO Auto-generated method stub
 								
 							}
 							@Override

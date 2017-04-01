@@ -54,5 +54,6 @@
     <string name="crop__pick_error">Inga bildkällor tillgängliga</string>
     <string name="crop__saving">Sparar bild…</string>
     <string name="crop__wait">Var god vänta…</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Sök"</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">">999"</string>
 </resources>
