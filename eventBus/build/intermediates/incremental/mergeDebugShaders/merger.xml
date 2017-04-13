@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\AndroidStudioWorkSpace\PopulationInfo_Android - 0401\eventBus\src\main\shaders"/></dataSet><dataSet config="debug"><source path="E:\AndroidStudioWorkSpace\PopulationInfo_Android - 0401\eventBus\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\AndroidStudioWorkSpace\PopulationInfo_Android\eventBus\src\main\shaders"/></dataSet><dataSet config="debug"><source path="E:\AndroidStudioWorkSpace\PopulationInfo_Android\eventBus\src\debug\shaders"/></dataSet></merger>
