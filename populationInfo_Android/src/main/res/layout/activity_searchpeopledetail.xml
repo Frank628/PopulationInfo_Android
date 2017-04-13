@@ -124,6 +124,48 @@
 		        android:layout_marginLeft="@dimen/layout_leftright_padding"
 		        android:layout_marginRight="@dimen/layout_leftright_padding"
 		        />
+	<RelativeLayout
+		android:id="@+id/rl_phone"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/relative_row_height"
+		android:background="@drawable/white_click_bg2"
+		android:paddingLeft="@dimen/layout_leftright_padding"
+		android:paddingRight="@dimen/layout_leftright_padding"
+		android:visibility="gone"
+		>
+		<TextView
+			android:id="@+id/tv_leftphone"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="@dimen/small_size"
+			android:textColor="@color/title2"
+			android:gravity="center_vertical"
+			android:layout_centerVertical="true"
+			android:text="电话"
+			/>
+		<TextView
+			android:id="@+id/tv_phone"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_vertical|right"
+			android:textSize="@dimen/small_size"
+			android:textColor="@color/title3"
+			android:layout_toRightOf="@+id/tv_leftphone"
+			android:singleLine="true"
+			android:drawableRight="@drawable/ico_search_next"
+			android:drawablePadding="10dp"
+			android:background="@color/transaction"
+			/>
+	</RelativeLayout>
+	<View
+		android:id="@+id/rl_phoneline"
+		android:visibility="gone"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#CACACA"
+		android:layout_marginLeft="@dimen/layout_leftright_padding"
+		android:layout_marginRight="@dimen/layout_leftright_padding"
+		/>
 		    <RelativeLayout 
 		        android:layout_width="match_parent"
 		        android:layout_height="@dimen/relative_row_height"
@@ -155,12 +197,14 @@
 		            android:background="@color/transaction"
 		            />
 		    </RelativeLayout>
-		    <View 
+		    <View
+
 		        android:layout_width="match_parent"
 		        android:layout_height="1dp"
 		        android:background="#CACACA"
 		        android:layout_marginLeft="@dimen/layout_leftright_padding"
 		        android:layout_marginRight="@dimen/layout_leftright_padding"
+
 		        />
 		    <RelativeLayout 
 		        android:layout_width="match_parent"
@@ -321,7 +365,7 @@
 					android:textColor="@color/white"
 					android:textSize="@dimen/large_size"
 					android:layout_alignParentRight="true"
-					android:text="同户变更"
+					android:text="变更"
 					android:paddingTop="9dp"
 					android:paddingBottom="9dp"
 					android:background="@drawable/btn_orange_click"

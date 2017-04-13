@@ -8,6 +8,6 @@ public final class BuildConfig {
   public static final String APPLICATION_ID = "com.jinchao.population";
   public static final String BUILD_TYPE = "debug";
   public static final String FLAVOR = "";
-  public static final int VERSION_CODE = 121;
-  public static final String VERSION_NAME = "1.2.1";
+  public static final int VERSION_CODE = 122;
+  public static final String VERSION_NAME = "1.2.2";
 }

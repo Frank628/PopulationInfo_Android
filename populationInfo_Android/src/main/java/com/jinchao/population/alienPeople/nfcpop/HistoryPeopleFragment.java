@@ -263,6 +263,7 @@ public class HistoryPeopleFragment extends LazyFragment {
                     Intent intent =new Intent(getActivity(), SearchPeopleDetailActivity.class);
                     intent.putExtra("renyuan", renyuanInHouseone);
                     intent.putExtra("isHistory",true);//临时加上等广达改接口
+                    intent.putExtra("CurrentHouse",nfcJsonBean.code);
                     startActivity(intent);
                 }
             });

@@ -122,19 +122,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 break;
         }
-        if (((MyApplication)getApplication()).database_tableNo==0)return;
-        showProgressDialog("地址库更新中...");
-        HouseTableInit.getInstance(this,((MyApplication)getApplication()).database_tableNo,new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                switch (msg.what){
-                    case 1:
-                        dismissProgressDialog();
-                        break;
-                }
-            }
-        }).addtionalHouse();
+//        if (((MyApplication)getApplication()).database_tableNo==0)return;
+//        showProgressDialog("地址库更新中...");
+//        HouseTableInit.getInstance(this,((MyApplication)getApplication()).database_tableNo,new Handler(){
+//            @Override
+//            public void handleMessage(Message msg) {
+//                super.handleMessage(msg);
+//                switch (msg.what){
+//                    case 1:
+//                        dismissProgressDialog();
+//                        break;
+//                }
+//            }
+//        }).addtionalHouse();
     }
 
     @Override
@@ -322,7 +322,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     if (versionBean.isForce){
                                         SysApplication.getInstance().exit();
                                     }
-
                                 }
                             });
                         }

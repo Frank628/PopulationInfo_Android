@@ -5,7 +5,7 @@ import android.os.Environment;
 
 public class Constants {
 	public static final String URL="http://222.92.144.66:91/population/";
-	public static final String URL_IP="http://222.92.144.66:91/";
+//	public static final String URL_IP="http://222.92.144.66:91/";
 	public static final String DB_NAME="config_population.db";
 	public static final String DB_PATH=Environment.getExternalStorageDirectory().getAbsolutePath()+"/";
 //	public static final String DB_PATH= "/data"+ Environment.getDataDirectory().getAbsolutePath() + "/com.jinchao.population/databases/";//内存中

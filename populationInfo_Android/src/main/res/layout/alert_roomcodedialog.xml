@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <com.jinchao.population.widget.ValidateEidtText
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/shihao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:inputType="text"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:drawablePadding="5dp"
+        app:vd_textErrorColor="@color/red"
+        app:vd_textRightColor="@color/title2"
+        app:vd_drawable_right_right="@drawable/icon_gou"
+        app:vd_drawable_right_error="@drawable/icon_gantan"
+        app:vd_validate_type="room_code">
+
+</com.jinchao.population.widget.ValidateEidtText>

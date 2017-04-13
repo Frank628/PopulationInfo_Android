@@ -16,12 +16,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.NavigationLayout;
+import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
@@ -48,12 +51,18 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_shihao) TextView tv_shihao;
 	@ViewInject(R.id.tv_name) TextView tv_name;
 	@ViewInject(R.id.tv_card) TextView tv_card;
+	@ViewInject(R.id.tv_phone) TextView tv_phone;
+	@ViewInject(R.id.rl_phone) RelativeLayout rl_phone;
+	@ViewInject(R.id.rl_phoneline) View rl_phoneline;
 	@ViewInject(R.id.tv_status) TextView tv_status;
 	@ViewInject(R.id.tv_bianhao) TextView tv_bianhao;
 	@ViewInject(R.id.tv_address) TextView tv_address;
 	@ViewInject(R.id.tv_time) TextView tv_time;
 	@ViewInject(R.id.btn_zhuxiao)TextView btn_zhuxiao;
 	private RenyuanInHouseBean.RenyuanInhouseOne renYuanXinXiBean;
+	private String SQCODE="";
+	private boolean isHistory=false;
+	private String CurrentHouse="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,7 +75,11 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 			}
 		});
 		renYuanXinXiBean = (RenyuanInHouseBean.RenyuanInhouseOne ) getIntent().getSerializableExtra("renyuan");
-		if (getIntent().getBooleanExtra("isHistory",false)){
+		isHistory=getIntent().getBooleanExtra("isHistory",false);
+		if (isHistory){
+			rl_phone.setVisibility(View.VISIBLE);
+			rl_phoneline.setVisibility(View.VISIBLE);
+			CurrentHouse=getIntent().getStringExtra("CurrentHouse");
 			btn_zhuxiao.setVisibility(View.GONE);
 			requestYanZheng(renYuanXinXiBean.idcard);
 			return;
@@ -82,6 +95,58 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	
 	@Event(value={R.id.btn_yanqi})
 	private void yanqi(View view){
+		if ((isHistory&&(!SQCODE.trim().equals(MyInfomationManager.getSQCODE(this))))||(isHistory&&(isHistory?(!CurrentHouse.equals(renYuanXinXiBean.house_code)):false))){
+			Dialog.showSelectDialog(this, "网上地址与当前地址不一致！请前往做‘变更’！", new Dialog.DialogClickListener() {
+				@Override
+				public void confirm() {
+
+					tongwubiangeng(null);
+				}
+
+				@Override
+				public void cancel() {
+
+				}
+			});
+			return;
+		}
+		Dialog.showSelectDialog(this, "是否需要修改室号？", new Dialog.DialogClickListener() {
+				@Override
+				public void confirm() {
+					View view=SearchPeopleDetailActivity.this.getLayoutInflater().inflate(R.layout.alert_roomcodedialog,null);
+					final ValidateEidtText edt_shihao=(ValidateEidtText) view.findViewById(R.id.shihao);
+					new AlertDialog.Builder(SearchPeopleDetailActivity.this)
+							.setTitle("请输入4位室号")
+							.setView(new ValidateEidtText(SearchPeopleDetailActivity.this))
+							.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									hidenSoftKeyBoard(edt_shihao);
+									String shihao=edt_shihao.getText().toString().trim();
+									if (!CommonUtils.isRoom(shihao)){
+										Toast.makeText(SearchPeopleDetailActivity.this,"请输入四位数字或字母的室号！",Toast.LENGTH_SHORT).show();
+										return;
+									}
+									renYuanXinXiBean.shihao=shihao;
+									yanqi();
+								}
+							}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							hidenSoftKeyBoard(edt_shihao);
+						}
+					}).show();
+				}
+
+				@Override
+				public void cancel() {
+					yanqi();
+				}
+		},"直接延期","修改室号");
+
+
+	}
+	private void yanqi(){
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date =sDateFormat.format(new java.util.Date());
 		People people=new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
@@ -92,9 +157,9 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 		try {
 			list = dbUtils.findAll(Selector.from(People.class).where("cardno", "=", renYuanXinXiBean.idcard));
 			if (list!=null) {
-			if (list.size()>0) {
-				dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.idcard));
-			}
+				if (list.size()>0) {
+					dbUtils.delete(People.class, WhereBuilder.b("cardno", "=", renYuanXinXiBean.idcard));
+				}
 			}
 			dbUtils.save(people);
 			Toast.makeText(this, "延期成功~", Toast.LENGTH_SHORT).show();
@@ -105,6 +170,10 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	}
 	@Event(value={R.id.btn_tongwu})
 	private void tongwubiangeng(View view){
+//		if(isHistory&&(!SQCODE.trim().equals(MyInfomationManager.getSQCODE(this)))){
+			renYuanXinXiBean.house_addr="";
+			renYuanXinXiBean.house_code="";
+//		}
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date =sDateFormat.format(new java.util.Date());
 		Intent intent = new Intent(SearchPeopleDetailActivity.this,HandleIDActivity.class);
@@ -148,6 +217,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 			@Override
 			public void onSuccess(String result) {
 				People peoplefromXml=XmlUtils.parseXMLtoPeople(result);
+				SQCODE=XmlUtils.parseXMLtoShequcode(result);
 				processData(peoplefromXml);
 			}
 			@Override
@@ -165,6 +235,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	private void processData(People people){
 		tv_shihao.setText("");
 		tv_card.setText(people.getCardno());
+		tv_phone.setText(people.getPhone());
 		tv_name.setText(people.getName());
 		tv_status.setText("注销");
 		tv_bianhao.setText(people.getHomecode());

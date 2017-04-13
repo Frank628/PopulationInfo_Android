@@ -214,6 +214,12 @@ public class CommonIdcard extends StringUtils {
 			if(Integer.parseInt(idCard.trim().substring(6,10))<1901||Integer.parseInt(idCard.trim().substring(6,10))>Integer.parseInt(getCurrentYear())){
 				bTrue = false;
 			}
+			if (Integer.parseInt(idCard.trim().substring(10,12))>12){
+				bTrue = false;
+			}
+			if (Integer.parseInt(idCard.trim().substring(12,14))>31){
+				bTrue = false;
+			}
 		}
 		return bTrue;
 	}

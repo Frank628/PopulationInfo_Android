@@ -8,9 +8,12 @@ import com.jinchao.population.utils.network.NetWorkManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 public class BaseActiviy extends FragmentActivity implements NetWorkManager.NetConnectChangeListener{
 	public ProgressDialog progressDialog;
@@ -59,5 +62,14 @@ public class BaseActiviy extends FragmentActivity implements NetWorkManager.NetC
 			progressDialog.dismiss();
 		}
 	}
+	public void showSoftKeyBoard(View view){
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
 
+	}
+	public void hidenSoftKeyBoard(View view){
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+		imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+	}
 }

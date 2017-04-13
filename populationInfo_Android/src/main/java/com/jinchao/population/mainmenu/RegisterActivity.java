@@ -326,7 +326,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			 edt_sex.setText(user.getSex().trim());
 			 edt_region.setText(user.getNation().trim());
 			 edt_birth.setText(user.getBirthday().trim());
-			 edt_address.setText(user.getAddress().trim());
+			 edt_address.setText(user.getAddress().trim().replace("（","(").replace("）",")"));
 			 edt_idcard.setText(user.getIdNumber().trim());
 			 bmp =  BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
 			 iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);

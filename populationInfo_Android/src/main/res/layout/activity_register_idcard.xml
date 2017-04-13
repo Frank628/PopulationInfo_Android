@@ -39,7 +39,7 @@
                     android:textColor="@color/title3"
                     android:text="姓      名"
                     />
-                <EditText 
+                <EditText
                     android:id="@+id/edt_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -46,6 +46,7 @@ import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.KeyBoardUtils;
+import com.jinchao.population.view.Dialog;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
@@ -558,7 +559,14 @@ public class SearchFragment extends DialogFragment implements DialogInterface.On
                             });
                             break;
                     }
-                } catch (DbException e) {
+                } catch (NullPointerException e){
+                    Dialog.showForceDialog(getActivity(), "提示", "未检测到地址库，请全库地址下载！", new Dialog.DialogClickListener() {
+                        @Override
+                        public void confirm() {}
+                        @Override
+                        public void cancel() {}
+                    });
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
