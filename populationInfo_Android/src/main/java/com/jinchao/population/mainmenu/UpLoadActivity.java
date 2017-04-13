@@ -13,6 +13,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.DataManagement.SendDataDetailActivity;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.base.CommonAdapter;
 import com.jinchao.population.base.ViewHolder;
@@ -140,7 +142,14 @@ public class UpLoadActivity extends BaseActiviy{
 								});
 						}
 					});
-					
+					helper.getView(R.id.ll_left).setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							Intent intent =new Intent(UpLoadActivity.this, SendDataDetailActivity.class);
+							intent.putExtra("people",item);
+							startActivity(intent);
+						}
+					});
 				}
 			};
 			lv.setAdapter(adapter);

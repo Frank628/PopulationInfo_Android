@@ -1,15 +1,15 @@
 [
     {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header_main.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\nav_header_main.xml"
     },
     {
-        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
-        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\notification_template_part_time.xml"
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.3.0\\res\\layout\\abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
@@ -382,6 +382,10 @@
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\md_stub_titleframe_lesspadding.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\exploded-aar\\com.afollestad.material-dialogs\\core\\0.9.4.2\\res\\layout\\md_stub_titleframe_lesspadding.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\activity_senddatadetail.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\activity_senddatadetail.xml"
     },
     {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\loading.xml",

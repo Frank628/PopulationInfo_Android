@@ -84,6 +84,12 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 			requestYanZheng(renYuanXinXiBean.idcard);
 			return;
 		}
+		String phone =getIntent().getStringExtra("phone");
+		if (phone!=null){
+			rl_phone.setVisibility(View.VISIBLE);
+			rl_phoneline.setVisibility(View.VISIBLE);
+			tv_phone.setText(phone.trim());
+		}
 		tv_shihao.setText(renYuanXinXiBean.shihao);
 		tv_card.setText(renYuanXinXiBean.idcard);
 		tv_name.setText(renYuanXinXiBean.sname);
@@ -117,7 +123,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 					final ValidateEidtText edt_shihao=(ValidateEidtText) view.findViewById(R.id.shihao);
 					new AlertDialog.Builder(SearchPeopleDetailActivity.this)
 							.setTitle("请输入4位室号")
-							.setView(new ValidateEidtText(SearchPeopleDetailActivity.this))
+							.setView(view)
 							.setPositiveButton("确认", new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
@@ -142,7 +148,7 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 				public void cancel() {
 					yanqi();
 				}
-		},"直接延期","修改室号");
+		},"修改室号","直接延期");
 
 
 	}

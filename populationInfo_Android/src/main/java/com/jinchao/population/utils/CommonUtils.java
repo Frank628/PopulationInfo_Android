@@ -308,11 +308,7 @@ public class CommonUtils {
 		 if (str.matches(reg)) {
 			 return true;
 		 } else{
-			 String regdian="[0-9a-zA-Z]{4,9}";
-			 if (str.matches(regdian))
-				 return true;
-			 else
-				 return false;
+			 return false;
 		 }
 	 }
     public static boolean isCarAndMotoNo(String str){

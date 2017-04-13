@@ -582,17 +582,17 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				}
 			}
             if (jiaotonggongju.equals("汽车")||jiaotonggongju.equals("摩托车")){
-                if(!CommonUtils.isCarAndMotoNo(chepaihao)){
-                    Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-			if (!TextUtils.isEmpty(chepaihao)) {
-				if (!CommonUtils.isCarNo(chepaihao)) {
+				if(!CommonUtils.isCarAndMotoNo(chepaihao)){
 					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
+//			if (!TextUtils.isEmpty(chepaihao)) {
+//				if (!CommonUtils.isCarNo(chepaihao)) {
+//					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//			}
 
 			if (!TextUtils.isEmpty(MSN)){
 				if (!CommonUtils.isEmail(MSN)){
@@ -838,12 +838,18 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			SharePrefUtil.saveString(HandleIDActivity.this, "realroomcode", shihao);
 			SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date =sDateFormat.format(new java.util.Date());
-			if (!TextUtils.isEmpty(chepaihao)) {
-				if (!CommonUtils.isCarNo(chepaihao)) {
+			if (jiaotonggongju.equals("汽车")||jiaotonggongju.equals("摩托车")){
+				if(!CommonUtils.isCarAndMotoNo(chepaihao)){
 					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
 			}
+//			if (!TextUtils.isEmpty(chepaihao)) {
+//				if (!CommonUtils.isCarNo(chepaihao)) {
+//					Toast.makeText(this, "车牌号格式有误~", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//			}
 			if (realHouseOne!=null||renyuanInhouseOne!=null) {
 				if (shihao.length()!=4) {
 					Toast.makeText(this, "请输入4位的室号~", Toast.LENGTH_SHORT).show();

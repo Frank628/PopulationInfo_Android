@@ -1,5 +1,6 @@
 package com.jinchao.population.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.DataManagement.SendDataDetailActivity;
 import com.jinchao.population.alienPeople.PeopleListinHouseActivity;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.base.CommonAdapter;
@@ -134,9 +136,9 @@ public class SendDataFragment  extends BaseFragment{
                                 public void confirm() {
                                     try {
 
-                                            dbUtils.delete(People.class, WhereBuilder.b("id", "=", item.id));
-                                            FileUtils.deleteFile(Constants.DB_PATH + item.uuid + ".xml");
-                                            initData();
+                                        dbUtils.delete(People.class, WhereBuilder.b("id", "=", item.id));
+                                        FileUtils.deleteFile(Constants.DB_PATH + item.uuid + ".xml");
+                                        initData();
                                     } catch (DbException e) {
                                         e.printStackTrace();
                                     }
@@ -148,7 +150,14 @@ public class SendDataFragment  extends BaseFragment{
                             });
                         }
                     });
-
+                    helper.getView(R.id.ll_left).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent =new Intent(getActivity(), SendDataDetailActivity.class);
+                            intent.putExtra("people",item);
+                            startActivity(intent);
+                        }
+                    });
                 }
             };
             lv.setAdapter(adapter);

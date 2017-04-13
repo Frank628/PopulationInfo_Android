@@ -65,37 +65,38 @@
             </intent-filter>
         </activity>
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name="com.jinchao.population.main.LoginActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.jinchao.population.main.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.AlienPopulationActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.RegisterActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.alienPeople.SearchTwoWayActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.alienPeople.IDCardResultActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.alienPeople.PeopleListinHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.alienPeople.housemanagement.HouseOperationActivity" android:launchMode="singleTop" android:theme="@style/StyledIndicators2"  android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.alienPeople.residentpermit.ResidentPermitManagementActivity" android:launchMode="singleTop" android:theme="@style/StyledIndicators2"  android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.ZanZhuActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.HandleIDActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.RegistRentalHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.AddRentalHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.EidtHouseAddressActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.SearchPeopleActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.realpopulation.SearchPeopleRealActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.SearchRentalHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-    	<activity android:name="com.jinchao.population.mainmenu.StatisticsActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-     	<activity android:name="com.jinchao.population.mainmenu.SysActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.ReshootActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.UpLoadActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-    	<activity android:name="com.jinchao.population.mainmenu.SearchPeopleDetailActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.MaturityWarningActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.mainmenu.MaturityPeopleActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.realpopulation.SingleRealPopulationActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-    	<activity android:name="com.jinchao.population.realpopulation.AddChildActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.activity.AboutActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.activity.PersonInHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.realpopulation.RealPeopleSearchActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.nfcregister.NFCActiveActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name="com.jinchao.population.alienPeople.registchangelogoff.PeoplesInHouseActivity" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.main.LoginActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.jinchao.population.main.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.AlienPopulationActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.RegisterActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.SearchTwoWayActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.IDCardResultActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.PeopleListinHouseActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.housemanagement.HouseOperationActivity" android:launchMode="singleTop" android:theme="@style/StyledIndicators2"  android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.residentpermit.ResidentPermitManagementActivity" android:launchMode="singleTop" android:theme="@style/StyledIndicators2"  android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.ZanZhuActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.HandleIDActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateUnspecified|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.RegistRentalHouseActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.AddRentalHouseActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.EidtHouseAddressActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.SearchPeopleActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.realpopulation.SearchPeopleRealActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.SearchRentalHouseActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+    	<activity android:name="com.jinchao.population.mainmenu.StatisticsActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+     	<activity android:name="com.jinchao.population.mainmenu.SysActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.ReshootActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.UpLoadActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+    	<activity android:name="com.jinchao.population.mainmenu.SearchPeopleDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.MaturityWarningActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.mainmenu.MaturityPeopleActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.realpopulation.SingleRealPopulationActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+    	<activity android:name="com.jinchao.population.realpopulation.AddChildActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.activity.AboutActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.activity.PersonInHouseActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.realpopulation.RealPeopleSearchActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.nfcregister.NFCActiveActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.registchangelogoff.PeoplesInHouseActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.DataManagement.SendDataDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
               android:name="com.jinchao.population.alienPeople.housemanagement.NFCReadPeopleInHouseActivity"
               android:label="显示纯文本NFC标签的内容"

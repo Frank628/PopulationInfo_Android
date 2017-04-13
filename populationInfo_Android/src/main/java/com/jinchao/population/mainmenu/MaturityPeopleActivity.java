@@ -136,6 +136,7 @@ public class MaturityPeopleActivity extends BaseActiviy{
                             Intent intent =new Intent(MaturityPeopleActivity.this, SearchPeopleDetailActivity.class);
                             RenyuanInHouseBean.RenyuanInhouseOne renyuanInHouseone=new RenyuanInHouseBean.RenyuanInhouseOne(item.write_time, item.house_addr, item.house_code, item.idcard, item.resdients_status, item.shihao, item.sname);
                             intent.putExtra("renyuan", renyuanInHouseone);
+                            intent.putExtra("phone",item.tel);
                             startActivity(intent);
                         }
 

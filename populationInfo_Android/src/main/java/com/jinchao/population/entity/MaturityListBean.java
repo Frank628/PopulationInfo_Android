@@ -24,5 +24,6 @@ public class MaturityListBean {
         public String shihao="";
         public String sname="";
         public String write_time="";
+        public String tel="";
     }
 }
