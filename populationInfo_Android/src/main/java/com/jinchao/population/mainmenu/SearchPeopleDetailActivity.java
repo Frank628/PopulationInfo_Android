@@ -153,6 +153,10 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 
 	}
 	private void yanqi(){
+		if(TextUtils.isEmpty(renYuanXinXiBean.house_addr)||TextUtils.isEmpty(renYuanXinXiBean.house_code)){
+			Toast.makeText(this, "无房屋编号或地址，无法延期~", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date =sDateFormat.format(new java.util.Date());
 		People people=new People(renYuanXinXiBean.sname, renYuanXinXiBean.idcard, renYuanXinXiBean.idcard.substring(0, 6), "变更", CommonUtils.GenerateGUID(), "1", "1",
@@ -195,6 +199,10 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 
 	@Event(value={R.id.btn_zhuxiao})
 	private void zhuxiao(View view){
+		if(TextUtils.isEmpty(renYuanXinXiBean.house_addr)||TextUtils.isEmpty(renYuanXinXiBean.house_code)){
+			Toast.makeText(this, "无房屋编号或地址，无法注销~", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");       
 		String date =sDateFormat.format(new java.util.Date()); 
 		People people=new People(renYuanXinXiBean.sname, date, renYuanXinXiBean.idcard, "注销", CommonUtils.GenerateGUID(), "2",

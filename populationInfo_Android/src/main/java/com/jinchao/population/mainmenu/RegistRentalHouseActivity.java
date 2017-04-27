@@ -402,54 +402,54 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 					if (housexml.list!=null) {
 						for (int i = 0; i < housexml.list.size(); i++) {
 							try {
-								switch (database_tableNo){
+								switch (database_tableNo) {
 									case 1:
-										HouseAddressOldBean houseAddressOldBean =new HouseAddressOldBean(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean houseAddressOldBean = new HouseAddressOldBean(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen.add(houseAddressOldBean);
 										dbUtils.save(houseAddressOldBean);
 										break;
 									case 2:
-										HouseAddressOldBean2 houseAddressOldBean2 =new HouseAddressOldBean2(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean2 houseAddressOldBean2 = new HouseAddressOldBean2(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen2.add(houseAddressOldBean2);
 										dbUtils.save(houseAddressOldBean2);
 										break;
 									case 3:
-										HouseAddressOldBean3 houseAddressOldBean3 =new HouseAddressOldBean3(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean3 houseAddressOldBean3 = new HouseAddressOldBean3(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen3.add(houseAddressOldBean3);
 										dbUtils.save(houseAddressOldBean3);
 										break;
 									case 4:
-										HouseAddressOldBean4 houseAddressOldBean4 =new HouseAddressOldBean4(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean4 houseAddressOldBean4 = new HouseAddressOldBean4(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen4.add(houseAddressOldBean4);
 										dbUtils.save(houseAddressOldBean4);
 										break;
 									case 5:
-										HouseAddressOldBean5 houseAddressOldBean5 =new HouseAddressOldBean5(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean5 houseAddressOldBean5 = new HouseAddressOldBean5(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen5.add(houseAddressOldBean5);
 										dbUtils.save(houseAddressOldBean5);
 										break;
 									case 6:
-										HouseAddressOldBean6 houseAddressOldBean6 =new HouseAddressOldBean6(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean6 houseAddressOldBean6 = new HouseAddressOldBean6(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen6.add(houseAddressOldBean6);
 										dbUtils.save(houseAddressOldBean6);
 										break;
 									case 7:
-										HouseAddressOldBean7 houseAddressOldBean7 =new HouseAddressOldBean7(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean7 houseAddressOldBean7 = new HouseAddressOldBean7(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen7.add(houseAddressOldBean7);
 										dbUtils.save(houseAddressOldBean7);
 										break;
 									case 8:
-										HouseAddressOldBean8 houseAddressOldBean8 =new HouseAddressOldBean8(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean8 houseAddressOldBean8 = new HouseAddressOldBean8(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen8.add(houseAddressOldBean8);
 										dbUtils.save(houseAddressOldBean8);
 										break;
 									case 9:
-										HouseAddressOldBean9 houseAddressOldBean9 =new HouseAddressOldBean9(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean9 houseAddressOldBean9 = new HouseAddressOldBean9(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen9.add(houseAddressOldBean9);
 										dbUtils.save(houseAddressOldBean9);
 										break;
 									case 10:
-										HouseAddressOldBean10 houseAddressOldBean10 =new HouseAddressOldBean10(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
+										HouseAddressOldBean10 houseAddressOldBean10 = new HouseAddressOldBean10(housexml.list.get(i).id, housexml.list.get(i).shequ_id, housexml.list.get(i).user_id, housexml.list.get(i).scode, housexml.list.get(i).address, housexml.list.get(i).hrs_pname, housexml.list.get(i).telphone, housexml.list.get(i).idcard, housexml.list.get(i).source_id, housexml.list.get(i).udt);
 										listzen10.add(houseAddressOldBean10);
 										dbUtils.save(houseAddressOldBean10);
 										break;
@@ -462,27 +462,28 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 							RegistRentalHouseActivity.this.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
-									dialogLoading.setName("已导入"+bcount+"条合成地址");
+									dialogLoading.setName("已导入" + bcount + "条合成地址");
 								}
 							});
 						}
+
+						SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						String date = sDateFormat.format(new Date(System.currentTimeMillis()));
+						UserPKDataBase userPKDataBase = dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name", "=", MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
+						if (userPKDataBase != null) {
+							userPKDataBase.setIs_used("0");
+							userPKDataBase.setDatabase_name(database_tableNo);
+							userPKDataBase.setUpdate_time(date);
+							dbUtils.update(userPKDataBase, "database_name", "is_used", "update_time");
+						} else {
+							dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0", date));
+						}
+						((MyApplication) getApplication()).setDataBaseTableNo(database_tableNo);
+						isQuanKuOk = true;
+						Message msg = new Message();
+						msg.what = 1;
+						handler.sendMessage(msg);
 					}
-					SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String date =sDateFormat.format(new Date(System.currentTimeMillis()));
-					UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
-					if (userPKDataBase!=null){
-						userPKDataBase.setIs_used("0");
-						userPKDataBase.setDatabase_name(database_tableNo);
-						userPKDataBase.setUpdate_time(date);
-						dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
-					}else{
-						dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
-					}
-					((MyApplication)getApplication()).setDataBaseTableNo(database_tableNo);
-					isQuanKuOk=true;
-					Message msg=new Message();
-					msg.what=1;
-					handler.sendMessage(msg);
 //					getAllAddressRequest();
 				} catch (Exception e) {
 					dialogLoading.dismiss();
@@ -642,21 +643,24 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 									e.printStackTrace();
 								}
 							}
+							if(housexml.list.size()!=0){
+								SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+								String date =sDateFormat.format(new Date(System.currentTimeMillis()));
+								UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
+								if (userPKDataBase!=null){
+									userPKDataBase.setIs_used("0");
+									userPKDataBase.setUpdate_time(date);
+									dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
+								}else{
+									dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
+								}
+							}
+							Message msg=new Message();
+							msg.what=1;
+							handler.sendMessage(msg);
 						}
 					}
-					SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String date =sDateFormat.format(new Date(System.currentTimeMillis()));
-					UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this)));
-					if (userPKDataBase!=null){
-						userPKDataBase.setIs_used("0");
-						userPKDataBase.setUpdate_time(date);
-						dbUtils.update(userPKDataBase,"database_name","is_used","update_time");
-					}else{
-						dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
-					}
-					Message msg=new Message();
-					msg.what=1;
-					handler.sendMessage(msg);
+
 				} catch (Exception e) {
 					dialogLoading.dismiss();
 					e.printStackTrace();

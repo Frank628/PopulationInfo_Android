@@ -2,6 +2,7 @@ package com.jinchao.population.alienPeople;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,7 +46,7 @@ public class IDCardResultActivity extends BaseActiviy{
     @ViewInject(R.id.bottom)LinearLayout bottom;
     @ViewInject(R.id.btn_regist)Button btn_regist;
     People peoplefromXml;
-    String name="",huji1="",huji2="";
+    String name="",huji1="",huji2="",sqcode="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,7 @@ public class IDCardResultActivity extends BaseActiviy{
             public void onSuccess(String result) {
                 requestBanzhengSHEQU(idcard, XmlUtils.parseXML(result));
                 peoplefromXml=XmlUtils.parseXMLtoPeople(result);
+                sqcode=XmlUtils.parseXMLtoShequcode(result);
                 name=peoplefromXml.getName();
                 huji2=XmlUtils.parseXMLtohuji2(result);
                 huji1=XmlUtils.parseXMLtohuji1(result);
@@ -168,6 +170,24 @@ public class IDCardResultActivity extends BaseActiviy{
     }
     @Event(value={R.id.btn_unregist})
     private void zhuxiao(View view){
+        if(TextUtils.isEmpty(peoplefromXml.homecode)||TextUtils.isEmpty(peoplefromXml.ResidentAddress)){
+            Toast.makeText(this, "无房屋编号或地址，无法注销~", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(sqcode.equals(MyInfomationManager.getSQCODE(IDCardResultActivity.this))){
+            Dialog.showForceDialog(IDCardResultActivity.this, "", "此人不在本社区，无法注销！", new Dialog.DialogClickListener() {
+                @Override
+                public void confirm() {
+
+                }
+
+                @Override
+                public void cancel() {
+
+                }
+            });
+            return;
+        }
         SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date =sDateFormat.format(new java.util.Date());
         People people=new People(peoplefromXml.name, date, peoplefromXml.cardno, "注销", CommonUtils.GenerateGUID(), "2",
