@@ -176,7 +176,7 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 				if(citieslist.size()!=0){
 					CityDatasArr = new String[citieslist.size()];
 					for (int j = 0; j < citieslist.size(); j++) {
-						CityDatasArr[j]=citieslist.get(j).getCity_name();
+						CityDatasArr[j]=citieslist.get(j).getCity_name().equals("重庆市")?"重庆市(废除)":citieslist.get(j).getCity_name();
 						List<Area> areaslist= dbUtils.findAll(Selector.from(Area.class).where("fk_c", "=", citieslist.get(j).getId()));
 						AreaDatasArr=new String[areaslist.size()+1];
 						IDDatasArr = new String[areaslist.size()+1];
@@ -187,8 +187,8 @@ public class NationPop extends PopupWindow implements OnClickListener,OnWheelCha
 							IDDatasArr[k+1]=areaslist.get(k).getId()+"";
 						}
                         if(areaslist.size()!=0){
-                            AreaDatasMap.put(citieslist.get(j).getCity_name(), AreaDatasArr);
-                            IDDatasMap.put(citieslist.get(j).getCity_name(), IDDatasArr);
+                            AreaDatasMap.put(citieslist.get(j).getCity_name().equals("重庆市")?"重庆市(废除)":citieslist.get(j).getCity_name(), AreaDatasArr);
+                            IDDatasMap.put(citieslist.get(j).getCity_name().equals("重庆市")?"重庆市(废除)":citieslist.get(j).getCity_name(), IDDatasArr);
                         }
 					}
 					CityDatasMap.put(provincelist.get(i).getProvince_name(), CityDatasArr);
