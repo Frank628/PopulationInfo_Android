@@ -8,8 +8,8 @@ android {
         applicationId "com.jinchao.population"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 123
-        versionName "1.2.3"
+        versionCode 124
+        versionName "1.2.4"
         multiDexEnabled true
         signingConfigs {
             // your debug keystore

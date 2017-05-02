@@ -174,7 +174,7 @@ public class IDCardResultActivity extends BaseActiviy{
             Toast.makeText(this, "无房屋编号或地址，无法注销~", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(sqcode.equals(MyInfomationManager.getSQCODE(IDCardResultActivity.this))){
+        if(!sqcode.equals(MyInfomationManager.getSQCODE(IDCardResultActivity.this))){
             Dialog.showForceDialog(IDCardResultActivity.this, "", "此人不在本社区，无法注销！", new Dialog.DialogClickListener() {
                 @Override
                 public void confirm() {

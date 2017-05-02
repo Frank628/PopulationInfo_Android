@@ -34,15 +34,19 @@ public class BaseActiviy extends FragmentActivity implements NetWorkManager.NetC
 	@Override
 	public void change(NetWorkManager.NetWorkInfo netWorkInfo) {
 		if (!netWorkInfo.isNetAvailable){
-			runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					AlertDialog.Builder builder = new AlertDialog.Builder(BaseActiviy.this, AlertDialog.THEME_HOLO_LIGHT);
-					builder.setMessage("当前网络不给力，请检查网络！");
-					builder.setPositiveButton(android.R.string.ok, null);
-					builder.create().show();
-				}
-			});
+			try {
+				runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(BaseActiviy.this, AlertDialog.THEME_HOLO_LIGHT);
+                        builder.setMessage("当前网络不给力，请检查网络！");
+                        builder.setPositiveButton(android.R.string.ok, null);
+                        builder.create().show();
+                    }
+                });
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 		}
 	}

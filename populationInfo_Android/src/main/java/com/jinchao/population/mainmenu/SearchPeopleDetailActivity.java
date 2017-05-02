@@ -153,7 +153,11 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 
 	}
 	private void yanqi(){
-		if(TextUtils.isEmpty(renYuanXinXiBean.house_addr)||TextUtils.isEmpty(renYuanXinXiBean.house_code)){
+		if(renYuanXinXiBean.house_addr==null||renYuanXinXiBean.house_code==null){
+			Toast.makeText(this, "无房屋编号或地址，无法延期~", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		if(TextUtils.isEmpty(renYuanXinXiBean.house_addr.trim())||TextUtils.isEmpty(renYuanXinXiBean.house_code.trim())){
 			Toast.makeText(this, "无房屋编号或地址，无法延期~", Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -180,10 +184,6 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 	}
 	@Event(value={R.id.btn_tongwu})
 	private void tongwubiangeng(View view){
-//		if(isHistory&&(!SQCODE.trim().equals(MyInfomationManager.getSQCODE(this)))){
-			renYuanXinXiBean.house_addr="";
-			renYuanXinXiBean.house_code="";
-//		}
 		SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date =sDateFormat.format(new java.util.Date());
 		Intent intent = new Intent(SearchPeopleDetailActivity.this,HandleIDActivity.class);
@@ -192,7 +192,15 @@ public class SearchPeopleDetailActivity extends BaseActiviy{
 				MyInfomationManager.getSQNAME(SearchPeopleDetailActivity.this),date));
 		intent.putExtra("isHandle", false);
 		if (renYuanXinXiBean!=null) {
-			intent.putExtra(Constants.HOUSE_INFOR,renYuanXinXiBean);
+			RenyuanInHouseBean.RenyuanInhouseOne renYuanXinXiBean2=new RenyuanInHouseBean.RenyuanInhouseOne();
+			renYuanXinXiBean2.shihao="";
+			renYuanXinXiBean2.house_addr="";
+			renYuanXinXiBean2.house_code="";
+			renYuanXinXiBean2.idcard=renYuanXinXiBean.idcard;
+			renYuanXinXiBean2.resdients_status=renYuanXinXiBean.resdients_status;
+			renYuanXinXiBean2.sname=renYuanXinXiBean.sname;
+			renYuanXinXiBean2.write_time=renYuanXinXiBean.write_time;
+			intent.putExtra(Constants.HOUSE_INFOR,renYuanXinXiBean2);
 		}
 		startActivity(intent);
 	}
