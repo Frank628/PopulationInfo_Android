@@ -8,13 +8,13 @@ android {
         applicationId "com.jinchao.population"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 124
-        versionName "1.2.4"
+        versionCode 126
+        versionName "1.2.6"
         multiDexEnabled true
         signingConfigs {
             // your debug keystore
             debug {
-//                storeFile file("C:\\Users\\OfferJiShu01\\.android\\debug.keystore")
+            //  storeFile file("C:\\Users\\OfferJiShu01\\.android\\debug.keystore")
             }
         }
 

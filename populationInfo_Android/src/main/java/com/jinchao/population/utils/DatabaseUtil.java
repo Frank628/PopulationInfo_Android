@@ -62,15 +62,15 @@ public class DatabaseUtil {
             DbUtils dbUtils=DeviceUtils.getDbUtils(context);
             if(dbUtils.tableIsExist(UserPKDataBase.class)){
                 for (int i=1;i<11;i++){
-                    UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("database_name","=",i));
+                    UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("database_name","=",i).and("is_used","=","0"));
                     if (userPKDataBase==null){
                         return i;
                     }
                 }
-               UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("is_used","=","1"));
-               if (userPKDataBase_d!=null){
-                   return userPKDataBase_d.getDatabase_name();
-               }
+//               UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("is_used","=","1"));
+//               if (userPKDataBase_d!=null){
+//                   return userPKDataBase_d.getDatabase_name();
+//               }
             }
         } catch (DbException e) {
             e.printStackTrace();
@@ -176,8 +176,14 @@ public class DatabaseUtil {
         try {
             UserPKDataBase userPKDataBase=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=", MyInfomationManager.getSQNAME(context)));
             if (userPKDataBase!=null){
-                userPKDataBase.setIs_used("0");
-                dbUtils.update(userPKDataBase,"is_used");
+                if(userPKDataBase.is_used.equals("1")) {
+                    UserPKDataBase userPKDataBase2 = dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("database_name", "=", userPKDataBase.database_name).and("sq_name","!=",MyInfomationManager.getSQNAME(context)));
+                    if (userPKDataBase2 != null) {
+                        dbUtils.delete(userPKDataBase2);
+                    }
+                    userPKDataBase.setIs_used("0");
+                    dbUtils.update(userPKDataBase, "is_used");
+                }
                 no=userPKDataBase.getDatabase_name();
             }else{
                 no=0;

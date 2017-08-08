@@ -38,7 +38,7 @@ public class HouseOperationActivity extends BaseActiviy {
     @ViewInject(R.id.message_viewpager) private ViewPager mPager;
     @ViewInject(R.id.tab_indicator) private TabPageIndicator mTabPageIndicator;
     @ViewInject(R.id.underline_indicator) private UnderlinePageIndicatorEx mUnderlinePageIndicator;
-    String[] titles=new String[]{"出租屋\n查  询","出租屋\n资料编辑","出租屋\n删  除","智能门牌\n制  作"};
+    String[] titles=new String[]{"出租屋\n查  询","出租屋\n资料编辑","出租屋\n注  销","智能门牌\n制  作"};
     NfcAdapter nfcAdapter;
     private PendingIntent mPendingIntent;
     public IntentFilter[] nfcIfs;
@@ -58,7 +58,7 @@ public class HouseOperationActivity extends BaseActiviy {
         adapter=new HouseOperationAdapter(getSupportFragmentManager());
         List<Fragment> fragmentList=new ArrayList<>();
         fragmentList.add(new RentalHousingInquiriesFragment());
-        fragmentList.add(new RentalHousingDataEditorFragment());
+        fragmentList.add(new RentalHousingDataEditorFragment2());
         fragmentList.add(new RentalHousingDeleteFragment());
         fragmentList.add(new NfcTagWriterFragment());
         adapter.setTitleList(titles);

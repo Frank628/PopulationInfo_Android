@@ -13,12 +13,15 @@ import org.xutils.view.annotation.ViewInject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +55,7 @@ import com.jinchao.population.view.Dialog.DialogClickListener;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.view.ShequWheel;
 import com.jinchao.population.view.ShequWheel.OnEnsureClickListener;
+import com.jinchao.population.view.StringWheel;
 import com.jinchao.population.widget.ValidateEidtText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -60,11 +64,31 @@ import com.lidroid.xutils.exception.DbException;
 @ContentView(R.layout.activity_addrentalhouse)
 public class AddRentalHouseActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_shequ)private TextView tv_shequ;
+	@ViewInject(R.id.tv_fwlx)private TextView tv_fwlx;
 	@ViewInject(R.id.tv_bianji)private TextView tv_bianji;
 	@ViewInject(R.id.edt_bianhao)private ValidateEidtText edt_bianhao;
 	@ViewInject(R.id.edt_fangdongxingming)private EditText edt_fangdongxingming;
 	@ViewInject(R.id.edt_dianhua)private ValidateEidtText edt_dianhua;
 	@ViewInject(R.id.edt_shenfenzheng)private ValidateEidtText edt_shenfenzheng;
+	@ViewInject(R.id.edt_mj)private ValidateEidtText edt_mj;
+	@ViewInject(R.id.edt_1)private ValidateEidtText edt_1;
+	@ViewInject(R.id.edt_2)private ValidateEidtText edt_2;
+	@ViewInject(R.id.edt_3)private ValidateEidtText edt_3;
+	@ViewInject(R.id.edt_4)private ValidateEidtText edt_4;
+	@ViewInject(R.id.edt_5)private ValidateEidtText edt_5;
+	@ViewInject(R.id.edt_6)private ValidateEidtText edt_6;
+	@ViewInject(R.id.edt_7)private ValidateEidtText edt_7;
+	@ViewInject(R.id.edt_8)private ValidateEidtText edt_8;
+	@ViewInject(R.id.edt_bei)private ValidateEidtText edt_bei;
+	@ViewInject(R.id.rg_1)private RadioGroup rg_1;
+	@ViewInject(R.id.rg_2)private RadioGroup rg_2;
+	@ViewInject(R.id.rg_3)private RadioGroup rg_3;
+	@ViewInject(R.id.rg_4)private RadioGroup rg_4;
+	@ViewInject(R.id.rg_5)private RadioGroup rg_5;
+	@ViewInject(R.id.rg_6)private RadioGroup rg_6;
+	@ViewInject(R.id.rg_7)private RadioGroup rg_7;
+	@ViewInject(R.id.rg_8)private RadioGroup rg_8;
+	private String shi="0",fou="1";
 	private final static int ADDRESS_EDIT=1;
 	private String sqid="",sqname="",address ="",mph="",jieluxiang="",menpaihao="",fuhao="",
 			louhao="",shihao="",menpaihaodanwei="",fuhaodanwei="",loudanwei="",louhaodanwei="",
@@ -89,6 +113,18 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				String fangdongxingming=edt_fangdongxingming.getText().toString().trim();
 				String dianhua =edt_dianhua.getText().toString().trim();
 				String cardno=edt_shenfenzheng.getText().toString().trim();
+				String fwlx=tv_fwlx.getText().toString().trim();
+				String mj=edt_mj.getText().toString().trim();
+				String bei_1=edt_1.getText().toString().trim();
+				String bei_2= edt_2.getText().toString().trim();
+				String bei_3= edt_3.getText().toString().trim();
+				String bei_4= edt_4.getText().toString().trim();
+				String bei_5= edt_5.getText().toString().trim();
+				String bei_6= edt_6.getText().toString().trim();
+				String bei_7= edt_7.getText().toString().trim();
+				String bei_8= edt_8.getText().toString().trim();
+				String beizhu= edt_bei.getText().toString().trim();
+
 				if (fangwubianhao.equals("")) {
 					Toast.makeText(AddRentalHouseActivity.this, "请输入房屋编号~", Toast.LENGTH_SHORT).show();
 					return;
@@ -299,24 +335,52 @@ public class AddRentalHouseActivity extends BaseActiviy{
 					Toast.makeText(AddRentalHouseActivity.this, "联系电话格式错误~", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				save(shequ, fangwubianhao, address, fangdongxingming, dianhua,cardno,getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false));
+				String fwlx_code="9";
+				if(TextUtils.isEmpty(fwlx)||fwlx.equals("请选择房屋类型")){
+					Toast.makeText(AddRentalHouseActivity.this, "请选择房屋类型~", Toast.LENGTH_SHORT).show();
+					return;
+				}else{
+					for (int i=0;i<Constants.FANGWULEIXING.length;i++){
+						if (fwlx.equals(Constants.FANGWULEIXING[i])){
+							fwlx_code=Constants.FANGWULEIXING_CODE[i];
+						}
+					}
+				}
+				if(!CommonUtils.isMianji(edt_mj.getText().toString().trim())){
+					Toast.makeText(AddRentalHouseActivity.this, "房屋面积未填写~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if(rg_1.getCheckedRadioButtonId()==-1||rg_2.getCheckedRadioButtonId()==-1||rg_3.getCheckedRadioButtonId()==-1||rg_4.getCheckedRadioButtonId()==-1||rg_5.getCheckedRadioButtonId()==-1||rg_6.getCheckedRadioButtonId()==-1||rg_7.getCheckedRadioButtonId()==-1||rg_8.getCheckedRadioButtonId()==-1){
+					Toast.makeText(AddRentalHouseActivity.this, "请勾选所有相关治理内容的信息！", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				String rg1=((RadioButton)findViewById(rg_1.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				String rg2=((RadioButton)findViewById(rg_2.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				String rg3=((RadioButton)findViewById(rg_3.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				String rg4=((RadioButton)findViewById(rg_4.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				String rg5=((RadioButton)findViewById(rg_5.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				String rg6=((RadioButton)findViewById(rg_6.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				String rg7=((RadioButton)findViewById(rg_7.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				String rg8=((RadioButton)findViewById(rg_8.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
+				save(shequ, fangwubianhao, address, fangdongxingming, dianhua,cardno,getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false),
+						mj,rg1,rg2,rg3,rg4,rg5,rg6,rg7,rg8,bei_1,bei_2,bei_3,bei_4,bei_5,bei_6,bei_7,bei_8,beizhu,fwlx_code);
 			}
 		});
 		sqname=MyInfomationManager.getSQNAME(this);
 		sqid=MyInfomationManager.getSQID(this);
 		tv_shequ.setText(sqname);
 	}
-	private void save(String shequ, String bianhao, String fangwuaddress, String name, String dianhua, String cardno, final boolean isfrom_real){
+	private void save(String shequ, String bianhao, String fangwuaddress, String name, String dianhua, String cardno, final boolean isfrom_real,String mj,String rg1,String rg2,String rg3,String rg4,String rg5,String rg6,String rg7,String rg8,String bei_1,String bei_2,String bei_3,String bei_4,String bei_5,String bei_6,String bei_7,String bei_8,String beizhu,String fwlx){
 		RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
-		if (isfrom_real){
-			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
-			params.addBodyParameter("type", "saveHouse");
-		}else{
+//		if (isfrom_real){
+//			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
+//			params.addBodyParameter("type", "saveHouse");
+//		}else{
 			params=new RequestParams(Constants.URL+"HouseSave.aspx");
-			params.addBodyParameter("type", "save");
+			params.addBodyParameter("type", "savehouse");
 			params.addBodyParameter("house_mph", mph);
 			params.addBodyParameter("gps", "定位");
-		}
+//		}
 		params.addBodyParameter("user_name", MyInfomationManager.getUserName(AddRentalHouseActivity.this));
 		params.addBodyParameter("house_code", bianhao);
 		params.addBodyParameter("house_addr", fangwuaddress);
@@ -334,29 +398,44 @@ public class AddRentalHouseActivity extends BaseActiviy{
 		params.addBodyParameter("dy", danyuandanwei);
 		params.addBodyParameter("sh", shihao);
 		params.addBodyParameter("sh_flag", shihaodanwei);
+		params.addBodyParameter("isxp", rg1);
+		params.addBodyParameter("iswj", rg2);
+		params.addBodyParameter("isfz", rg3);
+		params.addBodyParameter("isfzxz", rg4);
+		params.addBodyParameter("isgbyt", rg5);
+		params.addBodyParameter("isgb", rg6);
+		params.addBodyParameter("isqj", rg7);
+		params.addBodyParameter("isyx", rg8);
+		params.addBodyParameter("bei_xp", bei_1);
+		params.addBodyParameter("bei_wj", bei_2);
+		params.addBodyParameter("bei_fz", bei_3);
+		params.addBodyParameter("bei_fzxz", bei_4);
+		params.addBodyParameter("bei_gbyt", bei_5);
+		params.addBodyParameter("bei_gb", bei_6);
+		params.addBodyParameter("bei_qj", bei_7);
+		params.addBodyParameter("bei_yx", bei_8);
+		params.addBodyParameter("beizhu", beizhu);
+		params.addBodyParameter("jzmj", mj);
+		params.addBodyParameter("fwlx", fwlx);
 
 
-		Log.i("house_addr",fangwuaddress);
-		Log.i("house_code",bianhao);
-		Log.i("house_pname",name);
-		Log.i("house_pidcard",cardno);
 		x.http().get(params, new CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
 				Log.d("bbb", result);
-				if (isfrom_real){
-					if (result.trim().equals("0")){
-						Toast.makeText(AddRentalHouseActivity.this, "出租屋已保存", Toast.LENGTH_SHORT).show();
-						AddRentalHouseActivity.this.finish();
-					}else if(result.trim().equals("-1")){
-						Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
-					}else if(result.trim().equals("-2")){
-						Toast.makeText(AddRentalHouseActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
-					}else if(result.trim().equals("-3")){
-						Toast.makeText(AddRentalHouseActivity.this, "社区不存在", Toast.LENGTH_SHORT).show();
-					}
-
-				}else{
+//				if (isfrom_real){
+//					if (result.trim().equals("0")){
+//						Toast.makeText(AddRentalHouseActivity.this, "出租屋已保存", Toast.LENGTH_SHORT).show();
+//						AddRentalHouseActivity.this.finish();
+//					}else if(result.trim().equals("-1")){
+//						Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
+//					}else if(result.trim().equals("-2")){
+//						Toast.makeText(AddRentalHouseActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+//					}else if(result.trim().equals("-3")){
+//						Toast.makeText(AddRentalHouseActivity.this, "社区不存在", Toast.LENGTH_SHORT).show();
+//					}
+//
+//				}else{
 					try {
 						if (result.trim().contains("该出租屋编号已存在")) {
 							Toast.makeText(AddRentalHouseActivity.this, "该出租屋编号已存在", Toast.LENGTH_SHORT).show();
@@ -374,7 +453,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 						Toast.makeText(AddRentalHouseActivity.this, "服务器返回数据有误", Toast.LENGTH_SHORT).show();
 						e.printStackTrace();
 					}
-				}
+//				}
 
 			}
 
@@ -421,7 +500,17 @@ public class AddRentalHouseActivity extends BaseActiviy{
 		Intent intent =new Intent(this, EidtHouseAddressActivity.class);
 		startActivityForResult(intent, ADDRESS_EDIT);
 	}
-	
+	@Event(value={R.id.rl_fwlx})
+	private void fwlx(View v){
+		StringWheel stringWheel=new StringWheel(this, Constants.FANGWULEIXING, new StringWheel.OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+				tv_fwlx.setText(str);
+			}
+		});
+		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+
 	@Event(value={R.id.rl_shequ})
 	private void shequClick(View v){
 		if (getCurrentFocus()!=null) {

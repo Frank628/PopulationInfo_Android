@@ -75,6 +75,14 @@ public class Constants {
 	public static final String[] HUYUZHENGMING={"全国婚育证明","本地管理服务卡","无"};
 	public static final String[] CANBAOZHONGLEI={"养老","医疗","失业","工伤","生育","农保"};
     public static final String[] GUANXIREN={"配偶","子女","父母","兄弟姐妹","其他"};
+	public static final String[] FANGWULEIXING={"搭建房","车库","楼房","平房","企业集宿","社会集宿","私房","公房","新村楼房","写字楼","建筑工地","其他"};
+	public static final String[] FANGWULEIXING_CODE={"a","b","c","5","6","7","1","2","3","4","8","9"};
+	public static final String[] ZUZHULEIXING={"单身居住","家庭居住","多人合住","混合居住","多家合住","旅馆式居住","其他"};
+	public static final String[] ZUZHULEIXING_CODE={"1","2","3","4","5","6","99"};
+	public static final String[] FANGWUJIEGOU={"楼房","平房","其他"};
+	public static final String[] FANGWUJIEGOU_CODE={"1","2","3"};
+	public static final String[] FANGWUYONGTU={"居住","生产","经营","仓储"};
+	public static final String[] FANGWUYONGTU_CODE={"1","2","3","4"};
 	public static final String IS_FROM_REALPOPULATION="IS_FROM_REALPOPULATION";//是否来自实有人口
 	public static final String IS_NFC_READER="IS_NFC_READER";//是否是从NFC读取页面跳转来
 	public static final String Where_from="Where_from";

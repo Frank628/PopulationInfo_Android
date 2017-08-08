@@ -300,7 +300,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                     serviceDownload.putExtra("url", versionBean.desFile);
                                     MainActivity.this.startService(serviceDownload);
                                 }
-
                                 @Override
                                 public void cancel() {
 

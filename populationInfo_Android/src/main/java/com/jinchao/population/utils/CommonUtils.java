@@ -240,6 +240,16 @@ public class CommonUtils {
             return false;
         }
     }
+	public static boolean isMianji(String mj) {
+		if (TextUtils.isEmpty(mj)) {
+			return false;
+		}else{
+			if (mj.equals("0"))
+				return false;
+			else
+				return true;
+		}
+	}
 	public static boolean isTrueHigh(String high) {
 		if (TextUtils.isEmpty(high)){
 			return false;

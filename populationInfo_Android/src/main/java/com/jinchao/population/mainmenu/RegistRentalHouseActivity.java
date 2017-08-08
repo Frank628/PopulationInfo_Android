@@ -484,10 +484,8 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 						msg.what = 1;
 						handler.sendMessage(msg);
 					}
-//					getAllAddressRequest();
 				} catch (Exception e) {
 					dialogLoading.dismiss();
-//					getAllAddressRequest();
 					e.printStackTrace();
 				}
 			}
@@ -655,15 +653,18 @@ public class RegistRentalHouseActivity extends BaseActiviy{
 									dbUtils.save(new UserPKDataBase(MyInfomationManager.getSQNAME(RegistRentalHouseActivity.this), database_tableNo, date, "0",date));
 								}
 							}
-							Message msg=new Message();
-							msg.what=1;
-							handler.sendMessage(msg);
+
+
 						}
 					}
-
+					Message msg=new Message();
+					msg.what=1;
+					handler.sendMessage(msg);
 				} catch (Exception e) {
 					dialogLoading.dismiss();
 					e.printStackTrace();
+				}finally {
+					dialogLoading.dismiss();
 				}
 			}
 		}).start();

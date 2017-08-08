@@ -3,6 +3,7 @@ package com.jinchao.population.utils;
 import android.util.Log;
 
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.entity.HouseInfoBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
 
 import org.json.JSONArray;
@@ -274,5 +275,80 @@ public class XMLParserUtil {
             e.printStackTrace();
         }
         return data.toString();
+    }
+
+    public static HouseInfoBean parseHouseInfor(String xml){
+        HouseInfoBean houseinfo=new HouseInfoBean();
+        xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document d = db.parse(CommonUtils.writeTxtToFile(xml, Constants.DB_PATH,"xml.xml"));
+            Node n = d.getChildNodes().item(0);
+            NodeList nl = n.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node n2 = nl.item(i);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    if (n2.getNodeName().equals("ResultSet")) {
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                NodeList nl3 = n3.getChildNodes();
+                                for (int k = 0; k < nl3.getLength(); k++) {//row
+                                    Node n4 = nl3.item(k);
+                                    if (n4.getNodeType() == Node.ELEMENT_NODE) {
+                                        if("出租人姓名".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFzxm(n4.getTextContent());
+                                        }
+                                        if("出租人居民证号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFzsfz(n4.getTextContent());
+
+                                        }
+                                        if("联系电话".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFzdh(n4.getTextContent());
+                                        }
+                                        if("出租面积".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setJzmj(n4.getTextContent());
+                                        }
+                                        if("房屋结构".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFwjg(n4.getTextContent());
+                                        }
+                                        if("房屋类别".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFwlx(n4.getTextContent());
+                                        }
+                                        if("租住户数".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setJzhs(n4.getTextContent());
+                                        }
+                                        if("房屋用途".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFwyt(n4.getTextContent());
+                                        }
+                                        if("租住类型".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setZzlx(n4.getTextContent());
+                                        }
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }else if(n2.getNodeName().equals("AppType")){
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+//                                str=str+n3.getTextContent();
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("msg")){
+                        houseinfo.setMsg(n2.getTextContent());
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return houseinfo;
     }
 }

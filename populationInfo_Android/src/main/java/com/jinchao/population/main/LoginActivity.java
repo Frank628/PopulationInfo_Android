@@ -89,6 +89,7 @@ public class LoginActivity extends BaseActiviy{
 				edt_password.setText("123456");
 			}
 		});
+
 		if(!MyInfomationManager.getUserName(this).equals("")) {
 			edt_user.setText(MyInfomationManager.getUserName(this));
 			edt_password.setText(MyInfomationManager.getPassWord(this));
@@ -97,6 +98,7 @@ public class LoginActivity extends BaseActiviy{
 		}
 		tv_version.setText("版本号：V"+CommonUtils.getVersionName(LoginActivity.this));
 		dbUtils= DeviceUtils.getDbUtils(this);
+		test();//三家，新巷房屋错乱问题解决方案，2017-07-31，1.2.5版本
 		userDropDownPop=new UserDropDownPop(LoginActivity.this,new UserDropDownPop.OnItemClickListener() {
 			@Override
 			public void onClick(String username) {
@@ -124,6 +126,19 @@ public class LoginActivity extends BaseActiviy{
                 }
             });
         }
+	}
+	private void test(){
+		boolean  isneedD=SharePrefUtil.getBoolean(LoginActivity.this,"isneedD",true);
+		if (isneedD){
+			try {
+				dbUtils.dropTable(UserPKDataBase.class);
+				dbUtils.dropTable(UserHistory.class);
+				SharePrefUtil.saveBoolean(LoginActivity.this,"isneedD",false);
+			} catch (DbException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 	@Event(value=R.id.edt_user)
 	private void showPopClick(View view){
@@ -214,8 +229,13 @@ public class LoginActivity extends BaseActiviy{
                                                 dbUtils.deleteById(UserHistory.class,listbytime.get(9).getId());
                                                 UserPKDataBase userPKDataBase_d=dbUtils.findFirst(Selector.from(UserPKDataBase.class).where("sq_name","=",listbytime.get(9).getSq_name()));
                                                 if(userPKDataBase_d!=null){
-                                                    userPKDataBase_d.setIs_used("1");
-                                                    dbUtils.saveOrUpdate(userPKDataBase_d);
+													List<UserPKDataBase> userPKDataBasesList=dbUtils.findAll(Selector.from(UserPKDataBase.class));
+													if (userPKDataBasesList.size()>=10){
+														dbUtils.deleteById(UserPKDataBase.class,userPKDataBase_d.getId());
+													}else{
+														userPKDataBase_d.setIs_used("1");
+														dbUtils.saveOrUpdate(userPKDataBase_d);
+													}
                                                 }
                                             }
                                             if (userHistory==null) {
@@ -247,7 +267,7 @@ public class LoginActivity extends BaseActiviy{
 								dismissProgressDialog();
 								runOnUiThread(new Runnable() {
 									public void run() {
-										Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+												Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
 									}
 								});
 								return;
