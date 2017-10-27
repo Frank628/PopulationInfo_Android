@@ -19,6 +19,10 @@ public class Constants {
 	public static final String SQCODE="SQCODE";
 	public static final String Accountlist="Accountlist";
 	public static final String LOCAL_DB_VERSION="LOCAL_DB_VERSION";
+	public static final String LATEST_APP_VERSION="LATEST_APP_VERSION";
+	public static final String LATEST_APP_VERSION_FORCE="LATEST_APP_VERSION_FORCE";
+	public static final String LATEST_APP_VERSION_URL="LATEST_APP_VERSION_URL";
+	public static final String LATEST_APP_VERSION_JSON="LATEST_APP_VERSION_JSON";
 	public static final String USER_DB="USER_DB";
 	public static final String FORMER_ACCOUNT="FORMER_ACCOUNT";
 	public static final String YUJING_TIME_LIMIT="YUJING_TIME_LIMIT";//到期预警接口请求时间
@@ -83,6 +87,10 @@ public class Constants {
 	public static final String[] FANGWUJIEGOU_CODE={"1","2","3"};
 	public static final String[] FANGWUYONGTU={"居住","生产","经营","仓储"};
 	public static final String[] FANGWUYONGTU_CODE={"1","2","3","4"};
+	public static final String[] JUZHULEIXING={"个人出租","单位出租","自购房屋","借住"};
+	public static final String[] JUZHULEIXING_CODE={"1","2","3","4"};
+	public static final String[] CHENGZUTUJING={"承租途径未知","房主直接出租","承租人转租","中介出租","其他","不适用"};
+	public static final String[] CHENGZUTUJING_CODE={"1","2","3","4","5","9"};
 	public static final String IS_FROM_REALPOPULATION="IS_FROM_REALPOPULATION";//是否来自实有人口
 	public static final String IS_NFC_READER="IS_NFC_READER";//是否是从NFC读取页面跳转来
 	public static final String Where_from="Where_from";

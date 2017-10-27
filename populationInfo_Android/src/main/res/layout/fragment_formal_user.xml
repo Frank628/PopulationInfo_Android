@@ -142,7 +142,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
+    <Button
+        android:id="@+id/btn_replace"
+        style="@style/MyButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="更换激活码" />
     <Button
         android:id="@+id/copyActiveCodeBtn"
         style="@style/MyButtonStyle"

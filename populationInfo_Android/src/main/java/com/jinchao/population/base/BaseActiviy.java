@@ -59,6 +59,7 @@ public class BaseActiviy extends FragmentActivity implements NetWorkManager.NetC
 	}
 	public void showProgressDialog(String title,String toast){
 		progressDialog = ProgressDialog.show(this,title,toast,true,false);
+		progressDialog.setCancelable(true);
 		progressDialog.show();
 	}
 	public void dismissProgressDialog(){

@@ -210,6 +210,38 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ll_jzlx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/improtant_people_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/improtant_people_tv_bg"
+                    android:text="居住类型"/>
+                <TextView
+                    android:id="@+id/tv_jzlx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:text="请选择"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/title2"
+                    android:drawableRight="@drawable/icon_down"
+                    />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -226,12 +258,49 @@
                     android:background="@drawable/improtant_people_tv_bg"
                     android:text="居住间数"/>
                 <com.jinchao.population.widget.ValidateEidtText
-                    android:id="@+id/edt_hs"
+                    android:id="@+id/edt_js"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:textSize="18sp"
                     android:hint="请输入居住间数"
+                    android:textColorHint="@color/title3"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:maxLength="4"
+                    android:drawablePadding="5dp"
+                    app:vd_textErrorColor="@color/red"
+                    app:vd_textRightColor="@color/title1"
+                    app:vd_drawable_right_right="@drawable/icon_gou"
+                    app:vd_drawable_right_error="@drawable/icon_gantan"
+                    app:vd_validate_type="normal"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/improtant_people_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/improtant_people_tv_bg"
+                    android:text="居住户数"/>
+                <com.jinchao.population.widget.ValidateEidtText
+                    android:id="@+id/edt_jzhs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:hint="请输入居住户数"
                     android:textColorHint="@color/title3"
                     android:background="@null"
                     android:gravity="center"
@@ -372,6 +441,149 @@
                     android:drawablePadding="5dp"
                     android:textColor="@color/title2"
                     android:drawableRight="@drawable/icon_down"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_cztj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/improtant_people_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/improtant_people_tv_bg"
+                    android:text="承租途径"/>
+                <TextView
+                    android:id="@+id/tv_cztj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:text="请选择"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/title2"
+                    android:drawableRight="@drawable/icon_down"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/improtant_people_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/improtant_people_tv_bg"
+                    android:text="转租人  姓  名"/>
+                <com.jinchao.population.widget.ValidateEidtText
+                    android:id="@+id/edt_zzrname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:hint="输入转租人姓名"
+                    android:textColorHint="@color/title3"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:maxLength="15"
+                    android:drawablePadding="5dp"
+                    app:vd_textErrorColor="@color/red"
+                    app:vd_textRightColor="@color/title1"
+                    app:vd_drawable_right_right="@drawable/icon_gou"
+                    app:vd_drawable_right_error="@drawable/icon_gantan"
+                    app:vd_validate_type="former_name"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/improtant_people_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/improtant_people_tv_bg"
+                    android:text="转租人身份证"/>
+                <com.jinchao.population.widget.ValidateEidtText
+                    android:id="@+id/edt_zzrsfz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:hint="输入转租人身份证号"
+                    android:textColorHint="@color/title3"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:maxLength="18"
+                    android:drawablePadding="5dp"
+                    app:vd_textErrorColor="@color/red"
+                    app:vd_textRightColor="@color/title1"
+                    app:vd_drawable_right_right="@drawable/icon_gou"
+                    app:vd_drawable_right_error="@drawable/icon_gantan"
+                    app:vd_validate_type="id_card"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/improtant_people_bg"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/improtant_people_tv_bg"
+                    android:text="转租人  电  话"/>
+                <com.jinchao.population.widget.ValidateEidtText
+                    android:id="@+id/edt_zzrphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="18sp"
+                    android:hint="输入转租人电话"
+                    android:textColorHint="@color/title3"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:maxLength="20"
+                    android:drawablePadding="5dp"
+                    app:vd_textErrorColor="@color/red"
+                    app:vd_textRightColor="@color/title1"
+                    app:vd_drawable_right_right="@drawable/icon_gou"
+                    app:vd_drawable_right_error="@drawable/icon_gantan"
+                    app:vd_validate_type="mobile"
                     />
             </LinearLayout>
             <Button

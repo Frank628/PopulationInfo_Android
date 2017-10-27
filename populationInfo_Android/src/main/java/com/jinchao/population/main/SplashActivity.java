@@ -115,7 +115,6 @@ public class SplashActivity extends BaseActiviy{
 //				try {
 //					DeviceBean deviceBean = GsonTools.changeGsonToBean(result,DeviceBean.class);
 //					if (deviceBean.data.Result.equals("1")){
-//
 //					}
 //				} catch (Exception e) {
 //					e.printStackTrace();

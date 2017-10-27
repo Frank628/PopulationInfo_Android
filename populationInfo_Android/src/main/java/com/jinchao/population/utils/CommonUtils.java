@@ -36,8 +36,23 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.WindowManager;
 
 public class CommonUtils {
+	/**
+	 * 获取屏幕宽度
+	 */
+	public static int getWindowWidth(Context context){
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		return wm.getDefaultDisplay().getWidth();
+	}
+	/**
+	 * 获取屏幕g高度
+	 */
+	public static int getWindowHeight(Context context){
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		return wm.getDefaultDisplay().getHeight();
+	}
 	/**
 	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
 	 */

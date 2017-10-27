@@ -7,965 +7,1416 @@
 	android:focusableInTouchMode="false"
     android:background="#f5f5f5"
     android:orientation="vertical" >
-    <include 
-        android:id="@+id/navgation_top"
-        layout="@layout/navigation_layout"
-        />
+	<include
+		android:id="@+id/navgation_top"
+		layout="@layout/navigation_layout"
+		/>
 	<ScrollView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical">
-		<RelativeLayout
-					android:id="@+id/rl_shequ"
-					android:layout_width="match_parent"
-					android:layout_height="@dimen/relative_row_height"
-					android:background="@drawable/white_click_bg2"
-					android:paddingLeft="@dimen/layout_leftright_padding"
-					android:paddingRight="@dimen/layout_leftright_padding"
-					>
-					<TextView
-						android:id="@+id/tv_leftshequ"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title1"
-						android:gravity="center_vertical"
-						android:layout_centerVertical="true"
-						android:text="社区"
-						/>
-					<TextView
-						android:id="@+id/tv_shequ"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:gravity="center_vertical|right"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title2"
-						android:layout_toRightOf="@+id/tv_leftshequ"
-						android:singleLine="true"
-						android:drawableRight="@drawable/ico_search_next"
-						android:drawablePadding="5dp"
-						android:background="@color/transaction"
-						/>
-				</RelativeLayout>
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#CACACA"
-					android:layout_marginLeft="@dimen/layout_leftright_padding"
-					android:layout_marginRight="@dimen/layout_leftright_padding"
-					/>
-				<RelativeLayout
-					android:id="@+id/rl_bianhao"
-					android:layout_width="match_parent"
-					android:layout_height="@dimen/relative_row_height"
-					android:background="@drawable/white_click_bg2"
-					android:paddingLeft="@dimen/layout_leftright_padding"
-					android:paddingRight="@dimen/layout_leftright_padding"
-					>
-					<TextView
-						android:id="@+id/tv_leftbianhao"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title1"
-						android:gravity="center_vertical"
-						android:layout_centerVertical="true"
-						android:text="房屋编号"
-						/>
-					<com.jinchao.population.widget.ValidateEidtText
-						android:id="@+id/edt_bianhao"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:gravity="center_vertical|right"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title2"
-						android:layout_toRightOf="@+id/tv_leftbianhao"
-						android:singleLine="true"
-						android:hint="请输入房屋编号"
-						android:maxLength="6"
-						android:textColorHint="@color/title4"
-						android:background="@color/transaction"
-						android:inputType="text"
-						android:drawablePadding="5dp"
-						app:vd_textErrorColor="@color/red"
-						app:vd_textRightColor="@color/title2"
-						app:vd_drawable_right_right="@drawable/icon_gou"
-						app:vd_drawable_right_error="@drawable/icon_gantan"
-						app:vd_validate_type="house_code"
-						/>
-				</RelativeLayout>
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#CACACA"
-					android:layout_marginLeft="@dimen/layout_leftright_padding"
-					android:layout_marginRight="@dimen/layout_leftright_padding"
-					/>
-				<RelativeLayout
-					android:id="@+id/rl_dizhibianji"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:background="@drawable/white_click_bg2"
-					android:paddingLeft="@dimen/layout_leftright_padding"
-					android:paddingRight="@dimen/layout_leftright_padding"
-					android:minHeight="@dimen/relative_row_height"
-					>
-					<TextView
-						android:id="@+id/tv_leftdizhibianji"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title1"
-						android:gravity="center_vertical"
-						android:layout_centerVertical="true"
-						android:text="房屋地址编辑"
-						/>
-					<TextView
-						android:id="@+id/tv_bianji"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:gravity="center_vertical|right"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title2"
-						android:layout_toRightOf="@+id/tv_leftdizhibianji"
-						android:drawableRight="@drawable/ico_search_next"
-						android:drawablePadding="5dp"
-						android:text="点击编辑房屋地址"
-						android:background="@color/transaction"
-						android:layout_centerVertical="true"
-						android:layout_marginLeft="10dp"
-						/>
-				</RelativeLayout>
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#CACACA"
-					android:layout_marginLeft="@dimen/layout_leftright_padding"
-					android:layout_marginRight="@dimen/layout_leftright_padding"
-					/>
-				<RelativeLayout
-					android:id="@+id/rl_fangdongxingming"
-					android:layout_width="match_parent"
-					android:layout_height="@dimen/relative_row_height"
-					android:background="@drawable/white_click_bg2"
-					android:paddingLeft="@dimen/layout_leftright_padding"
-					android:paddingRight="@dimen/layout_leftright_padding"
-					>
-					<TextView
-						android:id="@+id/tv_fangdongxingming"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title1"
-						android:gravity="center_vertical"
-						android:layout_centerVertical="true"
-						android:text="房东姓名"
-						/>
-					<EditText
-						android:id="@+id/edt_fangdongxingming"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:gravity="center_vertical|right"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title2"
-						android:layout_toRightOf="@+id/tv_fangdongxingming"
-						android:singleLine="true"
-						android:hint="请输入房东姓名"
-						android:textColorHint="@color/title4"
-						android:background="@color/transaction"
-						android:maxLength="30"
-						/>
-				</RelativeLayout>
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#CACACA"
-					android:layout_marginLeft="@dimen/layout_leftright_padding"
-					android:layout_marginRight="@dimen/layout_leftright_padding"
-					/>
-				<RelativeLayout
-					android:layout_width="match_parent"
-					android:layout_height="@dimen/relative_row_height"
-					android:background="@drawable/white_click_bg2"
-					android:paddingLeft="@dimen/layout_leftright_padding"
-					android:paddingRight="@dimen/layout_leftright_padding"
-					>
-					<TextView
-						android:id="@+id/tv_shenf"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title1"
-						android:gravity="center_vertical"
-						android:layout_centerVertical="true"
-						android:text="身份证号"
-						/>
-					<com.jinchao.population.widget.ValidateEidtText
-						android:id="@+id/edt_shenfenzheng"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:gravity="center_vertical|right"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title2"
-						android:layout_toRightOf="@+id/tv_shenf"
-						android:singleLine="true"
-						android:hint="请输入房东身份证号"
-						android:textColorHint="@color/title4"
-						android:background="@color/transaction"
-						android:maxLength="18"
-						app:vd_textErrorColor="@color/red"
-						app:vd_textRightColor="@color/title2"
-						app:vd_drawable_right_right="@drawable/icon_gou"
-						app:vd_drawable_right_error="@drawable/icon_gantan"
-						app:vd_validate_type="id_card"
-						/>
-				</RelativeLayout>
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#CACACA"
-					android:layout_marginLeft="@dimen/layout_leftright_padding"
-					android:layout_marginRight="@dimen/layout_leftright_padding"
-					/>
-				<RelativeLayout
-					android:id="@+id/rl_lianxi"
-					android:layout_width="match_parent"
-					android:layout_height="@dimen/relative_row_height"
-					android:background="@drawable/white_click_bg2"
-					android:paddingLeft="@dimen/layout_leftright_padding"
-					android:paddingRight="@dimen/layout_leftright_padding"
-					>
-					<TextView
-						android:id="@+id/tv_lianxidianhua"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title1"
-						android:gravity="center_vertical"
-						android:layout_centerVertical="true"
-						android:text="联系方式"
-						/>
-					<com.jinchao.population.widget.ValidateEidtText
-						android:id="@+id/edt_dianhua"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:gravity="center_vertical|right"
-						android:textSize="@dimen/micro_middle_size"
-						android:textColor="@color/title2"
-						android:layout_toRightOf="@+id/tv_lianxidianhua"
-						android:singleLine="true"
-						android:hint="请输入联系方式"
-						android:textColorHint="@color/title4"
-						android:background="@color/transaction"
-						android:inputType="number"
-						app:vd_textErrorColor="@color/red"
-						app:vd_textRightColor="@color/title2"
-						app:vd_drawable_right_right="@drawable/icon_gou"
-						app:vd_drawable_right_error="@drawable/icon_gantan"
-						app:vd_validate_type="mobile"
-						/>
-				</RelativeLayout>
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#CACACA"
-					android:layout_marginLeft="@dimen/layout_leftright_padding"
-					android:layout_marginRight="@dimen/layout_leftright_padding"
-					/>
-		<RelativeLayout
-			android:id="@+id/rl_fwlx"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/relative_row_height"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			>
-			<TextView
-				android:id="@+id/tv_fwlxl"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title1"
-				android:gravity="center_vertical"
-				android:layout_centerVertical="true"
-				android:text="房屋类型"
-				/>
-			<TextView
-				android:id="@+id/tv_fwlx"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|right"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:layout_toRightOf="@+id/tv_fwlxl"
-				android:drawableRight="@drawable/ico_search_next"
-				android:drawablePadding="5dp"
-				android:text="请选择房屋类型"
-				android:background="@color/transaction"
-				android:layout_centerVertical="true"
-				android:layout_marginLeft="10dp"
-				/>
-		</RelativeLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-		<RelativeLayout
-			android:id="@+id/rl_mj"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/relative_row_height"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			>
-			<TextView
-				android:id="@+id/tv_mj"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title1"
-				android:gravity="center_vertical"
-				android:layout_centerVertical="true"
-				android:text="房屋面积"
-				/>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_mj"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:gravity="center_vertical|right"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:layout_toRightOf="@+id/tv_mj"
-				android:singleLine="true"
-				android:hint="请输入房屋面积"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="number"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				android:maxLength="4"
-				/>
-		</RelativeLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
+
 		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<RelativeLayout
+				android:id="@+id/rl_shequ"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_leftshequ"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="社区"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_shequ"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_leftshequ"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_bianhao"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_leftbianhao"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="房屋编号"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_bianhao"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_leftbianhao"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:gravity="center_vertical|right"
+					android:hint="请输入房屋编号"
+					android:inputType="text"
+					android:maxLength="6"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="house_code" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_dizhibianji"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:minHeight="@dimen/relative_row_height"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_leftdizhibianji"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="房屋地址编辑"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_bianji"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/tv_leftdizhibianji"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:text="点击编辑房屋地址"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_fangdongxingming"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_fangdongxingming"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="房东姓名"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<EditText
+					android:id="@+id/edt_fangdongxingming"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_fangdongxingming"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入房东姓名"
+					android:maxLength="30"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_shenf"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="身份证号"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_shenfenzheng"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_shenf"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入房东身份证号"
+					android:maxLength="18"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="id_card" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_lianxi"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_lianxidianhua"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="联系方式"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_dianhua"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_lianxidianhua"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入联系方式"
+					android:inputType="number"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="mobile" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_fwlx"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_fwlxl"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="房屋类型"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_fwlx"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/tv_fwlxl"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:text="请选择房屋类型"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+			<RelativeLayout
+				android:id="@+id/rl_jzlx"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_jzlxl"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="居住类型"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_jzlx"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/tv_jzlxl"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:text="请选择居住类型"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_zzlx"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_zzlxl"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="租住类型"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_zzlx"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/tv_zzlxl"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:text="请选择租住类型"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_cztj"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_cztj1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="承租途径"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_cztj"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/tv_cztj1"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:text="请选承租途径"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_fwjg"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_fwjg1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="房屋结构"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_fwjg"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/tv_fwjg1"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:text="请选择房屋结构"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+			<RelativeLayout
+				android:id="@+id/rl_fwyt"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_fwyt1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="房屋用途"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<TextView
+					android:id="@+id/tv_fwyt"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/tv_fwyt1"
+					android:background="@color/transaction"
+					android:drawablePadding="5dp"
+					android:drawableRight="@drawable/ico_search_next"
+					android:gravity="center_vertical|right"
+					android:text="请选择房屋用途"
+					android:textColor="@color/title2"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+			<RelativeLayout
+				android:id="@+id/rl_mj"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_mj"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="房屋面积"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_mj"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_mj"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入房屋面积"
+					android:inputType="number"
+					android:maxLength="4"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</RelativeLayout>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+			<RelativeLayout
+				android:id="@+id/rl_jzhs"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_jzhs"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="居住户数"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_jzhs"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_jzhs"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入居住户数"
+					android:inputType="number"
+					android:maxLength="4"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</RelativeLayout>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+			<RelativeLayout
+				android:id="@+id/rl_jzjs"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_jzjs"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="居住间数"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_jzjs"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_jzjs"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入居住间数"
+					android:inputType="number"
+					android:maxLength="4"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</RelativeLayout>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+			<RelativeLayout
+				android:id="@+id/rl_zzrxingming"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_zzrxm1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="转租人姓名"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<EditText
+					android:id="@+id/edt_zzrxm"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_zzrxm1"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入转租人姓名"
+					android:maxLength="30"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_zzrsfz"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="转租人身份证号"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_zzrsfz"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_zzrsfz"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入转租人身份证号"
+					android:maxLength="18"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="id_card" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<RelativeLayout
+				android:id="@+id/rl_zzrdh"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/relative_row_height"
+				android:background="@drawable/white_click_bg2"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<TextView
+					android:id="@+id/tv_zzrdh"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:text="转租人电话"
+					android:textColor="@color/title1"
+					android:textSize="@dimen/micro_middle_size" />
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_zzrdh"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_toRightOf="@+id/tv_zzrdh"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|right"
+					android:hint="请输入转租人联系方式"
+					android:inputType="number"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="mobile" />
+			</RelativeLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+
+
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-			<RadioGroup
-				android:id="@+id/rg_1"
-				android:layout_width="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_1"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="属于已进入规划部门行政许可程序或者已经规划部门批准但尚未竣工验收合格的违法建筑;临时建筑到期以后未续批的违法建设;"
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="vertical">
-				<RadioButton
-					android:id="@+id/rb_shi"
-					android:layout_width="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="10dp"
-					android:text="是"/>
-				<RadioButton
-					android:id="@+id/rb_fou"
-					android:layout_width="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_2"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi2"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou2"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_2"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="属于已进入规划部门行政许可程序或者已经规划部门批准但尚未竣工验收合格的违法建筑;临时建筑到期以后未续批的违法建设;"
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_2"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
 					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_3"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi3"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou3"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_3"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="不符合安全,防灾等工程建设强制性标准;"
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_3"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_4"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi4"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou4"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_4"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="不符合安全,防灾等工程建设强制性标准;违反规定改变房屋使用性质;"
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_4"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_5"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi5"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou5"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_5"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="擅自改变房屋用途,将厨房,卫生间,阳台,地下室和车库出租供人员居住;"
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_5"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_6"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi6"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou6"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_6"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="没有以房屋原设计的房间为最小出租单位,擅自将房屋内原有间室分隔后出租;"
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_6"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_7"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi7"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou7"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_7"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="除上述情况以外,人均居住建筑面积低于12平方米的;"
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_7"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<RadioGroup
+						android:id="@+id/rg_8"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<RadioButton
+							android:id="@+id/rb_shi8"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="10dp"
+							android:text="是" />
+
+						<RadioButton
+							android:id="@+id/rb_fou8"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="10dp"
+							android:padding="10dp"
+							android:text="否" />
+					</RadioGroup>
+
+					<TextView
+						android:id="@+id/tv_8"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="left|center_vertical"
+						android:paddingBottom="10dp"
+						android:paddingTop="10dp"
+						android:text="因卫生,噪音等问题,严重影响邻居生活,群众反映强烈的."
+						android:textColor="@color/title1"
+						android:textSize="@dimen/micro_middle_size" />
+				</LinearLayout>
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_8"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@color/transaction"
+					android:gravity="center_vertical|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:padding="10dp"
+					android:singleLine="true"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
+					android:textSize="@dimen/micro_middle_size"
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
+			</LinearLayout>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/white_click_bg2"
+				android:orientation="vertical"
+				android:paddingLeft="@dimen/layout_leftright_padding"
+				android:paddingRight="@dimen/layout_leftright_padding">
+
+				<com.jinchao.population.widget.ValidateEidtText
+					android:id="@+id/edt_bei"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="10dp"
 					android:layout_marginTop="10dp"
-					android:text="否"/>
-			</RadioGroup>
-			<TextView
-				android:id="@+id/tv_1"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textSize="@dimen/micro_middle_size"
-				android:paddingTop="10dp"
-				android:paddingBottom="10dp"
-				android:textColor="@color/title1"
-				android:gravity="left|center_vertical"
-				android:text="属于已进入规划部门行政许可程序或者已经规划部门批准但尚未竣工验收合格的违法建筑;临时建筑到期以后未续批的违法建设;"
-				/>
-			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_1"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
-		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<RadioGroup
-					android:id="@+id/rg_2"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-					<RadioButton
-						android:id="@+id/rb_shi2"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:text="是"/>
-					<RadioButton
-						android:id="@+id/rb_fou2"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:layout_marginTop="10dp"
-						android:text="否"/>
-				</RadioGroup>
-				<TextView
-					android:id="@+id/tv_2"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
+					android:background="@drawable/member_bg"
+					android:gravity="top|left"
+					android:hint="备注内容"
+					android:inputType="text"
+					android:minHeight="150dp"
+					android:padding="10dp"
+					android:textColor="@color/title2"
+					android:textColorHint="@color/title4"
 					android:textSize="@dimen/micro_middle_size"
-					android:paddingTop="10dp"
-					android:paddingBottom="10dp"
-					android:textColor="@color/title1"
-					android:gravity="left|center_vertical"
-					android:text="属于已进入规划部门行政许可程序或者已经规划部门批准但尚未竣工验收合格的违法建筑;临时建筑到期以后未续批的违法建设;"
-					/>
+					app:vd_drawable_right_error="@drawable/icon_gantan"
+					app:vd_drawable_right_right="@drawable/icon_gou"
+					app:vd_textErrorColor="@color/red"
+					app:vd_textRightColor="@color/title2"
+					app:vd_validate_type="normal" />
 			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_2"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
-		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-			<LinearLayout
+			<View
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<RadioGroup
-					android:id="@+id/rg_3"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-					<RadioButton
-						android:id="@+id/rb_shi3"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:text="是"/>
-					<RadioButton
-						android:id="@+id/rb_fou3"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:layout_marginTop="10dp"
-						android:text="否"/>
-				</RadioGroup>
-				<TextView
-					android:id="@+id/tv_3"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/micro_middle_size"
-					android:paddingTop="10dp"
-					android:paddingBottom="10dp"
-					android:textColor="@color/title1"
-					android:gravity="left|center_vertical"
-					android:text="不符合安全,防灾等工程建设强制性标准;"
-					/>
-			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_3"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
+				android:layout_height="1dp"
+				android:layout_marginBottom="50dp"
+				android:layout_marginLeft="@dimen/layout_leftright_padding"
+				android:layout_marginRight="@dimen/layout_leftright_padding"
+				android:background="#CACACA" />
 		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<RadioGroup
-					android:id="@+id/rg_4"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-					<RadioButton
-						android:id="@+id/rb_shi4"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:text="是"/>
-					<RadioButton
-						android:id="@+id/rb_fou4"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:layout_marginTop="10dp"
-						android:text="否"/>
-				</RadioGroup>
-				<TextView
-					android:id="@+id/tv_4"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/micro_middle_size"
-					android:paddingTop="10dp"
-					android:paddingBottom="10dp"
-					android:textColor="@color/title1"
-					android:gravity="left|center_vertical"
-					android:text="不符合安全,防灾等工程建设强制性标准;违反规定改变房屋使用性质;"
-					/>
-			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_4"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
-		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<RadioGroup
-					android:id="@+id/rg_5"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-					<RadioButton
-						android:id="@+id/rb_shi5"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:text="是"/>
-					<RadioButton
-						android:id="@+id/rb_fou5"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:layout_marginTop="10dp"
-						android:text="否"/>
-				</RadioGroup>
-				<TextView
-					android:id="@+id/tv_5"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/micro_middle_size"
-					android:paddingTop="10dp"
-					android:paddingBottom="10dp"
-					android:textColor="@color/title1"
-					android:gravity="left|center_vertical"
-					android:text="擅自改变房屋用途,将厨房,卫生间,阳台,地下室和车库出租供人员居住;"
-					/>
-			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_5"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
-		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<RadioGroup
-					android:id="@+id/rg_6"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-					<RadioButton
-						android:id="@+id/rb_shi6"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:text="是"/>
-					<RadioButton
-						android:id="@+id/rb_fou6"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:layout_marginTop="10dp"
-						android:text="否"/>
-				</RadioGroup>
-				<TextView
-					android:id="@+id/tv_6"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/micro_middle_size"
-					android:paddingTop="10dp"
-					android:paddingBottom="10dp"
-					android:textColor="@color/title1"
-					android:gravity="left|center_vertical"
-					android:text="没有以房屋原设计的房间为最小出租单位,擅自将房屋内原有间室分隔后出租;"
-					/>
-			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_6"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
-		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<RadioGroup
-					android:id="@+id/rg_7"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-					<RadioButton
-						android:id="@+id/rb_shi7"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:text="是"/>
-					<RadioButton
-						android:id="@+id/rb_fou7"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:layout_marginTop="10dp"
-						android:text="否"/>
-				</RadioGroup>
-				<TextView
-					android:id="@+id/tv_7"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/micro_middle_size"
-					android:paddingTop="10dp"
-					android:paddingBottom="10dp"
-					android:textColor="@color/title1"
-					android:gravity="left|center_vertical"
-					android:text="除上述情况以外,人均居住建筑面积低于12平方米的;"
-					/>
-			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_7"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
-		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-				<RadioGroup
-					android:id="@+id/rg_8"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-					<RadioButton
-						android:id="@+id/rb_shi8"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:text="是"/>
-					<RadioButton
-						android:id="@+id/rb_fou8"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:padding="10dp"
-						android:layout_marginTop="10dp"
-						android:text="否"/>
-				</RadioGroup>
-				<TextView
-					android:id="@+id/tv_8"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/micro_middle_size"
-					android:paddingTop="10dp"
-					android:paddingBottom="10dp"
-					android:textColor="@color/title1"
-					android:gravity="left|center_vertical"
-					android:text="因卫生,噪音等问题,严重影响邻居生活,群众反映强烈的."
-					/>
-			</LinearLayout>
-			<com.jinchao.population.widget.ValidateEidtText
-				android:id="@+id/edt_8"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_vertical|left"
-				android:textSize="@dimen/micro_middle_size"
-				android:textColor="@color/title2"
-				android:singleLine="true"
-				android:hint="备注内容"
-				android:textColorHint="@color/title4"
-				android:background="@color/transaction"
-				android:inputType="text"
-				android:padding="10dp"
-				app:vd_textErrorColor="@color/red"
-				app:vd_textRightColor="@color/title2"
-				app:vd_drawable_right_right="@drawable/icon_gou"
-				app:vd_drawable_right_error="@drawable/icon_gantan"
-				app:vd_validate_type="normal"
-				/>
-		</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			/>
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@drawable/white_click_bg2"
-			android:paddingLeft="@dimen/layout_leftright_padding"
-			android:paddingRight="@dimen/layout_leftright_padding"
-			android:orientation="vertical"
-			>
-		<com.jinchao.population.widget.ValidateEidtText
-			android:id="@+id/edt_bei"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:minHeight="150dp"
-			android:gravity="top|left"
-			android:textSize="@dimen/micro_middle_size"
-			android:textColor="@color/title2"
-			android:hint="备注内容"
-			android:textColorHint="@color/title4"
-			android:background="@drawable/member_bg"
-			android:inputType="text"
-			android:padding="10dp"
-			app:vd_textErrorColor="@color/red"
-			app:vd_textRightColor="@color/title2"
-			app:vd_drawable_right_right="@drawable/icon_gou"
-			app:vd_drawable_right_error="@drawable/icon_gantan"
-			app:vd_validate_type="normal"
-			android:layout_marginTop="10dp"
-			android:layout_marginBottom="10dp"
-			/>
-			</LinearLayout>
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#CACACA"
-			android:layout_marginLeft="@dimen/layout_leftright_padding"
-			android:layout_marginRight="@dimen/layout_leftright_padding"
-			android:layout_marginBottom="50dp"
-			/>
-	</LinearLayout>
 	</ScrollView>
+
+	<include
+        android:id="@+id/navgation_top"
+        layout="@layout/navigation_layout"
+        />
 </LinearLayout>

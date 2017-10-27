@@ -39,6 +39,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="idcard_title">#1579B9</color>
+
     <color name="orange">#FF6633</color>
     <color name="color_dc353b">#dc353b</color>
     <color name="contentTitleColor">#636373</color>

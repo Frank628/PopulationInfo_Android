@@ -36,7 +36,6 @@ public class NFCActiveActivity extends FragmentActivity {
 		mainVP.setAdapter(mainViewPagerAdapter);
 		mainVP.setCurrentItem(NFCActiveViewPagerAdapter.WAIT_FRAG, false);
 		NFCHttpUtil.search(new SearchCallback() {
-
 			@Override
 			public void onSearchSuccess(UserType userType, String userMsg, String activeCode, long startTime, long endTime) {
 				// TODO Auto-generated method stub
@@ -52,7 +51,6 @@ public class NFCActiveActivity extends FragmentActivity {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						
 						switch (currentUserType) {
 						case TRAIL_USER: {
 							Toast.makeText(NFCActiveActivity.this,"试用通道已关闭，请注册为正式用户", Toast.LENGTH_SHORT).show();
@@ -65,7 +63,7 @@ public class NFCActiveActivity extends FragmentActivity {
 							mainVP.setCurrentItem(NFCActiveViewPagerAdapter.FORMAL_USER_FRAG, false);
 							break;
 						}
-						}
+					}
 					}
 
 				});

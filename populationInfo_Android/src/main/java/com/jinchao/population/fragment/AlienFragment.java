@@ -3,6 +3,7 @@ package com.jinchao.population.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,6 +14,8 @@ import com.jinchao.population.alienPeople.residentpermit.ResidentPermitManagemen
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.entity.MaturityListBean;
+import com.jinchao.population.entity.VersionBean;
+import com.jinchao.population.main.MainActivity;
 import com.jinchao.population.mainmenu.MaturityWarningActivity;
 import com.jinchao.population.mainmenu.RegistRentalHouseActivity;
 import com.jinchao.population.mainmenu.ReshootActivity;
@@ -20,8 +23,11 @@ import com.jinchao.population.mainmenu.SearchPeopleActivity;
 import com.jinchao.population.alienPeople.SearchTwoWayActivity;
 import com.jinchao.population.mainmenu.SearchRentalHouseActivity;
 import com.jinchao.population.mainmenu.SysActivity;
+import com.jinchao.population.service.DownLoadService;
+import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.SharePrefUtil;
+import com.jinchao.population.view.Dialog;
 import com.jinchao.population.widget.BadgeView;
 
 import org.xutils.common.Callback;
@@ -41,7 +47,8 @@ import java.util.List;
 @ContentView(R.layout.fragment_alienpopulation)
 public class AlienFragment extends BaseFragment {
     public BadgeView badgeView;
-
+    int latest_verson=0;
+    boolean isforce=false;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +62,8 @@ public class AlienFragment extends BaseFragment {
         badgeView.setTargetView(view.findViewById(R.id.iv_warning));
         badgeView.setTextSize(16);
         badgeView.setBadgeMargin(0,5,5,0);
+        latest_verson=SharePrefUtil.getInt(getActivity(),Constants.LATEST_APP_VERSION,0);
+        isforce=SharePrefUtil.getBoolean(getActivity(),Constants.LATEST_APP_VERSION_FORCE,false);
     }
 
     @Override
@@ -76,8 +85,26 @@ public class AlienFragment extends BaseFragment {
 
     @Event(value={R.id.iv_register})
     private void onRegistClick(View view){
-        Intent intent =new Intent(getActivity(), SearchTwoWayActivity.class);
-        startActivity(intent);
+        if(latest_verson!=0&&latest_verson>CommonUtils.getVersionCode(getActivity())&&isforce){
+            Dialog.showRadioDialog(getActivity(), "请更新至最新版本，否则无法使用！", new Dialog.DialogClickListener() {
+                @Override
+                public void confirm() {
+                    Intent serviceDownload=new Intent(getActivity(),DownLoadService.class);
+                    if (CommonUtils.isServiceRunning(getActivity(), "com.jinchao.population.service.DownLoadService")) {
+                        getActivity().stopService(serviceDownload);
+                    }
+                    serviceDownload.putExtra("url", SharePrefUtil.getString(getActivity(),Constants.LATEST_APP_VERSION_URL,""));
+                    getActivity().startService(serviceDownload);
+                }
+                @Override
+                public void cancel() {
+                }
+            });
+        }else {
+            Intent intent =new Intent(getActivity(), SearchTwoWayActivity.class);
+            startActivity(intent);
+        }
+
     }
     @Event(value={R.id.iv_rentalhouseregist})
     private void rentalhouseregistClick(View view){
@@ -118,15 +145,12 @@ public class AlienFragment extends BaseFragment {
 //        Toast.makeText(getActivity(),"建设中...",Toast.LENGTH_LONG).show();
     }
     private void GetMaturityWarning() {
-
-
         RequestParams params = new RequestParams(Constants.URL + "HousePosition.aspx");
         params.addBodyParameter("type", "get_people");
         params.addBodyParameter("user_id", MyInfomationManager.getUserName(getActivity()));
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-//                System.out.println(result);
                 try {
                     MaturityListBean maturityListBean= GsonTools.changeGsonToBean(result,MaturityListBean.class);
                     List<MaturityListBean.MaturePeopleOne> listpeople=new ArrayList<MaturityListBean.MaturePeopleOne>();
@@ -157,12 +181,12 @@ public class AlienFragment extends BaseFragment {
 
             @Override
             public void onCancelled(CancelledException cex) {
-
             }
-
             @Override
             public void onFinished() {
             }
         });
     }
+
+
 }

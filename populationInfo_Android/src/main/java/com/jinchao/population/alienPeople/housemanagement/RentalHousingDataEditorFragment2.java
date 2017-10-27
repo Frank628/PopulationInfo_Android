@@ -67,17 +67,23 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
     @ViewInject(R.id.edt_name)ValidateEidtText edt_name;
     @ViewInject(R.id.edt_sfz)ValidateEidtText edt_sfz;
     @ViewInject(R.id.edt_phone)ValidateEidtText edt_phone;
+    @ViewInject(R.id.edt_zzrname)ValidateEidtText edt_zzrname;
+    @ViewInject(R.id.edt_zzrsfz)ValidateEidtText edt_zzrsfz;
+    @ViewInject(R.id.edt_zzrphone)ValidateEidtText edt_zzrphone;
     @ViewInject(R.id.edt_mj)ValidateEidtText edt_mj;
-    @ViewInject(R.id.edt_hs)ValidateEidtText edt_hs;
+    @ViewInject(R.id.edt_js)ValidateEidtText edt_js;
+    @ViewInject(R.id.edt_jzhs)ValidateEidtText edt_jzhs;
     @ViewInject(R.id.tv_noresult)TextView tv_noresult;
     @ViewInject(R.id.tv_address)TextView tv_address;
     @ViewInject(R.id.tv_fwlx)TextView tv_fwlx;
     @ViewInject(R.id.tv_fwjg)TextView tv_fwjg;
     @ViewInject(R.id.tv_fwyt)TextView tv_fwyt;
     @ViewInject(R.id.tv_zzlx)TextView tv_zzlx;
+    @ViewInject(R.id.tv_jzlx)TextView tv_jzlx;
+    @ViewInject(R.id.tv_cztj)TextView tv_cztj;
     private boolean[] yixuan_fwyt=new boolean[]{false,false,false,false};
     private StringBuffer sb_code;
-    private String fzxm="",fzsfz="",fzdh="",fwyt="",jzhs="",jzmj="",fwjg="",fwlx="",zzlx="";
+    private String fzxm="",fzsfz="",fzdh="",fwyt="",jzhs="",jzmj="",fwjg="",fwlx="",zzlx="",jzjs="",jzlx="",cztj="";
     private DbUtils dbUtils;
     public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
 
@@ -175,22 +181,38 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
         String idcard=edt_sfz.getText().toString().trim();
         String phone=edt_phone.getText().toString().trim();
         String mj=edt_mj.getText().toString().trim();
-        String hs=edt_hs.getText().toString().trim();
+        String js=edt_js.getText().toString().trim();
+        String jzhs= edt_jzhs.getText().toString().trim();
+        String zzrname=edt_zzrname.getText().toString().trim();
+        String zzrsfz=edt_zzrsfz.getText().toString().trim();
+        String zzrdh=edt_zzrphone.getText().toString().trim();
         if (TextUtils.isEmpty(scode)){
             Toast.makeText(getActivity(),"请先输入房屋编号查询！",Toast.LENGTH_SHORT).show();
             return;
         }
-        editHouseInfo(scode,name,idcard,phone,mj,hs);
+        if (TextUtils.isEmpty(zzrname)&&TextUtils.isEmpty(zzrsfz)&&TextUtils.isEmpty(zzrdh)){
+
+        }else{
+            if ((!TextUtils.isEmpty(zzrname))&&(!TextUtils.isEmpty(zzrsfz))&&(!TextUtils.isEmpty(zzrdh))){
+
+            }else{
+                Toast.makeText(getActivity(),"转租人信息若填写，必须3项都完整！",Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        editHouseInfo(scode,name,idcard,phone,mj,js,jzhs,zzrname,zzrsfz,zzrdh);
     }
     private void bindData(HouseInfoBean houseInfo){
         tv_noresult.setVisibility(View.GONE);
         ll_edit.setVisibility(View.VISIBLE);
-        fzxm=houseInfo.fzxm;fzsfz=houseInfo.fzsfz;fzdh=houseInfo.fzdh;fwyt=houseInfo.fwyt;jzhs=houseInfo.jzhs;jzmj=houseInfo.jzmj;fwjg=houseInfo.fwjg;fwlx=houseInfo.fwlx;zzlx=houseInfo.zzlx;
+        fzxm=houseInfo.fzxm;fzsfz=houseInfo.fzsfz;fzdh=houseInfo.fzdh;fwyt=houseInfo.fwyt;jzhs=houseInfo.jzhs;jzmj=houseInfo.jzmj;fwjg=houseInfo.fwjg;fwlx=houseInfo.fwlx;zzlx=houseInfo.zzlx;jzjs=houseInfo.jzjs;cztj=houseInfo.cztj;jzlx=houseInfo.jzlx;
         edt_name.setText(fzxm);
         edt_phone.setText(fzdh);
         edt_sfz.setText(fzsfz);
-        edt_hs.setText(jzhs);
+        edt_js.setText(jzjs);
         edt_mj.setText(jzmj);
+        edt_jzhs.setText(jzhs);
         String[] fwyts=fwyt.split(",");
         StringBuffer sb_fwyt = new StringBuffer(20);
         for (int i=0;i<fwyts.length;i++){
@@ -221,7 +243,16 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
                 tv_zzlx.setText(Constants.ZUZHULEIXING[i]);
             }
         }
-
+        for(int i=0;i<Constants.JUZHULEIXING_CODE.length;i++){
+            if (jzlx.trim().equals(Constants.JUZHULEIXING_CODE[i])){
+                tv_jzlx.setText(Constants.JUZHULEIXING[i]);
+            }
+        }
+        for(int i=0;i<Constants.CHENGZUTUJING_CODE.length;i++){
+            if (cztj.trim().equals(Constants.CHENGZUTUJING_CODE[i])){
+                tv_cztj.setText(Constants.CHENGZUTUJING[i]);
+            }
+        }
 
     }
     private void SearchHouse(final String scode){
@@ -256,10 +287,10 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
             public void onFinished() { hideProcessDialog();}
         });
     }
-    private void editHouseInfo(final String scode, final String name, final String idcard, final String phone,String mj,String hs){
+    private void editHouseInfo(final String scode, final String name, final String idcard, final String phone,String mj,String jzjs,String jzhs,String zzrxm,String zzrsfz,String zzrdh){
         showProcessDialog("数据提交中...");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
-        params.addBodyParameter("type","updateqzf");
+        params.addBodyParameter("type","updateqzf2");
         params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(getActivity()));
         params.addBodyParameter("scode",scode);
         params.addBodyParameter("fzxm",name);
@@ -269,10 +300,16 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
         params.addBodyParameter("fwjg",fwjg);
         params.addBodyParameter("fwmj",mj);
         params.addBodyParameter("fwyt",fwyt);
-        params.addBodyParameter("zzhs",hs);
+        params.addBodyParameter("zzhs",jzjs);
         params.addBodyParameter("zzlx",zzlx);
-        Log.d("ddd",fwlx+","+fwjg+","+mj+","+fwyt+","+hs+","+zzlx);
-        x.http().post(params, new Callback.CommonCallback<String>() {
+        params.addBodyParameter("cztj",cztj);
+        params.addBodyParameter("zzrxm",zzrxm);
+        params.addBodyParameter("zzrsfz",zzrsfz);
+        params.addBodyParameter("zzrdh",zzrdh);
+        params.addBodyParameter("jzjs",jzhs);
+        params.addBodyParameter("jzlx",jzlx);
+        Log.d("FWBJ",MyInfomationManager.getSQCODE(getActivity())+";"+scode+";"+fzxm+";"+fzsfz+";"+fwlx+","+fwjg+","+mj+","+fwyt+","+jzjs+","+zzlx+";"+cztj+";"+zzrxm+";"+zzrsfz+";"+zzrdh+";"+jzjs+";"+jzlx);
+        x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Log.e("rr",result);
@@ -330,6 +367,36 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
             @Override
             public void onFinished() { }
         });
+    }
+    @Event(value = {R.id.ll_jzlx})
+    private void ll_jzlxClick(View view){
+        StringWheel stringWheel=new StringWheel(getActivity(), Constants.JUZHULEIXING, new StringWheel.OnEnsureClickListener() {
+            @Override
+            public void OnEnSureClick(String str) {
+                for(int i=0;i<Constants.JUZHULEIXING.length;i++){
+                    if (str.equals(Constants.JUZHULEIXING[i])){
+                        jzlx=Constants.JUZHULEIXING_CODE[i];
+                    }
+                }
+                tv_jzlx.setText(str);
+            }
+        });
+        stringWheel.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+    }
+    @Event(value = {R.id.ll_cztj})
+    private void ll_cztjClick(View view){
+        StringWheel stringWheel=new StringWheel(getActivity(), Constants.CHENGZUTUJING, new StringWheel.OnEnsureClickListener() {
+            @Override
+            public void OnEnSureClick(String str) {
+                for(int i=0;i<Constants.CHENGZUTUJING.length;i++){
+                    if (str.equals(Constants.CHENGZUTUJING[i])){
+                        cztj=Constants.CHENGZUTUJING_CODE[i];
+                    }
+                }
+                tv_cztj.setText(str);
+            }
+        });
+        stringWheel.showAtLocation(root, Gravity.BOTTOM, 0, 0);
     }
     @Event(value = {R.id.ll_fwlx})
     private void ll_fwlxClick(View view){

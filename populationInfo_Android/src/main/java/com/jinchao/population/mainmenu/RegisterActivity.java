@@ -1,8 +1,10 @@
 package com.jinchao.population.mainmenu;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.xutils.common.Callback;
@@ -49,12 +51,14 @@ import com.jinchao.population.base.BaseReaderActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.Nation;
 import com.jinchao.population.dbentity.People;
+import com.jinchao.population.entity.FaceCompareResult;
 import com.jinchao.population.entity.RealHouseBean.RealHouseOne;
 import com.jinchao.population.realpopulation.SingleRealPopulationActivity;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DeviceUtils;
+import com.jinchao.population.utils.GsonTools;
 import com.jinchao.population.utils.XmlUtils;
 import com.jinchao.population.view.Dialog;
 import com.jinchao.population.view.Dialog.DialogClickListener;
@@ -79,6 +83,7 @@ import de.greenrobot.event.EventBus;
 @ContentView(R.layout.activity_register_idcard)
 public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDReaderListener{
 	public static final String TAG="IDCARD_DEVICE";
+	public static final String app_key="jiangsumiaolian";
 	@ViewInject(R.id.ib_readcard)private ImageButton ib_readcard;
 	@ViewInject(R.id.edt_idcard)private EditText edt_idcard;
 	@ViewInject(R.id.edt_name)private EditText edt_name;
@@ -106,6 +111,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	private boolean isreal=false,isReplace=false;
 	private RealHouseOne realHouseOne ;//实有人口传参
 	private FacePop facePop;
+	public  File iv1File,iv2File;
 	private boolean  isfromotherway=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +149,15 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
             bmp= getIntent().getParcelableExtra("pic");
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+			iv1File=new File(Constants.DB_PATH+"image1.jpg");
+			try {
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(iv1File));
+				bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+				bos.flush();
+				bos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			imgA=stream.toByteArray();
             iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);
             iv_pic.setImageBitmap(bmp);
@@ -299,6 +314,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			@Override
 			public void run() {
 				hideProcessDialog();
+				iv1File=null;
 				showError(s);
 			}
 		});
@@ -318,6 +334,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		 if (user==null&&msg!=null){
 			showError(msg);
 		 }else{
+
 			 compare.setVisibility(View.VISIBLE);
 			 replace.setVisibility(View.VISIBLE);
 			 imgA=user.getPhoto();
@@ -329,6 +346,16 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			 edt_address.setText(user.getAddress().trim().replace("（","(").replace("）",")"));
 			 edt_idcard.setText(user.getIdNumber().trim());
 			 bmp =  BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
+			 iv1File=new File(Constants.DB_PATH+"image1.jpg");
+			 Bitmap bitmap=BitmapFactory.decodeByteArray(user.getPhoto(), 0, user.getPhoto().length);
+			 try {
+				 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(iv1File));
+				 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+				 bos.flush();
+				 bos.close();
+			 } catch (IOException e) {
+				 e.printStackTrace();
+			 }
 			 iv_pic.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			 iv_pic.setImageBitmap(bmp);
 			 ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -425,7 +452,6 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				}
 				break;
 			case Crop.REQUEST_CROP:
-
 				if (data != null) {
 					getImageToViewFromCrop(data);
 				}
@@ -436,7 +462,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				}
 				break;
 			case REQUEST_CODE_CAMERA :
-					setPhoto(photofile);
+					setPhoto(iv2File);
 					showfacepop();
 					break;
 			default:
@@ -451,10 +477,27 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			byte[] img = CommonUtils.getByte(photofile);// 获得源图片
 			Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);// 将原图片转换成bitmap，方便后面转换
 			imgB = CommonUtils.Bitmap2Bytes(bitmap);// 得到有损图
+			compressImageToFile(bitmap,iv2File);
 		} else {
 			Toast.makeText(this, "拍摄照片失败", Toast.LENGTH_SHORT).show();
 		}
 	}
+	public static void compressImageToFile(Bitmap bmp,File file) {
+		// 0-100 100为不压缩
+		int options = 20;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		// 把压缩后的数据存放到baos中
+		bmp.compress(Bitmap.CompressFormat.JPEG, options, baos);
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			fos.write(baos.toByteArray());
+			fos.flush();
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * 裁剪图片方法实现
 	 * 
@@ -523,14 +566,14 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 
 	}
 	private void showfacepop() {
-		facePop =new FacePop(this, bmp,photofile.getAbsolutePath(), new FacePop.OnCompareClickListener() {
+		facePop =new FacePop(this, bmp,iv2File.getAbsolutePath(), new FacePop.OnCompareClickListener() {
 			@Override
 			public void onClick() {
-				if (imgB != null && imgA != null) {
-					new MyCompareAsyncTask(imgA, imgB).execute();
-				} else if (imgA == null) {
+				if (iv1File != null && iv2File != null) {
+					compareFace(iv1File,iv2File);
+				} else if (iv1File == null) {
 					showDialog("请读取身份证");
-				} else if (imgB == null) {
+				} else if (iv2File == null) {
 					showDialog("请拍照");
 				}
 			}
@@ -552,9 +595,9 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	}
 	@Event(value={R.id.compare})//
 	private void compareClick(View view) {
-		photofile = CommonUtils.getCompareTempImage();
+		iv2File=new File(Constants.DB_PATH+"image2.jpg");
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photofile));
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(iv2File));
 		intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
 		startActivityForResult(intent, REQUEST_CODE_CAMERA);
 	}
@@ -803,29 +846,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		}
 	}
 
-	private class MyCompareAsyncTask extends CompareAsyncTask {
-		public MyCompareAsyncTask(byte[] imgA, byte[] imgB) {
-			super(imgA, imgB);
-		}
-		@Override
-		protected void onPreExecute() {}
-		@Override
-		protected void onPostExecute(CompareResult result) {
-			if (result == null) {
-				if (facePop!=null){
-					facePop.setResult("人脸对比失败");
-				}
-				return;
-			}
-			StringBuilder builder = new StringBuilder();
-			double score = result.getScore();
-			builder.append("相似度：" + (score / 100) + "%,");
-			builder.append(score >= 7000 ? "可以判断为同一人" : "可以判断不为同一个人");
-			if (facePop!=null){
-				facePop.setResult(builder.toString());
-			}
-		}
-	}
+
 	public void backgroundAlpha(float bgAlpha)
 	{
 		WindowManager.LayoutParams lp = RegisterActivity.this.getWindow().getAttributes();
@@ -853,4 +874,52 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
             }
         }
     }
+
+	private void compareFace(File image1,File image2){
+		RequestParams params=new RequestParams("http://218.94.149.27:20175/Facedetection");
+		params.addBodyParameter("app_key",app_key);
+		params.addBodyParameter("image1",image1,"application/octet-stream","image1.jpg");
+		params.addBodyParameter("image2",image2,"application/octet-stream","image2.jpg");
+		x.http().post(params, new Callback.CommonCallback<String>() {
+			@Override
+			public void onSuccess(String result) {
+				Log.d("cccccc",result);
+				hideProcessDialog();
+				parseJson(result);
+			}
+			@Override
+			public void onError(Throwable ex, boolean isOnCallback) {
+			}
+			@Override
+			public void onCancelled(CancelledException cex) {}
+			@Override
+			public void onFinished() {
+				hideProcessDialog();
+			}
+		});
+
+	}
+	private void parseJson(String result){
+
+		try {
+			FaceCompareResult faceCompareResult= GsonTools.changeGsonToBean(result,FaceCompareResult.class);
+			String res="";
+			if(faceCompareResult.status.equals("ok")){
+				res="相似度："+faceCompareResult.Similarity+"%"+(faceCompareResult.Similarity>70?"可以判断为同一人":"可以判断不为同一人");
+			}else{
+				if (faceCompareResult.msg.contains("face feature")){
+					res="比对失败，第二张图中未发现人脸特征";
+				}else{
+					res="比对失败，"+faceCompareResult.msg;
+				}
+
+			}
+			if (facePop!=null){
+				facePop.setResult(res);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }

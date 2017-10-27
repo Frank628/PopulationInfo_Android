@@ -11,8 +11,10 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -65,12 +67,22 @@ import com.lidroid.xutils.exception.DbException;
 public class AddRentalHouseActivity extends BaseActiviy{
 	@ViewInject(R.id.tv_shequ)private TextView tv_shequ;
 	@ViewInject(R.id.tv_fwlx)private TextView tv_fwlx;
+	@ViewInject(R.id.tv_jzlx)private TextView tv_jzlx;
+	@ViewInject(R.id.tv_zzlx)private TextView tv_zzlx;
+	@ViewInject(R.id.tv_cztj)private TextView tv_cztj;
+	@ViewInject(R.id.tv_fwjg)private TextView tv_fwjg;
+	@ViewInject(R.id.tv_fwyt)private TextView tv_fwyt;
 	@ViewInject(R.id.tv_bianji)private TextView tv_bianji;
 	@ViewInject(R.id.edt_bianhao)private ValidateEidtText edt_bianhao;
 	@ViewInject(R.id.edt_fangdongxingming)private EditText edt_fangdongxingming;
 	@ViewInject(R.id.edt_dianhua)private ValidateEidtText edt_dianhua;
 	@ViewInject(R.id.edt_shenfenzheng)private ValidateEidtText edt_shenfenzheng;
 	@ViewInject(R.id.edt_mj)private ValidateEidtText edt_mj;
+	@ViewInject(R.id.edt_jzhs)private ValidateEidtText edt_jzhs;
+	@ViewInject(R.id.edt_jzjs)private ValidateEidtText edt_jzjs;
+	@ViewInject(R.id.edt_zzrxm)private EditText edt_zzrxm;
+	@ViewInject(R.id.edt_zzrsfz)private ValidateEidtText edt_zzrsfz;
+	@ViewInject(R.id.edt_zzrdh)private ValidateEidtText edt_zzrdh;
 	@ViewInject(R.id.edt_1)private ValidateEidtText edt_1;
 	@ViewInject(R.id.edt_2)private ValidateEidtText edt_2;
 	@ViewInject(R.id.edt_3)private ValidateEidtText edt_3;
@@ -88,11 +100,14 @@ public class AddRentalHouseActivity extends BaseActiviy{
 	@ViewInject(R.id.rg_6)private RadioGroup rg_6;
 	@ViewInject(R.id.rg_7)private RadioGroup rg_7;
 	@ViewInject(R.id.rg_8)private RadioGroup rg_8;
+	private boolean[] yixuan_fwyt=new boolean[]{false,false,false,false};
 	private String shi="0",fou="1";
 	private final static int ADDRESS_EDIT=1;
 	private String sqid="",sqname="",address ="",mph="",jieluxiang="",menpaihao="",fuhao="",
 			louhao="",shihao="",menpaihaodanwei="",fuhaodanwei="",loudanwei="",louhaodanwei="",
 			danyuandanwei="",shihaodanwei="";
+	StringBuffer sb_code=null;
+	private String jzlx="", zzlx="",cztj="",fwjg="",fwyt="",fwlx="";
 	public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -113,7 +128,6 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				String fangdongxingming=edt_fangdongxingming.getText().toString().trim();
 				String dianhua =edt_dianhua.getText().toString().trim();
 				String cardno=edt_shenfenzheng.getText().toString().trim();
-				String fwlx=tv_fwlx.getText().toString().trim();
 				String mj=edt_mj.getText().toString().trim();
 				String bei_1=edt_1.getText().toString().trim();
 				String bei_2= edt_2.getText().toString().trim();
@@ -124,6 +138,12 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				String bei_7= edt_7.getText().toString().trim();
 				String bei_8= edt_8.getText().toString().trim();
 				String beizhu= edt_bei.getText().toString().trim();
+				String jzhs=edt_jzhs.getText().toString().trim();
+				String jzjs=edt_jzjs.getText().toString().trim();
+				String zzrxm=edt_zzrxm.getText().toString().trim();
+				String zzrsfz=edt_zzrsfz.getText().toString().trim();
+				String zzrdh=edt_zzrdh.getText().toString().trim();
+
 
 				if (fangwubianhao.equals("")) {
 					Toast.makeText(AddRentalHouseActivity.this, "请输入房屋编号~", Toast.LENGTH_SHORT).show();
@@ -336,19 +356,51 @@ public class AddRentalHouseActivity extends BaseActiviy{
 					return;
 				}
 				String fwlx_code="9";
-				if(TextUtils.isEmpty(fwlx)||fwlx.equals("请选择房屋类型")){
+				if(TextUtils.isEmpty(fwlx)){
 					Toast.makeText(AddRentalHouseActivity.this, "请选择房屋类型~", Toast.LENGTH_SHORT).show();
 					return;
-				}else{
-					for (int i=0;i<Constants.FANGWULEIXING.length;i++){
-						if (fwlx.equals(Constants.FANGWULEIXING[i])){
-							fwlx_code=Constants.FANGWULEIXING_CODE[i];
-						}
-					}
+				}
+				if(TextUtils.isEmpty(jzlx)){
+					Toast.makeText(AddRentalHouseActivity.this, "请选择居住类型~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if(TextUtils.isEmpty(zzlx)){
+					Toast.makeText(AddRentalHouseActivity.this, "请选择租住类型~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if(TextUtils.isEmpty(cztj)){
+					Toast.makeText(AddRentalHouseActivity.this, "请选择承租途径~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if(TextUtils.isEmpty(fwjg)){
+					Toast.makeText(AddRentalHouseActivity.this, "请选择房屋结构~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if(TextUtils.isEmpty(fwyt)){
+					Toast.makeText(AddRentalHouseActivity.this, "请选择房屋用途~", Toast.LENGTH_SHORT).show();
+					return;
 				}
 				if(!CommonUtils.isMianji(edt_mj.getText().toString().trim())){
 					Toast.makeText(AddRentalHouseActivity.this, "房屋面积未填写~", Toast.LENGTH_SHORT).show();
 					return;
+				}
+				if(!CommonUtils.isMianji(edt_jzhs.getText().toString().trim())){
+					Toast.makeText(AddRentalHouseActivity.this, "居住户数未填写~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if(!CommonUtils.isMianji(edt_jzjs.getText().toString().trim())){
+					Toast.makeText(AddRentalHouseActivity.this, "居住间数未填写~", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if (TextUtils.isEmpty(zzrxm)&&TextUtils.isEmpty(zzrsfz)&&TextUtils.isEmpty(zzrdh)){
+
+				}else{
+					if ((!TextUtils.isEmpty(zzrxm))&&(!TextUtils.isEmpty(zzrsfz))&&(!TextUtils.isEmpty(zzrdh))){
+
+					}else{
+						Toast.makeText(AddRentalHouseActivity.this,"转租人信息若填写，必须3项都完整！",Toast.LENGTH_SHORT).show();
+						return;
+					}
 				}
 				if(rg_1.getCheckedRadioButtonId()==-1||rg_2.getCheckedRadioButtonId()==-1||rg_3.getCheckedRadioButtonId()==-1||rg_4.getCheckedRadioButtonId()==-1||rg_5.getCheckedRadioButtonId()==-1||rg_6.getCheckedRadioButtonId()==-1||rg_7.getCheckedRadioButtonId()==-1||rg_8.getCheckedRadioButtonId()==-1){
 					Toast.makeText(AddRentalHouseActivity.this, "请勾选所有相关治理内容的信息！", Toast.LENGTH_SHORT).show();
@@ -363,21 +415,21 @@ public class AddRentalHouseActivity extends BaseActiviy{
 				String rg7=((RadioButton)findViewById(rg_7.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
 				String rg8=((RadioButton)findViewById(rg_8.getCheckedRadioButtonId())).getText().toString().equals("否")?fou:shi;
 				save(shequ, fangwubianhao, address, fangdongxingming, dianhua,cardno,getIntent().getBooleanExtra(Constants.IS_FROM_REALPOPULATION,false),
-						mj,rg1,rg2,rg3,rg4,rg5,rg6,rg7,rg8,bei_1,bei_2,bei_3,bei_4,bei_5,bei_6,bei_7,bei_8,beizhu,fwlx_code);
+						mj,rg1,rg2,rg3,rg4,rg5,rg6,rg7,rg8,bei_1,bei_2,bei_3,bei_4,bei_5,bei_6,bei_7,bei_8,beizhu,jzhs,jzjs,zzrxm,zzrsfz, zzrdh);
 			}
 		});
 		sqname=MyInfomationManager.getSQNAME(this);
 		sqid=MyInfomationManager.getSQID(this);
 		tv_shequ.setText(sqname);
 	}
-	private void save(String shequ, String bianhao, String fangwuaddress, String name, String dianhua, String cardno, final boolean isfrom_real,String mj,String rg1,String rg2,String rg3,String rg4,String rg5,String rg6,String rg7,String rg8,String bei_1,String bei_2,String bei_3,String bei_4,String bei_5,String bei_6,String bei_7,String bei_8,String beizhu,String fwlx){
+	private void save(String shequ, String bianhao, String fangwuaddress, String name, String dianhua, String cardno, final boolean isfrom_real,String mj,String rg1,String rg2,String rg3,String rg4,String rg5,String rg6,String rg7,String rg8,String bei_1,String bei_2,String bei_3,String bei_4,String bei_5,String bei_6,String bei_7,String bei_8,String beizhu,String jzhs,String jzjs,String zzrxm,String zzrsfz,String  zzrdh){
 		RequestParams params=new RequestParams(Constants.URL+"HouseSave.aspx");
 //		if (isfrom_real){
 //			params=new RequestParams(Constants.URL+"syrkHouse.aspx");
 //			params.addBodyParameter("type", "saveHouse");
 //		}else{
 			params=new RequestParams(Constants.URL+"HouseSave.aspx");
-			params.addBodyParameter("type", "savehouse");
+			params.addBodyParameter("type", "savehouse2");
 			params.addBodyParameter("house_mph", mph);
 			params.addBodyParameter("gps", "定位");
 //		}
@@ -418,7 +470,16 @@ public class AddRentalHouseActivity extends BaseActiviy{
 		params.addBodyParameter("jzmj", mj);
 		params.addBodyParameter("fwlx", fwlx);
 
-
+		params.addBodyParameter("jzlx", jzlx);
+		params.addBodyParameter("zzlx", zzlx);
+		params.addBodyParameter("cztj", cztj);
+		params.addBodyParameter("fwjg", fwjg);
+		params.addBodyParameter("fwyt", fwyt);
+		params.addBodyParameter("jzhs", jzhs);
+		params.addBodyParameter("jzjs", jzjs);
+		params.addBodyParameter("zzrxm", zzrxm);
+		params.addBodyParameter("zzrsfz", zzrsfz);
+		params.addBodyParameter("zzrdh", zzrdh);
 		x.http().get(params, new CommonCallback<String>() {
 			@Override
 			public void onSuccess(String result) {
@@ -500,16 +561,7 @@ public class AddRentalHouseActivity extends BaseActiviy{
 		Intent intent =new Intent(this, EidtHouseAddressActivity.class);
 		startActivityForResult(intent, ADDRESS_EDIT);
 	}
-	@Event(value={R.id.rl_fwlx})
-	private void fwlx(View v){
-		StringWheel stringWheel=new StringWheel(this, Constants.FANGWULEIXING, new StringWheel.OnEnsureClickListener() {
-			@Override
-			public void OnEnSureClick(String str) {
-				tv_fwlx.setText(str);
-			}
-		});
-		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
-	}
+
 
 	@Event(value={R.id.rl_shequ})
 	private void shequClick(View v){
@@ -539,5 +591,125 @@ public class AddRentalHouseActivity extends BaseActiviy{
 			}
 		});
 		shequWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0); 
+	}
+
+	@Event(value = {R.id.rl_fwyt})
+	private void rl_fwytClick(View view) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("房屋用途（可多选）");
+		builder.setMultiChoiceItems(Constants.FANGWUYONGTU, yixuan_fwyt, new DialogInterface.OnMultiChoiceClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+				if (isChecked) {
+					yixuan_fwyt[which] = true;
+				} else {
+					yixuan_fwyt[which] = false;
+				}
+			}
+		});
+		builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				StringBuffer sb = new StringBuffer(20);
+				sb_code = new StringBuffer(10);
+				for (int i = 0; i < yixuan_fwyt.length; i++) {
+					if (yixuan_fwyt[i]) {
+						if (TextUtils.isEmpty(sb)) {
+							sb_code.append(Constants.FANGWUYONGTU_CODE[i]);
+							sb.append(Constants.FANGWUYONGTU[i]);
+						} else {
+							sb_code.append("," + Constants.FANGWUYONGTU_CODE[i]);
+							sb.append("," + Constants.FANGWUYONGTU[i]);
+						}
+					}
+				}
+				fwyt = sb_code.toString();
+				tv_fwyt.setText(sb);
+			}
+		});
+		builder.setNegativeButton("取消", new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which){
+
+			}
+		});
+		builder.show();
+	}
+
+	@Event(value = {R.id.rl_jzlx})
+	private void ll_jzlxClick(View view){
+		StringWheel stringWheel=new StringWheel(this, Constants.JUZHULEIXING, new StringWheel.OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+				for(int i=0;i<Constants.JUZHULEIXING.length;i++){
+					if (str.equals(Constants.JUZHULEIXING[i])){
+						jzlx=Constants.JUZHULEIXING_CODE[i];
+					}
+				}
+				tv_jzlx.setText(str);
+			}
+		});
+		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+	@Event(value = {R.id.rl_cztj})
+	private void ll_cztjClick(View view){
+		StringWheel stringWheel=new StringWheel(this, Constants.CHENGZUTUJING, new StringWheel.OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+				for(int i=0;i<Constants.CHENGZUTUJING.length;i++){
+					if (str.equals(Constants.CHENGZUTUJING[i])){
+						cztj=Constants.CHENGZUTUJING_CODE[i];
+					}
+				}
+				tv_cztj.setText(str);
+			}
+		});
+		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+	@Event(value = {R.id.rl_fwlx})
+	private void ll_fwlxClick(View view){
+		StringWheel stringWheel=new StringWheel(this, Constants.FANGWULEIXING, new StringWheel.OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+				for(int i=0;i<Constants.FANGWULEIXING.length;i++){
+					if (str.equals(Constants.FANGWULEIXING[i])){
+						fwlx=Constants.FANGWULEIXING_CODE[i];
+					}
+				}
+				tv_fwlx.setText(str);
+			}
+		});
+		stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+	@Event(value = {R.id.rl_fwjg})
+	private void ll_fwjgClick(View view){
+		StringWheel stringWheel2=new StringWheel(this, Constants.FANGWUJIEGOU, new StringWheel.OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+				tv_fwjg.setText(str);
+				for(int i=0;i<Constants.FANGWUJIEGOU.length;i++){
+					if (str.equals(Constants.FANGWUJIEGOU[i])){
+						fwjg=Constants.FANGWUJIEGOU_CODE[i];
+					}
+				}
+			}
+		});
+		stringWheel2.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+	@Event(value = {R.id.rl_zzlx})
+	private void ll_zzlxClick(View view){
+		StringWheel stringWheel3=new StringWheel(this, Constants.ZUZHULEIXING, new StringWheel.OnEnsureClickListener() {
+			@Override
+			public void OnEnSureClick(String str) {
+				tv_zzlx.setText(str);
+				for(int i=0;i<Constants.ZUZHULEIXING.length;i++){
+					if (str.equals(Constants.ZUZHULEIXING[i])){
+						zzlx=Constants.ZUZHULEIXING_CODE[i];
+					}
+				}
+			}
+		});
+		stringWheel3.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
 	}
 }

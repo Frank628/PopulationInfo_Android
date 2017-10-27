@@ -20,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -141,7 +142,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         getMsg();
-
+//        int latest_version=SharePrefUtil.getInt(MainActivity.this,Constants.LATEST_APP_VERSION,0);
+//        String json=SharePrefUtil.getString(MainActivity.this,Constants.LATEST_APP_VERSION_JSON,"");
+//        boolean isforce=SharePrefUtil.getBoolean(MainActivity.this,Constants.LATEST_APP_VERSION_FORCE,false);
+//        if(latest_version!=0&&(latest_version>CommonUtils.getVersionCode(MainActivity.this))&&(!TextUtils.isEmpty(json))&&isforce){
+//            parseVersion(json);
+//        }
     }
 
 
@@ -236,101 +242,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onSuccess(String result) {
                 Log.d("version", result);
-                try {
-                    final VersionBean versionBean= GsonTools.changeGsonToBean(result,VersionBean.class);
-                    if (versionBean.versionNum.trim().equals("")){
-                        return;
-                    }
-                    String[] str =versionBean.versionNum.trim().split("\\.");
-                    String versionStr=str[0]+str[1]+str[2];
-                    int new_version =Integer.parseInt(versionStr);
-                    if (new_version>CommonUtils.getVersionCode(MainActivity.this)) {
-//                        if(NetWorkManager.checkNetwork(MainActivity.this)!= NetWorkManager.NetState.NET_WIFI){
-//                            String nettype="4G";
-//                            switch (NetWorkManager.checkNetwork(MainActivity.this)){
-//                                case NET_2G:
-//                                    nettype="2G";
-//                                    break;
-//                                case NET_3G:
-//                                    nettype="3G";
-//                                    break;
-//                                case NET_4G:
-//                                    nettype="4G";
-//                                    break;
-//                                default:
-//                                    break;
-//                            }
-//                            String netprivate="中国电信";
-//                            switch (NetWorkManager.getProvider(MainActivity.this)){
-//                                case CMCC:
-//                                    netprivate="中国移动";
-//                                    break;
-//                                case CUCC:
-//                                    netprivate="中国联通";
-//                                    break;
-//                                case CTCC:
-//                                    netprivate="中国电信";
-//                                    break;
-//                                default:
-//                                    break;
-//                            }
-//                            Dialog.showSelectDialog(MainActivity.this, "发现新版本,当前处于"+netprivate+nettype+"网络，请在wifi下更新！", new Dialog.DialogClickListener() {
-//                                @Override
-//                                public void confirm() {
-//
-//                                }
-//                                @Override
-//                                public void cancel() {
-//                                }
-//                            });
-//                            return;
-//                        }
-                        String str_v= "发现新版本,下载并更新？";
-                        if (versionBean.isForce){
-                            str_v="发现新版本v"+versionBean.versionNum.trim()+",该版本需立即更新，否则无法操作！";
-                        }
-                        if (versionBean.isForce){
-                            Dialog.showRadioDialog(MainActivity.this, str_v, new Dialog.DialogClickListener() {
-                                @Override
-                                public void confirm() {
-                                    Intent serviceDownload=new Intent(MainActivity.this,DownLoadService.class);
-                                    if (CommonUtils.isServiceRunning(MainActivity.this, "com.jinchao.population.service.DownLoadService")) {
-                                        MainActivity.this.stopService(serviceDownload);
-                                    }
-                                    serviceDownload.putExtra("url", versionBean.desFile);
-                                    MainActivity.this.startService(serviceDownload);
-                                }
-                                @Override
-                                public void cancel() {
-
-                                }
-                            });
-                        }else{
-                            Dialog.showSelectDialog(MainActivity.this, str_v, new Dialog.DialogClickListener() {
-                                @Override
-                                public void confirm() {
-                                    Intent serviceDownload=new Intent(MainActivity.this,DownLoadService.class);
-                                    if (CommonUtils.isServiceRunning(MainActivity.this, "com.jinchao.population.service.DownLoadService")) {
-                                        MainActivity.this.stopService(serviceDownload);
-                                    }
-                                    serviceDownload.putExtra("url", versionBean.desFile);
-                                    MainActivity.this.startService(serviceDownload);
-                                }
-                                @Override
-                                public void cancel() {
-                                    if (versionBean.isForce){
-                                        SysApplication.getInstance().exit();
-                                    }
-                                }
-                            });
-                        }
-
-
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                parseVersion(result);
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
@@ -342,13 +254,74 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onFinished() {}
         });
     }
+    private void parseVersion(String result){
+        try {
+            final VersionBean versionBean= GsonTools.changeGsonToBean(result,VersionBean.class);
+            if (versionBean.versionNum.trim().equals("")){
+                getNewVersion();
+                return;
+            }
+            String[] str =versionBean.versionNum.trim().split("\\.");
+            String versionStr=str[0]+str[1]+str[2];
+            int new_version =Integer.parseInt(versionStr);
+            SharePrefUtil.saveInt(MainActivity.this,Constants.LATEST_APP_VERSION,new_version);
+            SharePrefUtil.saveString(MainActivity.this,Constants.LATEST_APP_VERSION_URL,versionBean.desFile);
+            SharePrefUtil.saveBoolean(MainActivity.this,Constants.LATEST_APP_VERSION_FORCE,versionBean.isForce);
+            SharePrefUtil.saveString(MainActivity.this,Constants.LATEST_APP_VERSION_JSON,result);
+            String uname=MyInfomationManager.getUserName(MainActivity.this);
+            if (versionBean.versionNum.trim().equals("1.4.0")&& (uname.startsWith("lj")||uname.startsWith("zp")||uname.startsWith("zs")||uname.startsWith("zx")||uname.startsWith("ds")||uname.startsWith("xz"))){
 
+                return;
+            }
+            if (new_version>CommonUtils.getVersionCode(MainActivity.this)) {
+                String str_v= "发现新版本,下载并更新？";
+                if (versionBean.isForce){
+                    str_v="发现新版本v"+versionBean.versionNum.trim()+",该版本需立即更新，否则无法操作！";
+                }
+                if (versionBean.isForce){
+                    Dialog.showRadioDialog(MainActivity.this, str_v, new Dialog.DialogClickListener() {
+                        @Override
+                        public void confirm() {
+                            Intent serviceDownload=new Intent(MainActivity.this,DownLoadService.class);
+                            if (CommonUtils.isServiceRunning(MainActivity.this, "com.jinchao.population.service.DownLoadService")) {
+                                MainActivity.this.stopService(serviceDownload);
+                            }
+                            serviceDownload.putExtra("url", versionBean.desFile);
+                            MainActivity.this.startService(serviceDownload);
+                        }
+                        @Override
+                        public void cancel() {
+                        }
+                    });
+                }else{
+                    Dialog.showSelectDialog(MainActivity.this, str_v, new Dialog.DialogClickListener() {
+                        @Override
+                        public void confirm() {
+                            Intent serviceDownload=new Intent(MainActivity.this,DownLoadService.class);
+                            if (CommonUtils.isServiceRunning(MainActivity.this, "com.jinchao.population.service.DownLoadService")) {
+                                MainActivity.this.stopService(serviceDownload);
+                            }
+                            serviceDownload.putExtra("url", versionBean.desFile);
+                            MainActivity.this.startService(serviceDownload);
+                        }
+                        @Override
+                        public void cancel() {
+                            if (versionBean.isForce){
+                                SysApplication.getInstance().exit();
+                            }
+                        }
+                    });
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     private void getMsg(){
         RequestParams params=new RequestParams(Constants.URL+"SendMsg.aspx?username="+ MyInfomationManager.getUserName(MainActivity.this));
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.d("aaaaaa", result);
                 try {
                     final MsgBean msgBean=GsonTools.changeGsonToBean(result,MsgBean.class);
                     if (msgBean.msgState.equals("1")){

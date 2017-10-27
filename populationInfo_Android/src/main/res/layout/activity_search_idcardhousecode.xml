@@ -18,7 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="#00ffffff"
             >
             <LinearLayout
@@ -84,7 +84,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="#00ffffff"
             >
             <LinearLayout
@@ -154,6 +154,38 @@
                     android:gravity="center"
                     android:layout_marginTop="10dp"
                     android:text="*仅对有人居住房屋操作"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#00ffffff"
+            >
+            <LinearLayout
+                android:id="@+id/ll_aa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/btn_face"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="19sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_orange_bg"
+                    android:text="人证合一比对"
+                    android:gravity="center"
+                    android:adjustViewBounds="true"
+                    android:paddingLeft="60dp"
+                    android:paddingRight="60dp"
+                    android:drawableLeft="@drawable/icon_rzhy"/>
+
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

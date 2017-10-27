@@ -318,7 +318,7 @@ public class XMLParserUtil {
                                             houseinfo.setFwlx(n4.getTextContent());
                                         }
                                         if("租住户数".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
-                                            houseinfo.setJzhs(n4.getTextContent());
+                                            houseinfo.setJzjs(n4.getTextContent());
                                         }
                                         if("房屋用途".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
                                             houseinfo.setFwyt(n4.getTextContent());
@@ -326,7 +326,21 @@ public class XMLParserUtil {
                                         if("租住类型".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
                                             houseinfo.setZzlx(n4.getTextContent());
                                         }
-
+                                        if("转租人姓名".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setZzrxm(n4.getTextContent());
+                                        }
+                                        if("转租人身份证号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setZzrsfz(n4.getTextContent());
+                                        }
+                                        if("租住间数".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setJzhs(n4.getTextContent());
+                                        }
+                                        if("承租途径".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setCztj(n4.getTextContent());
+                                        }
+                                        if("承租途径".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setJzlx(n4.getTextContent());
+                                        }
                                     }
                                 }
                             }

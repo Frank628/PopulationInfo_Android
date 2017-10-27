@@ -24,7 +24,6 @@ import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonIdcard;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.ValidateEidtText;
-
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
@@ -228,5 +227,9 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
             }
         });
     }
-
+    @Event(value={R.id.btn_face})
+    private void faceClick(View view){
+        Intent intent=new Intent(this,FaceCompActivity.class);
+        startActivity(intent);
+    }
 }

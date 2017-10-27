@@ -76,6 +76,7 @@ public class BaseReaderActiviy extends FragmentActivity{
 
 
 	public void showError(String msg){
+
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(msg);
 			builder.setTitle("提示");
@@ -118,7 +119,7 @@ public class BaseReaderActiviy extends FragmentActivity{
 		dialog = new ProgressDialog(this);
 		dialog.setMessage(msg);
 		dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);// 设置进度条的形式为圆形转动的进度条
-		dialog.setCancelable(false);// 设置是否可以通过点击Back键取消
+		dialog.setCancelable(true);// 设置是否可以通过点击Back键取消
 		dialog.setCanceledOnTouchOutside(false);// 设置在点击Dialog外是否取消Dialog进度条
 		dialog.show();
 	}

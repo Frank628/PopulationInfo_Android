@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -81,6 +82,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
     @ViewInject(R.id.moretab_indicator) ScrollIndicatorView scrollIndicatorView;
     @ViewInject(R.id.moretab_viewPager)ViewPager viewPager;
     @ViewInject(R.id.iv_nfc)ImageView iv_nfc;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +109,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         }
         nfcAdapter=NfcAdapter.getDefaultAdapter(this);
         mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()), 0);
+        showTouch();
         if (!getIntent().getBooleanExtra(Constants.IS_NFC_READER,false)){
             onNewIntent(getIntent());
         }
@@ -127,7 +130,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         indicatorViewPager = new IndicatorViewPager(scrollIndicatorView, viewPager);
         scrollIndicatorView.setSplitAuto(true);
         scrollIndicatorView.setPinnedTabView(false);
-        showTouch();
+
     }
 
     @Override
@@ -136,6 +139,8 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         hideTouch();
         Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         Ndef ndef = Ndef.get(detectedTag);
+        i++;
+        Log.d("iiii",i+"");
         NfcOperation.NfcreadNDEF(intent, new NfcOperation.NFCReadCallBackListener() {
             @Override
             public void success(String result) {
@@ -193,10 +198,10 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         if (nfcAdapter!=null) {
             nfcAdapter.enableForegroundDispatch(this, mPendingIntent, null, null);
         }
-        if (!getIntent().getBooleanExtra(Constants.IS_NFC_READER,false)&&noInit){
-            noInit=false;
-            onNewIntent(getIntent());
-        }
+//        if (!getIntent().getBooleanExtra(Constants.IS_NFC_READER,false)&&noInit){
+//            noInit=false;
+//            onNewIntent(getIntent());
+//        }
     }
 
     @Override
@@ -215,6 +220,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                Log.d("getroom",result);
                 dismissProgressDialog();
                 List<String> rooms=XMLParserUtil.parseXMLtoRooms(result);
                 rooms.add(0,"全部在住");
