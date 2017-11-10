@@ -22,7 +22,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/test/debug" />
     <exclude-output />
@@ -116,44 +116,39 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 24 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="okio-1.9.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-appindexing-8.1.0" level="project" />
-    <orderEntry type="library" exported="" name="design-24.1.1" level="project" />
-    <orderEntry type="library" exported="" name="xUtils-2.6.13" level="project" />
-    <orderEntry type="library" exported="" name="android-crop-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="ksoap2-android-assembly-3.0.0-jar-with-dependencies" level="project" />
-    <orderEntry type="library" exported="" name="support-core-ui-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v13-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="commons-lang-2.5" level="project" />
-    <orderEntry type="library" exported="" name="library-1.3.0" level="project" />
-    <orderEntry type="library" exported="" name="BaiduLBS_Android" level="project" />
-    <orderEntry type="library" exported="" name="support-core-utils-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="cardview-v7-24.1.1" level="project" />
-    <orderEntry type="library" exported="" name="support-fragment-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="core-0.9.4.2" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="multidex-instrumentation-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="nxpnfcliblite" level="project" />
-    <orderEntry type="library" exported="" name="commons-codec-1.3" level="project" />
-    <orderEntry type="library" exported="" name="play-services-basement-8.1.0" level="project" />
-    <orderEntry type="library" exported="" name="support-compat-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="okhttp-3.4.1" level="project" />
-    <orderEntry type="library" exported="" name="support-media-compat-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="recyclerview-v7-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="JunyiCloudLib_pro_V2.4.6" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="animated-vector-drawable-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-25.3.0" level="project" />
-    <orderEntry type="library" exported="" name="support-vector-drawable-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:multidex-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\commons-lang-2.5.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-v13-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="com.android.support:multidex-instrumentation-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\okio-1.9.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-compat-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-core-ui-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\okhttp-3.4.1.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-media-compat-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\xUtils-2.6.13.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.afollestad.material-dialogs:core-0.9.4.2" level="project" />
+    <orderEntry type="library" exported="" name="me.zhanghai.android.materialprogressbar:library-1.3.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-v4-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\commons-codec-1.3.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-fragment-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:design-24.1.1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:cardview-v7-24.1.1" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\nxpnfcliblite.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:animated-vector-drawable-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-core-utils-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.2.4@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms:play-services-appindexing-8.1.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:appcompat-v7-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\BaiduLBS_Android.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-annotations:25.3.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-vector-drawable-25.3.0" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:E.\AndroidStudioWorkSpace\PopulationInfo_Android\populationInfo_Android\libs\JunyiCloudLib_pro_V2.4.6.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.soundcloud.android:android-crop-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms:play-services-basement-8.1.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:recyclerview-v7-25.3.0" level="project" />
     <orderEntry type="module" module-name="eventBus" exported="" />
     <orderEntry type="module" module-name="xutils3.0" exported="" />
     <orderEntry type="module" module-name="ViewPagerIndicator" exported="" />
-    <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-23.4.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-23.4.0" level="project" />
-    <orderEntry type="library" exported="" name="recyclerview-v7-23.4.0" level="project" />
   </component>
 </module>
