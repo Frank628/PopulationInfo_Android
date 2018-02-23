@@ -68,7 +68,7 @@ public class FaceCompActivity extends BaseReaderActiviy implements IDReader.IDRe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NavigationLayout navigationLayout =(NavigationLayout) findViewById(R.id.navgation_top);
-        navigationLayout.setCenterText("身份信息录入");
+        navigationLayout.setCenterText("人证合一比对");
         navigationLayout.setLeftTextOnClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

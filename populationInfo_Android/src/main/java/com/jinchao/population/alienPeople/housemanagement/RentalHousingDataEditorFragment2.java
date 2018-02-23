@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.jinchao.population.MyApplication;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
@@ -266,6 +265,7 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                Log.d("ssss",result);
                 HouseInfoBean houseInfoBean=XMLParserUtil.parseHouseInfor(result);
                 if (TextUtils.isEmpty(houseInfoBean.getMsg())){
                     bindData(houseInfoBean);
@@ -596,7 +596,6 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
                     }
                     break;
             }
-
         } catch (DbException e) {
             e.printStackTrace();
         }

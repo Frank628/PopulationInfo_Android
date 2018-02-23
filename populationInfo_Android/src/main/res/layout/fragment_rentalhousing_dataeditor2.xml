@@ -612,5 +612,4 @@
             android:drawablePadding="10dp"/>
     </RelativeLayout>
     </ScrollView>
-
 </RelativeLayout>

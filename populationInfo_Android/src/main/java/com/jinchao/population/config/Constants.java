@@ -1,6 +1,4 @@
 package com.jinchao.population.config;
-
-
 import android.os.Environment;
 
 public class Constants {
@@ -29,7 +27,7 @@ public class Constants {
 	public static final String YUJING_LIST="YUJING_LIST";//到期预警数据
 	public static final String[] DEGREE={"高中","本科","大专","中专","研究生","初中","小学","文盲或半文盲"};
 	public static final String[] CHUSHUOLEIXING={"租赁房屋","农村私房","企业内部集宿","社会面集宿","建筑工地","居民家中","购买房屋","新村楼房","临时工棚"};
-	public static final String[] ZANZHUSHIYOU={"内部单位合同工","建筑民工","其他劳务","个体户经商","学习、培训","离休、退休、退职","事由不详","子女投靠父母"};
+	public static final String[] ZANZHUSHIYOU={"内部单位合同工","企事业雇佣临时工","建筑民工","装卸运输工","办厂","务农","养殖","其他劳务","单位经商","个体户经商","其他经商","采购、供销","驻地办事机构","其他公务","饮食业","公用事业","咨询服务","仓储业","手工业劳动","修理工匠","保姆","拣、收废品","其他服务","其他经济型","开会、考察、出差","学习、培训","寄读、借读","治病、疗养","探亲、访友","旅游、观光","婚入","离休、退休、退职","刑满释放、解除教养","寄养","盲流","灾荒流入","夫妻投靠","子女投靠父母","父母投靠子女","其他投靠亲友","其他社会型","事由不详"};
 	public static final String[] CHANYELEIXING={"二产","一产","三产","其他"};
 	public static final String[] JUZHUFANGSHI={"单身居住","集体居住","合伙居住","家庭居住","其他"};
 	public static final String[] FANGDONGGUANXI={"租赁","员工","自有","其他"};
@@ -74,7 +72,14 @@ public class Constants {
 	public static final String IS_CHUSUOLEIXING_STR="IS_CHUSUOLEIXING_STR";
 	public static final String IS_FUWUCHUSUO_STR="IS_FUWUCHUSUO_STR";
 	public static final String IS_DANWEIDIZHI_STR="IS_DANWEIDIZHI_STR";
-
+	public static final  String[] MINZU=new String[]{"汉","蒙古","回","藏","维吾尔","苗","彝","壮","布依","朝鲜","满","侗","瑶","白","土家",
+			"哈尼","哈萨克","傣","黎","傈僳","佤","畲","高山","拉祜","水","东乡","纳西","景颇","柯尔克孜",
+			"土","达斡尔","仫佬","羌","布朗","撒拉","毛南","仡佬","锡伯","阿昌","普米","塔吉克","怒", "乌孜别克",
+			"俄罗斯","鄂温克","崩龙","保安","裕固","京","塔塔尔","独龙","鄂伦春","赫哲","门巴","珞巴","基诺","革家人","穿青人","其他"};
+	public static final  String[] MINZU_CODE=new String[]{"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
+			"16","17","18","19","20","21","22","23","24","25","26","27","28","29",
+			"30","31","32","33","34","35","36","37","38","39","40","41","42", "43",
+			"44","45","46","47","48","49","50","51","52","53","54","55","56","62","61","57"};
 	public static final String[] LAODONGHETONGQIANDING={"未签","一年以下","一年及以上"};
 	public static final String[] HUYUZHENGMING={"全国婚育证明","本地管理服务卡","无"};
 	public static final String[] CANBAOZHONGLEI={"养老","医疗","失业","工伤","生育","农保"};

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jinchao.population.MyApplication;
@@ -21,6 +22,7 @@ import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.NFCJsonBean;
+import com.jinchao.population.entity.RoomBean;
 import com.jinchao.population.main.LoginActivity;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.DatabaseUtil;
@@ -52,6 +54,7 @@ public class PeoplesInHouseActivity extends BaseActiviy{
     private IndicatorViewPager indicatorViewPager;
     @ViewInject(R.id.moretab_indicator) ScrollIndicatorView scrollIndicatorView;
     @ViewInject(R.id.moretab_viewPager)ViewPager viewPager;
+    @ViewInject(R.id.tv_info)TextView tv_info;
     NFCJsonBean nfcJsonBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,12 @@ public class PeoplesInHouseActivity extends BaseActiviy{
                 startActivity(intent);
             }
         });
+        int tag =getIntent().getIntExtra("TAG",0);
+        RoomBean.BianhaoOne bhone=(RoomBean.BianhaoOne)getIntent().getSerializableExtra("HOUSE");
+        if(tag==1){
+            tv_info.setVisibility(View.VISIBLE);
+            tv_info.setText("房东姓名:"+nfcJsonBean.name.trim()+"  房东电话:"+nfcJsonBean.phone.trim());
+        }
         scrollIndicatorView.setBackgroundColor(Color.WHITE);
         scrollIndicatorView.setScrollBar(new DrawableBar(this, R.drawable.round_border_white_selector, ScrollBar.Gravity.CENTENT_BACKGROUND) {
             @Override
@@ -91,12 +100,12 @@ public class PeoplesInHouseActivity extends BaseActiviy{
         indicatorViewPager = new IndicatorViewPager(scrollIndicatorView, viewPager);
         scrollIndicatorView.setSplitAuto(true);
         scrollIndicatorView.setPinnedTabView(false);
-        getRooms(nfcJsonBean);
+        getRooms(nfcJsonBean,bhone,tag);
     }
 
 
 
-    private void getRooms(final NFCJsonBean nfcJsonBean){
+    private void getRooms(final NFCJsonBean nfcJsonBean,final RoomBean.BianhaoOne bhone,final int tag){
         showProgressDialog("","正在加载屋内室号列表...");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
         params.addBodyParameter("type","searchRoom");
@@ -110,7 +119,7 @@ public class PeoplesInHouseActivity extends BaseActiviy{
                 rooms.add(0,"全部在住");
                 rooms.add(0,"搬离人员");
                 NfcPopIndicatorAdapter adapter=new NfcPopIndicatorAdapter(getSupportFragmentManager());
-                adapter.initAdpater(PeoplesInHouseActivity.this,nfcJsonBean,rooms);
+                adapter.initAdpater(PeoplesInHouseActivity.this,nfcJsonBean,rooms,bhone,tag);
                 indicatorViewPager.setAdapter(adapter);
                 if (!TextUtils.isEmpty(nfcJsonBean.room)){
                     for (int i=0;i<rooms.size();i++){

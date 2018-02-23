@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
 import com.google.gson.Gson;
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
@@ -65,8 +64,12 @@ public class HistoryPeopleFragment extends LazyFragment {
     @Override
     protected void onResumeLazy() {
         super.onResumeLazy();
+
         if (!TextUtils.isEmpty(resultJson)){
-            processData(resultJson);
+            if (!TextUtils.isEmpty(resultJson)) {
+
+                processData(resultJson);
+            }
         }
     }
 
@@ -78,24 +81,25 @@ public class HistoryPeopleFragment extends LazyFragment {
         lv=(ListView) findViewById(R.id.lv);
         loadingView=(LoadingView) findViewById(R.id.loadingview);
         edt_idcard=(EditText) findViewById(R.id.edt_idcard);
-
         edt_idcard.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-                processData(resultJson);
+                if (!TextUtils.isEmpty(resultJson)) {
+                    processData(resultJson);
+                }
             }
         });
+        Log.d("HHHHH","onCreateViewLazy");
         getzaizhuData(nfcJsonBean);
     }
     private void getzaizhuData(final NFCJsonBean nfcJsonBean){
+        loadingView.loading();
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
         params.addBodyParameter("type","peopleList");
         params.addBodyParameter("sqdm",MyInfomationManager.getSQCODE(getActivity()));
@@ -150,11 +154,11 @@ public class HistoryPeopleFragment extends LazyFragment {
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                Log.d("Historyr",result);
                 resultJson=XMLParserUtil.parseXMLtoHistory(result,nfcJsonBean.code,nfcJsonBean.add);
                 Log.e("History",resultJson);
                 processData(resultJson);
             }
-
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 loadingView.reload(new LoadingView.OnReloadClickListener() {
@@ -178,25 +182,30 @@ public class HistoryPeopleFragment extends LazyFragment {
         try {
             RenyuanInHouseBean renyuanInHouseBean= GsonTools.changeGsonToBean(json,RenyuanInHouseBean.class);
             if (renyuanInHouseBean.data.house_exist.equals("0")){
-                loadingView.empty("无人居住");
+                loadingView.empty("近半年无搬离人员");
                 return;
             }
             if (renyuanInHouseBean.data.people_exist.equals("0")){
-                loadingView.empty("无人居住");
+                loadingView.empty("近半年无搬离人员");
                 return;
             }
             List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<>();
             if (renyuanInHouseBean1.data.peoplelist==null)renyuanInHouseBean1.data.peoplelist=new ArrayList<>();
             String str=edt_idcard.getText().toString().trim();
-            for (int i=0;i<renyuanInHouseBean.data.peoplelist.size();i++){
-                if (renyuanInHouseBean.data.peoplelist.get(i).idcard.contains(str)){
-                    list.add(renyuanInHouseBean.data.peoplelist.get(i));
+            if(str.isEmpty()){
+                list.addAll(renyuanInHouseBean.data.peoplelist);
+            }else {
+                for (int i = 0; i < renyuanInHouseBean.data.peoplelist.size(); i++) {
+                    if (renyuanInHouseBean.data.peoplelist.get(i).idcard.contains(str)) {
+                        list.add(renyuanInHouseBean.data.peoplelist.get(i));
+                    }
                 }
             }
             for (int i=0;i<list.size();i++){
                 for (int j=0;j<renyuanInHouseBean1.data.peoplelist.size();j++){
                     if (list.get(i).idcard.equals(renyuanInHouseBean1.data.peoplelist.get(j).idcard)){
                         list.remove(i);
+                        i=i-1;
                     }
                 }
             }
@@ -268,7 +277,12 @@ public class HistoryPeopleFragment extends LazyFragment {
                 }
             });
         } catch (Exception e) {
-            loadingView.empty("暂无搬离人员！");
+            loadingView.reload("服务器返回数据有误", new LoadingView.OnReloadClickListener() {
+                @Override
+                public void onReload() {
+                    getzaizhuData(nfcJsonBean);
+                }
+            });
             e.printStackTrace();
         }
     }

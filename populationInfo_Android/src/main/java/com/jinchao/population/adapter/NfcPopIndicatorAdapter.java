@@ -16,6 +16,7 @@ import com.jinchao.population.alienPeople.nfcpop.AllPeopleFragment;
 import com.jinchao.population.alienPeople.nfcpop.HistoryPeopleFragment;
 import com.jinchao.population.alienPeople.nfcpop.PeopleRoomFragment;
 import com.jinchao.population.entity.NFCJsonBean;
+import com.jinchao.population.entity.RoomBean;
 import com.jinchao.population.utils.CommonUtils;
 import com.shizhefei.view.indicator.Indicator;
 import com.shizhefei.view.indicator.IndicatorViewPager;
@@ -30,14 +31,18 @@ public class NfcPopIndicatorAdapter extends IndicatorViewPager.IndicatorFragment
     private FragmentManager fragmentManager;
     NFCJsonBean nfcJsonBean;
     List<String> listRoom;
+    RoomBean.BianhaoOne bhone;
+    int tag;
     LayoutInflater inflate;
 
     public NfcPopIndicatorAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
-    public void initAdpater(Context context,NFCJsonBean nfcJsonBean, List<String> listRoom){
+    public void initAdpater(Context context, NFCJsonBean nfcJsonBean, List<String> listRoom,  RoomBean.BianhaoOne bhone,  int tag){
         this.nfcJsonBean=nfcJsonBean;
         this.listRoom=listRoom;
+        this.bhone=bhone;
+        this.tag=tag;
         inflate = LayoutInflater.from(context.getApplicationContext());
     }
 
@@ -61,7 +66,7 @@ public class NfcPopIndicatorAdapter extends IndicatorViewPager.IndicatorFragment
     @Override
     public Fragment getFragmentForPage(int position) {
         if (position==1){
-            return AllPeopleFragment.newInstance(nfcJsonBean);
+            return AllPeopleFragment.newInstance(nfcJsonBean,bhone,tag);
         }else if(position==0){
             return HistoryPeopleFragment.newInstance(nfcJsonBean);
         }else {

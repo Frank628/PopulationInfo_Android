@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/navgation_top"
+        layout="@layout/navigation_layout"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edt_jlx"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="5"
+            android:background="@drawable/login_bg"
+            android:paddingLeft="10dp"
+            android:textSize="15sp"
+            android:editable="false"
+            android:hint="街路巷（小区名）"/>
+
+        <EditText
+            android:id="@+id/edt_lzh"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="3"
+            android:layout_marginLeft="5dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/login_bg"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:editable="false"
+            android:hint="楼幢号"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/tv_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="6dp"
+            android:background="@color/title4"
+            android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/green"
+            android:text="★ 绿色为当前有人居住"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:text=" ★ 红色为重复编号"/>
+        </LinearLayout>
+        <GridView
+            android:id="@+id/gv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchMode="columnWidth"
+            android:numColumns="4"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="15dp"
+            android:layout_above="@+id/tv_notice"
+            android:gravity="center"
+            />
+        <com.jinchao.population.widget.LoadingView
+            android:id="@+id/loadingview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</LinearLayout>

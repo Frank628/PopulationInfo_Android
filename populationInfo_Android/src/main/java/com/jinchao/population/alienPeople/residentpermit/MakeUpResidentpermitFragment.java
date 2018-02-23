@@ -208,7 +208,6 @@ public class MakeUpResidentpermitFragment extends BaseFragment{
                             @Override
                             public void confirm() {
                             }
-
                             @Override
                             public void cancel() {
                             }

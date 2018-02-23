@@ -192,6 +192,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 					edt_name.setText(getIntent().getStringExtra("name"));
 					edt_address.setText(getIntent().getStringExtra("huji1"));
 					edt_xaddress.setText(getIntent().getStringExtra("huji2"));
+					edt_region.setText(getIntent().getStringExtra("region"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

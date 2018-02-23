@@ -68,6 +68,7 @@ public class IDCardResultActivity extends BaseActiviy{
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+
                 requestBanzhengSHEQU(idcard, XmlUtils.parseXML(result));
                 peoplefromXml=XmlUtils.parseXMLtoPeople(result);
                 sqcode=XmlUtils.parseXMLtoShequcode(result);
@@ -97,10 +98,10 @@ public class IDCardResultActivity extends BaseActiviy{
                             intent.putExtra("name",name);
                             intent.putExtra("huji2",huji2);
                             intent.putExtra("huji1",huji1);
+
                             startActivity(intent);
                             IDCardResultActivity.this.finish();
                         }
-
                         @Override
                         public void cancel() {
                             IDCardResultActivity.this.finish();
@@ -125,7 +126,6 @@ public class IDCardResultActivity extends BaseActiviy{
             public void onSuccess(String result) {
                 Log.d("quePeople", result);
                 tv_content.setText(str.replace("初次办证社区:",XmlUtils.parseBanZhengSheQuXML(result)));
-
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
@@ -150,6 +150,7 @@ public class IDCardResultActivity extends BaseActiviy{
         intent.putExtra("name",name);
         intent.putExtra("huji2",huji2);
         intent.putExtra("huji1",huji1);
+        intent.putExtra("region",peoplefromXml.getPeople());
         intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
         startActivity(intent);
         IDCardResultActivity.this.finish();
@@ -165,6 +166,7 @@ public class IDCardResultActivity extends BaseActiviy{
         intent.putExtra("name",name);
         intent.putExtra("huji2",huji2);
         intent.putExtra("huji1",huji1);
+        intent.putExtra("region",peoplefromXml.getPeople());
         startActivity(intent);
         IDCardResultActivity.this.finish();
     }
@@ -178,12 +180,9 @@ public class IDCardResultActivity extends BaseActiviy{
             Dialog.showForceDialog(IDCardResultActivity.this, "", "此人不在本社区，无法注销！", new Dialog.DialogClickListener() {
                 @Override
                 public void confirm() {
-
                 }
-
                 @Override
                 public void cancel() {
-
                 }
             });
             return;

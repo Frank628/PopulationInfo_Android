@@ -38,7 +38,7 @@ public class ResidentPermitManagementActivity extends BaseActiviy{
     @ViewInject(R.id.message_viewpager) private ViewPager mPager;
     @ViewInject(R.id.tab_indicator) private TabPageIndicator mTabPageIndicator;
     @ViewInject(R.id.underline_indicator) private UnderlinePageIndicatorEx mUnderlinePageIndicator;
-    String[] titles=new String[]{"居住证挂失","居住证补办"};
+    String[] titles=new String[]{"居住证挂失","居住证补办","居住证追踪"};
     NfcAdapter nfcAdapter;
     private PendingIntent mPendingIntent;
     public IntentFilter[] nfcIfs;
@@ -59,6 +59,7 @@ public class ResidentPermitManagementActivity extends BaseActiviy{
         List<Fragment> fragmentList=new ArrayList<>();
         fragmentList.add(new ReportLossOfResidentpermitFragment());
         fragmentList.add(new MakeUpResidentpermitFragment());
+        fragmentList.add(new ResidenTrackingFragment());
         adapter.setTitleList(titles);
         adapter.setFragmentList(fragmentList);
         mPager.setOffscreenPageLimit(0);

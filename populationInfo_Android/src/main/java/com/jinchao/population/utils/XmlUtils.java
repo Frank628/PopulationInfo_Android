@@ -15,6 +15,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 
 import android.app.Activity;
+import android.util.Log;
 import android.util.Xml;
 import android.widget.Toast;
 
@@ -358,7 +359,7 @@ public class XmlUtils {
 				Node n2 = nl.item(i);
 				if (n2.getNodeType() == Node.ELEMENT_NODE) {
 					if (n2.getNodeName().equals("ResultSet")) {
-						String huji1="",huji2="",zanzhu1="",zanzhu2="",bianhao="",sex="",danweidizhi="",birth="",idcard="",name="",shengao="",phone="";
+						String huji1="",huji2="",zanzhu1="",zanzhu2="",bianhao="",sex="",danweidizhi="",birth="",idcard="",name="",shengao="",phone="",minzu="";
 						NodeList nl2 = n2.getChildNodes();
 						for (int j = 0; j < nl2.getLength(); j++) {
 							Node n3 = nl2.item(j);
@@ -403,6 +404,10 @@ public class XmlUtils {
 										if("个人联系电话".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
 											phone =n4.getTextContent();
 										}
+										if("民族".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+											minzu =n4.getTextContent().trim();
+
+										}
 									}
 								}
 							}
@@ -417,6 +422,14 @@ public class XmlUtils {
 						people.setSeviceAddress(danweidizhi);
 						people.setSex(sex);
 						people.setHeight(shengao);
+						for (int m = 0; m<Constants.MINZU_CODE.length; m++) {
+
+							if(minzu.equals(Constants.MINZU_CODE[m])){
+								minzu=Constants.MINZU[m];
+								Log.d("minzu3",minzu);
+							}
+						}
+						people.setPeople(minzu);
 					}else if(n2.getNodeName().equals("AppType")){
 						NodeList nl2 = n2.getChildNodes();
 						for (int j = 0; j < nl2.getLength(); j++) {

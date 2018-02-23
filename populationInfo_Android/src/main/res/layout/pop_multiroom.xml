@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/close_yellow"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginBottom="15dp"/>
+    <LinearLayout
+        android:id="@+id/ll_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/contacts_pop_bg"
+        android:layout_below="@+id/iv_close"
+        >
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="疑似重复地址"
+            android:gravity="center"
+            android:padding="12dp"
+            android:textSize="18sp"
+            android:textColor="@color/title1"/>
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+
+    </LinearLayout>
+
+</RelativeLayout>

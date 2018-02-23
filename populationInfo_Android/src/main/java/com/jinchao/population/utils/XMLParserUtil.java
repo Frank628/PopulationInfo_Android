@@ -5,6 +5,7 @@ import android.util.Log;
 import com.jinchao.population.config.Constants;
 import com.jinchao.population.entity.HouseInfoBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
+import com.jinchao.population.entity.TrackingBean;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,6 +29,10 @@ import javax.xml.parsers.ParserConfigurationException;
 public class XMLParserUtil {
     public interface OnXmlParserListener{
         void success(String result);
+        void fail(String error);
+    }
+    public interface OnXmlParserToTrackListener{
+        void success(TrackingBean result);
         void fail(String error);
     }
     public static void parseXMLforReportLoss(String xml,OnXmlParserListener onXmlParserListener){
@@ -267,6 +272,12 @@ public class XMLParserUtil {
                             }
                         }
                     }else if(n2.getNodeName().equals("msg")){
+                        String msgg=n2.getTextContent();
+                        if(msgg.equals("没有查询到数据")){
+                            jsonObject.put("house_exist","0");
+                            jsonObject.put("people_exist","0");
+                            data.put("data",jsonObject);
+                        }
                     }
                 }
             }
@@ -338,7 +349,7 @@ public class XMLParserUtil {
                                         if("承租途径".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
                                             houseinfo.setCztj(n4.getTextContent());
                                         }
-                                        if("承租途径".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                        if("出租类型".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
                                             houseinfo.setJzlx(n4.getTextContent());
                                         }
                                     }
@@ -359,10 +370,98 @@ public class XMLParserUtil {
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return houseinfo;
+    }
+
+    public static void parseXMLtoTRACK(String xml,OnXmlParserToTrackListener onXmlParserListener){
+        String str="";
+        TrackingBean track=new TrackingBean();
+        xml=xml.replace("encoding=\"GB2312\"","encoding=\"UTF-8\"");
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document d = db.parse(CommonUtils.writeTxtToFile(xml, Constants.DB_PATH,"xml.xml"));
+            Node n = d.getChildNodes().item(0);
+            NodeList nl = n.getChildNodes();
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node n2 = nl.item(i);
+                if (n2.getNodeType() == Node.ELEMENT_NODE) {
+                    if (n2.getNodeName().equals("ResultSet")) {
+                        NodeList nl2 = n2.getChildNodes();
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                NodeList nl3 = n3.getChildNodes();
+                                for (int k = 0; k < nl3.getLength(); k++) {
+                                    Node n4 = nl3.item(k);
+                                    if (n4.getNodeType() == Node.ELEMENT_NODE) {
+                                        if("是否审批".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.shenpi=n4.getTextContent().trim();
+                                        }
+                                        if("是否制证".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.zhizheng=n4.getTextContent().trim();
+                                        }
+                                        if("是否下发".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.xiafa=n4.getTextContent().trim();
+                                        }
+                                        if("是否领证".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.lingzheng=n4.getTextContent().trim();
+                                        }
+                                        if("卡状态".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.kastatus=n4.getTextContent().trim();
+                                        }
+                                        if("操作类型".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.caozuo=n4.getTextContent().trim();
+                                        }
+                                        if("操作时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.caozuoshijian=n4.getTextContent().trim();
+                                        }
+                                        if("领证日期".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            track.lingzhengriqi=n4.getTextContent().trim();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        onXmlParserListener.success(track);
+                    }else if(n2.getNodeName().equals("AppType")){
+                        NodeList nl2 = n2.getChildNodes();
+                        boolean isSuccess=true;
+                        for (int j = 0; j < nl2.getLength(); j++) {
+                            Node n3 = nl2.item(j);
+                            if (n3.getNodeType() == Node.ELEMENT_NODE) {
+                                if(n3.getNodeName().equals("ReturnID")){
+                                    if (n3.getTextContent().trim().equals("0")){
+//                                        onXmlParserListener.success("挂失成功！");
+                                    }else{
+                                        isSuccess=false;
+                                    }
+                                }
+                                if(n3.getNodeName().equals("ReturnMessage")){
+                                    if (!isSuccess) {
+                                        onXmlParserListener.fail(n3.getTextContent());
+                                    }
+                                }
+                            }
+                        }
+                    }else if(n2.getNodeName().equals("msg")){
+                        String msgg=n2.getTextContent().trim();
+                        if(msgg.equals("没有查询到数据")){
+                            onXmlParserListener.fail("没有查询到数据");
+                        }
+                    }
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

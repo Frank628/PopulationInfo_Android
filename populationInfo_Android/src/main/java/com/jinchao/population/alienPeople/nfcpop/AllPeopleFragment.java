@@ -25,6 +25,7 @@ import com.jinchao.population.config.Constants;
 import com.jinchao.population.dbentity.People;
 import com.jinchao.population.entity.NFCJsonBean;
 import com.jinchao.population.entity.RenyuanInHouseBean;
+import com.jinchao.population.entity.RoomBean;
 import com.jinchao.population.entity.SortbyRoomCodeRenyuanInhouseOneClass;
 import com.jinchao.population.entity.SortbyTimeRenyuanInhouseOneClass;
 import com.jinchao.population.mainmenu.SearchPeopleDetailActivity;
@@ -59,10 +60,14 @@ public class AllPeopleFragment extends LazyFragment {
     private RadioGroup rg_sort;
     private String resultJson="";
     private RadioButton rb_roomcode;
-    public static AllPeopleFragment newInstance(NFCJsonBean json){
+    private int tag;
+    private RoomBean.BianhaoOne bhone;
+    public static AllPeopleFragment newInstance(NFCJsonBean json, RoomBean.BianhaoOne bhone, int tag){
         AllPeopleFragment allPeopleFragment=new AllPeopleFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(KEY, json);
+        bundle.putSerializable("HOUSE", bhone);
+        bundle.putSerializable("TAG", tag);
         allPeopleFragment.setArguments(bundle);
         return allPeopleFragment;
     }
@@ -73,6 +78,10 @@ public class AllPeopleFragment extends LazyFragment {
         super.onCreateViewLazy(savedInstanceState);
         setContentView(R.layout.fragment_all);
         nfcJsonBean=(NFCJsonBean)getArguments().getSerializable(KEY);
+        tag=getArguments().getInt("TAG",0);
+        if(tag==1){
+            bhone=(RoomBean.BianhaoOne)getArguments().getSerializable("HOUSE");
+        }
         lv=(ListView) findViewById(R.id.lv);
         loadingView=(LoadingView) findViewById(R.id.loadingview);
         edt_idcard=(EditText) findViewById(R.id.edt_idcard);
@@ -135,6 +144,9 @@ public class AllPeopleFragment extends LazyFragment {
                 Log.i("allmp",result);
                 resultJson=result;
                 processData(result);
+                if(tag==1){
+                    judgeHouse(result);
+                }
             }
 
             @Override
@@ -159,15 +171,10 @@ public class AllPeopleFragment extends LazyFragment {
      private void processData(String  result){
         try {
             RenyuanInHouseBean renyuanInHouseBean= GsonTools.changeGsonToBean(result,RenyuanInHouseBean.class);
-            if (renyuanInHouseBean.data.house_exist.equals("0")){
+            if (renyuanInHouseBean.data.house_exist.equals("0")||renyuanInHouseBean.data.people_exist.equals("0")){
                 loadingView.empty("无人居住");
                 return;
             }
-            if (renyuanInHouseBean.data.people_exist.equals("0")){
-                loadingView.empty("无人居住");
-                return;
-            }
-
             List<RenyuanInHouseBean.RenyuanInhouseOne> list=new ArrayList<RenyuanInHouseBean.RenyuanInhouseOne>();
             if(!TextUtils.isEmpty(edt_idcard.getText().toString().trim())){
                 for (int i = 0; i <renyuanInHouseBean.data.peoplelist.size(); i++) {
@@ -238,5 +245,59 @@ public class AllPeopleFragment extends LazyFragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private void judgeHouse (String result){
+        RenyuanInHouseBean renyuanInHouseBean= GsonTools.changeGsonToBean(result,RenyuanInHouseBean.class);
+        if (renyuanInHouseBean.data.house_exist.equals("0")||renyuanInHouseBean.data.people_exist.equals("0")){
+                synchroGD(bhone,0);
+
+        }else{
+                synchroGD(bhone,1);
+        }
+    }
+
+    private void synchroGD (RoomBean.BianhaoOne bhone,int flag){
+        int hasperson=0;
+        if(bhone.sfjz.isEmpty()){
+            if(bhone.r_status==0){
+                hasperson=0;
+            }else{
+                hasperson=1;
+            }
+        }else if (bhone.sfjz.equals("0")){
+            hasperson=0;
+        }else if(bhone.sfjz.equals("1")){
+            hasperson=1;
+        }
+        if((hasperson==1&&flag==0)||(hasperson==0&&flag==1)){
+            RequestParams params=new RequestParams(Constants.URL+"HousePeople.aspx");
+            params.addBodyParameter("type","modHouse");
+            params.addBodyParameter("house_id",bhone.house_id);
+            params.addBodyParameter("h_jz",flag+"");
+            params.addBodyParameter("flag",flag+"");
+            x.http().get(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    Log.i("modHouse",result);
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) { }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });
+        }
+
+
+
     }
 }

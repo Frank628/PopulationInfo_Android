@@ -39,7 +39,6 @@ import java.io.ByteArrayOutputStream;
 @ContentView(R.layout.activity_search_idcardhousecode)
 public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.IDReaderListener{
     @ViewInject(R.id.edt_idcard) ValidateEidtText edt_idcard;
-    @ViewInject(R.id.edt_housecode) ValidateEidtText edt_housecode;
     @ViewInject(R.id.ll_bottom)LinearLayout ll_bottom;
     People people=null;
     Bitmap bmp=null;
@@ -195,13 +194,20 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     @Event(value={R.id.btn_house_search,R.id.edt_housecode})
     private void onhousesearchClick(View view){
         edt_idcard.setText("");
         edt_idcard.clearFocus();
         SearchFragment.newInstance().show(getSupportFragmentManager(),SearchFragment.TAG);
+    }
+    @Event(value={R.id.edt_housename})
+    private void onhousenameClick(View view){
+        edt_idcard.setText("");
+        edt_idcard.clearFocus();
+//        SearchAddressFragment.newInstance().show(getSupportFragmentManager(),SearchFragment.TAG);
+        Intent intent =new Intent(this,SearchByAddressActivity.class);
+        startActivity(intent);
     }
     private void isSuZhouRen(String idcard,final Intent intent){
         showProcessDialog("正在验证常口，请稍等···");
@@ -214,11 +220,9 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
                 }else{
                     SearchTwoWayActivity.this.startActivity(intent);
                 }
-
             }
             @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-            }
+            public void onError(Throwable ex, boolean isOnCallback) {}
             @Override
             public void onCancelled(CancelledException cex) {}
             @Override
@@ -227,9 +231,5 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
             }
         });
     }
-    @Event(value={R.id.btn_face})
-    private void faceClick(View view){
-        Intent intent=new Intent(this,FaceCompActivity.class);
-        startActivity(intent);
-    }
+
 }

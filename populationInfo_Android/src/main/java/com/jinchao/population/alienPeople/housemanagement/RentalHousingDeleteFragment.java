@@ -239,7 +239,19 @@ public class RentalHousingDeleteFragment extends BaseFragment{
             Toast.makeText(getActivity(),"请先输入房屋编号查询！",Toast.LENGTH_SHORT).show();
             return;
         }
-        deleteHouseInfo(scode);
+        final String codes=scode;
+        Dialog.showSelectDialog(getActivity(), "确认注销“" + codes + "”此房屋编号吗？", new Dialog.DialogClickListener() {
+            @Override
+            public void confirm() {
+                deleteHouseInfo(codes);
+            }
+
+            @Override
+            public void cancel() {
+
+            }
+        });
+
     }
     private void deleteHouseInfo(final String scode){
         showProcessDialog("数据提交中...");

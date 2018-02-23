@@ -227,7 +227,7 @@ public class NFCReadPeopleInHouseActivity extends BaseActiviy{
                 rooms.add(0,"搬离人员");
 
                 NfcPopIndicatorAdapter adapter=new NfcPopIndicatorAdapter(getSupportFragmentManager());
-                adapter.initAdpater(NFCReadPeopleInHouseActivity.this,nfcJsonBean,rooms);
+                adapter.initAdpater(NFCReadPeopleInHouseActivity.this,nfcJsonBean,rooms,null,0);
                 indicatorViewPager.setAdapter(adapter);
                 if (!TextUtils.isEmpty(nfcJsonBean.room)){
                     for (int i=0;i<rooms.size();i++){

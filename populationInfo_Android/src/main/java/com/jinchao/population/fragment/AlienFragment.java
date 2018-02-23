@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.jinchao.population.MyInfomationManager;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.FaceCompActivity;
 import com.jinchao.population.alienPeople.housemanagement.HouseOperationActivity;
 import com.jinchao.population.alienPeople.residentpermit.ResidentPermitManagementActivity;
 import com.jinchao.population.base.BaseFragment;
@@ -111,11 +112,11 @@ public class AlienFragment extends BaseFragment {
         Intent intent =new Intent(getActivity(), RegistRentalHouseActivity.class);
         startActivity(intent);
     }
-//    @Event(value={R.id.iv_personinfocheck})
-//    private void personinfocheckClick(View view){
-//        Intent intent =new Intent(getActivity(), SearchPeopleActivity.class);
-//        startActivity(intent);
-//    }
+    @Event(value={R.id.iv_personinfocheck})
+    private void personinfocheckClick(View view){
+        Intent intent=new Intent(getActivity(),FaceCompActivity.class);
+        startActivity(intent);
+    }
     @Event(value={R.id.iv_rentalhousecheck})
     private void rentalhousecheckClick(View view){
 //        Intent intent =new Intent(getActivity(), SearchRentalHouseActivity.class);

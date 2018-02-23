@@ -6,6 +6,15 @@
         android:id="@+id/navgation_top"
         layout="@layout/navigation_layout"
         />
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textSize="15sp"
+        android:textColor="@color/title2"
+        android:gravity="center"
+        android:padding="5dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
