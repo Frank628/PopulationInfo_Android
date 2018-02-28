@@ -71,7 +71,6 @@ public class SearchTwoWayActivity extends BaseReaderActiviy implements IDReader.
         try {
             nfcTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         } catch (Exception e) {
-
         }
         if (nfcTag != null) {
             link = LinkFactory.createExNFCLink(nfcTag);

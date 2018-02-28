@@ -55,6 +55,7 @@ public class PeopleRoomFragment extends LazyFragment {
     private LoadingView loadingView;
     private EditText edt_idcard;
     String room="",resultJson="";
+
     public static PeopleRoomFragment newInstance(NFCJsonBean nfcJsonBean,String room){
         PeopleRoomFragment peopleRoomFragment=new PeopleRoomFragment();
         Bundle bundle = new Bundle();
@@ -79,11 +80,9 @@ public class PeopleRoomFragment extends LazyFragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 if (!TextUtils.isEmpty(resultJson))processData(resultJson);

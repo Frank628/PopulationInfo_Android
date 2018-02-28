@@ -185,10 +185,24 @@ public class ResidenTrackingFragment extends BaseFragment{
                         tv_lingzheng.setTextColor(getResources().getColor(R.color.title3));
                         tv_caozuo.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                         tv_caozuo.setTextColor(getResources().getColor(R.color.title3));
-                        if(result.kastatus.equals("1")){
-                            tv_kastatus.setText("居住证卡状态：激活");
+                        if(result.lingzheng.equals("1")) {
+                            tv_kastatus.setVisibility(View.VISIBLE);
+                            if (result.kastatus.equals("1")) {
+                                tv_kastatus.setText("居住证卡状态：激活");
+                            } else {
+                                tv_kastatus.setText("居住证卡状态：休眠");
+                            }
                         }else{
-                            tv_kastatus.setText("居住证卡状态：休眠");
+                            if(result.caozuo.equals("1")) {
+                                tv_kastatus.setVisibility(View.INVISIBLE);
+                            }else{
+                                tv_kastatus.setVisibility(View.VISIBLE);
+                                if (result.kastatus.equals("1")) {
+                                    tv_kastatus.setText("居住证卡状态：激活");
+                                } else {
+                                    tv_kastatus.setText("居住证卡状态：休眠");
+                                }
+                            }
                         }
                         tv_caozuo.setText(result.caozuo.equals("2")?"●  操作类型：变更":(result.caozuo.equals("3")?"●  操作类型：换证":(result.caozuo.equals("4")?"●  操作类型：注销":(result.caozuo.equals("5")?"●  操作类型：挂失":(result.caozuo.equals("6")?"●  操作类型：解挂":(result.caozuo.equals("7")?"●  操作类型：补卡":(result.caozuo.equals("8")?"●  操作类型：签注延期":(result.caozuo.equals("9")?"●  操作类型：证件临转":(result.caozuo.equals("10")?"●  操作类型：休眠激活":"●  操作类型：初次办证")))))))));
                         if(result.shenpi.equals("1")){
@@ -204,9 +218,10 @@ public class ResidenTrackingFragment extends BaseFragment{
                                             tv_lingzheng.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                                         }else{
                                             tv_lingzheng.setText("●  是否领证：已领证");
-
-                                            tv_caozuo.setTextColor(getResources().getColor(R.color.title1));
-                                            tv_caozuo.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                                            tv_lingzheng.setTextColor(getResources().getColor(R.color.title1));
+                                            tv_lingzheng.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+//                                            tv_caozuo.setTextColor(getResources().getColor(R.color.title1));
+//                                            tv_caozuo.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                                         }
                                     }else{
                                         tv_lingzheng.setText("●  是否领证：未领证");

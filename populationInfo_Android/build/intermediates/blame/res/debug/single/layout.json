@@ -392,6 +392,10 @@
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\fragment_re_makeup.xml"
     },
     {
+        "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_text_multi.xml",
+        "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\item_text_multi.xml"
+    },
+    {
         "merged": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\build\\intermediates\\res\\merged\\debug\\layout\\item_important.xml",
         "source": "E:\\AndroidStudioWorkSpace\\PopulationInfo_Android\\populationInfo_Android\\src\\main\\res\\layout\\item_important.xml"
     },

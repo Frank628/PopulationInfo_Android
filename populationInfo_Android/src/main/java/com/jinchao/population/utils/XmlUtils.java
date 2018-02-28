@@ -582,7 +582,7 @@ public class XmlUtils {
 											zanzhu2 = n4.getTextContent() + "\n";
 										}
 										if("更新时间".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
-											mocicaijishijian =  "末次采集时间:"+n4.getTextContent() + "\n";
+											mocicaijishijian =  "末次操作时间:"+n4.getTextContent() + "\n";
 										}
 										if("设备识别号".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
 											caijiren ="采集人:"+n4.getTextContent() + "\n";

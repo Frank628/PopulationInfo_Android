@@ -10,7 +10,6 @@
         android:id="@+id/navgation_top"
         layout="@layout/navigation_layout"
         />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -84,10 +83,83 @@
             android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="2.6"
             android:orientation="vertical"
             android:layout_marginTop="30dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                >
+                <LinearLayout
+                    android:id="@+id/ll_bottom2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:text="按房屋编号查询"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/login_bg"
 
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/icon_house_left"/>
+                        <com.jinchao.population.widget.ValidateEidtText
+                            android:id="@+id/edt_housecode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:textSize="@dimen/small_middle_size"
+                            android:textColor="@color/title2"
+                            android:hint="请输入房屋编号"
+                            android:textColorHint="@color/title3"
+                            android:background="@color/transaction"
+                            android:maxLength="6"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                            android:drawablePadding="5dp"
+                            app:vd_textErrorColor="@color/red"
+                            app:vd_textRightColor="@color/title2"
+                            app:vd_drawable_right_right="@drawable/icon_gou"
+                            app:vd_drawable_right_error="@drawable/icon_gantan"
+                            android:padding="6dp"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            app:vd_validate_type="id_card"/>
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_house_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:textSize="17sp"
+                        android:textColor="@color/title2"
+                        android:visibility="gone"
+                        android:background="@color/white"
+                        android:text="查        询"/>
+
+                </LinearLayout>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -105,7 +177,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/login_bg"
-                    android:layout_margin="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:gravity="center_vertical">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -136,75 +211,8 @@
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         app:vd_validate_type="id_card"/>
+
                 </LinearLayout>
-            </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#00ffffff"
-            >
-            <LinearLayout
-                android:id="@+id/ll_bottom2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#ffffff"
-                    android:text="按房屋编号查询"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/login_bg"
-                    android:layout_margin="25dp"
-                    android:gravity="center_vertical">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:src="@drawable/icon_house_left"/>
-                    <com.jinchao.population.widget.ValidateEidtText
-                        android:id="@+id/edt_housecode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/small_middle_size"
-                        android:textColor="@color/title2"
-                        android:hint="请输入房屋编号"
-                        android:textColorHint="@color/title3"
-                        android:background="@color/transaction"
-                        android:maxLength="6"
-                        android:singleLine="true"
-                        android:inputType="text"
-                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                        android:drawablePadding="5dp"
-                        app:vd_textErrorColor="@color/red"
-                        app:vd_textRightColor="@color/title2"
-                        app:vd_drawable_right_right="@drawable/icon_gou"
-                        app:vd_drawable_right_error="@drawable/icon_gantan"
-                        android:padding="6dp"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        app:vd_validate_type="id_card"/>
-                </LinearLayout>
-                <Button
-                    android:id="@+id/btn_house_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textSize="17sp"
-                    android:textColor="@color/title2"
-                    android:visibility="gone"
-                    android:background="@color/white"
-                    android:text="查        询"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -213,7 +221,6 @@
                     android:gravity="center"
                     android:text="*仅对有人居住房屋操作"/>
             </LinearLayout>
-        </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>

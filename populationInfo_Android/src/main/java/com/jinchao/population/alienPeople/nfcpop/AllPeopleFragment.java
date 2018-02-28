@@ -151,6 +151,7 @@ public class AllPeopleFragment extends LazyFragment {
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+
                 loadingView.reload(new LoadingView.OnReloadClickListener() {
                     @Override
                     public void onReload() {
@@ -283,21 +284,14 @@ public class AllPeopleFragment extends LazyFragment {
                 }
 
                 @Override
-                public void onError(Throwable ex, boolean isOnCallback) {
-
-                }
+                public void onError(Throwable ex, boolean isOnCallback) {}
 
                 @Override
                 public void onCancelled(CancelledException cex) { }
 
                 @Override
-                public void onFinished() {
-
-                }
+                public void onFinished() {}
             });
         }
-
-
-
     }
 }

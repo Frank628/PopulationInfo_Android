@@ -316,7 +316,13 @@ public class SearchAddressFragment extends DialogFragment implements DialogInter
         if (TextUtils.isEmpty(searchKey.trim())) {
             Toast.makeText(getContext(), "请输入至少两个字符", Toast.LENGTH_SHORT).show();
         } else {
-            getJLXData(searchKey);
+            if(objCurrent.type==0) {
+                if ((!TextUtils.isEmpty(searchKey)) && searchKey.length() >= 2) {
+                    getJLXData(searchKey);
+                }
+            }else if(objCurrent.type==1){
+                findLZH(searchKey,json);
+            }
         }
     }
 }

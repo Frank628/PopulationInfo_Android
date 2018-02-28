@@ -85,6 +85,7 @@
             android:textColor="@color/title3"
             android:textSize="17sp"
             android:layout_marginBottom="10dp"
+            android:visibility="gone"
             android:text="●  操作类型："/>
         <TextView
             android:id="@+id/tv_shenpi"
@@ -92,24 +93,37 @@
             android:layout_height="wrap_content"
             android:textColor="@color/title3"
             android:textSize="17sp"
-            android:layout_marginBottom="10dp"
             android:text="●  是否审批："/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/title3"
+            android:layout_marginLeft="5dp"/>
         <TextView
             android:id="@+id/tv_zhizheng"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/title3"
             android:textSize="17sp"
-            android:layout_marginBottom="10dp"
             android:text="●  是否制证："/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/title3"
+            android:layout_marginLeft="5dp"/>
         <TextView
             android:id="@+id/tv_xiafa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/title3"
             android:textSize="17sp"
-            android:layout_marginBottom="10dp"
+
             android:text="●  是否下发："/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/title3"
+            android:layout_marginLeft="5dp"/>
         <TextView
             android:id="@+id/tv_lingzheng"
             android:layout_width="match_parent"

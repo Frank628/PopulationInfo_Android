@@ -200,17 +200,6 @@ public class SearchByAddressActivity extends BaseReaderActiviy {
                         NFCJsonBean nfcJsonBean=new NFCJsonBean(bhone.scode,bhone.hrsPname, bhone.idcard, bhone.hrsAdress, bhone.telphone, "");
                         intent.putExtra(Constants.NFCJSONBEAN,nfcJsonBean);
                         intent.putExtra("TAG",1);
-                        if(bhone.sfjz.isEmpty()){
-                            if(bhone.r_status==0){
-                                intent.putExtra("HASPERSON",false);
-                            }else{
-                                intent.putExtra("HASPERSON",true);
-                            }
-                        }else if (bhone.sfjz.equals("0")){
-                            intent.putExtra("HASPERSON",false);
-                        }else if(bhone.sfjz.equals("1")){
-                            intent.putExtra("HASPERSON",true);
-                        }
                         intent.putExtra("HOUSE",bhone);
                         startActivity(intent);
                     }
