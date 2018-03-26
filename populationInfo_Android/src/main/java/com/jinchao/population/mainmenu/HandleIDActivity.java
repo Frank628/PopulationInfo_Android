@@ -389,7 +389,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			edt_stature.setText(people.getHeight());
 			rb_banzhengfou.setChecked(true);
 		}
-		if (isHandleID){//直接从nfc读取标签信息进入办证的
+//		if (isHandleID){//直接从nfc读取标签信息进入办证的
 			if(getIntent().getSerializableExtra(Constants.NFCJSONBEAN)!=null){
 				NFCJsonBean nfcJsonBean=(NFCJsonBean) getIntent().getSerializableExtra(Constants.NFCJSONBEAN);
 				edt_bianhao.setText(nfcJsonBean.code);
@@ -398,9 +398,9 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				zanzhudizhi=nfcJsonBean.add;
 				edt_shihao.setText(nfcJsonBean.room);
 				shihao=nfcJsonBean.room;
-			}
 
-		}
+			}
+//		}
 	}
 	private void save(){
 		height=edt_stature.getText().toString().trim();

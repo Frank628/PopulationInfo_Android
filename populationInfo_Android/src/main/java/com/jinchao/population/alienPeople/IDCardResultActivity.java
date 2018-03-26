@@ -167,6 +167,7 @@ public class IDCardResultActivity extends BaseActiviy{
         intent.putExtra("huji2",huji2);
         intent.putExtra("huji1",huji1);
         intent.putExtra("region",peoplefromXml.getPeople());
+        intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
         startActivity(intent);
         IDCardResultActivity.this.finish();
     }

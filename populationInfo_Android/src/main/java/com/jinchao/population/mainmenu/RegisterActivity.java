@@ -792,6 +792,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
                             intent.putExtra("people", oPeople);
                             intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
 							intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
+
                             startActivity(intent);
                             RegisterActivity.this.finish();
                         return;

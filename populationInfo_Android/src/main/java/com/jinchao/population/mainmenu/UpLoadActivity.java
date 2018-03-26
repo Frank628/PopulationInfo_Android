@@ -179,7 +179,6 @@ public class UpLoadActivity extends BaseActiviy{
 			@Override
 			public void onSuccess(String result) {
 //                System.out.println(result);
-
 			}
 
 			@Override
