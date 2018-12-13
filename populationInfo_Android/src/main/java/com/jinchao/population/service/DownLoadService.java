@@ -13,8 +13,10 @@ import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -36,6 +38,7 @@ public class DownLoadService extends Service{
 		}else{
 			url=SharePrefUtil.getString(this, "url", "");
 		}
+
 		download(url);
 	}
 	@Override

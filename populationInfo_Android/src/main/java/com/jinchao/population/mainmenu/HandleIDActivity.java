@@ -143,6 +143,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.tv_fangdongguanxi)private TextView tv_fangdongguanxi;
 	@ViewInject(R.id.tv_jieyucuoshi)private TextView tv_jieyucuoshi;
 	@ViewInject(R.id.tv_jiaotonggongju)private TextView tv_jiaotonggongju;
+    @ViewInject(R.id.tv_lqfs)private TextView tv_qlfs;
 	@ViewInject(R.id.edt_zinvgeshu)private ValidateEidtText edt_zinvgeshu;
 	@ViewInject(R.id.ll_hunhou)private LinearLayout ll_hunhou;
 	@ViewInject(R.id.edt_bianhao)private ValidateEidtText edt_bianhao;
@@ -167,7 +168,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.edt_czqx2)private TextView edt_czqx2;
 	@ViewInject(R.id.tv_lsrq)private TextView tv_lsrq;
 	@ViewInject(R.id.tv_zjdq)private TextView tv_zjdq;
-
+	@ViewInject(R.id.edt_weixin)private ValidateEidtText edt_weixin;
 	@ViewInject(R.id.edt_msn)private ValidateEidtText edt_msn;
 	@ViewInject(R.id.edt_email)private ValidateEidtText edt_email;
 	@ViewInject(R.id.edt_addition)private ValidateEidtText edt_addition;
@@ -187,6 +188,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 	@ViewInject(R.id.tv_hyzmzl)private TextView tv_hyzmzl;
 	@ViewInject(R.id.ll_guanxi)private LinearLayout ll_guanxi;
 	@ViewInject(R.id.ll_member)private LinearLayout ll_member;
+	@ViewInject(R.id.rl_lqfsts)private RelativeLayout rl_lqfsts;
 	@ViewInject(R.id.layout_b)private ScrollView sv_b;
 	private People people,people2;
 	private Calendar c;
@@ -269,7 +271,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 			public void onCheckedChanged(RadioGroup radioGroup, int i) {
 				switch (i){
 					case R.id.rb_banzhengshi:
-						navigationLayout.setRightText(isHandleID?"登记":"变更", new OnClickListener() {
+						navigationLayout.setRightText(isHandleID?"办证":"变更", new OnClickListener() {
 							@Override
 							public void onClick(View view) {
 								hideSoftKeyBord();
@@ -419,7 +421,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		danweidizhi=edt_danweidizhi.getText().toString().trim();
 		dianhua=edt_dianhua.getText().toString().trim();
 		chepaihao=edt_chepaihao.getText().toString().trim();
-		zujin=edt_zujin.getText().toString().trim();
+//		zujin=edt_zujin.getText().toString().trim();
 		qq=edt_qq.getText().toString().trim();
 		macaddress=edt_mac.getText().toString().trim();
 		shoujichuanhao=edt_shoujichuanhao.getText().toString().trim();
@@ -430,7 +432,7 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 		//A类
 		jqjzym=rb_shiyimiao.isChecked()?"1":"0";
 		//B类
-		MSN=edt_msn.getText().toString().trim();
+		MSN=edt_weixin.getText().toString().trim();
 		Email=edt_email.getText().toString().trim();
 		czwxz=edt_addition.getText().toString().trim();
 		fzdh=edt_fzdh.getText().toString().trim();
@@ -594,12 +596,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 //				}
 //			}
 
-			if (!TextUtils.isEmpty(MSN)){
-				if (!CommonUtils.isEmail(MSN)){
-					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
-					return;
-				}
-			}
+//			if (!TextUtils.isEmpty(MSN)){
+//				if (!CommonUtils.isEmail(MSN)){
+//					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//			}
 			if (!TextUtils.isEmpty(Email)){
 				if (!CommonUtils.isEmail(Email)){
 					Toast.makeText(this, "邮箱格式错误~", Toast.LENGTH_SHORT).show();
@@ -640,6 +642,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					return;
 				}
 			}
+//            if(TextUtils.isEmpty(zujin)){
+//                Toast.makeText(this, "请选择居住证领取方式~", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
 			if (!TextUtils.isEmpty(sbbh)){
 				if (!CommonUtils.isSBBH(sbbh)){
 					Toast.makeText(this, "社保卡18个字符或9个汉字~", Toast.LENGTH_SHORT).show();
@@ -777,12 +783,12 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 				}
 			}
 
-			if (!TextUtils.isEmpty(MSN)){
-				if (!CommonUtils.isEmail(MSN)){
-					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
-					return;
-				}
-			}
+//			if (!TextUtils.isEmpty(MSN)){
+//				if (!CommonUtils.isEmail(MSN)){
+//					Toast.makeText(this, "MSN账号格式错误~", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//			}
 			if (!TextUtils.isEmpty(Email)){
 				if (!CommonUtils.isEmail(Email)){
 					Toast.makeText(this, "邮箱格式错误~", Toast.LENGTH_SHORT).show();
@@ -1724,6 +1730,10 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 					Log.d(TAG, "党员");
 					zhengzhi="党员";
 					break;
+				case R.id.rb_minzhu:
+					Log.d(TAG, "民主党派");
+					zhengzhi="民主党派";
+					break;
 				default:
 					break;
 				}
@@ -1886,7 +1896,6 @@ public class HandleIDActivity extends BaseHandleIDActivity{
 
                                     }
                                 });
-
                             } catch (DbException e) {
                                 Toast.makeText(HandleIDActivity.this, "数据库操作失败！请发送掉全部数据,并下载全库地址！", Toast.LENGTH_LONG).show();
                                 e.printStackTrace();
@@ -1928,4 +1937,22 @@ public class HandleIDActivity extends BaseHandleIDActivity{
         lp.alpha = bgAlpha; //0.0-1.0
         HandleIDActivity.this.getWindow().setAttributes(lp);
     }
+
+	@Event(value={R.id.rl_lqfs})
+    private void lqfs(View view ){
+        StringWheel stringWheel=new StringWheel(this, Constants.JZZLQFS, new OnEnsureClickListener() {
+            @Override
+            public void OnEnSureClick(String str) {
+                tv_qlfs.setText(str);
+                if(str.contains("免费")){
+                	rl_lqfsts.setVisibility(View.VISIBLE);
+				}else{
+                	rl_lqfsts.setVisibility(View.GONE);
+				}
+                zujin=str;
+            }
+        });
+        stringWheel.showAtLocation(findViewById(R.id.root), Gravity.BOTTOM, 0, 0);
+	}
+
 }

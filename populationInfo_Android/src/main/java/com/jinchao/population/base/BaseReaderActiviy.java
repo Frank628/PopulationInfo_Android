@@ -3,6 +3,7 @@ package com.jinchao.population.base;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -11,6 +12,8 @@ import android.nfc.tech.IsoDep;
 import android.nfc.tech.NfcB;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.caihua.cloud.common.entity.PersonInfo;
@@ -94,7 +97,11 @@ public class BaseReaderActiviy extends FragmentActivity{
 		super.onPause();
 		nfcAdapter.disableForegroundDispatch(this);
 	}
+	public void hidenSoftKeyBoard(View view){
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
+		imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+	}
 
 
 	@Override

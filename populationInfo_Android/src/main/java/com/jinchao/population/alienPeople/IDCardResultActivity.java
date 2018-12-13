@@ -46,7 +46,7 @@ public class IDCardResultActivity extends BaseActiviy{
     @ViewInject(R.id.bottom)LinearLayout bottom;
     @ViewInject(R.id.btn_regist)Button btn_regist;
     People peoplefromXml;
-    String name="",huji1="",huji2="",sqcode="";
+    String name="",huji1="",huji2="",sqcode="",isPhoto="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,13 +119,38 @@ public class IDCardResultActivity extends BaseActiviy{
             }
         });
     }
-    private void requestBanzhengSHEQU(String idcard,final String str){
+    private void requestBanzhengSHEQU(final String idcard,final String str){
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=get_jzzStatus&idcard="+idcard);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Log.d("quePeople", result);
                 tv_content.setText(str.replace("初次办证社区:",XmlUtils.parseBanZhengSheQuXML(result)));
+                requestIsPhoto(idcard, str.replace("初次办证社区:",XmlUtils.parseBanZhengSheQuXML(result)));
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {}
+            @Override
+            public void onFinished() {
+                dismissProgressDialog();
+            }
+        });
+    }
+    private void requestIsPhoto(String idcard,final String str){
+        RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=isphoto&sfz="+idcard);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.d("isphoto", result);
+                isPhoto=XmlUtils.isPhoto(result);
+                if(tv_content.getText().toString().trim().length()>15){
+                    tv_content.setText(str+"是否有照片:"+(isPhoto.equals("1")?"有":"无"));
+                }
+
+
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
@@ -166,6 +191,7 @@ public class IDCardResultActivity extends BaseActiviy{
         intent.putExtra("name",name);
         intent.putExtra("huji2",huji2);
         intent.putExtra("huji1",huji1);
+        intent.putExtra("isPhoto",isPhoto);
         intent.putExtra("region",peoplefromXml.getPeople());
         intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
         startActivity(intent);

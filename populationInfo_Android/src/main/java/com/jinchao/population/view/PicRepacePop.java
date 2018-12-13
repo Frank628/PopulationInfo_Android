@@ -58,6 +58,7 @@ public class PicRepacePop extends PopupWindow {
             @Override
             public void onClick(View v) {
                 onEnsureClick.onClick(true);
+                PicRepacePop.this.dismiss();
             }
         });
         btn_retake.setOnClickListener(new View.OnClickListener() {

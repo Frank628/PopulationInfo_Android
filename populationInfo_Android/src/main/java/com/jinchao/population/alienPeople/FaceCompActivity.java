@@ -24,10 +24,12 @@ import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.base.BaseReaderActiviy;
 import com.jinchao.population.config.Constants;
+import com.jinchao.population.entity.FaceCompareNewResult;
 import com.jinchao.population.entity.FaceCompareResult;
 import com.jinchao.population.utils.Base64Coder;
 import com.jinchao.population.utils.CommonUtils;
 import com.jinchao.population.utils.GsonTools;
+import com.jinchao.population.utils.SignUtils;
 import com.jinchao.population.view.NavigationLayout;
 import com.jinchao.population.widget.IDCardView;
 
@@ -239,10 +241,26 @@ public class FaceCompActivity extends BaseReaderActiviy implements IDReader.IDRe
     }
 
     private void compareFace(File image1,File image2){
-        RequestParams params=new RequestParams("http://218.94.149.27:20175/Facedetection");
-        params.addBodyParameter("app_key",app_key);
-        params.addBodyParameter("image1",image1,"application/octet-stream","image1.jpg");
-        params.addBodyParameter("image2",image2,"application/octet-stream","image2.jpg");
+//        RequestParams params=new RequestParams("http://218.94.149.27:20175/Facedetection");
+//        params.addBodyParameter("app_key",app_key);
+//        params.addBodyParameter("image1",image1,"application/octet-stream","image1.jpg");
+//        params.addBodyParameter("image2",image2,"application/octet-stream","image2.jpg");
+        String sign="";
+        try {
+            sign= SignUtils.appSign(1256335070,"AKIDhJKG3iGhy98zf9ritRs7E9sOiqxWBEe0","KYbRAh2CAwa4MXWP7dzA91lIdmjU4Sio","",2592000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RequestParams params=new RequestParams("http://recognition.image.myqcloud.com/face/compare");
+        params.setHeader("Host","recognition.image.myqcloud.com");
+        params.setHeader("Content-Type","application/json");
+        params.setHeader("Authorization",sign);
+        params.setHeader("Content-Length","123");
+        params.setMultipart(true);
+        params.addBodyParameter("appid","1256335070");
+        params.addBodyParameter("imageA",image1,"image/jpeg","image1.jpg");
+        params.addBodyParameter("imageB",image2,"image/jpeg","image2.jpg");
+
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -260,27 +278,19 @@ public class FaceCompActivity extends BaseReaderActiviy implements IDReader.IDRe
                 hideProcessDialog();
             }
         });
-
     }
     private void parseJson(String result){
-
         try {
-            FaceCompareResult faceCompareResult= GsonTools.changeGsonToBean(result,FaceCompareResult.class);
+            FaceCompareNewResult faceCompareResult= GsonTools.changeGsonToBean(result,FaceCompareNewResult.class);
             String res="";
-            if(faceCompareResult.status.equals("ok")){
-                res="相似度："+faceCompareResult.Similarity+"%"+(faceCompareResult.Similarity>70?"可以判断为同一人":"可以判断不为同一人");
+            if(faceCompareResult.code==0){
+                res="相似度："+faceCompareResult.data.similarity+"%"+(faceCompareResult.data.similarity>70?"可以判断为同一人":"可以判断不为同一人");
             }else{
-                if (faceCompareResult.msg.contains("face feature")){
-                    res="比对失败，第二张图中未发现人脸特征";
-                }else{
-                    res="比对失败，"+faceCompareResult.msg;
-                }
-
+                res="比对失败，照片中找不到人脸特征！";
             }
             tv_result.setText(res);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

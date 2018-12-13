@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
     <color name="title1">#333333</color>
     <color name="title2">#666666</color>
     <color name="title3">#999999</color>
@@ -38,9 +37,7 @@
     <color name="colorPrimary">#2360B9</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
     <color name="idcard_title">#1579B9</color>
-
     <color name="orange">#FF6633</color>
     <color name="color_dc353b">#dc353b</color>
     <color name="contentTitleColor">#636373</color>

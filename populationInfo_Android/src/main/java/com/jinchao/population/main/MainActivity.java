@@ -5,9 +5,12 @@ import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -84,7 +87,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         TextView tv_name=(TextView) navigationView.getHeaderView(0).findViewById(R.id.tv_name);
-        getNewVersion();
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (! Settings.canDrawOverlays(this)) {
+                Intent intent2 = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent2,10);
+            }
+        }else{
+            getNewVersion();
+        }
         CommonHttp.getDataBaseType(this);
         if (!Common.init(this)){
             Toast.makeText(this, "身份证云终端开发包初始化失败！", Toast.LENGTH_SHORT).show();
@@ -358,6 +369,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onFinished() {}
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 10) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (!Settings.canDrawOverlays(this)) {
+                    // SYSTEM_ALERT_WINDOW permission not granted...
+                    Toast.makeText(MainActivity.this,"未授权更新弹框！将无法更新至最新版",Toast.LENGTH_SHORT);
+                }else{
+                    getNewVersion();
+                }
+            }
+        }
     }
     public void showProgressDialog(String toast){
         progressDialog = ProgressDialog.show(this,"",toast,true,false);

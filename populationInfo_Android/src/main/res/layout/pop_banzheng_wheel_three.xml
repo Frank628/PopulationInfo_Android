@@ -39,6 +39,7 @@
                 android:textSize="@dimen/small_size"
                 android:gravity="center"
                 android:text="领取方式"
+                android:visibility="gone"
                 />
             <TextView 
                 android:layout_width="0dp"
@@ -49,6 +50,7 @@
                 android:textSize="@dimen/small_size"
                 android:gravity="center"
                 android:text="申请类别"
+                android:visibility="gone"
                 />
    		 </LinearLayout>
     <LinearLayout 
@@ -66,11 +68,13 @@
         android:id="@+id/wv_2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:layout_weight="1" />
     <com.jinchao.population.widget.wheel.WheelView
         android:id="@+id/wv_3"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:layout_weight="1" />
 	</LinearLayout>
 	<LinearLayout 

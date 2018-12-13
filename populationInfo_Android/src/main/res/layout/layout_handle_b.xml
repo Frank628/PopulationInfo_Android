@@ -97,6 +97,48 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_weixin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            >
+            <TextView
+                android:id="@+id/tv_weixin"
+                style="@style/handle_id_left_text_style"
+                android:text="微信"
+                />
+            <com.jinchao.population.widget.ValidateEidtText
+                android:id="@+id/edt_weixin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_weixin"
+                android:singleLine="true"
+                android:hint="请输入微信"
+                android:textColorHint="@color/title4"
+                android:background="@color/white"
+                android:maxLength="30"
+                android:inputType="text"
+                android:drawablePadding="5dp"
+                app:vd_textErrorColor="@color/red"
+                app:vd_textRightColor="@color/title2"
+                app:vd_drawable_right_right="@drawable/icon_gou"
+                app:vd_drawable_right_error="@drawable/icon_gantan"
+                app:vd_validate_type="normal"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"

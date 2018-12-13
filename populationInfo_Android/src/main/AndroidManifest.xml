@@ -99,6 +99,7 @@
         <activity android:name="com.jinchao.population.nfcregister.NFCActiveActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.alienPeople.registchangelogoff.PeoplesInHouseActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.jinchao.population.alienPeople.DataManagement.SendDataDetailActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.jinchao.population.alienPeople.sys.WarnMsgActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
               android:name="com.jinchao.population.alienPeople.housemanagement.NFCReadPeopleInHouseActivity"
               android:label="显示纯文本NFC标签的内容"

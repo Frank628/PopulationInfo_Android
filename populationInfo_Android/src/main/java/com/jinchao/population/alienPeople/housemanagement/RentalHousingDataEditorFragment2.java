@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import com.jinchao.population.dbentity.HouseAddressOldBean8;
 import com.jinchao.population.dbentity.HouseAddressOldBean9;
 import com.jinchao.population.entity.HouseInfoBean;
 import com.jinchao.population.entity.NFCJsonBean;
+import com.jinchao.population.mainmenu.AddRentalHouseActivity;
 import com.jinchao.population.utils.DatabaseUtil;
 import com.jinchao.population.utils.DeviceUtils;
 import com.jinchao.population.utils.GsonTools;
@@ -80,9 +82,21 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
     @ViewInject(R.id.tv_zzlx)TextView tv_zzlx;
     @ViewInject(R.id.tv_jzlx)TextView tv_jzlx;
     @ViewInject(R.id.tv_cztj)TextView tv_cztj;
+
+    @ViewInject(R.id.tv_fwdj)TextView tv_fwdj;
+    @ViewInject(R.id.tv_zdfw)TextView tv_zdfw;
+    @ViewInject(R.id.tv_zdjzry)TextView tv_zdjzry;
+    @ViewInject(R.id.tv_fwyh)TextView tv_fwyh;
+    @ViewInject(R.id.rb_shiq)RadioButton rb_shiq;
+    @ViewInject(R.id.rb_fouq)RadioButton rb_fouq;
+    @ViewInject(R.id.edt_yhms)private ValidateEidtText edt_yhms;
+
     private boolean[] yixuan_fwyt=new boolean[]{false,false,false,false};
-    private StringBuffer sb_code;
-    private String fzxm="",fzsfz="",fzdh="",fwyt="",jzhs="",jzmj="",fwjg="",fwlx="",zzlx="",jzjs="",jzlx="",cztj="";
+    private boolean[] yixuan_zdfw=new boolean[]{false,false,false,false,false,false};
+    private boolean[] yixuan_zdry=new boolean[]{false,false,false,false,false,false};
+    private boolean[] yixuan_fwyh=new boolean[]{false,false,false,false};
+    private StringBuffer sb_code,zdfw_code=null,zdry_code=null,fwyh_code=null;
+    private String fzxm="",fzsfz="",fzdh="",fwyt="",jzhs="",jzmj="",fwjg="",fwlx="",zzlx="",jzjs="",jzlx="",cztj="",fwdj="",zdfw="",zdjzry="",fwyh="0",sfqz="";
     private DbUtils dbUtils;
     public int database_tableNo=0;//当前登录账号使用的哪个数据库，0:未下载的地址库，1：表1,2：表2.。。。
 
@@ -185,6 +199,7 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
         String zzrname=edt_zzrname.getText().toString().trim();
         String zzrsfz=edt_zzrsfz.getText().toString().trim();
         String zzrdh=edt_zzrphone.getText().toString().trim();
+
         if (TextUtils.isEmpty(scode)){
             Toast.makeText(getActivity(),"请先输入房屋编号查询！",Toast.LENGTH_SHORT).show();
             return;
@@ -199,13 +214,47 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
                 return;
             }
         }
+        if(TextUtils.isEmpty(fwdj)){
+            Toast.makeText(getActivity(),"请选择房屋等级！",Toast.LENGTH_SHORT).show();
+            return;
+        }else{
+            if(fwdj.equals("30")){
+                if(!((!TextUtils.isEmpty(zdfw))||(!TextUtils.isEmpty(zdjzry)))){
+                    Toast.makeText(getActivity(),"如房屋等级选重点户，重点房屋,重点居住人员任意填一项，也可都填！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        }
+        if(TextUtils.isEmpty(fwyh)){
+            Toast.makeText(getActivity(),"请选择房屋隐患！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        if(TextUtils.isEmpty(edt_yhms.getText().toString().trim())&&(!fwyh.equals("0"))){
+//            Toast.makeText(getActivity(),"请填写隐患描述！",Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+        if(fwyh.equals("0")){
+            edt_yhms.setText("");
+        }
 
+//        sfqz=rb_shiq.isChecked()?"1":(rb_fouq.isChecked()?"2":"");
+//        if(TextUtils.isEmpty(sfqz)){
+//            Toast.makeText(getActivity(),"请选择是否群租！",Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+        if(fwdj.equals("30")&&(zdfw.equals("21")||zdfw.equals("22"))){
+            sfqz="1";
+        }else{
+            sfqz="2";
+        }
         editHouseInfo(scode,name,idcard,phone,mj,js,jzhs,zzrname,zzrsfz,zzrdh);
     }
     private void bindData(HouseInfoBean houseInfo){
         tv_noresult.setVisibility(View.GONE);
         ll_edit.setVisibility(View.VISIBLE);
         fzxm=houseInfo.fzxm;fzsfz=houseInfo.fzsfz;fzdh=houseInfo.fzdh;fwyt=houseInfo.fwyt;jzhs=houseInfo.jzhs;jzmj=houseInfo.jzmj;fwjg=houseInfo.fwjg;fwlx=houseInfo.fwlx;zzlx=houseInfo.zzlx;jzjs=houseInfo.jzjs;cztj=houseInfo.cztj;jzlx=houseInfo.jzlx;
+        fwdj=houseInfo.fwdj;zdfw=houseInfo.zdfw;zdjzry=houseInfo.zdjzry;fwyh=houseInfo.fwyh;sfqz=houseInfo.sfqz;
+        edt_yhms.setText(houseInfo.yhms);
         edt_name.setText(fzxm);
         edt_phone.setText(fzdh);
         edt_sfz.setText(fzsfz);
@@ -252,6 +301,62 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
                 tv_cztj.setText(Constants.CHENGZUTUJING[i]);
             }
         }
+        for(int i=0;i<Constants.FANGWUDENGJI_CODE.length;i++){
+            if (fwdj.trim().equals(Constants.FANGWUDENGJI_CODE[i])){
+                tv_fwdj.setText(Constants.FANGWUDENGJI[i]);
+            }
+        }
+
+        String[] zdfw_array=zdfw.split(",");
+        String zdfwsb="";
+        for (int j=0;j<zdfw_array.length;j++){
+            for(int i=0;i<Constants.ZHONGDIANFANGWU_CODE.length;i++){
+                if (zdfw_array[j].trim().equals(Constants.ZHONGDIANFANGWU_CODE[i])){
+                    if(TextUtils.isEmpty(zdfwsb)){
+                        zdfwsb=Constants.ZHONGDIANFANGWU[i];
+                    }else{
+                        zdfwsb=zdfwsb+","+Constants.ZHONGDIANFANGWU[i] ;
+                    }
+                }
+            }
+        }
+        tv_zdfw.setText(zdfwsb);
+        String[] zdjzry_array=zdjzry.split(",");
+        String zdjzrysb="";
+        for (int j=0;j<zdjzry_array.length;j++){
+            for(int i=0;i<Constants.ZHONGDIANJUZHURENYUAN_CODE.length;i++){
+                if (zdjzry_array[j].trim().equals(Constants.ZHONGDIANJUZHURENYUAN_CODE[i])){
+                    if(TextUtils.isEmpty(zdjzrysb)){
+                        zdjzrysb=Constants.ZHONGDIANJUZHURENYUAN[i];
+                    }else{
+                        zdjzrysb=zdjzrysb+","+Constants.ZHONGDIANJUZHURENYUAN[i] ;
+                    }
+                }
+            }
+        }
+        tv_zdjzry.setText(zdjzrysb);
+        if(fwyh.equals("0")){
+
+            tv_fwyh.setText("无");
+        }else{
+            String[] fwyh_array=fwyh.split(",");
+            String fwyhsb="";
+            for (int j=0;j<fwyh_array.length;j++){
+                for(int i=0;i<Constants.FANGWUYINHUAN_CODE.length;i++){
+                    if (fwyh_array[j].trim().equals(Constants.FANGWUYINHUAN_CODE[i])){
+                        if(TextUtils.isEmpty(fwyhsb)){
+                            fwyhsb=Constants.FANGWUYINHUAN[i];
+                        }else{
+                            fwyhsb=fwyhsb+","+Constants.FANGWUYINHUAN[i] ;
+                        }
+                    }
+                }
+            }
+            tv_fwyh.setText(fwyhsb);
+        }
+
+
+
 
     }
     private void SearchHouse(final String scode){
@@ -290,7 +395,7 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
     private void editHouseInfo(final String scode, final String name, final String idcard, final String phone,String mj,String jzjs,String jzhs,String zzrxm,String zzrsfz,String zzrdh){
         showProcessDialog("数据提交中...");
         RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx");
-        params.addBodyParameter("type","updateqzf2");
+        params.addBodyParameter("type","updateczw3");
         params.addBodyParameter("sqdm", MyInfomationManager.getSQCODE(getActivity()));
         params.addBodyParameter("scode",scode);
         params.addBodyParameter("fzxm",name);
@@ -308,6 +413,13 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
         params.addBodyParameter("zzrdh",zzrdh);
         params.addBodyParameter("jzjs",jzhs);
         params.addBodyParameter("jzlx",jzlx);
+
+        params.addBodyParameter("fwdj", fwdj);
+        params.addBodyParameter("fwyh", fwyh);
+        params.addBodyParameter("zdfw", zdfw);
+        params.addBodyParameter("zdjzry", zdjzry);
+        params.addBodyParameter("yhms", edt_yhms.getText().toString().trim());
+        params.addBodyParameter("sfqz", sfqz);
         Log.d("FWBJ",MyInfomationManager.getSQCODE(getActivity())+";"+scode+";"+fzxm+";"+fzsfz+";"+fwlx+","+fwjg+","+mj+","+fwyt+","+jzjs+","+zzlx+";"+cztj+";"+zzrxm+";"+zzrsfz+";"+zzrdh+";"+jzjs+";"+jzlx);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
@@ -487,8 +599,209 @@ public class RentalHousingDataEditorFragment2 extends BaseFragment{
         builder.show();
     }
 
+    @Event(value = {R.id.ll_fwdj})
+    private void ll_fwdeClick(View view){
+        StringWheel stringWheel=new StringWheel(getActivity(), Constants.FANGWUDENGJI, new StringWheel.OnEnsureClickListener() {
+            @Override
+            public void OnEnSureClick(String str) {
+                for(int i=0;i<Constants.FANGWUDENGJI.length;i++){
+                    if (str.equals(Constants.FANGWUDENGJI[i])){
+                        fwdj=Constants.FANGWUDENGJI_CODE[i];
+                    }
+                }
+                tv_fwdj.setText(str);
+            }
+        });
+        stringWheel.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+    }
+//    @Event(value = {R.id.ll_zdfw})
+//    private void ll_zdfwClick(View view){
+//        StringWheel stringWheel=new StringWheel(getActivity(), Constants.ZHONGDIANFANGWU, new StringWheel.OnEnsureClickListener() {
+//            @Override
+//            public void OnEnSureClick(String str) {
+//                for(int i=0;i<Constants.ZHONGDIANFANGWU.length;i++){
+//                    if (str.equals(Constants.ZHONGDIANFANGWU[i])){
+//                        zdfw=Constants.ZHONGDIANFANGWU_CODE[i];
+//                    }
+//                }
+//                tv_zdfw.setText(str);
+//            }
+//        });
+//        stringWheel.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+//    }
+//    @Event(value = {R.id.ll_zdjzry})
+//    private void ll_zdjzryClick(View view){
+//        StringWheel stringWheel=new StringWheel(getActivity(), Constants.ZHONGDIANJUZHURENYUAN, new StringWheel.OnEnsureClickListener() {
+//            @Override
+//            public void OnEnSureClick(String str) {
+//                for(int i=0;i<Constants.ZHONGDIANJUZHURENYUAN.length;i++){
+//                    if (str.equals(Constants.ZHONGDIANJUZHURENYUAN[i])){
+//                        zdjzry=Constants.ZHONGDIANJUZHURENYUAN_CODE[i];
+//                    }
+//                }
+//                tv_zdjzry.setText(str);
+//            }
+//        });
+//        stringWheel.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+//    }
+//    @Event(value = {R.id.ll_fwyh})
+//    private void ll_fwyhClick(View view){
+//        StringWheel stringWheel=new StringWheel(getActivity(), Constants.FANGWUYINHUAN, new StringWheel.OnEnsureClickListener() {
+//            @Override
+//            public void OnEnSureClick(String str) {
+//                for(int i=0;i<Constants.FANGWUYINHUAN.length;i++){
+//                    if (str.equals(Constants.FANGWUYINHUAN[i])){
+//                        fwyh=Constants.FANGWUYINHUAN_CODE[i];
+//                    }
+//                }
+//                tv_fwyh.setText(str);
+//            }
+//        });
+//        stringWheel.showAtLocation(root, Gravity.BOTTOM, 0, 0);
+//    }
+    @Event(value = {R.id.ll_zdfw})
+    private void rl_zdfw(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("重点房屋（可多选）");
+        builder.setMultiChoiceItems(Constants.ZHONGDIANFANGWU, yixuan_zdfw, new DialogInterface.OnMultiChoiceClickListener() {
 
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if (isChecked) {
+                    yixuan_zdfw[which] = true;
+                } else {
+                    yixuan_zdfw[which] = false;
+                }
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                StringBuffer sb = new StringBuffer(300);
+                zdfw_code = new StringBuffer(50);
+                for (int i = 0; i < yixuan_zdfw.length; i++) {
+                    if (yixuan_zdfw[i]) {
+                        if (TextUtils.isEmpty(sb)) {
+                            zdfw_code.append(Constants.ZHONGDIANFANGWU_CODE[i]);
+                            sb.append(Constants.ZHONGDIANFANGWU[i]);
+                        } else {
+                            zdfw_code.append("," + Constants.ZHONGDIANFANGWU_CODE[i]);
+                            sb.append("," + Constants.ZHONGDIANFANGWU[i]);
+                        }
+                    }
+                }
+                zdfw = zdfw_code.toString();
+                if(TextUtils.isEmpty(zdfw)){
+                    tv_zdfw.setText("请选择重点房屋");
+                }else{
+                    tv_zdfw.setText(sb);
+                }
 
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+
+            }
+        });
+        builder.show();
+    }
+
+    @Event(value = {R.id.ll_zdjzry})
+    private void rl_zdjzry(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("重点居住人员（可多选）");
+        builder.setMultiChoiceItems(Constants.ZHONGDIANJUZHURENYUAN, yixuan_zdry, new DialogInterface.OnMultiChoiceClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if (isChecked) {
+                    yixuan_zdry[which] = true;
+                } else {
+                    yixuan_zdry[which] = false;
+                }
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                StringBuffer sb = new StringBuffer(300);
+                zdry_code = new StringBuffer(50);
+                for (int i = 0; i < yixuan_zdry.length; i++) {
+                    if (yixuan_zdry[i]) {
+                        if (TextUtils.isEmpty(sb)) {
+                            zdry_code.append(Constants.ZHONGDIANJUZHURENYUAN_CODE[i]);
+                            sb.append(Constants.ZHONGDIANJUZHURENYUAN[i]);
+                        } else {
+                            zdry_code.append("," + Constants.ZHONGDIANJUZHURENYUAN_CODE[i]);
+                            sb.append("," + Constants.ZHONGDIANJUZHURENYUAN[i]);
+                        }
+                    }
+                }
+                zdjzry = zdry_code.toString();
+                if(TextUtils.isEmpty(zdjzry)){
+                    tv_zdjzry.setText("请选择重点居住人员");
+                }else{
+
+                    tv_zdjzry.setText(sb);
+                }
+
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+
+            }
+        });
+        builder.show();
+    }
+    @Event(value = {R.id.ll_fwyh})
+    private void ll_fwyhClick(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("房屋隐患（可多选）");
+        builder.setMultiChoiceItems(Constants.FANGWUYINHUAN, yixuan_fwyh, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked ) {
+                yixuan_fwyh[which] = isChecked;
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                StringBuffer sb = new StringBuffer(300);
+                fwyh_code = new StringBuffer(50);
+                for (int i = 0; i < yixuan_fwyh.length; i++) {
+                    if (yixuan_fwyh[i]) {
+                        if (TextUtils.isEmpty(sb)) {
+                            fwyh_code.append(Constants.FANGWUYINHUAN_CODE[i]);
+                            sb.append(Constants.FANGWUYINHUAN[i]);
+                        } else {
+                            fwyh_code.append("," + Constants.FANGWUYINHUAN_CODE[i]);
+                            sb.append("," + Constants.FANGWUYINHUAN[i]);
+                        }
+                    }
+                }
+                fwyh = fwyh_code.toString();
+                if(TextUtils.isEmpty(fwyh)){
+                    fwyh="0";
+                    tv_fwyh.setText("无");
+                }else{
+
+                    tv_fwyh.setText(sb);
+                }
+
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+
+            }
+        });
+        builder.show();
+    }
     private void updateHouseTable(String code, String idcard, String name, String phone){
         try {
             dbUtils= DeviceUtils.getDbUtils(getActivity());

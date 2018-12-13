@@ -28,6 +28,6 @@
             android:text="设备初始化中，请稍等..."
             android:textColor="@color/white"
             android:layout_marginLeft="15dp"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 </RelativeLayout>

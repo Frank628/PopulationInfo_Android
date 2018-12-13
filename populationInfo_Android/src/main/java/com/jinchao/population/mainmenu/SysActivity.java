@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.sys.WarnMsgActivity;
 import com.jinchao.population.base.BaseActiviy;
+import com.jinchao.population.entity.WarnMsg;
 import com.jinchao.population.view.NavigationLayout;
 @ContentView(R.layout.activity_sys)
 public class SysActivity extends BaseActiviy{
@@ -34,6 +36,11 @@ public class SysActivity extends BaseActiviy{
 	@Event(value={R.id.ib_fasong})
 	private void fasongClick(View view){
 		Intent intent =new Intent(this, UpLoadActivity.class);
+		startActivity(intent);
+	}
+	@Event(value={R.id.ib_dxcx})
+	private void dxcx(View view){
+		Intent intent =new Intent(this, WarnMsgActivity.class);
 		startActivity(intent);
 	}
 }

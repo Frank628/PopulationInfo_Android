@@ -157,6 +157,7 @@ public class UpLoadActivity extends BaseActiviy{
 			e.printStackTrace();
 		}
 	}
+
 	private void showProgressDialog(){
 		LayoutInflater inflaterDl = LayoutInflater.from(this);
         RelativeLayout layout = (RelativeLayout)inflaterDl.inflate(R.layout.dialog_upload, null );
@@ -217,7 +218,6 @@ public class UpLoadActivity extends BaseActiviy{
 						Dialog.showSelectDialog(UpLoadActivity.this, "发送失败"+failCount+"条,现在重新发送吗？", new DialogClickListener() {
 							@Override
 							public void confirm() {
-							// TODO Auto-generated method stub
 							}
 							@Override
 							public void cancel() {}

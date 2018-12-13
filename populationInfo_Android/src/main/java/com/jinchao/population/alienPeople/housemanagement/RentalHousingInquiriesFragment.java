@@ -6,17 +6,22 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jinchao.population.MyApplication;
 import com.jinchao.population.R;
+import com.jinchao.population.alienPeople.SearchOnHouseFragment;
 import com.jinchao.population.base.BaseFragment;
 import com.jinchao.population.dbentity.HouseAddressOldBean;
 import com.jinchao.population.dbentity.HouseAddressOldBean10;
@@ -44,6 +49,8 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.Arrays;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by OfferJiShu01 on 2017/2/28.
  */
@@ -68,6 +75,24 @@ public class RentalHousingInquiriesFragment extends BaseFragment{
         }
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
+
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    public void onEventMainThread(HouseAddressOldBean bean) {
+        SearchhasHouse(bean.toString());
+    }
     @Override
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -88,109 +113,112 @@ public class RentalHousingInquiriesFragment extends BaseFragment{
         });
     }
 
-    @Event(value = {R.id.btn_search})
+    @Event(value = {R.id.btn_search,R.id.edt_content})
     private void search(View view){
-        String code =edt_content.getText().toString().trim();
-        if (TextUtils.isEmpty(code)||code.length()!=6){
-            Toast.makeText(getActivity(),"请输入6位的房屋编号",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        hidenSoftKeyBoard(edt_content);
-        showProcessDialog("正在查询...");
-        try {
-            dbUtils= DeviceUtils.getDbUtils(getActivity());
-            switch (database_tableNo){
-                case 1:
-                    HouseAddressOldBean houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "like", code));
-                    if (houseAddressOldBean!=null) {
-                        SearchhasHouse(houseAddressOldBean.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 2:
-                    HouseAddressOldBean2 houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "like", code));
-                    if (houseAddressOldBean2!=null) {
-                        SearchhasHouse(houseAddressOldBean2.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 3:
-                    HouseAddressOldBean3 houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "like", code));
-                    if (houseAddressOldBean3!=null) {
-                        SearchhasHouse(houseAddressOldBean3.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 4:
-                    HouseAddressOldBean4 houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "like", code));
-                    if (houseAddressOldBean4!=null) {
-                        SearchhasHouse(houseAddressOldBean4.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 5:
-                    HouseAddressOldBean5 houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "like", code));
-                    if (houseAddressOldBean5!=null) {
-                        SearchhasHouse(houseAddressOldBean5.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 6:
-                    HouseAddressOldBean6 houseAddressOldBean6 = dbUtils.findFirst(Selector.from(HouseAddressOldBean6.class).where("scode", "like", code));
-                    if (houseAddressOldBean6!=null) {
-                        SearchhasHouse(houseAddressOldBean6.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 7:
-                    HouseAddressOldBean7 houseAddressOldBean7 = dbUtils.findFirst(Selector.from(HouseAddressOldBean7.class).where("scode", "like", code));
-                    if (houseAddressOldBean7!=null) {
-                        SearchhasHouse(houseAddressOldBean7.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 8:
-                    HouseAddressOldBean8 houseAddressOldBean8 = dbUtils.findFirst(Selector.from(HouseAddressOldBean8.class).where("scode", "like", code));
-                    if (houseAddressOldBean8!=null) {
-                        SearchhasHouse(houseAddressOldBean8.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 9:
-                    HouseAddressOldBean9 houseAddressOldBean9 = dbUtils.findFirst(Selector.from(HouseAddressOldBean9.class).where("scode", "like", code));
-                    if (houseAddressOldBean9!=null) {
-                        SearchhasHouse(houseAddressOldBean9.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-                case 10:
-                    HouseAddressOldBean10 houseAddressOldBean10 = dbUtils.findFirst(Selector.from(HouseAddressOldBean10.class).where("scode", "like", code));
-                    if (houseAddressOldBean10!=null) {
-                        SearchhasHouse(houseAddressOldBean10.toString());
-                    }else{
-                        SearchNoHouse();
-                    }
-                    break;
-            }
-
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hideProcessDialog();
-            }
-        },200);
+        edt_content.setText("");
+        edt_content.clearFocus();
+        SearchOnHouseFragment.newInstance().show(getActivity().getSupportFragmentManager(),SearchOnHouseFragment.TAG);
+//        String code =edt_content.getText().toString().trim();
+//        if (TextUtils.isEmpty(code)||code.length()!=6){
+//            Toast.makeText(getActivity(),"请输入6位的房屋编号",Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        hidenSoftKeyBoard(edt_content);
+//        showProcessDialog("正在查询...");
+//        try {
+//            dbUtils= DeviceUtils.getDbUtils(getActivity());
+//            switch (database_tableNo){
+//                case 1:
+//                    HouseAddressOldBean houseAddressOldBean = dbUtils.findFirst(Selector.from(HouseAddressOldBean.class).where("scode", "like", code));
+//                    if (houseAddressOldBean!=null) {
+//                        SearchhasHouse(houseAddressOldBean.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 2:
+//                    HouseAddressOldBean2 houseAddressOldBean2 = dbUtils.findFirst(Selector.from(HouseAddressOldBean2.class).where("scode", "like", code));
+//                    if (houseAddressOldBean2!=null) {
+//                        SearchhasHouse(houseAddressOldBean2.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 3:
+//                    HouseAddressOldBean3 houseAddressOldBean3 = dbUtils.findFirst(Selector.from(HouseAddressOldBean3.class).where("scode", "like", code));
+//                    if (houseAddressOldBean3!=null) {
+//                        SearchhasHouse(houseAddressOldBean3.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 4:
+//                    HouseAddressOldBean4 houseAddressOldBean4 = dbUtils.findFirst(Selector.from(HouseAddressOldBean4.class).where("scode", "like", code));
+//                    if (houseAddressOldBean4!=null) {
+//                        SearchhasHouse(houseAddressOldBean4.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 5:
+//                    HouseAddressOldBean5 houseAddressOldBean5 = dbUtils.findFirst(Selector.from(HouseAddressOldBean5.class).where("scode", "like", code));
+//                    if (houseAddressOldBean5!=null) {
+//                        SearchhasHouse(houseAddressOldBean5.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 6:
+//                    HouseAddressOldBean6 houseAddressOldBean6 = dbUtils.findFirst(Selector.from(HouseAddressOldBean6.class).where("scode", "like", code));
+//                    if (houseAddressOldBean6!=null) {
+//                        SearchhasHouse(houseAddressOldBean6.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 7:
+//                    HouseAddressOldBean7 houseAddressOldBean7 = dbUtils.findFirst(Selector.from(HouseAddressOldBean7.class).where("scode", "like", code));
+//                    if (houseAddressOldBean7!=null) {
+//                        SearchhasHouse(houseAddressOldBean7.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 8:
+//                    HouseAddressOldBean8 houseAddressOldBean8 = dbUtils.findFirst(Selector.from(HouseAddressOldBean8.class).where("scode", "like", code));
+//                    if (houseAddressOldBean8!=null) {
+//                        SearchhasHouse(houseAddressOldBean8.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 9:
+//                    HouseAddressOldBean9 houseAddressOldBean9 = dbUtils.findFirst(Selector.from(HouseAddressOldBean9.class).where("scode", "like", code));
+//                    if (houseAddressOldBean9!=null) {
+//                        SearchhasHouse(houseAddressOldBean9.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//                case 10:
+//                    HouseAddressOldBean10 houseAddressOldBean10 = dbUtils.findFirst(Selector.from(HouseAddressOldBean10.class).where("scode", "like", code));
+//                    if (houseAddressOldBean10!=null) {
+//                        SearchhasHouse(houseAddressOldBean10.toString());
+//                    }else{
+//                        SearchNoHouse();
+//                    }
+//                    break;
+//            }
+//
+//        } catch (DbException e) {
+//            e.printStackTrace();
+//        }
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                hideProcessDialog();
+//            }
+//        },200);
 
     }
     private void readFail(String error){

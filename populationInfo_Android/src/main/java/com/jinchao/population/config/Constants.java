@@ -26,10 +26,10 @@ public class Constants {
 	public static final String YUJING_TIME_LIMIT="YUJING_TIME_LIMIT";//到期预警接口请求时间
 	public static final String YUJING_LIST="YUJING_LIST";//到期预警数据
 	public static final String[] DEGREE={"高中","本科","大专","中专","研究生","初中","小学","文盲或半文盲"};
-	public static final String[] CHUSHUOLEIXING={"租赁房屋","农村私房","企业内部集宿","社会面集宿","建筑工地","居民家中","购买房屋","新村楼房","临时工棚"};
-	public static final String[] ZANZHUSHIYOU={"内部单位合同工","企事业雇佣临时工","建筑民工","装卸运输工","办厂","务农","养殖","其他劳务","单位经商","个体户经商","其他经商","采购、供销","驻地办事机构","其他公务","饮食业","公用事业","咨询服务","仓储业","手工业劳动","修理工匠","保姆","拣、收废品","其他服务","其他经济型","开会、考察、出差","学习、培训","寄读、借读","治病、疗养","探亲、访友","旅游、观光","婚入","离休、退休、退职","刑满释放、解除教养","寄养","盲流","灾荒流入","夫妻投靠","子女投靠父母","父母投靠子女","其他投靠亲友","其他社会型","事由不详"};
-	public static final String[] CHANYELEIXING={"二产","一产","三产","其他"};
-	public static final String[] JUZHUFANGSHI={"单身居住","集体居住","合伙居住","家庭居住","其他"};
+	public static final String[] CHUSHUOLEIXING={"租赁房屋","农村私房","企业内部集宿","社会面集宿","工地现场","居民家中","一般民宅","自购房屋","新村楼房","临时工棚","学校","部队","团体","旅馆","旅店","宾馆","医院","公寓","流动性施工单位","机关","招待所","宗教场所","水上船舶","收容站","疗养院","康复中心","遣送站","个体摊点","商业用房","暂住处不详"};
+	public static final String[] ZANZHUSHIYOU={"内部单位合同工","企事业雇佣临时工","建筑民工","装卸运输工","办厂","务农","养殖","其他劳务","单位经商","个体户经商","其他经商","采购、供销","驻地办事机构","其他公务","饮食业","公用事业","咨询服务","仓储业","手工业劳动","修理工匠","保姆","拣、收废品","其他服务","其他经济型","开会、考察、出差","学习、培训","寄读、借读","治病、疗养","探亲、访友","旅游、观光","婚入","离休、退休、退职","刑满释放、解除教养","寄养","盲流","灾荒流入","夫妻投靠","子女投靠父母","父母投靠子女","其他投靠亲友","其他社会型","录(聘)用","随迁学龄前子女","事由不详"};
+	public static final String[] CHANYELEIXING={"二产","一产","三产","投资经商","金融业","其他"};
+	public static final String[] JUZHUFANGSHI={"单人居住","集体居住","多人居住","家庭居住","混合居住","多家合住","旅馆式居住","其他"};
 	public static final String[] FANGDONGGUANXI={"租赁","员工","自有","其他"};
 	public static final String[] JIEYUCUOSHI={"结扎","上环","服药","其他","不适用"};
 	public static final String[] JIAOTONGGONGJU={"无","电动车","自行车","摩托车","汽车","其他"};
@@ -86,7 +86,7 @@ public class Constants {
     public static final String[] GUANXIREN={"配偶","子女","父母","兄弟姐妹","其他"};
 	public static final String[] FANGWULEIXING={"搭建房","车库","楼房","平房","企业集宿","社会集宿","私房","公房","新村楼房","写字楼","建筑工地","其他"};
 	public static final String[] FANGWULEIXING_CODE={"a","b","c","5","6","7","1","2","3","4","8","9"};
-	public static final String[] ZUZHULEIXING={"单身居住","家庭居住","多人合住","混合居住","多家合住","旅馆式居住","其他"};
+	public static final String[] ZUZHULEIXING={"单人居住","家庭居住","多人居住","混合居住","多家合住","旅馆式居住","其他"};
 	public static final String[] ZUZHULEIXING_CODE={"1","2","3","4","5","6","99"};
 	public static final String[] FANGWUJIEGOU={"楼房","平房","其他"};
 	public static final String[] FANGWUJIEGOU_CODE={"1","2","3"};
@@ -96,12 +96,27 @@ public class Constants {
 	public static final String[] JUZHULEIXING_CODE={"1","2","3","4"};
 	public static final String[] CHENGZUTUJING={"承租途径未知","房主直接出租","承租人转租","中介出租","其他","不适用"};
 	public static final String[] CHENGZUTUJING_CODE={"1","2","3","4","5","9"};
+
+	//2018-06-22
+	public static final String[] FANGWUDENGJI={"放心户","一般户","重点户"};
+	public static final String[] FANGWUDENGJI_CODE={"10","20","30"};
+
+	public static final String[] ZHONGDIANFANGWU={"人均居住面积低于当地标准","居住10人以上且存在安全隐患","违法建筑","违规改变房屋使用性质","不符合有关工程建设强制性标准","住宿与生产、储存、经营混合设置"};
+	public static final String[] ZHONGDIANFANGWU_CODE={"21","22","23","24","25","26"};
+
+	public static final String[] ZHONGDIANJUZHURENYUAN={"单身居住","频繁变更租住地点","重点人员租住","无业人员租住","旅馆式租住","情况不明"};
+	public static final String[] ZHONGDIANJUZHURENYUAN_CODE={"27","28","31","32","33","35"};
+
+	public static final String[] FANGWUYINHUAN={"治安隐患","消防隐患","住建隐患","其他隐患"};
+	public static final String[] FANGWUYINHUAN_CODE={"1","2","3","99"};
+
+
 	public static final String IS_FROM_REALPOPULATION="IS_FROM_REALPOPULATION";//是否来自实有人口
 	public static final String IS_NFC_READER="IS_NFC_READER";//是否是从NFC读取页面跳转来
 	public static final String Where_from="Where_from";
 	public static final String NFCJSONBEAN="NFCJSONBEAN";
 	public static final String HOUSE_INFOR="HOUSE_INFOR";
-
+	public static final String[] JZZLQFS={"快递免费配送+赠送手机卡","自行前往社区领取"};
 	public static final String PWD_NTAG216="PASSWORD";//保证pwd8位
 }
                           

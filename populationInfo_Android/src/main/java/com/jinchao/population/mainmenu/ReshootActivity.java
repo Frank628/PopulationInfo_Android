@@ -337,7 +337,6 @@ public class ReshootActivity extends BaseReaderActiviy implements IDReader.IDRea
 				showIDCardInfo(false,personInfo,null);
 			}
 		});
-
 	}
 
 	@Override

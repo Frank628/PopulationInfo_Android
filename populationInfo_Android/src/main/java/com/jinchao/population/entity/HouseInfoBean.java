@@ -22,6 +22,13 @@ public class HouseInfoBean {
     public String jzlx="";
     public String jzjs="";
     public String cztj="";
+
+    public String fwdj="";
+    public String zdfw="";
+    public String zdjzry="";
+    public String fwyh="";
+    public String yhms="";
+    public String sfqz="";
     public int code;
     public String msg="";
 
@@ -175,5 +182,53 @@ public class HouseInfoBean {
 
     public void setCztj(String cztj) {
         this.cztj = cztj;
+    }
+
+    public String getFwdj() {
+        return fwdj;
+    }
+
+    public void setFwdj(String fwdj) {
+        this.fwdj = fwdj;
+    }
+
+    public String getZdfw() {
+        return zdfw;
+    }
+
+    public void setZdfw(String zdfw) {
+        this.zdfw = zdfw;
+    }
+
+    public String getZdjzry() {
+        return zdjzry;
+    }
+
+    public void setZdjzry(String zdjzry) {
+        this.zdjzry = zdjzry;
+    }
+
+    public String getFwyh() {
+        return fwyh;
+    }
+
+    public void setFwyh(String fwyh) {
+        this.fwyh = fwyh;
+    }
+
+    public String getYhms() {
+        return yhms;
+    }
+
+    public void setYhms(String yhms) {
+        this.yhms = yhms;
+    }
+
+    public String getSfqz() {
+        return sfqz;
+    }
+
+    public void setSfqz(String sfqz) {
+        this.sfqz = sfqz;
     }
 }

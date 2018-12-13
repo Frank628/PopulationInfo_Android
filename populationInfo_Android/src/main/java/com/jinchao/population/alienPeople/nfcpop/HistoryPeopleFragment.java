@@ -60,19 +60,16 @@ public class HistoryPeopleFragment extends LazyFragment {
         allPeopleFragment.setArguments(bundle);
         return allPeopleFragment;
     }
-
     @Override
     protected void onResumeLazy() {
         super.onResumeLazy();
 
         if (!TextUtils.isEmpty(resultJson)){
             if (!TextUtils.isEmpty(resultJson)) {
-
                 processData(resultJson);
             }
         }
     }
-
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
@@ -203,9 +200,11 @@ public class HistoryPeopleFragment extends LazyFragment {
             }
             for (int i=0;i<list.size();i++){
                 for (int j=0;j<renyuanInHouseBean1.data.peoplelist.size();j++){
+                    Log.i("index:",i+"");
                     if (list.get(i).idcard.equals(renyuanInHouseBean1.data.peoplelist.get(j).idcard)){
                         list.remove(i);
-                        i=i-1;
+
+
                     }
                 }
             }

@@ -352,6 +352,24 @@ public class XMLParserUtil {
                                         if("出租类型".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
                                             houseinfo.setJzlx(n4.getTextContent());
                                         }
+                                        if("房屋等级".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFwdj(n4.getTextContent());
+                                        }
+                                        if("房屋隐患".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setFwyh(n4.getTextContent());
+                                        }
+                                        if("是否群租".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setSfqz(n4.getTextContent());
+                                        }
+                                        if("重点房屋".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setZdfw(n4.getTextContent());
+                                        }
+                                        if("重点居住人员".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setZdjzry(n4.getTextContent());
+                                        }
+                                        if("隐患描述".equals( n4.getAttributes().getNamedItem("name").getNodeValue())) {
+                                            houseinfo.setYhms(n4.getTextContent());
+                                        }
                                     }
                                 }
                             }

@@ -178,9 +178,9 @@
                     android:layout_height="match_parent"
                     android:button="@null"
                     android:text="群众"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:textSize="@dimen/small_middle_size"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="@dimen/micro_middle_size"
                     android:background="@drawable/radio_check_bg_leftclick"
                     android:textColor="@color/radio_check_textcolor"
                     android:checked="true"
@@ -189,11 +189,11 @@
                     android:id="@+id/rb_tuanyuan"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:button="@null"
                     android:text="团员"
-                    android:textSize="@dimen/small_middle_size"
+                    android:textSize="@dimen/micro_middle_size"
                     android:background="@drawable/radio_check_bg_leftclick"
                     android:textColor="@color/radio_check_textcolor"
                     />
@@ -203,10 +203,22 @@
                     android:layout_height="match_parent"
                     android:button="@null"
                     android:text="党员"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:background="@drawable/radio_check_bg_leftclick"
-                    android:textSize="@dimen/small_middle_size"
+                    android:textSize="@dimen/micro_middle_size"
+                    android:textColor="@color/radio_check_textcolor"
+                    />
+                <RadioButton
+                    android:id="@+id/rb_minzhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:button="@null"
+                    android:text="民主党派"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/radio_check_bg_leftclick"
+                    android:textSize="@dimen/micro_middle_size"
                     android:textColor="@color/radio_check_textcolor"
                     />
             </RadioGroup>
@@ -400,7 +412,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                app:rc_text="处所类型"
+                app:rc_text="居住处所"
                 app:rc_textSize="@dimen/small_size"
                 app:rc_textColor="@color/title1"
                 />
@@ -922,7 +934,7 @@
             <TextView
                 android:id="@+id/tv_leftjuzhufangshi"
                 style="@style/handle_id_left_text_style"
-                android:text="居住方式"
+                android:text="居住类型"
                 />
             <TextView
                 android:id="@+id/tv_juzhufangshi"
@@ -935,7 +947,7 @@
                 android:singleLine="true"
                 android:drawableRight="@drawable/ico_search_next"
                 android:drawablePadding="10dp"
-                android:text="单身居住"
+                android:text="单人居住"
                 />
         </RelativeLayout>
         <View
@@ -1379,11 +1391,67 @@
             android:layout_marginRight="@dimen/layout_leftright_padding"
             />
         <RelativeLayout
+            android:id="@+id/rl_lqfs"
             android:layout_width="match_parent"
             android:layout_height="@dimen/relative_row_height"
             android:background="@drawable/white_click_bg2"
             android:paddingLeft="@dimen/layout_leftright_padding"
             android:paddingRight="@dimen/layout_leftright_padding"
+            android:visibility="gone"
+            >
+            <TextView
+                android:id="@+id/tv_leftlq"
+                style="@style/handle_id_left_text_style"
+                android:text="居住证领取方式"
+                />
+            <TextView
+                android:id="@+id/tv_lqfs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:textSize="@dimen/small_middle_size"
+                android:textColor="@color/title2"
+                android:layout_toRightOf="@+id/tv_leftlq"
+                android:singleLine="true"
+                android:drawableRight="@drawable/ico_search_next"
+                android:drawablePadding="10dp"
+                android:text=""
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_lqfsts"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            android:visibility="gone"
+            >
+            <TextView
+                android:id="@+id/tv_lqfsts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|left"
+                android:textSize="16sp"
+                android:textColor="@color/red"
+                android:singleLine="true"
+                android:text="☆手机卡内含20元话费（若充50元再奖50元）"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CACACA"
+            android:layout_marginLeft="@dimen/layout_leftright_padding"
+            android:layout_marginRight="@dimen/layout_leftright_padding"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/relative_row_height"
+            android:background="@drawable/white_click_bg2"
+            android:paddingLeft="@dimen/layout_leftright_padding"
+            android:paddingRight="@dimen/layout_leftright_padding"
+            android:visibility="gone"
             >
             <TextView
                 android:id="@+id/tv_leftzujin"
@@ -1413,6 +1481,7 @@
             android:background="#CACACA"
             android:layout_marginLeft="@dimen/layout_leftright_padding"
             android:layout_marginRight="@dimen/layout_leftright_padding"
+            android:visibility="gone"
             />
         <RelativeLayout
             android:id="@+id/rl_zjdq"
@@ -1421,6 +1490,7 @@
             android:background="@drawable/white_click_bg2"
             android:paddingLeft="@dimen/layout_leftright_padding"
             android:paddingRight="@dimen/layout_leftright_padding"
+            android:visibility="gone"
             >
             <TextView
                 android:id="@+id/tv_leftzujinriqi"
@@ -1446,6 +1516,7 @@
             android:background="#CACACA"
             android:layout_marginLeft="@dimen/layout_leftright_padding"
             android:layout_marginRight="@dimen/layout_leftright_padding"
+            android:visibility="gone"
             />
 
         <RelativeLayout

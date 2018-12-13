@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -43,28 +44,46 @@
             />
     </RelativeLayout>
     <LinearLayout 
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+
         >
-        <ImageButton 
+        <TextView
             android:id="@+id/ib_tongji"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/btn_sys_tongji"
-            android:background="@drawable/transaction_click_bg"
-            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:drawableTop="@drawable/icon_statistic"
+            android:text="作业量统计"
+            android:drawablePadding="10dp"
+            android:textSize="19sp"
+            android:gravity="center"
             />
-        <ImageButton 
+        <TextView
             android:id="@+id/ib_fasong"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/btn_sys_send"
-            android:layout_marginLeft="40dp"
-            android:background="@drawable/transaction_click_bg"
-            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:drawableTop="@drawable/icon_upload"
+            android:text="数据发送"
+            android:drawablePadding="10dp"
+            android:textSize="19sp"
+            android:gravity="center"
             />
-        
+        <TextView
+            android:id="@+id/ib_dxcx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_warnmsg"
+            android:text="短信提醒查询"
+            android:drawablePadding="10dp"
+            android:textSize="19sp"
+            android:gravity="center"
+            />
     </LinearLayout>
 </LinearLayout>

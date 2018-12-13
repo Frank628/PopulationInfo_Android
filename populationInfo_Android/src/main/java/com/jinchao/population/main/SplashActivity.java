@@ -5,16 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import org.xutils.x;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.jinchao.population.R;
 import com.jinchao.population.base.BaseActiviy;
 import com.jinchao.population.config.Constants;
@@ -50,7 +47,6 @@ public class SplashActivity extends BaseActiviy{
 						}
 					}).start();
 				}
-
 				@Override
 				public void cancel() {
 					initalData();
@@ -92,7 +88,6 @@ public class SplashActivity extends BaseActiviy{
 				}else{
 					checkit("无法连接到服务器~");
 				}
-
 			}
 			@Override
 			public void onError(Throwable ex, boolean isOnCallback) {

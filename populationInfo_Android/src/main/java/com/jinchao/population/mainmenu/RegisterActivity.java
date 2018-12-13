@@ -106,7 +106,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 	private static final int REQUEST_CODE_CAMERA=3;
 	private static final String IMAGE_FILE_NAME = "faceImage.jpg";
 	private boolean isFirstGenerationIDCard=false;
-	private String hjdz="",istakephoto="0";
+	private String hjdz="",istakephoto="0",isPhoto="";
 	private String pic;
 	private boolean isreal=false,isReplace=false;
 	private RealHouseOne realHouseOne ;//实有人口传参
@@ -138,6 +138,8 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		});
 		People people=(People) getIntent().getSerializableExtra("people");
 		String idcard=getIntent().getStringExtra("idcard");
+		isPhoto=getIntent().getStringExtra("isPhoto")==null?"":getIntent().getStringExtra("isPhoto");
+
 		if(people!=null){
 			edt_idcard.setText(idcard);
 			edt_name.setText(people.getName());
@@ -165,11 +167,13 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			replace.setVisibility(View.VISIBLE);
 		}else {
 			if (isfromotherway){
+				if(TextUtils.isEmpty(isPhoto)){
+					requestIsPhoto(idcard);
+				}
                 istakephoto="0";
                 isFirstGenerationIDCard=true;
                 resetFirstGenerationIDCardText();
 				edt_idcard.setText(idcard);
-
                 try {
                     String idcardNO = edt_idcard.getText().toString().trim();
                     if (CommonIdcard.validateCard(idcardNO)) {
@@ -237,7 +241,6 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
          edt_sex.setText(CommonIdcard.getGenderByIdCard(idcardNO));
          edt_region.setText("汉");
          try {
-
              Nation nation = dbUtils.findFirst(Selector.from(Nation.class).where("id", "=", idcardNO.substring(0, 6)));
              if (nation != null) {
                  edt_address.setText(nation.getNation_name());
@@ -540,6 +543,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			pic = new String(Base64Coder.encodeLines(b));
 			istakephoto="1";
 			isReplace=true;
+
 			iv_pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 			iv_pic.setImageDrawable(drawable);
 		}
@@ -557,6 +561,7 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 				byte[] b = stream.toByteArray();
 				pic = new String(Base64Coder.encodeLines(b));
 				isReplace=true;
+
 				iv_pic.setScaleType(ImageView.ScaleType.CENTER_CROP);
 				iv_pic.setImageDrawable(drawable);
 				istakephoto="1";
@@ -779,41 +784,44 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			}
 		}
 		address=address+xaddress;
-		if (pic==null) {
-			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim()) ;
-			Dialog.showSelectDialog(RegisterActivity.this, "未拍照，请拍照?", new DialogClickListener() {
+
+		if (TextUtils.isEmpty(pic)&&(!isPhoto.equals("1"))) {
+//			final People oPeople= new People(name, idcard, nation, gender, birth, address,"",idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim()) ;
+
+			Dialog.showForceDialog(RegisterActivity.this, "提示","未拍照，请拍照?", new DialogClickListener() {
 				@Override
 				public void confirm() {
-                    if (isfromotherway){//如果是从人员信息验证界面进入的
-                            Intent intent = new Intent(RegisterActivity.this,HandleIDActivity.class);
-							if(!getIntent().getBooleanExtra("isHandle",false)){
-								oPeople.setPicture(null);
-							}
-                            intent.putExtra("people", oPeople);
-                            intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
-							intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
-
-                            startActivity(intent);
-                            RegisterActivity.this.finish();
-                        return;
-                    }
-					if (isreal) {
-						Intent intent =new Intent(RegisterActivity.this, SingleRealPopulationActivity.class);
-						intent.putExtra("people", oPeople );
-						intent.putExtra("realhouseone", realHouseOne);
-						startActivity(intent);
-						RegisterActivity.this.finish();
-					}else{
-						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
-						intent.putExtra("people",oPeople);
-                        RegisterActivity.this.startActivity(intent);
-
-					}
+					Toast.makeText(RegisterActivity.this, "请先拍摄证件照",  Toast.LENGTH_SHORT).show();
+//                    if (isfromotherway){//如果是从人员信息验证界面进入的
+//                            Intent intent = new Intent(RegisterActivity.this,HandleIDActivity.class);
+//							if(!getIntent().getBooleanExtra("isHandle",false)){
+//								oPeople.setPicture(null);
+//							}
+//                            intent.putExtra("people", oPeople);
+//                            intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
+//							intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
+//
+//                            startActivity(intent);
+//                            RegisterActivity.this.finish();
+//                        return;
+//                    }
+//					if (isreal) {
+//						Intent intent =new Intent(RegisterActivity.this, SingleRealPopulationActivity.class);
+//						intent.putExtra("people", oPeople );
+//						intent.putExtra("realhouseone", realHouseOne);
+//						startActivity(intent);
+//						RegisterActivity.this.finish();
+//					}else{
+//						Intent intent =new Intent(RegisterActivity.this, ZanZhuActivity.class);
+//						intent.putExtra("people",oPeople);
+//                        RegisterActivity.this.startActivity(intent);
+//
+//					}
 				}
 
 				@Override
 				public void cancel() {
-					Toast.makeText(RegisterActivity.this, "请先拍摄证件照",  Toast.LENGTH_SHORT).show();
+
 				}
 			});
 			return;
@@ -832,6 +840,9 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
                 Intent intent = new Intent(RegisterActivity.this,HandleIDActivity.class);
 				People p2=new People(name, idcard, nation, gender, birth, address,pic,idcard.substring(0, 6),"1",MyInfomationManager.getUserName(this),MyInfomationManager.getSQNAME(this),edt_formername.getText().toString().trim());
 				p2.setIstakephoto(istakephoto);
+				if((!getIntent().getBooleanExtra("isHandle",false))&&isPhoto.equals("1")&&istakephoto.equals("0")){
+					p2.setPicture(null);
+				}
                 intent.putExtra("people",p2);
 				intent.putExtra("isHandle", getIntent().getBooleanExtra("isHandle",false));
 				intent.putExtra(Constants.NFCJSONBEAN,getIntent().getSerializableExtra(Constants.NFCJSONBEAN));
@@ -844,7 +855,6 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 			p1.setIstakephoto(istakephoto);
             intent.putExtra("people", p1);
             RegisterActivity.this.startActivity(intent);
-
 		}
 	}
 
@@ -922,6 +932,26 @@ public class RegisterActivity extends BaseReaderActiviy  implements IDReader.IDR
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
+	private void requestIsPhoto(String idcard){
+		RequestParams params=new RequestParams(Constants.URL+"GdPeople.aspx?type=isphoto&sfz="+idcard);
+		x.http().post(params, new Callback.CommonCallback<String>() {
+			@Override
+			public void onSuccess(String result) {
+				Log.d("isphoto", result);
+				isPhoto=XmlUtils.isPhoto(result);
+			}
+			@Override
+			public void onError(Throwable ex, boolean isOnCallback) {
+			}
+			@Override
+			public void onCancelled(CancelledException cex) {}
+			@Override
+			public void onFinished() {
+			}
+		});
+	}
+
+
+
 }

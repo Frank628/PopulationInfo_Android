@@ -166,7 +166,6 @@ public class ResidenTrackingFragment extends BaseFragment{
             public void onSuccess(String result) {
                 Log.d("get_jzz", result);
                 hideProcessDialog();
-
                 XMLParserUtil.parseXMLtoTRACK(result, new XMLParserUtil.OnXmlParserToTrackListener() {
                     @Override
                     public void success(TrackingBean result) {
